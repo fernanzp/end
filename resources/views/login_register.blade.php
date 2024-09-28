@@ -50,5 +50,23 @@
 
     <!--Fondo del login y register-->
     <div class="absolute top-0 left-[-50%] w-full h-screen bg-customDarkGrey transition-transform duration-500 ease-in-out"></div>
+
+    <!--Login y register-->
+    <div class="absolute top-0 left-0 w-full h-full" id="container_loginregister">
+        <!--Login-->
+        <div class="absolute flex items-center justify-center flex-col w-1/2 h-full left-0 transition-transform duration-500">
+            <h2 class="text-customBeige font-serif uppercase font-bold text-[50px]">Inicia Sesión</h2>
+            <p class="text-customBeige text-[17px]">¿Aún no tienes una cuenta? <a href="#" id="go-to-register" class="text-customGreen">Crea una</a></p>
+            <form method="" action="" class="w-[70%]">
+                <div class="relative my-10 w-full overflow-hidden">
+                    <input type="text" name="email" required class="w-full py-5 px-4 rounded-[12px] bg-customLightGrey text-customBeige text-[18px] font-bold border-none outline-none">
+                    <label class="absolute buttom-0 left-0 w-full h-full pointer-events-none">
+                        <span class="absolute text-white text-[18px] font-bold bottom-[18px] left-[15px] transition-all duration-300">Correo</span>
+                    </label>
+                </div>
+                <input type="submit" value="Iniciar Sesión" class="w-full text-[20px] font-bold text-white bg-customGreen py-4 rounded-[32px] border-none cursor-pointer" name="btnIngresar">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
