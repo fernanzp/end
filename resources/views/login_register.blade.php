@@ -32,24 +32,13 @@
 </head>
 <body>
     <!--Barra superior de navegación-->
-    <header class="bg-transparent w-full fixed flex items-center p-2 z-50 transition-opacity duration-500 @if ($login_register == 'register') justify-end @endif">
-        <!-- Si la variable es 'register', invierte el orden de los elementos de la navbar -->
-        @if ($login_register == 'register')
-            <div class="flex items-center ml-4">
-                <a href="" class="text-2xl text-customBeige uppercase font-bold transition-colors duration-300 hover:text-customGreen">Inicio</a> 
-            </div>
-            <a href="" class="ml-4">
-                <img src="{{ asset('img/logo.png') }}" class="h-16">
-            </a>
-        @else
-            <!--Navbar del login-->
-            <a href="" class="ml-4">
-                <img src="{{ asset('img/logo.png') }}" class="h-16">
-            </a>
-            <div class="flex items-center ml-4">
-            <a href="" class="text-2xl text-customBeige uppercase font-bold transition-colors duration-300 hover:text-customGreen">Inicio</a> 
-            </div>
-        @endif
+    <header class="bg-transparent w-full fixed flex items-center p-2 z-50 transition-opacity duration-500">
+        <a href="" class="ml-4">
+            <img src="{{ asset('img/logo.png') }}" class="h-16">
+        </a>
+        <div class="flex items-center ml-4">
+        <a href="" class="text-2xl text-customBeige uppercase font-bold transition-colors duration-300 hover:text-customGreen">Inicio</a> 
+        </div>
     </header>
 
     <!--Video de fondo-->
@@ -57,11 +46,11 @@
         <video autoplay muted loop class="w-full h-full object-cover">
             <source src="{{ asset('video/video_login_register.mp4') }}" type="video/mp4">
         </video>
-        <div class="absolute top-0 left-1/2 w-1/2 h-full bg-gradient-to-r from-customDarkGrey to-transparent z-0"></div>
+        <div class="absolute top-0 left-1/2 w-1/2 h-full bg-gradient-to-r from-customDarkGray to-transparent z-0" id="gradient-bg"></div>
     </div>
 
     <!--Fondo del login y register-->
-    <div class="absolute top-0 left-0 w-1/2 h-screen bg-customDarkGrey transition-transform duration-500 ease-in-out" id="bg"></div>
+    <div class="absolute top-0 left-0 w-1/2 h-screen bg-customDarkGray transition-transform duration-500 ease-in-out" id="bg"></div>
 
     <!--Login y register-->
     <div class="absolute top-0 left-0 w-full h-full overflow-hidden" id="container_loginregister">
@@ -70,6 +59,7 @@
             <h2 class="text-customBeige font-serif uppercase font-bold text-[50px]">Inicia Sesión</h2>
             <p class="text-customBeige text-[17px]">¿Aún no tienes una cuenta? <a href="#" id="go-to-register" class="text-customGreen">Crea una</a></p>
             <form method="" action="" class="w-[70%]">
+                @csrf
                 <!--Correo-->
                 <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
                     <input id="email" type="text" name="email" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
@@ -88,10 +78,11 @@
             <h2 class="text-customBeige font-serif uppercase font-bold text-[50px]">Crea una cuenta</h2>
             <p class="text-customBeige text-[17px]">¿Ya tienes una cuenta? <a href="#" id="go-to-login" class="text-customGreen">Inicia sesión</a></p>
             <form method="" action="" class="w-[70%]">
+                @csrf
                 <!--Correo-->
                 <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="email" type="text" name="email" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
-                    <label for="email" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Correo</label>
+                    <input id="email-r" type="text" name="email" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                    <label for="email-r" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Correo</label>
                 </div>
                 <!--Nombre-->
                 <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
@@ -105,8 +96,8 @@
                 </div>
                 <!--Contraseña-->
                 <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="password" type="password" name="password" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
-                    <label for="password" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Contraseña</label>
+                    <input id="password-r" type="password" name="password" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                    <label for="password-r" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Contraseña</label>
                 </div>
                 <!--Confirmar Contraseña-->
                 <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
@@ -125,6 +116,7 @@
     const login = document.getElementById('login');
     const register = document.getElementById('register');
     const bg = document.getElementById('bg');
+    const gradientBg = document.getElementById('gradient-bg');
 
     // Botones
     const goToRegister = document.getElementById('go-to-register');
@@ -138,6 +130,10 @@
         register.style.transform = 'translateX(0)';
         // Mover el fondo hacia la izquierda (ajusta el valor para tu diseño)
         bg.style.transform = 'translateX(100%)';
+        // Invertir el degradado
+        gradientBg.style.transform = 'translateX(-100%)';
+        gradientBg.classList.remove('bg-gradient-to-r');
+        gradientBg.classList.add('bg-gradient-to-l');
     });
 
     // Event listener para cambiar a la vista de login
@@ -148,5 +144,15 @@
         register.style.transform = 'translateX(100%)';
         // Mover el fondo de vuelta a la posición inicial
         bg.style.transform = 'translateX(0)';
+        // Invertir el degradado
+        gradientBg.style.transform = 'translateX(0)';
+        gradientBg.classList.remove('bg-gradient-to-l');
+        gradientBg.classList.add('bg-gradient-to-r');
     });
+
+    // Cambiar el estado inicial basado en la variable de PHP
+    @if($login_register == 'register')
+        // Mostrar registro
+        goToRegister.click();
+    @endif
 </script>

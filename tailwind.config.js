@@ -10,8 +10,8 @@ export default {
       colors: {
         customBeige: '#ECDFCC',
         customGreen: '#6A9C89',
-        customDarkGrey: '#1E201E',
-        customLightGrey: '#3C3D37',
+        customDarkGray: '#1E201E',
+        customLightGray: '#3C3D37',
       },
     },
   },
