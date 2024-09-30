@@ -61,13 +61,13 @@
             <form method="" action="" class="w-[70%]">
                 @csrf
                 <!--Correo-->
-                <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="email" type="text" name="email" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
+                    <input id="email" type="text" name="email" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="email" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Correo</label>
                 </div>
                 <!--Contraseña-->
-                <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="password" type="password" name="password" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
+                    <input id="password" type="password" name="password" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="password" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Contraseña</label>
                 </div>
                 <input type="submit" value="Iniciar Sesión" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar">
@@ -80,28 +80,28 @@
             <form method="POST" action="{{ route('register') }}" class="w-[70%]">
                 @csrf
                 <!--Correo-->
-                <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="email-r" type="text" name="email" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
+                    <input id="email-r" type="text" name="email" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="email-r" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Correo</label>
                 </div>
                 <!--Nombre-->
-                <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="name" type="text" name="name" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
+                    <input id="name" type="text" name="name" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="name" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Nombre</label>
                 </div>
                 <!--Apellidos-->
-                <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="lastname" type="text" name="last_name" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
+                    <input id="lastname" type="text" name="last_name" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="lastname" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Apellidos</label>
                 </div>
                 <!--Contraseña-->
-                <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="password-r" type="password" name="password" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
+                    <input id="password-r" type="password" name="password" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="password-r" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Contraseña</label>
                 </div>
                 <!--Confirmar Contraseña-->
-                <div class="relative my-10 w-full border border-customBeige rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="confirm_password" type="password" name="password_confirmation" required class="peer w-full h-full px-4 pt-5 bg-transparent text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
+                    <input id="confirm_password" type="password" name="password_confirmation" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="confirm_password" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Confirmar contraseña</label>
                 </div>
                 <input type="submit" value="Crear Cuenta" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar">
