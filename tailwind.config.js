@@ -12,7 +12,7 @@ export default {
         customGreen: '#6A9C89',
         customDarkGray: '#1E201E',
         customLightGray: '#2A2C2A',
-        customLighterGray: '#3A3C3A'
+        customLighterGray: '#3A3C3A',
       },
     },
   },

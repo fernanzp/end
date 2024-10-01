@@ -58,7 +58,7 @@
         <div class="absolute flex items-center justify-center flex-col w-1/2 h-full left-0 transition-transform duration-500 " id="login">
             <h2 class="text-customBeige font-serif uppercase font-bold text-[50px]">Inicia Sesión</h2>
             <p class="text-customBeige text-[17px]">¿Aún no tienes una cuenta? <a href="#" id="go-to-register" class="text-customGreen">Crea una</a></p>
-            <form method="" action="" class="w-[70%]">
+            <form method="POST" action="{{ route('login') }}" class="w-[70%]">
                 @csrf
                 <!--Correo-->
                 <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
@@ -81,23 +81,26 @@
                 @csrf
                 <!--Correo-->
                 <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="email-r" type="text" name="email" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                    <input id="email-r" type="text" name="email" value="{{ old('email') }}" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="email-r" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Correo</label>
                 </div>
                 <!--Nombre-->
                 <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="name" type="text" name="name" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                    <input id="name" type="text" name="name" value="{{ old('name') }}" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="name" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Nombre</label>
                 </div>
                 <!--Apellidos-->
                 <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
-                    <input id="lastname" type="text" name="last_name" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
+                    <input id="lastname" type="text" name="last_name" value="{{ old('last_name') }}" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="lastname" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Apellidos</label>
                 </div>
                 <!--Contraseña-->
                 <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
                     <input id="password-r" type="password" name="password" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="password-r" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Contraseña</label>
+                    @error('password')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <!--Confirmar Contraseña-->
                 <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
@@ -106,6 +109,15 @@
                 </div>
                 <input type="submit" value="Crear Cuenta" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar">
             </form>
+            @if ($errors->any())
+                <div class="text-red-500">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
 </body>
