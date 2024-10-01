@@ -36,7 +36,7 @@
         <source src="{{ asset('video/video-index.mp4') }}" type="video/mp4">
         Tu navegador no soporta videos HTML5.
         </video>
-        <!-- <div class="absolute inset-0 bg-black bg-opacity-50"></div> -->
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         
         <!-- Navbar -->
         <nav class="absolute top-0 w-full z-10">
@@ -89,7 +89,7 @@
     <!-- bg-customLightGray -->
     <div class="bg-customLightGray py-12">
         <div class="container mx-auto relative">
-            
+
             <!-- Contenedor del contenido dinámico -->
             <div class="flex flex-row items-center justify-between space-x-8 px-4" id="carousel-content">
 
@@ -224,6 +224,7 @@
             <div>
                 <h3 class="text-customGreen font-semibold mb-4">¿Quiénes somos?</h3>
                 <ul class="space-y-2">
+                    <p>Education Non-Disparity</p>
                     <!-- <li><a href="#" class="hover:underline">Conviértete en beneficiario</a></li>
                     <li><a href="#" class="hover:underline">Conviértete en donante</a></li>
                     <li><a href="#" class="hover:underline">Conviértete en voluntario</a></li> -->
