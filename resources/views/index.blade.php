@@ -66,8 +66,8 @@
                             <!-- <div class="mb-4">
                                 <img src="placeholder.jpg" alt="User Image" class="w-16 h-16 rounded-full mx-auto">
                             </div> -->
-                            <p class="font-bold text-gray-800">user</p>
-                            <p class="text-gray-500">email@user.mx</p>
+                            <p class="font-bold text-gray-800">{{ Auth::user()->name }}</p>
+                            <p class="text-gray-500">{{ Auth::user()->email }}</p>
                         </div>
                         <div class="p-4 border-t text-center">
                             <a href="#" class="block text-customBeige hover:none">Iniciar sesión</a>
