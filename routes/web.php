@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+//Ruta para el login
+Route::get('/login', [Login_registerController::class, 'showLogin'])->name('login');
+
+//Ruta dinámica para el login y register
 Route::get('/{login_register}', [Login_registerController::class, 'login_register'])
     ->where('login_register', 'login|register');
 
