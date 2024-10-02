@@ -41,18 +41,18 @@
         <!-- Navbar -->
         <nav class="absolute top-0 w-full z-10">
             <ul class="flex justify-center space-x-8 p-4 bg-transparent text-customBeige">
-                <li class="list-none">
-                    <a href="#" class="relative text-customBeige text-xl transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:font-bold">
+            <li class="list-none">
+                    <a href="{{ url('/') }}" class="relative text-customBeige text-xl transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:font-bold">
                         Inicio
                     </a>
                 </li>
                 <li class="list-none">
-                    <a href="#" class="relative text-customBeige text-xl transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:font-bold">
+                    <a href="{{ url('/activities') }}" class="relative text-customBeige text-xl transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:font-bold">
                         Actividades
                     </a>
                 </li>
                 <li class="list-none">
-                    <a href="#" class="relative text-customBeige text-xl transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:font-bold">
+                    <a href="{{ url('/donations') }}" class="relative text-customBeige text-xl transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:font-bold">
                         Donaciones
                     </a>
                 </li>
@@ -70,8 +70,8 @@
                             <p class="text-gray-500">{{ Auth::user()->email }}</p>
                         </div>
                         <div class="p-4 border-t text-center">
-                            <a href="#" class="block text-customBeige hover:none">Iniciar sesión</a>
-                            <a href="#" class="block mt-2 text-customBeige hover:none">Registrarse</a>
+                            <a href="{{ url('/login') }}" class="block text-black hover:none">Iniciar sesión</a>
+                            <a href="{{ url('/register') }}" class="block mt-2 text-black hover:none">Registrarse</a>
                         </div>
                     </div>
                 </li>

@@ -21,6 +21,14 @@ Route::get('/{login_register}', [Login_registerController::class, 'login_registe
 //Ruta para procesar los datos del register y crear un nuevo usuario
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
+Route::get('/activities', function () {
+    return view('activities');
+});
+
+Route::get('/donations', function () {
+    return view('donations');
+});
+
 /* Ruta para el logout
 Route::post('/logout', function (Request $request) {
     Auth::logout();
