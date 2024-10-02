@@ -37,7 +37,7 @@
             <img src="{{ asset('img/logo.png') }}" class="h-16">
         </a>
         <div class="flex items-center ml-4">
-        <a href="" class="text-2xl text-customBeige uppercase font-bold transition-colors duration-300 hover:text-customGreen">Inicio</a> 
+        <a href="{{ url('/') }}" class="text-2xl text-customBeige uppercase font-bold transition-colors duration-300 hover:text-customGreen">Inicio</a> 
         </div>
     </header>
 
