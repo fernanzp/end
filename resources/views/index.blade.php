@@ -33,7 +33,7 @@
     <div class="relative h-screen w-full">
         <!-- <img src="{{ asset('img/Fondo-index.jpg') }}" alt="Niña en pobreza" class="object-cover w-full h-full"> -->
         <video autoplay muted loop class="object-cover w-full h-full">
-        <source src="{{ asset('video/video-index.mp4') }}" type="video/mp4">
+            <source src="{{ asset('video/video-index.mp4') }}" type="video/mp4">
         Tu navegador no soporta videos HTML5.
         </video>
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -95,57 +95,57 @@
     
     <!-- Sección 2 -->
     <!-- bg-customLightGray -->
-    <div class="bg-customLightGray py-12">
-        <div class="container mx-auto relative">
+    <div class="bg-customLightGray w-screen h-screen py-12">
+        <div class="container mx-auto relative h-full">
 
             <!-- Contenedor del contenido dinámico -->
-            <div class="flex flex-row items-center justify-between space-x-8 px-4" id="carousel-content">
+            <div class="flex flex-row items-center justify-between space-x-8 px-4 h-full" id="carousel-content">
 
                 <!-- Contenido 1 -->
-                <div class="w-1/2 content-slide">
+                <div class="w-1/2 content-slide h-full flex flex-col justify-center">
                     <h1 class="text-4xl font-bold text-customGreen leading-tight mb-4">
                         Únete a la Lucha contra la Pobreza y la Desigualdad
                     </h1>
-                    <h2 class="text-lg font-semibold text-customBeige mb-6">
+                    <h2 class="text-2xl font-semibold text-customBeige mb-6">
                         Tu apoyo puede marcar la diferencia
                     </h2>
-                    <p class="text-customBeige text-base text-justify leading-relaxed">
+                    <p class="text-1xl text-customBeige text-base text-justify leading-relaxed">
                         En nuestra ONG, trabajamos incansablemente para reducir la pobreza y la desigualdad promoviendo educación de calidad y creando oportunidades para quienes más lo necesitan. Sin embargo, no podemos hacerlo solos. Necesitamos tu ayuda.
                     </p>
                 </div>
 
                 <!-- Imagen 1 -->
-                <div class="w-1/2 content-slide">
-                    <img src="{{ asset('img/Fondo2-index.png') }}" alt="Niño en situación de pobreza" class="object-cover rounded-lg shadow-lg w-full h-full max-h-96">
+                <div class="w-1/2 content-slide h-full">
+                    <img src="{{ asset('img/Fondo2-index.png') }}" alt="Niño en situación de pobreza" class="object-cover rounded-lg shadow-lg w-full h-full">
                 </div>
 
                 <!-- Contenido 2 -->
-                <div class="w-1/2 content-slide hidden">
-                    <h1 class="text-2xl font-bold text-customGreen leading-tight mb-4">
+                <div class="w-1/2 content-slide h-full flex flex-col justify-center">
+                    <h1 class="text-4xl font-bold text-customGreen leading-tight mb-4">
                         Estás a un paso de apoyar a mejorar la educación de miles de estudiantes
                     </h1>
-                    <h2 class="text-lg font-semibold text-customBeige mb-6">
+                    <h2 class="text-2xl font-semibold text-customBeige mb-6">
                         Ingresa el monto a donar deseado:
                     </h2>
 
                     <!-- Botones de donación -->
                     <div class="grid grid-cols-3 gap-4">
-                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600">
+                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
                             100$
                         </button>
-                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600">
+                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
                             200$
                         </button>
-                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600">
+                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
                             300$
                         </button>
-                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600">
+                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
                             500$
                         </button>
-                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600">
+                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
                             800$
                         </button>
-                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600">
+                        <button class="px-4 py-2 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
                             1000$
                         </button>
                     </div>
@@ -155,8 +155,8 @@
                 </div>
 
                 <!-- Imagen 2 -->
-                <div class="w-1/2 content-slide hidden">
-                    <img src="{{ asset('img/seccion2-index.jpeg') }}" alt="Niños en situación de pobreza" class="object-cover rounded-lg shadow-lg w-full h-full max-h-96">
+                <div class="w-1/2 content-slide hidden h-full">
+                    <img src="{{ asset('img/seccion2-index.jpeg') }}" alt="Niños en situación de pobreza" class="object-cover rounded-lg shadow-lg w-full h-full">
                 </div>
             </div>
 
