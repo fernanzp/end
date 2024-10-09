@@ -48,17 +48,27 @@ Route::get('/google-auth/redirect', function () {
 
 Route::get('/google-auth/callback', function () {
     $user = Socialite::driver('google')->user();
-    $userData = User::updateOrCreate([
-        'email' => $user->getEmail(),
-    ], [
-        'name' => $user->user['given_name'], // Acceder al name
-        'last_name' => $user->user['family_name'], // Acceder al family_name
-        'password' => bcrypt('password'),
-        'rol' => 'user',
-        'status' => 1,
-    ]);
+    
 
-    Auth::login($userData, true);
+    #si este correo existe en la base de datos, entonces inicia sesión
+    $userData = User::where('email', $user->getEmail())->first();
+    if ($userData) {
+        Auth::login($userData, true);
+        return redirect('/dashboard');
+    }else{
+        $userData = User::updateOrCreate([
+            'email' => $user->getEmail(),
+        ], [
+            'name' => $user->user['given_name'], // Acceder al name
+            'last_name' => $user->user['family_name'], // Acceder al family_name
+            'password' => bcrypt('password'),
+            'rol' => 'user',
+            'status' => 1,
+        ]);
+    
+        Auth::login($userData, true);
+    
+        return redirect('/dashboard');
+    }
 
-    return redirect('/dashboard');
 });
