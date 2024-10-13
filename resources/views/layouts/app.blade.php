@@ -16,10 +16,10 @@
                         <a href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900 mx-2">Iniciar sesión</a>
                         <a href="{{ route('register') }}" class="text-gray-700 hover:text-gray-900 mx-2">Registrarse</a>
                     @else
-                        <a href="{{ route('user.dashboard') }}" class="text-gray-700 hover:text-gray-900 mx-2">Dashboard</a>
-                        <a href="{{ route('logout') }}" 
+                        <a href="{{ url('/dashboard') }}" class="text-gray-700 hover:text-gray-900 mx-2">Dashboard</a>
+                        <a href="{{ url('/logout') }}" 
                            class="text-gray-700 hover:text-gray-900 mx-2"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                           {{-- onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> --}} >
                            Cerrar sesión
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
