@@ -27,6 +27,21 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
+
+        Schema::create('donations', function (Blueprint $table) {
+            $table->id();
+            $table->string('payer_email');
+            $table->string('payer_name');
+            $table->string('payer_surname');
+            $table->string('status');
+            $table->string('payer_id');
+            $table->string('create_time');
+            $table->string('update_time');
+            $table->decimal('amount', 10, 2);
+            $table->string('currency');
+            $table->string('transaction_id');
+            $table->timestamps();
+        });
     }
 
     /**

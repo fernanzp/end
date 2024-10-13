@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DonacionController;
 
 Route::get('/', function () {
     return view('index');
@@ -32,6 +33,12 @@ Route::get('/activities', function () {
 //Ruta para donaciones
 Route::get('/donations', function () {
     return view('donations');
+});
+
+Route::post('/donations/guardar-transaccion', [DonacionController::class, 'guardarTransaccion']);
+
+Route::get('/gracias/{transaction_id}', function($transaccion_id) {
+    return view('gracias', ['transaccion_id' => $transaccion_id]);
 });
 
 //Ruta para el logout
