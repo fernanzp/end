@@ -27,13 +27,13 @@ function openModal() {
     // Renderizar el botón de PayPal
     paypal.Buttons({
         style: {
-            color: 'gold',
+            color: 'blue',
             shape: 'pill',
             label: 'donate',
         },
         createOrder: function(data, actions) {
             return actions.order.create({
-                aplication_context: {
+                application_context: {
                     shipping_preference: 'NO_SHIPPING'
                 },
                 purchase_units: [{
