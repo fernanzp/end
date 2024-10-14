@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\If_;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 
 class Login_registerController extends Controller
 {
@@ -33,8 +35,17 @@ class Login_registerController extends Controller
         ])->onlyInput('email');
     }
 
+
+
     //Mostrar la vista del registro o login
     public function login_register($login_register){
+
+
         return view('login_register', compact('login_register'));
     }
+    public function login_facebook(){
+        $user = Socialite::driver('facebook')->user();
+        dd($user);
+    }
 }
+
