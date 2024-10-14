@@ -41,6 +41,10 @@ Route::get('/gracias/{transaction_id}', function($transaccion_id) {
     return view('gracias', ['transaccion_id' => $transaccion_id]);
 });
 
+Route::get('/dashboard', function () {
+    return view('user.dashboard');
+});
+
 //Ruta para el logout
 Route::get('/logout', [Login_registerController::class, 'logout'])->name('logout');
 

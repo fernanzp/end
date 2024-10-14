@@ -73,6 +73,8 @@
                             @auth
                             <p class="font-bold text-gray-800">{{ Auth::user()->name }}</p>
                             <p class="text-gray-500">{{ Auth::user()->email }}</p>
+                            {{-- aqui aparece un boton para ir al dashboard --}}
+                            <a href="{{ url('/dashboard') }}" class="block mt-2 text-black hover:none">Dashboard</a>
                             @else
                             <p class="font-bold text-gray-800"></p>
                             @endauth
