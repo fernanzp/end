@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client;
+//require_once app_path('Http/Helpers/verify_recaptcha.blade.php');
+
 
 class RegisterController extends Controller
 {

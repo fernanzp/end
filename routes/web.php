@@ -5,6 +5,7 @@ use App\Http\Controllers\Login_registerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('index');
@@ -38,3 +39,35 @@ Route::get('/logout', function (Request $request) {
     $request->session()->regenerateToken();
     return redirect('/');
 })->name('logout');
+
+// Ruta para redirigir a Facebook
+Route::get('/facebook-auth/redirect', function () {
+    session()->regenerate();
+    return Socialite::driver('facebook')->redirect();
+});
+
+// Ruta para manejar la respuesta de Facebook
+Route::get('/facebook-auth/callback', function () {
+    dd(session()->all()); // Verifica si la sesión tiene datos
+    $user = Socialite::driver('facebook')->user();
+    
+    // Verificar si el usuario ya existe en la base de datos
+    $userData = User::where('email', $user->getEmail())->first();
+    if ($userData) {
+        Auth::login($userData, true);
+        return redirect('/');
+    } else {
+        // Crear un nuevo usuario si no existe
+        $userData = User::updateOrCreate([
+            'email' => $user->getEmail(),
+        ], [
+            'name' => $user->user['name'], // Acceder al nombre
+            'password' => bcrypt('password'), // Se puede usar una contraseña por defecto
+            'rol' => 'user',
+            'status' => 1,
+        ]);
+
+        Auth::login($userData, true);
+        return redirect('/');
+    }
+});
