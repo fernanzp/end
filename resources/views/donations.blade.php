@@ -1,181 +1,222 @@
-
 @extends('layouts.index.app')
 
-@section('content')    
+@section('content')
 
-    <!-- Impacto, Donaciones, Comunidades -->
-    <section class="text-center py-10">
-        <div class="grid grid-cols-3 gap-4 max-w-4xl mx-auto">
-            <div>
-                <h2 class="text-4xl font-bold text-customOrange">30M</h2>
-                <p class="text-lg font-semibold text-white">Humanos impactados</p>
-                <img src="{{ asset('img/donaciones1-donations.png') }}" alt="Icono Humanos Impactados" class="mx-auto mt-2 w-24 h-24">
-            </div>
-            <div>
-                <h2 class="text-4xl font-bold text-customOrange">370K</h2>
-                <p class="text-lg font-semibold text-white">Dinero donado</p>
-                <img src="{{ asset('img/donaciones2-donations.png') }}" alt="Icono Dinero Donado" class="mx-auto mt-2 w-24 h-24">
-            </div>
-            <div>
-                <h2 class="text-4xl font-bold text-customOrange">100</h2>
-                <p class="text-lg font-semibold text-white">Comunidades asistidas</p>
-                <img src="{{ asset('img/donaciones3-donations.png') }}" alt="Icono Comunidades Asistidas" class="mx-auto mt-2 w-24 h-24">
-            </div>
+<!-- Impacto, Donaciones, Comunidades -->
+<section class="text-center py-10">
+    <div class="grid grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <div>
+            <h2 class="text-4xl font-bold text-customOrange">30M</h2>
+            <p class="text-lg font-semibold text-white">Humanos impactados</p>
+            <img src="{{ asset('img/donaciones1-donations.png') }}" alt="Icono Humanos Impactados"
+                class="mx-auto mt-2 w-24 h-24">
         </div>
-    </section>
-
-    <!-- Sección de Donación -->
-    <section class="bg-customLightGray py-12">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div class="relative">
-                <img src="{{ asset('img/donaciones4-donations.jpg') }}" alt="Persona pidiendo ayuda" class="w-full h-auto relative z-10">
-                <div class="absolute top-0 left-0 w-full h-full bg-customGreen rounded-lg -z-10" style="transform: translate(15px, 15px);"></div>
-            </div>
-            <div>
-                <h3 class="text-orange-500 text-lg font-bold mb-2">Conoce más sobre nosotros</h3>
-                <h2 class="text-3xl font-bold mb-4 text-customGreen">Haz una donación y cambia vidas</h2>
-                <p class="text-customBeige mb-4">
-                    En Education Non-Disparity, luchamos por una educación de calidad y la reducción de las desigualdades. 
-                    Con tu apoyo, podemos brindar oportunidades a quienes más lo necesitan. Tu donación nos ayuda a crear un futuro más justo y equitativo.
-                </p>
-                <ul class="text-gray-800 space-y-2">
-                    <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
-                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                        </svg>
-                        Apoya el acceso a la educación para quienes más lo necesitan.
-                    </li>
-                    <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
-                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                        </svg>
-                        Sé parte de una comunidad global que lucha contra las desigualdades.
-                    </li>
-                    <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
-                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                        </svg>
-                        Contribuye a un futuro con oportunidades para todos.
-                    </li>
-                    <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
-                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                        </svg>
-                        Comparte tu pasión por una educación inclusiva y de calidad.
-                    </li>
-                </ul>
-            </div>
+        <div>
+            <h2 class="text-4xl font-bold text-customOrange">370K</h2>
+            <p class="text-lg font-semibold text-white">Dinero donado</p>
+            <img src="{{ asset('img/donaciones2-donations.png') }}" alt="Icono Dinero Donado"
+                class="mx-auto mt-2 w-24 h-24">
         </div>
-    </section>
+        <div>
+            <h2 class="text-4xl font-bold text-customOrange">100</h2>
+            <p class="text-lg font-semibold text-white">Comunidades asistidas</p>
+            <img src="{{ asset('img/donaciones3-donations.png') }}" alt="Icono Comunidades Asistidas"
+                class="mx-auto mt-2 w-24 h-24">
+        </div>
+    </div>
+</section>
 
-    <!-- Sección 2 -->
-    <div class="bg-customLightGray w-screen h-screen py-12">
-        <div class="container mx-auto relative h-full">
+<!-- Sección de Donación -->
+<section class="bg-customLightGray py-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="relative">
+            <img src="{{ asset('img/donaciones4-donations.jpg') }}" alt="Persona pidiendo ayuda"
+                class="w-full h-auto relative z-10">
+            <div class="absolute top-0 left-0 w-full h-full bg-customGreen rounded-lg -z-10"
+                style="transform: translate(15px, 15px);"></div>
+        </div>
+        <div>
+            <h3 class="text-orange-500 text-lg font-bold mb-2">Conoce más sobre nosotros</h3>
+            <h2 class="text-3xl font-bold mb-4 text-customGreen">Haz una donación y cambia vidas</h2>
+            <p class="text-customBeige mb-4">
+                En Education Non-Disparity, luchamos por una educación de calidad y la reducción de las desigualdades.
+                Con tu apoyo, podemos brindar oportunidades a quienes más lo necesitan. Tu donación nos ayuda a crear un
+                futuro más justo y equitativo.
+            </p>
+            <ul class="text-gray-800 space-y-2">
+                <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
+                        <path
+                            d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z">
+                        </path>
+                    </svg>
+                    Apoya el acceso a la educación para quienes más lo necesitan.
+                </li>
+                <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
+                        <path
+                            d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z">
+                        </path>
+                    </svg>
+                    Sé parte de una comunidad global que lucha contra las desigualdades.
+                </li>
+                <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
+                        <path
+                            d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z">
+                        </path>
+                    </svg>
+                    Contribuye a un futuro con oportunidades para todos.
+                </li>
+                <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
+                        <path
+                            d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z">
+                        </path>
+                    </svg>
+                    Comparte tu pasión por una educación inclusiva y de calidad.
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-            <!-- Contenedor del contenido dinámico -->
-            <div class="flex flex-row items-center justify-between space-x-8 px-4 h-full">
+<!-- Sección 2 -->
+<div class="bg-customLightGray w-screen h-screen py-12">
+    <div class="container mx-auto relative h-full">
 
-                <!-- Contenido 2 -->
-                <div class="w-1/2 content-slide h-full flex flex-col justify-center">
-                    <h1 class="text-4xl font-bold text-customGreen leading-tight mb-4">
-                        Estás a un paso de apoyar a mejorar la educación de miles de estudiantes
-                    </h1>
-                    <h2 class="text-2xl font-semibold text-customBeige mb-6">
-                        Ingresa el monto a donar deseado:
-                    </h2>
+        <!-- Contenedor del contenido dinámico -->
+        <div class="flex flex-row items-center justify-between space-x-8 px-4 h-full">
 
-                    <!-- Botones de donación -->
-                    <div class="grid grid-cols-3 gap-4">
-                        <button data-amount="100" class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            100$
-                        </button>
-                        <button data-amount="200" class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            200$
-                        </button>
-                        <button data-amount="300" class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            300$
-                        </button>
-                        <button data-amount="500" class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            500$
-                        </button>
-                        <button data-amount="800" class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            800$
-                        </button>
-                        <button data-amount="1000" class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            1000$
-                        </button>
-                    </div>
-                    <div class="mt-4">
-                        <label for="custom-amount" class="block text-white font-bold">Introduce una cantidad personalizada:</label>
-                        <input type="number" id="custom-amount" class="w-full mt-2 px-6 py-4 bg-transparent text-white font-bold rounded border border-white" placeholder="Ej. 1500">
-                    </div>
+            <!-- Contenido 2 -->
+            <div class="w-1/2 content-slide h-full flex flex-col justify-center">
+                <h1 class="text-4xl font-bold text-customGreen leading-tight mb-4">
+                    Estás a un paso de apoyar a mejorar la educación de miles de estudiantes
+                </h1>
+                <h2 class="text-2xl font-semibold text-customBeige mb-6">
+                    Ingresa el monto a donar deseado:
+                </h2>
 
-                    <button  onclick="openModal()" id="continuar-btn" class="mt-6 w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-6 rounded-lg border border-white text-1xl">
-                        Continuar
+                <!-- Botones de donación -->
+                <div class="grid grid-cols-3 gap-4">
+                    <button data-amount="100"
+                        class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
+                        100$
+                    </button>
+                    <button data-amount="200"
+                        class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
+                        200$
+                    </button>
+                    <button data-amount="300"
+                        class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
+                        300$
+                    </button>
+                    <button data-amount="500"
+                        class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
+                        500$
+                    </button>
+                    <button data-amount="800"
+                        class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
+                        800$
+                    </button>
+                    <button data-amount="1000"
+                        class="donation-btn px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
+                        1000$
                     </button>
                 </div>
-
-                <!-- Imagen 2 -->
-                <div class="w-1/2 content-slide h-full">
-                    <img src="{{ asset('img/seccion2-index.jpeg') }}" alt="Niños en situación de pobreza" class="object-cover rounded-lg shadow-lg w-full h-full">
+                <div class="mt-4">
+                    <label for="custom-amount" class="block text-white font-bold">Introduce una cantidad
+                        personalizada:</label>
+                    <input type="number" id="custom-amount"
+                        class="w-full mt-2 px-6 py-4 bg-transparent text-white font-bold rounded border border-white"
+                        placeholder="Ej. 1500">
                 </div>
+
+                <button onclick="openModal()" id="continuar-btn"
+                    class="mt-6 w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-6 rounded-lg border border-white text-1xl">
+                    Continuar
+                </button>
+            </div>
+
+            <!-- Imagen 2 -->
+            <div class="w-1/2 content-slide h-full">
+                <img src="{{ asset('img/seccion2-index.jpeg') }}" alt="Niños en situación de pobreza"
+                    class="object-cover rounded-lg shadow-lg w-full h-full">
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Sección 3 -->
-    <div class="bg-customLightGray py-12">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-customGreen mb-8">¿Qué donamos?</h2>
+<!-- Sección 3 -->
+<div class="bg-customLightGray py-12">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center text-customGreen mb-8">¿Qué donamos?</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                
-                <!-- Tarjeta 1: Comparte nuestra misión -->
-                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
-                    <div class="mb-4">
-                        <img src="{{ asset('img/donaciones5-donations.png') }}" alt="Comparte nuestra misión" class="mx-auto h-16 w-16">
-                    </div>
-                    <h3 class="text-lg font-semibold text-customBeige mb-2">Material escolar</h3>
-                    <p class="text-customBeige text-sm text-justify">
-                        Dona cuadernos, lápices, mochilas y otros útiles escolares para apoyar la educación de niños y jóvenes en comunidades vulnerables, facilitando su acceso a un aprendizaje de calidad.
-                    </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Tarjeta 1: Comparte nuestra misión -->
+            <div
+                class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
+                <div class="mb-4">
+                    <img src="{{ asset('img/donaciones5-donations.png') }}" alt="Comparte nuestra misión"
+                        class="mx-auto h-16 w-16">
                 </div>
+                <h3 class="text-lg font-semibold text-customBeige mb-2">Material escolar</h3>
+                <p class="text-customBeige text-sm text-justify">
+                    Dona cuadernos, lápices, mochilas y otros útiles escolares para apoyar la educación de niños y
+                    jóvenes en comunidades vulnerables, facilitando su acceso a un aprendizaje de calidad.
+                </p>
+            </div>
 
-                <!-- Tarjeta 2: Donación general -->
-                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
-                    <div class="mb-4">
-                        <img src="{{ asset('img/donaciones6-donations.png') }}" alt="Donación general" class="mx-auto h-16 w-16">
-                    </div>
-                    <h3 class="text-lg font-semibold text-customBeige mb-2">Acceso a la tecnología</h3>
-                    <p class="text-customBeige text-sm text-justify">
-                        Contribuye con dispositivos electrónicos como computadoras, tablets o smartphones, permitiendo a estudiantes de bajo recursos acceder a herramientas tecnológicas para su formación y reducir la brecha digital.
-                    </p>
+            <!-- Tarjeta 2: Donación general -->
+            <div
+                class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
+                <div class="mb-4">
+                    <img src="{{ asset('img/donaciones6-donations.png') }}" alt="Donación general"
+                        class="mx-auto h-16 w-16">
                 </div>
+                <h3 class="text-lg font-semibold text-customBeige mb-2">Acceso a la tecnología</h3>
+                <p class="text-customBeige text-sm text-justify">
+                    Contribuye con dispositivos electrónicos como computadoras, tablets o smartphones, permitiendo a
+                    estudiantes de bajo recursos acceder a herramientas tecnológicas para su formación y reducir la
+                    brecha digital.
+                </p>
+            </div>
 
-                <!-- Tarjeta 3: Vuélvete un voluntario -->
-                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
-                    <div class="mb-4">
-                        <img src="{{ asset('img/donaciones7-donations.png') }}" alt="Vuélvete un voluntario" class="mx-auto h-16 w-16">
-                    </div>
-                    <h3 class="text-lg font-semibold text-customBeige mb-2">Becas educativas</h3>
-                    <p class="text-customBeige text-sm text-justify">
-                        Ayuda a financiar la educación de los estudiantes en situación de vulnerabilidad. Las becas permiten a los jóvenes continuar su formación académica y alcanzar nuevas oportunidades que de otro modo no estarían a su alcance.
-                    </p>
+            <!-- Tarjeta 3: Vuélvete un voluntario -->
+            <div
+                class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
+                <div class="mb-4">
+                    <img src="{{ asset('img/donaciones7-donations.png') }}" alt="Vuélvete un voluntario"
+                        class="mx-auto h-16 w-16">
                 </div>
+                <h3 class="text-lg font-semibold text-customBeige mb-2">Becas educativas</h3>
+                <p class="text-customBeige text-sm text-justify">
+                    Ayuda a financiar la educación de los estudiantes en situación de vulnerabilidad. Las becas permiten
+                    a los jóvenes continuar su formación académica y alcanzar nuevas oportunidades que de otro modo no
+                    estarían a su alcance.
+                </p>
+            </div>
 
-                <!-- Tarjeta 4: Forma parte de las actividades -->
-                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
-                    <div class="mb-4">
-                        <img src="{{ asset('img/donaciones8-donations.png') }}" alt="Forma parte de las actividades" class="mx-auto h-16 w-16">
-                    </div>
-                    <h3 class="text-lg font-semibold text-customBeige mb-2">Ropa y calzado escolar</h3>
-                    <p class="text-customBeige text-sm text-justify">
-                        Dona uniformes y calzado escolar para garantizar que los estudiantes tengan lo necesario para asistir a clases sin preocupaciones materiales, promoviendo la igualdad entre ellos y reduciendo las barreras que impiden su aprendizaje.
+            <!-- Tarjeta 4: Forma parte de las actividades -->
+            <div
+                class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
+                <div class="mb-4">
+                    <img src="{{ asset('img/donaciones8-donations.png') }}" alt="Forma parte de las actividades"
+                        class="mx-auto h-16 w-16">
                 </div>
+                <h3 class="text-lg font-semibold text-customBeige mb-2">Ropa y calzado escolar</h3>
+                <p class="text-customBeige text-sm text-justify">
+                    Dona uniformes y calzado escolar para garantizar que los estudiantes tengan lo necesario para
+                    asistir a clases sin preocupaciones materiales, promoviendo la igualdad entre ellos y reduciendo las
+                    barreras que impiden su aprendizaje.
             </div>
         </div>
     </div>
-
-
+</div>
 
 @endsection

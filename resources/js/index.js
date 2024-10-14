@@ -1,3 +1,23 @@
+
+
+// js del perfil
+var perfilBtn = document.getElementById('perfilBtn');
+var perfilContent = document.getElementById('perfilContent');
+
+// Toggle para mostrar/ocultar el contenido de perfil
+perfilBtn.addEventListener('click', function () {
+    perfilContent.classList.toggle('hidden');
+});
+
+// Ocultar el contenido de perfil si se hace clic fuera del área
+window.addEventListener('click', function (e) {
+    if (!perfilBtn.contains(e.target) && !perfilContent.contains(e.target)) {
+        perfilContent.classList.add('hidden');
+    }
+});
+
+
+
 // js del index
 const slides = document.querySelectorAll('.content-slide');
 let currentIndex = 0;
@@ -24,34 +44,3 @@ document.getElementById('prev').addEventListener('click', () => {
 
 // Mostrar el primer slide inicialmente
 showSlide(0);
-
-var perfilBtn = document.getElementById('perfilBtn');
-var perfilContent = document.getElementById('perfilContent');
-
-// Toggle para mostrar/ocultar el contenido de perfil
-perfilBtn.addEventListener('click', function () {
-    perfilContent.classList.toggle('hidden');
-});
-
-// Ocultar el contenido de perfil si se hace clic fuera del área
-window.addEventListener('click', function (e) {
-    if (!perfilBtn.contains(e.target) && !perfilContent.contains(e.target)) {
-        perfilContent.classList.add('hidden');
-    }
-});
-
-// js de donations
-var perfilBtn = document.getElementById('perfilBtn');
-var perfilContent = document.getElementById('perfilContent');
-
-// Toggle para mostrar/ocultar el contenido de perfil
-perfilBtn.addEventListener('click', function () {
-    perfilContent.classList.toggle('hidden');
-});
-
-// Ocultar el contenido de perfil si se hace clic fuera del área
-window.addEventListener('click', function (e) {
-    if (!perfilBtn.contains(e.target) && !perfilContent.contains(e.target)) {
-        perfilContent.classList.add('hidden');
-    }
-});
