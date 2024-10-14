@@ -45,7 +45,27 @@ class Login_registerController extends Controller
     }
     public function login_facebook(){
         $user = Socialite::driver('facebook')->user();
-        dd($user);
+        #si este correo o id existe en la base de datos, entonces inicia sesión
+        $userData = User::where('id_facebook', $user->getId())->first();
+    
+        if ($userData) {
+            Auth::login($userData, true);
+            return redirect('/dashboard');
+        }else{
+            $userData = User::updateOrCreate([
+                'id_facebook' => $user->getId(),
+            ], [
+                'name' => $user->getName(),
+                'last_name' => '',
+                'email' => $user->getEmail(),
+                'password' => bcrypt('password'),
+                'rol' => 'user',
+                'status' => 1,
+            ]);
+        
+            Auth::login($userData, true);
+        
+            return redirect('/dashboard'); 
     }
 }
-
+}

@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->decimal('id_google', 24, 0)->nullable();
+            $table->decimal('facebook', 24, 0)->nullable();
+            $table->bigInteger('id_x')->nullable();
             $table->string('rol');
             $table->integer('status');
             $table->rememberToken();
