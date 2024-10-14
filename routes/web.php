@@ -53,6 +53,12 @@ Route::get('/google-auth/redirect', function () {
     return Socialite::driver('google')->redirect();
 });
 
+Route::get('/facebook-auth/redirect', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('/facebook-auth/callback', [Login_registerController::class, 'login_facebook']);
+
 Route::get('/google-auth/callback', [Login_registerController::class, 'login_google']);
 
 Route::get('/x-auth/redirect', function () {
