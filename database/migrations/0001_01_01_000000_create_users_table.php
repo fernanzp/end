@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->decimal('id_google', 24, 0)->nullable();
+            $table->decimal('id_facebook', 24, 0)->nullable();
             $table->bigInteger('id_x')->nullable();
             $table->string('rol');
             $table->integer('status');
