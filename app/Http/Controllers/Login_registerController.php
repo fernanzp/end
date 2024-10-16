@@ -118,14 +118,4 @@ class Login_registerController extends Controller
     public function login_register($login_register){
         return view('login_register', compact('login_register'));
     }
-
-
-
-    public function login_facebook(){
-
-        $user = Socialite::driver('facebook')->user();
-        dd($user);
-
-    }
-
 }

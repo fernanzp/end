@@ -73,9 +73,6 @@
                 </div>
                 <!-- Botones sociales -->
                 <div class="flex justify-center space-x-4 mt-4">
-                    <a href="./facebook-auth/redirect" class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
-                        <i class="fab fa-facebook-f"></i> <!-- Icono de Facebook -->
-                    </a>
                     <a href="./google-auth/redirect" class="bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
                         <i class="fab fa-google"></i> <!-- Icono de Google -->
                     </a>
@@ -123,9 +120,6 @@
                 </div>
                 <!-- Botones sociales -->
                 <div class="flex justify-center space-x-4 mt-4">
-                    <a href="./facebook-auth/redirect" class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
-                        <i class="fab fa-facebook-f"></i> <!-- Icono de Facebook -->
-                    </a>
                     <a href="./google-auth/redirect" class="bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
                         <i class="fab fa-google"></i> <!-- Icono de Google -->
                     </a>
