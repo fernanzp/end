@@ -40,9 +40,4 @@ return [
     'redirect' => env('FACEBOOK_REDIRECT_URL'),
 ],
 
-   'captcha' => [
-      ''
-   ]
-
-
 ];

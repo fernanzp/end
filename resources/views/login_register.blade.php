@@ -116,15 +116,13 @@
                 </div>
     <!--IMPLEMENTACION DEL CAPTCHA-->
 
-    <input type="hidden" name="recaptcha_token" id="recaptcha_token">
-
-
-                <button class="g-recaptcha" 
-                      data-sitekey="6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6" 
-                      data-callback='onSubmit' 
-                      data-action='submit'></button>
-
-                <input type="submit" value="Crear Cuenta" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar">
+      
+    <button class="g-recaptcha w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen"
+                    data-sitekey="6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6"
+                    data-callback='onSubmit'
+                    data-action='submit'
+                >Crear Cuenta</button>
+                {{-- <input type="submit" value="Crear Cuenta" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar"> --}}
             </form>
             @if ($errors->any())
                 <div class="text-red-500">
@@ -137,16 +135,6 @@
             @endif
         </div>
     </div>
-    <!--CAPTCHA-->
-
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script>
-function onSubmit(token) {
-    document.getElementById("recaptcha_token").value = token; // Almacena el token
-    document.getElementById("register-form").submit(); // Envía el formulario
-}
-</script>
-
 </body>
 </html>
 
@@ -194,4 +182,12 @@ function onSubmit(token) {
         // Mostrar registro
         goToRegister.click();
     @endif
+</script>
+
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("register-form").submit();
+    }
 </script>

@@ -13,7 +13,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
-//require_once app_path('Http/Helpers/verify_recaptcha.blade.php');
 
 
 class RegisterController extends Controller
@@ -30,19 +29,7 @@ class RegisterController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed', // Laravel espera que haya un campo 'password_confirmation'
-            'recaptcha_token' => 'required',  //Validar el token del recaptcha
         ]);
-
-            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify',[
-                'secret' => env('6LcC1V0qAAAAACMcM2ohkp7-5cGquyD4Q6UEerZF'),
-                'response' => $request->recaptcha_token,
-            ]);
-
-            $result = json_decode($response->body());
-                //comprobacion del resultado de validacion del recaptcha
-                if (!$result->success || $result->score < 0.5){
-                     return back()->withErrors(['recaptcha' => 'Error de verificacion del reCAPTCHA']);
-                }
 
 
         //Crear un nuevo usuario
