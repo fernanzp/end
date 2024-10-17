@@ -49,6 +49,15 @@ Route::get('/logout', function (Request $request) {
 Route::delete('/eliminar-dato/{id}', 'DataController@destroy');
 
 Route::get('/facebook-auth/callback', [Login_registerController:: class, 'login_facebook']);
+
+
+//RUta del recaptcha
+Route::get('/form', function () {
+    return view('form');
+});
+
+Route::post('/form/submit', [Login_registerController::class, 'submit'])->name('form.submit');
+
     
 
 /* Ruta para redirigir a Facebook

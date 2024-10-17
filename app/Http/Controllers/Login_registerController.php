@@ -65,7 +65,7 @@ class Login_registerController extends Controller
         
             Auth::login($userData, true);
         
-            return redirect('/dashboard'); 
+            return redirect('/dashboard');   
     }
 }
 }
