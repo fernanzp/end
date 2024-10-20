@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DonacionController;
 
 //Ruta para la página principal
 Route::get('/', [RoutesController::class, 'showIndex']);
@@ -43,3 +44,8 @@ Route::get('/google-auth/redirect', [Login_registerController::class, 'google_re
 
 //Ruta para procesar el inicio de sesión con google
 Route::get('/google-auth/callback', [Login_registerController::class, 'googleLogin'])->name('google.login');
+
+
+
+
+Route::post('/guardar-transaccion', [DonacionController::class, 'guardarTransaccion']);
