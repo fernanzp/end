@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Login_registerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutesController;
@@ -49,3 +50,6 @@ Route::get('/google-auth/callback', [Login_registerController::class, 'googleLog
 
 
 Route::post('/guardar-transaccion', [DonacionController::class, 'guardarTransaccion']);
+
+//Ruta del dashboard, se redirige a su pagina correspondiente dependiendo del rol
+Route::get('/dashboard', [DashboardController::class, 'show_Dashboard'])->name('dashboard');

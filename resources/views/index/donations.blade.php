@@ -124,7 +124,7 @@
                                     }).then(response => {
                                         if (response.ok) {
                                             //redireccionar a la página de agradecimiento
-                                            window.location.href = './gracias/' + details.id;
+                                            window.location.href = './gracias/' + params.tx;
                                         } else {
                                             alert('Error al procesar la donación');
                                         }

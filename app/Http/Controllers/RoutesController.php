@@ -26,4 +26,21 @@ class RoutesController extends Controller
     public function showActivities(){
         return view('index.activities');
     }
+
+    //mostrar dashboard dependiendo del rol
+    public function showDashboard(){
+        if(auth()->user()->role == 'admin') {
+            return view('dashboard.admin.index');
+        }elseif(auth()->user()->role == 'beneficiario'){
+            return view('dashboard.beneficiario.index');
+        } elseif(auth()->user()->role == 'voluntario'){
+            return view('dashboard.voluntario.index');
+        } elseif(auth()->user()->role == 'coordinador'){
+            return view('dashboard.coordinador.index');
+        } elseif(auth()->user()->role == 'donador'){
+            return view('dashboard.donador.index');
+        } else{
+            return view('dashboard.user.index');
+        }
+    }
 }
