@@ -60,19 +60,23 @@ class Login_registerController extends Controller
         $userDB = User::where('email', $user->getEmail())->first();
         //Si el usuario no existe, crearlo
         if(!$userDB){
-            $userDB = User::updateOrCreate([
-                'id_google' => $user->getId(),
-            ],[
-                'name' => $user->user['given_name'],
-                'last_name' => $user->user['family_name'],
+            $userDB = User::create([
+                'name' => $user->getName(),
                 'email' => $user->getEmail(),
                 'password' => Hash::make(Str::random(24)),
-                'rol' => 'user',
-                'status' => '1',
+                'role' => 'user',
+                'google_id' => $user->getId(),
             ]);
 
             Auth::login($userDB, true);
             return redirect('/');
-        };
+        }else{
+
+            //pendiente poner un mensaje para vincular la cuenta de google
+            //Si el usuario ya existe, iniciar sesión
+
+            Auth::login($userDB, true);
+            return redirect('/');
+        }
     }
 }

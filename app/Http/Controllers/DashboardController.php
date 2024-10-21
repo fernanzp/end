@@ -14,9 +14,16 @@ class DashboardController extends Controller
             'total' => Donations::count(),
             'totalAmount' => Donations::sum('amount')
         ];
-        $users =  User::select('name', 'email', 'rol')->get();
+
+        $users= [
+            'total' => User::count(),
+            'usuarios' => User::select('name', 'created_at', 'status')->get(),
+        ];
+
+
 
         return view('dashboard.user.index', compact('totalDonations', 'users'));
 
     }
+    
 }
