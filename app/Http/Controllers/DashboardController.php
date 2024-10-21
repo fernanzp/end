@@ -26,4 +26,9 @@ class DashboardController extends Controller
 
     }
     
+
+    public function showSolicitudes(){
+        return view('dashboard.user.solicitudes');
+    }
+
 }

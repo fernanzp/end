@@ -46,7 +46,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="{{url('/dashboard/solicitudes')}}">
 					<i class="fa-solid fa-person-circle-question"></i>
 					<span class="text">Solicitudes</span>
 				</a>

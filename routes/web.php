@@ -53,3 +53,6 @@ Route::post('/guardar-transaccion', [DonacionController::class, 'guardarTransacc
 
 //Ruta del dashboard, se redirige a su pagina correspondiente dependiendo del rol
 Route::get('/dashboard', [DashboardController::class, 'show_Dashboard'])->name('dashboard');
+
+//Ruta para mostrar la página de solicitudes
+Route::get('/dashboard/solicitudes', [DashboardController::class, 'showSolicitudes']);
