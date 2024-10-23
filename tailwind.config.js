@@ -9,12 +9,14 @@ export default {
     extend: {
       colors: {
         customBeige: '#ECDFCC',
-        customGreen: '#8FBFA3',
+        customGreen: '#1ab76a',
         customDarkGray: '#1E201E',
         customLightGray: '#2A2C2A',
         customLighterGray: '#3A3C3A',
         customBtnGreen: '#22c55e',
         customOrange: '#F97316',
+        customPrueba: '#10b981',
+        customPrueba2: '#1ab76a',
       },
     },
   },
