@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
@@ -25,7 +25,24 @@ class RegisterController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed', // Laravel espera que haya un campo 'password_confirmation'
+            'g-recaptcha-response' => 'required|string',
         ]);
+
+            //obtiene el token del recaptcha
+              $token = $request->input('g-recaptcha-response');
+              $client = new Client();
+              $secret = env('reCAPTCHA_secret');
+
+              // Verifica el token con la API de Google
+              $response = $client->post('https://www.google.com/recaptcha/api/siteverify', [
+            'form_params' => [
+                'secret' => $secret,
+                'response' => $token,
+                'remoteip' => $request->ip(),
+            ]
+        ]);
+
+        $responseBody = json_decode((string) $response->getBody(), true);
 
         //Crear un nuevo usuario
         User::create([

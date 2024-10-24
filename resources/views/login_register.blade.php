@@ -77,7 +77,7 @@
         <div class="absolute flex items-center justify-center flex-col w-1/2 h-full right-0 transition-transform duration-500" id="register">
             <h2 class="text-customBeige font-serif uppercase font-bold text-[50px]">Crea una cuenta</h2>
             <p class="text-customBeige text-[17px]">¿Ya tienes una cuenta? <a href="#" id="go-to-login" class="text-customGreen">Inicia sesión</a></p>
-            <form method="POST" action="{{ route('register') }}" class="w-[70%]">
+            <form method="POST" action="{{ route('register') }}" class="w-[70%]" id="register-form">
                 @csrf
                 <!--Correo-->
                 <div class="relative my-6 w-full">
@@ -114,7 +114,16 @@
                     <input id="confirm_password" type="password" name="password_confirmation" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="confirm_password" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Confirmar contraseña</label>
                 </div>
-                <input type="submit" value="Crear Cuenta" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar">
+
+                <button type="button"
+    class="g-recaptcha w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen"
+    data-sitekey="6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6"
+    data-callback='onSubmit'
+    data-action='submit'>
+    Crear Cuenta
+</button>
+
+                    {{-- <input type="submit" value="Crear Cuenta" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar"> --}}
             </form>
         </div>
     </div>
@@ -165,4 +174,17 @@
         // Mostrar registro
         goToRegister.click();
     @endif
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6"></script>
+<script>
+  function onSubmit(token) {
+    // se puede deshabilitar el botón 
+        const button = document.querySelector('.g-recaptcha');
+    button.disabled = true;
+
+    // Enviar el formulario
+    document.getElementById("register-form").submit();
+}
+
 </script>
