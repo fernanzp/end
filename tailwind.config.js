@@ -15,8 +15,6 @@ export default {
         customLighterGray: '#3A3C3A',
         customBtnGreen: '#22c55e',
         customOrange: '#F97316',
-        customPrueba: '#10b981',
-        customPrueba2: '#1ab76a',
       },
     },
   },
