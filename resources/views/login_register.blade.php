@@ -115,15 +115,10 @@
                     <label for="confirm_password" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Confirmar contraseña</label>
                 </div>
 
-                <button type="button"
-    class="g-recaptcha w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen"
-    data-sitekey="6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6"
-    data-callback='onSubmit'
-    data-action='submit'>
-    Crear Cuenta
-</button>
-
-                    {{-- <input type="submit" value="Crear Cuenta" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar"> --}}
+                <button type="button" class="g-recaptcha w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" data-sitekey="6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6" data-callback='onSubmit' data-action='submit'>
+                    Crear Cuenta
+                </button>
+                <!-- <input type="submit" value="Crear Cuenta" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar"> -->
             </form>
         </div>
     </div>
@@ -142,7 +137,9 @@
     const goToLogin = document.getElementById('go-to-login');
 
     // Event listener para cambiar a la vista de registro
-    goToRegister.addEventListener('click', () => {
+    goToRegister.addEventListener('click', (event) => {
+        event.preventDefault();
+        history.pushState(null, '', '/END/public/index.php/register');
         // Ocultar login hacia la izquierda
         login.style.transform = 'translateX(-100%)';
         // Mostrar register desde la derecha
@@ -156,7 +153,9 @@
     });
 
     // Event listener para cambiar a la vista de login
-    goToLogin.addEventListener('click', () => {
+    goToLogin.addEventListener('click', (event) => {
+        event.preventDefault();
+        history.pushState(null, '', '/END/public/index.php/login');
         // Mostrar login desde la izquierda
         login.style.transform = 'translateX(0)';
         // Ocultar register hacia la derecha
