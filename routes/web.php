@@ -33,10 +33,6 @@ Route::get('/donations', function () {
     return view('donations');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-});
-
 //Ruta para el logout
 Route::get('/logout', function (Request $request) {
     Auth::logout();
