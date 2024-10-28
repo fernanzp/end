@@ -73,7 +73,7 @@ class Login_registerController extends Controller
             //Si el usuario ya existe, iniciar sesión
 
             Auth::login($userDB, true);
-            return redirect('/dashboard');
+            return redirect('/');
         }
     }
 }
