@@ -17,7 +17,7 @@
     <div class="relative h-screen w-full">
         <!-- <img src="{{ asset('img/Fondo-index.jpg') }}" alt="Niña en pobreza" class="object-cover w-full h-full"> -->
         <video autoplay muted loop class="object-cover w-full h-full">
-            <source src="{{ asset('video/video-activities.mp4') }}" type="video/mp4">
+            <source src="{{ asset('video/video-donations.mp4') }}" type="video/mp4">
             Tu navegador no soporta videos HTML5.
         </video>
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
