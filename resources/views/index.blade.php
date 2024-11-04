@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-<body>
+<body class="bg-customLightGray">
     <!-- Estilos globales -->
     <style>
         <x-ahoverstyles />
@@ -112,51 +112,51 @@
     <!-- Sección cómo puedes apoyar -->
     <div class="bg-customLightGray py-12">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-customGreen mb-8">¿Cómo puedes apoyar?</h2>
+            <h2 class="text-4xl font-bold text-center text-customGreen mb-8">¿Cómo puedes ayudar?</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
                 <!-- Tarjeta 1: Comparte nuestra misión -->
                 <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
                     <div class="mb-4">
-                        <img src="{{ asset('img/imagen1-index.png') }}" alt="Comparte nuestra misión" class="mx-auto h-16 w-16">
+                        <img src="{{ asset('img/share-img-index.png') }}" alt="Comparte nuestra misión" class="mx-auto h-16 w-16">
                     </div>
                     <h3 class="text-lg font-semibold text-customBeige mb-2">Comparte nuestra misión</h3>
-                    <p class="text-customBeige text-sm text-justify">
-                        Difunde nuestra causa entre tu red de contactos y en redes sociales. Cuantas más personas conozcan nuestro trabajo, más impacto podemos tener.
+                    <p class="text-customBeige text-sm text-center">
+                        Ayúdanos a llegar a más personas compartiendo nuestra causa. Cuantas más personas conozcan nuestro trabajo, más impacto podemos tener.
                     </p>
                 </div>
 
                 <!-- Tarjeta 2: Donación general -->
                 <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
                     <div class="mb-4">
-                        <img src="{{ asset('img/imagen2-index.png') }}" alt="Donación general" class="mx-auto h-16 w-16">
+                        <img src="{{ asset('img/donate-img-index.png') }}" alt="Donación general" class="mx-auto h-16 w-16">
                     </div>
                     <h3 class="text-lg font-semibold text-customBeige mb-2">Donación general</h3>
-                    <p class="text-customBeige text-sm text-justify">
-                        Cada contribución cuenta. Con tu aporte, podemos continuar nuestros proyectos de educación, desarrollo y asistencia a comunidades vulnerables.
+                    <p class="text-customBeige text-sm text-center">
+                        Cada contribución cuenta. Gracias a tu apoyo, podemos seguir impulsando proyectos educativos, de desarrollo y ayuda a quienes más lo necesitan.
                     </p>
                 </div>
 
                 <!-- Tarjeta 3: Vuélvete un voluntario -->
                 <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
                     <div class="mb-4">
-                        <img src="{{ asset('img/imagen3-index.png') }}" alt="Vuélvete un voluntario" class="mx-auto h-16 w-16">
+                        <img src="{{ asset('img/volunteers-img-index.png') }}" alt="Vuélvete un voluntario" class="mx-auto h-16 w-16">
                     </div>
                     <h3 class="text-lg font-semibold text-customBeige mb-2">Vuélvete un voluntario</h3>
-                    <p class="text-customBeige text-sm text-justify">
-                        Únete a nuestros esfuerzos como voluntario y ayuda directamente en nuestras iniciativas.
+                    <p class="text-customBeige text-sm text-center">
+                        Sé parte del cambio. Únete como voluntario y contribuye activamente a nuestros programas e iniciativas.
                     </p>
                 </div>
 
                 <!-- Tarjeta 4: Forma parte de las actividades -->
                 <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
                     <div class="mb-4">
-                        <img src="{{ asset('img/imagen4-index.png') }}" alt="Forma parte de las actividades" class="mx-auto h-16 w-16">
+                        <img src="{{ asset('img/programs-img-index.png') }}" alt="Forma parte de las actividades" class="mx-auto h-16 w-16">
                     </div>
-                    <h3 class="text-lg font-semibold text-customBeige mb-2">Forma parte de las actividades</h3>
-                    <p class="text-customBeige text-sm text-justify">
-                        Asiste a eventos, talleres y campañas que organizamos para concienciar sobre la pobreza y la desigualdad. Tu participación activa puede inspirar a otros y contribuir al cambio.
+                    <h3 class="text-lg font-semibold text-customBeige mb-2">Forma parte de nuestros programas</h3>
+                    <p class="text-customBeige text-sm text-center">
+                        Participa en nuestros eventos, talleres y campañas para sensibilizar sobre la educación y la desigualdad. Tu apoyo inspira a otros y fortalece el cambio social.
                     </p>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Login_registerController;
+use App\Http\Controllers\ProgramsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,9 +24,9 @@ Route::get('/{login_register}', [Login_registerController::class, 'login_registe
 //Ruta para procesar los datos del register y crear un nuevo usuario
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
-Route::get('/activities', function () {
+/*Route::get('/activities', function () {
     return view('activities');
-});
+});*/
 
 Route::get('/donations', function () {
     return view('donations');
@@ -38,3 +39,6 @@ Route::get('/logout', function (Request $request) {
     $request->session()->regenerateToken();
     return redirect('/');
 })->name('logout');
+
+//Ruta para cargar los datos de los programas
+Route::get('/programs', [ProgramsController::class, 'index']);

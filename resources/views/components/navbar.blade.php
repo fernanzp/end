@@ -6,8 +6,8 @@
             </a>
         </li>
         <li class="list-none">
-            <a href="{{ url('/activities') }}" class="a-hover relative text-customBeige text-xl transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:font-bold">
-                Actividades
+            <a href="{{ url('/programs') }}" class="a-hover relative text-customBeige text-xl transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:font-bold">
+                Programas
             </a>
         </li>
         <li class="list-none">
