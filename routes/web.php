@@ -54,3 +54,11 @@ Route::get('/google-auth/redirect', [Login_registerController::class, 'google_re
 
 //Ruta para procesar el inicio de sesión con google
 Route::get('/google-auth/callback', [Login_registerController::class, 'googleLogin'])->name('google.login');
+
+Route::get('/terms', function (){
+        return view('terms');
+}); 
+
+Route::get('/privacy-policy', function (){
+         return view('privacy-policy');
+});

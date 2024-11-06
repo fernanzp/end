@@ -140,9 +140,17 @@
                 </div>
 
                 <div class="relative my-6 w-full text-customBeige">
-                    <p>Al hacer clic en Crear Cuenta, aceptas las <a href="" class="text-customGreen">Condiciones</a> y la <a href="" class="text-customGreen">Política de privacidad</a>.</p>
+                    <div class="flex items-center">
+                            <!--Este es el checkbox para aceptar-->
+                        <input type="checkbox" id="accept-terms" class="mr-2" required>
+                        <p class="text-sm">
+                            He leído y acepto las
+                            <a href="#" id="terms-link" class="text-customGreen">Condiciones</a> y la 
+                            <a href="#" id="privacy-link" class="text-customGreen">Política de privacidad</a>.
+                        </p>
+                    </div>
                 </div>
-
+                
                 <button type="button" class="g-recaptcha w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" data-sitekey="6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6" data-callback='onSubmit' data-action='submit'>
                     Crear Cuenta
                 </button>
@@ -150,8 +158,47 @@
             </form>
         </div>
     </div>
+
+    @include('modal')
 </body>
 </html>
+
+
+<script>
+// Abre el modal al hacer clic en Condiciones o Política de Privacidad
+document.getElementById('terms-link').addEventListener('click', function(e) {
+    e.preventDefault();  // Prevenir la acción predeterminada del enlace
+    openModal('Condiciones', '/terms');  // Solicitar la vista de Condiciones
+});
+
+document.getElementById('privacy-link').addEventListener('click', function(e) {
+    e.preventDefault();  // Prevenir la acción predeterminada del enlace
+    openModal('Política de Privacidad', '/privacy-policy');  // Solicitar la vista de Política de Privacidad
+});
+
+// Función para abrir el modal y actualizar el contenido
+function openModal(title, url) {
+    // Cambiar el título del modal
+    document.getElementById('modal-title').innerText = title;
+
+    // Usar AJAX para cargar el contenido de la vista
+    fetch(url)
+        .then(response => response.text())  // Obtener el contenido HTML
+        .then(content => {
+            document.getElementById('modal-content').innerHTML = content;  // Actualizar el contenido del modal
+            document.getElementById('terms-modal').classList.remove('hidden');  // Mostrar el modal
+        })
+        .catch(error => {
+            console.error('Error al cargar el contenido:', error);
+        });
+}
+
+// Cerrar el modal
+document.getElementById('close-modal').addEventListener('click', function() {
+    document.getElementById('terms-modal').classList.add('hidden');  // Ocultar el modal
+});
+
+</script>
 
 <script>
     // Elementos
