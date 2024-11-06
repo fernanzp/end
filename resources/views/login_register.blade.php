@@ -83,7 +83,7 @@
         <div class="absolute flex items-center justify-center flex-col w-1/2 h-full right-0 transition-transform duration-500" id="register">
             <h2 class="text-customBeige font-serif uppercase font-bold text-[50px]">Crea una cuenta</h2>
             <p class="text-customBeige text-[17px]">¿Ya tienes una cuenta? <a href="#" id="go-to-login" class="text-customGreen">Inicia sesión</a></p>
-            <form method="POST" action="{{ route('register') }}" class="w-[70%]" id="register-form">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="w-[70%]" id="register-form">
                 @csrf
                 <!--Correo-->
                 <div class="relative my-6 w-full">
@@ -104,6 +104,11 @@
                 <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
                     <input id="lastname" type="text" name="last_name" value="{{ old('last_name') }}" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="lastname" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Apellidos</label>
+                </div>
+                <!--Imagen de perfil-->
+                <div class="form-group">
+                    <label for="profile_img">Sube tu foto de perfil</label>
+                    <input type="file" name="profile_img" id="profile_img" class="form-control" accept="image/*">
                 </div>
                 <!--Contraseña-->
                 <div class="relative my-6 w-full">

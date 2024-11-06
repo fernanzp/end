@@ -24,7 +24,7 @@
             <div id="perfilContent" class="hidden absolute left-0 mt-2 w-min bg-customDarkGray shadow-lg transform translate-x-4 border border-transparent rounded-md">
                 <div class="p-4 bg-customDarkGray text-center">
                     <p class="text-customGreen text-sm">{{ Auth::user()->email }}</p>
-                    <img src="{{ asset('img/logo.png') }}" alt="User Image" class=" my-4 w-16 h-16 rounded-full mx-auto">
+                    <img src="{{ asset(Auth::user()->profile_img) }}" alt="User Image" class=" my-4 w-16 h-16 rounded-full mx-auto">
                     <p class="font-bold text-customBeige text-lg">¡Hola, {{ Auth::user()->name }} {{ Auth::user()->last_name}}!</p>
                     <a href="{{ url('/logout') }}" class="inline-flex items-center text-gray-500 text-lg font-bold border-2 border-gray-500 rounded-lg px-2 py-1 hover:text-gray-400 hover:border-gray-400 transition-colors duration-300 ease-in-out my-4 space-x-2 whitespace-nowrap">
                         <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
