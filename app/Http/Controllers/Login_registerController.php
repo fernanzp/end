@@ -55,6 +55,8 @@ class Login_registerController extends Controller
         $userDB = User::where('email', $user->getEmail())->first();
         //Si el usuario no existe, crearlo
         if(!$userDB){
+
+            
             $userDB = User::create([
                 'name' => $user->user['given_name'],
                 'last_name' => $user->user['family_name'],
@@ -63,6 +65,7 @@ class Login_registerController extends Controller
                 'rol' => 'user',
                 'status' => 1,
                 'google_id' => $user->getId(),
+                'profile_img' =>$user->user['picture']
             ]);
 
             Auth::login($userDB, true);
