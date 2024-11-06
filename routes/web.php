@@ -24,10 +24,6 @@ Route::get('/{login_register}', [Login_registerController::class, 'login_registe
 //Ruta para procesar los datos del register y crear un nuevo usuario
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
-/*Route::get('/activities', function () {
-    return view('activities');
-});*/
-
 Route::get('/donations', function () {
     return view('donations');
 });
@@ -42,3 +38,8 @@ Route::get('/logout', function (Request $request) {
 
 //Ruta para cargar los datos de los programas
 Route::get('/programs', [ProgramsController::class, 'index']);
+
+//Ruta para el program view
+Route::get('programs/programview', function () {
+    return view('program_view');
+});
