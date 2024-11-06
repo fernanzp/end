@@ -6,6 +6,8 @@ use App\Http\Controllers\ProgramsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('index');
@@ -43,3 +45,12 @@ Route::get('/programs', [ProgramsController::class, 'index']);
 Route::get('programs/programview', function () {
     return view('program_view');
 });
+Route::post('/get-transactions', [DonationController::class, 'getTransactions'])->name('getTransactions');
+
+Route::post('/get-transactionsAnonimo', [DonationController::class, 'getTransactionsAnonimo'])->name('getTransactionsAnonimo');
+
+//Ruta para redirigir al login de google
+Route::get('/google-auth/redirect', [Login_registerController::class, 'google_redirect'])->name('google.redirect');
+
+//Ruta para procesar el inicio de sesión con google
+Route::get('/google-auth/callback', [Login_registerController::class, 'googleLogin'])->name('google.login');

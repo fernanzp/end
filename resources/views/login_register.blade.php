@@ -55,7 +55,7 @@
     <!--Login y register-->
     <div class="absolute top-0 left-0 w-full h-full overflow-hidden" id="container_loginregister">
         <!--Login-->
-        <div class="absolute flex items-center justify-center flex-col w-1/2 h-full left-0 transition-transform duration-500 " id="login">
+        <div class="absolute flex items-center justify-center flex-col w-1/2 h-full left-0 transition-transform duration-500" id="login">
             <h2 class="text-customBeige font-serif uppercase font-bold text-[50px]">Inicia Sesión</h2>
             <p class="text-customBeige text-[17px]">¿Aún no tienes una cuenta? <a href="#" id="go-to-register" class="text-customGreen">Crea una</a></p>
             <form method="POST" action="{{ route('login') }}" class="w-[70%]">
@@ -76,9 +76,16 @@
                         </svg>
                     </span>
                 </div>
+        
+                <!-- Botón de inicio de sesión con Google -->
+                <a href="{{ route('google.redirect') }}" class="flex items-center justify-center w-full text-[20px] font-bold text-customBeige bg-customBlue py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customBlue">
+                    Iniciar Sesión con Google
+                </a>
+        
                 <input type="submit" value="Iniciar Sesión" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar">
             </form>
         </div>
+        
         <!--Register-->
         <div class="absolute flex items-center justify-center flex-col w-1/2 h-full right-0 transition-transform duration-500" id="register">
             <h2 class="text-customBeige font-serif uppercase font-bold text-[50px]">Crea una cuenta</h2>
