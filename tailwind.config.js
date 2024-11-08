@@ -9,7 +9,9 @@ export default {
     extend: {
       colors: {
         customBeige: '#ECDFCC',
+        customDarkBeige: '#D3C5B4',
         customGreen: '#1ab76a',
+        customDarkGreen: '#158F5A',
         customDarkGray: '#1E201E',
         customLightGray: '#2A2C2A',
         customLighterGray: '#3A3C3A',

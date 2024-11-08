@@ -42,9 +42,8 @@ Route::get('/logout', function (Request $request) {
 Route::get('/programs', [ProgramsController::class, 'index']);
 
 //Ruta para el program view
-Route::get('programs/programview', function () {
-    return view('program_view');
-});
+Route::get('programs/programview/{id}', [ProgramsController::class, 'show'])->name('programview');
+
 Route::post('/get-transactions', [DonationController::class, 'getTransactions'])->name('getTransactions');
 
 Route::post('/get-transactionsAnonimo', [DonationController::class, 'getTransactionsAnonimo'])->name('getTransactionsAnonimo');

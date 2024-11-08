@@ -41,17 +41,11 @@
             @endforeach
         </div>
 
-        <!-- Pagination -->
+        <!-- Paginación -->
         <div class="mt-6 flex justify-center">
-            <nav class="inline-flex space-x-1">
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-100">1</a>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-100">2</a>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-100">3</a>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-100">4</a>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-100">5</a>
-                <span class="px-4 py-2 bg-white border border-gray-300 rounded-md text-gray-500">...</span>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-100">10</a>
-            </nav>
+            <div class="mt-6 flex justify-center">
+                {{ $programs->links() }}
+            </div>
         </div>
     </div>
 

@@ -9,7 +9,13 @@ class ProgramsController extends Controller
 {
     public function index()
     {
-        $programs = Program::orderBy('id', 'desc')->take(9)->get();
+        $programs = Program::orderBy('id', 'desc')->paginate(9);
         return view('programs', compact('programs'));
+    }
+
+    public function show($id)
+    {
+        $program = Program::findOrFail($id);
+        return view('program_view', compact('program'));
     }
 }

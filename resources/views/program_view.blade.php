@@ -11,32 +11,16 @@
 </head>
 
 <body class="relative h-screen w-full">
-
+    <!-- Estilos globales -->
     <style>
-        @layer components {
-            a::after {
-                content: "";
-                position: absolute;
-                bottom: -2px;
-                left: 50%;
-                width: 0%;
-                height: 2px;
-                background-color: #ECDFCC;
-                transition: width 400ms cubic-bezier(0.25, 0.8, 0.25, 1), left 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
-            }
-
-            a:hover::after {
-                width: 95%;
-                left: 0%;
-            }
-        }
+        <x-ahoverstyles />
     </style>
 
-    <img src="{{ asset('img/actividad1-activities.jpg') }}" alt="Niña en pobreza" class="object-cover w-full h-full">
+    <img src="{{ asset('img/programs_images/' . $program->img) }}" alt="Niña en pobreza" class="object-cover w-full h-full">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
 
     <div class="absolute top-8 left-8 flex items-center text-white text-xl z-20">
-        <a href="{{ url('/activities') }}" class="flex items-center">
+        <a href="{{ url('/programs') }}" class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
@@ -46,15 +30,17 @@
 
     <div class="absolute inset-0 flex items-center justify-center z-10 px-4">
         <div class="text-center mr-16">
-            <h1 class="text-white text-7xl font-bold leading-tight">Unidos por la esperanza:</h1>
-            <p class="text-white text-4xl mt-8">Ayudando a romper el ciclo de la desigualdad</p>
+            <h1 class="text-white text-7xl font-bold leading-tight">{{ $program->title }}</h1>
+            <!--<p class="text-white text-4xl mt-8">Ayudando a romper el ciclo de la desigualdad</p>-->
         </div>
 
         <div class="w-[28rem] p-8 bg-white bg-opacity-90 rounded-xl shadow-lg">
-            <p class="text-3xl font-bold mb-6">Fecha & hora:</p>
-            <p class="text-gray-600 text-2xl mb-8">Miércoles 14 Sept, 2024 - 08:00PM</p>
+            <p class="text-2xl font-bold mb-6">Fecha de inicio:</p>
+            <p class="text-gray-600 text-xl mb-8">{{ \Carbon\Carbon::parse($program->start_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y') }}</p>
+            <p class="text-2xl font-bold mb-6">Fecha de fin:</p>
+            <p class="text-gray-600 text-xl mb-8">{{ \Carbon\Carbon::parse($program->end_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y') }}</p>
 
-            <div class="flex items-center mb-8 text-purple-600 hover:text-purple-800 cursor-pointer text-2xl">
+            <div class="flex items-center mb-8 text-customGreen transition-colors duration-300 hover:text-customDarkGreen cursor-pointer text-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 mr-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 12A9 9 0 1112 3a9 9 0 019 9z" />
@@ -62,7 +48,7 @@
                 <a href="#" class="text-xl">Añadir calendario</a>
             </div>
 
-            <button class="w-full bg-purple-600 text-white text-xl py-5 px-6 rounded-lg mb-6 hover:bg-purple-800 transition">Inscríbete ahora</button>
+            <button class="w-full bg-customGreen text-white text-xl py-5 px-6 rounded-lg mb-6 transition-colors duration-300 hover:bg-customDarkGreen transition">Inscríbete ahora</button>
             <button class="w-full bg-gray-200 text-gray-800 text-xl py-5 px-6 rounded-lg mb-6 hover:bg-gray-300 transition">Inscríbete en la fecha programada</button>
 
             <div class="flex items-center text-black hover:text-gray-800 cursor-pointer text-2xl">
@@ -81,16 +67,7 @@
         <!-- Columna izquierda -->
         <div class="bg-customLighterGray p-6 flex flex-col justify-center m-4 rounded-lg">
             <h2 class="text-customGreen text-4xl font-bold mb-4">Descripción de la actividad</h2>
-            <p class="text-customBeige text-xl mb-6 text-justify">
-                Esta actividad tiene como objetivo abordar directamente la desigualdad educativa en comunidades desfavorecidas.
-                A través de jornadas de educación, sensibilización y apoyo comunitario, buscamos ofrecer a niños y familias vulnerables
-                las herramientas necesarias para superar las barreras sociales y económicas que los mantienen en situaciones de desventaja.
-            </p>
-            <p class="text-customBeige text-xl mb-6">
-                La actividad incluye talleres interactivos y sesiones de aprendizaje enfocadas en desarrollar habilidades académicas
-                y emocionales en los más jóvenes.
-            </p>
-
+            <p class="text-customBeige text-xl mb-6 text-justify">{{ $program->description }}</p>
             <h3 class="text-customGreen text-3xl font-bold mb-4">Fechas y horas</h3>
             <p class="text-customBeige text-xl mb-2">Horario del sábado: 7PM - 10PM</p>
             <p class="text-customBeige text-xl mb-6">Horario del domingo: 10AM - 3PM</p>
@@ -99,9 +76,12 @@
         <!-- Columna derecha -->
         <div class="bg-customLighterGray p-6 m-4 rounded-lg">
             <h3 class="text-customGreen text-4xl font-bold mb-4 text-center">Ubicación de la actividad</h3>
-            <div class="w-full h-65 bg-gray-200 rounded-lg mb-4">
+            <!--<div class="w-full h-65 bg-gray-200 rounded-lg mb-4">
                 <img src="{{ asset('img/actividad1-activities.jpg') }}" alt="Mapa" class="w-full h-[70%] object-cover rounded-lg">
-            </div>
+            </div>-->
+            
+            <!-- Aquí se añade el contenedor para el minimapa -->
+            <div id="map" class="w-full h-64 bg-gray-200 rounded-lg mb-4"></div>
 
             <div class="mt-4">
                 <h3 class="text-customGreen text-4xl font-bold">Unidos por la esperanza:</h3>
@@ -223,42 +203,28 @@
         </div>
     </div>
 
-        <!-- Sección footer -->
-        <footer class="bg-customDarkGray text-gray-400 py-12">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 text-center">
-            
-            <!-- ¿Quiénes somos? -->
-            <div>
-                <h3 class="text-customGreen font-semibold mb-4">¿Quiénes somos?</h3>
-                <ul class="space-y-2">
-                    <p>Education Non-Disparity</p>
-                    <!-- <li><a href="#" class="hover:underline">Conviértete en beneficiario</a></li>
-                    <li><a href="#" class="hover:underline">Conviértete en donante</a></li>
-                    <li><a href="#" class="hover:underline">Conviértete en voluntario</a></li> -->
-                </ul>
-            </div>
-            
-            <!-- Únete a nuestra ONG -->
-            <div>
-                <h3 class="text-customGreen font-semibold mb-4">Únete a nuestra ONG</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">Conviértete en beneficiario</a></li>
-                    <li><a href="#" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">Conviértete en donante</a></li>
-                    <li><a href="#" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">Conviértete en voluntario</a></li>
-                </ul>
-            </div>
-            
-            <!-- Información de contacto -->
-            <div>
-                <h3 class="text-customGreen font-semibold mb-4">Información de contacto</h3>
-                <p>Education Non-Disparity</p>
-                <p>Correo: info@EducationNon-Disparity.org</p>
-                <p>Tel: +54 91 123 4567</p>
-                <p>Horario: Lunes a Viernes, 9:00A.M - 18:00P.M</p>
-            </div>
-            
-        </div>
-    </footer>
+    <!-- Footer -->
+    <x-footer />
 </body>
-
 </html>
+
+<!-- Script de Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPhXNZwg1HmdhWo7ECKUe_4YY7vMcT7Q&callback=initMap" async defer></script>
+<script>
+    function initMap() {
+        // Coordenadas del lugar (ejemplo: Manzanillo, Colima)
+        const location = { lat: 19.0536292, lng: -104.3170724 };
+
+        // Crear el mapa y centrarlo en la ubicación
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15, // Nivel de zoom
+            center: location,
+        });
+
+        // Añadir un marcador en la ubicación
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+</script>

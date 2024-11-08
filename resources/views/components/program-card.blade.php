@@ -6,7 +6,7 @@
         <p class="text-sm text-gray-400 mb-4">Fecha: {{ \Carbon\Carbon::parse($program->start_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y') }}</p>
         <p class="text-customBeige">{{ $program->short_description }}</p>
         <div class="flex justify-end">
-            <button class="mt-4 bg-customGreen text-white px-4 py-2 rounded hover:bg-green-600">¡Quiero participar!</button>
+            <a href="{{ route('programview', ['id' => $program->id]) }}" class="mt-4 bg-customGreen text-white px-4 py-2 rounded hover:bg-green-600">¡Quiero participar!</a>
         </div>
     </div>
 </div>
