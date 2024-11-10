@@ -15,6 +15,8 @@ class Program extends Model
         'description',
         'start_date',
         'end_date',
+        'latitude',
+        'longitude',
         'img'
     ];
 }
