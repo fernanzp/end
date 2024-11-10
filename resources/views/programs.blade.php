@@ -33,7 +33,7 @@
     </div>
 
     <div class="container bg-customLightGray mx-auto p-4 m-8">
-        <h2 class="text-4xl font-bold text-center text-customGreen mb-8">Programas</h2>
+        <h2 class="text-4xl font-bold text-center text-customBeige mb-8">Programas</h2>
         <!-- Grid for cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             @foreach($programs as $program)

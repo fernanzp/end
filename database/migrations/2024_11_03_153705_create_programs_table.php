@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('description');
             $table->date('start_date');
             $table->date('end_date')->nullable();
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
             $table->string('img');
             $table->timestamps();
         });

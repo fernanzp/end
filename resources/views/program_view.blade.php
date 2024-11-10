@@ -28,37 +28,35 @@
         </a>
     </div>
 
-    <div class="absolute inset-0 flex items-center justify-center z-10 px-4">
-        <div class="text-center mr-16">
-            <h1 class="text-white text-7xl font-bold leading-tight">{{ $program->title }}</h1>
+    <div class="absolute inset-0 flex items-center z-10 px-10 w-full">
+        <div class="text-center w-[70%]">
+            <h1 class="text-customBeige text-7xl font-bold leading-tight">{{ $program->title }}</h1>
             <!--<p class="text-white text-4xl mt-8">Ayudando a romper el ciclo de la desigualdad</p>-->
         </div>
 
-        <div class="w-[28rem] p-8 bg-white bg-opacity-90 rounded-xl shadow-lg">
-            <p class="text-2xl font-bold mb-6">Fecha de inicio:</p>
-            <p class="text-gray-600 text-xl mb-8">{{ \Carbon\Carbon::parse($program->start_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y') }}</p>
-            <p class="text-2xl font-bold mb-6">Fecha de fin:</p>
-            <p class="text-gray-600 text-xl mb-8">{{ \Carbon\Carbon::parse($program->end_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y') }}</p>
+        <div class="w-[20%] p-8 mx-10 bg-customDarkGray rounded-xl shadow-lg">
+            <p class="text-2xl text-customBeige font-bold mb-1">Fecha de inicio:</p>
+            <p class="text-gray-400 text-xl mb-6">{{ ucfirst(\Carbon\Carbon::parse($program->start_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}</p>
+            <p class="text-2xl text-customBeige font-bold mb-1">Fecha de fin:</p>
+            <p class="text-gray-400 text-xl mb-6">{{ ucfirst(\Carbon\Carbon::parse($program->end_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}</p>
 
-            <div class="flex items-center mb-8 text-customGreen transition-colors duration-300 hover:text-customDarkGreen cursor-pointer text-2xl">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 mr-4">
+            <div class="flex items-center mb-6 text-customGreen transition-colors duration-300 hover:text-customDarkGreen cursor-pointer text-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 mr-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 12A9 9 0 1112 3a9 9 0 019 9z" />
                 </svg>
-                <a href="#" class="text-xl">Añadir calendario</a>
+                <a href="#" class="text-xl">Añadir al calendario</a>
             </div>
 
-            <button class="w-full bg-customGreen text-white text-xl py-5 px-6 rounded-lg mb-6 transition-colors duration-300 hover:bg-customDarkGreen transition">Inscríbete ahora</button>
-            <button class="w-full bg-gray-200 text-gray-800 text-xl py-5 px-6 rounded-lg mb-6 hover:bg-gray-300 transition">Inscríbete en la fecha programada</button>
-
-            <div class="flex items-center text-black hover:text-gray-800 cursor-pointer text-2xl">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 mr-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17V8l7 4.5L9 17z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21.5a9.5 9.5 0 100-19 9.5 9.5 0 000 19z" />
+            <div class="flex items-center mb-6 text-gray-400 transition-colors duration-300 hover:text-gray-500 cursor-pointer text-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" class="w-8 h-8 mr-4">
+                    <path d="M408 120c0 54.6-73.1 151.9-105.2 192c-7.7 9.6-22 9.6-29.6 0C241.1 271.9 168 174.6 168 120C168 53.7 221.7 0 288 0s120 53.7 120 120zm8 80.4c3.5-6.9 6.7-13.8 9.6-20.6c.5-1.2 1-2.5 1.5-3.7l116-46.4C558.9 123.4 576 135 576 152l0 270.8c0 9.8-6 18.6-15.1 22.3L416 503l0-302.6zM137.6 138.3c2.4 14.1 7.2 28.3 12.8 41.5c2.9 6.8 6.1 13.7 9.6 20.6l0 251.4L32.9 502.7C17.1 509 0 497.4 0 480.4L0 209.6c0-9.8 6-18.6 15.1-22.3l122.6-49zM327.8 332c13.9-17.4 35.7-45.7 56.2-77l0 249.3L192 449.4 192 255c20.5 31.3 42.3 59.6 56.2 77c20.5 25.6 59.1 25.6 79.6 0zM288 152a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
                 </svg>
-                <!-- <a href="#" class="text-xl">Mirar en el mapa</a> -->
-                <button class="text-xl">Mirar en el mapa</button>
+                <button class="text-xl">Ver en el mapa</button>
             </div>
+
+            <button class="w-full bg-customGreen text-white text-xl font-bold py-5 px-6 rounded-lg mb-6 transition-colors duration-300 hover:bg-customDarkGreen transition">Inscríbete ahora</button>
+            <button class="w-full bg-customBeige text-customDarkGray text-xl font-bold py-5 px-6 rounded-lg transition-colors duration-300 hover:bg-customDarkBeige transition">Inscríbete en la fecha programada</button>
         </div>
     </div>
 
