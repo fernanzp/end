@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 </head>
@@ -18,6 +19,21 @@
     <!-- Estilos globales -->
     <style>
         <x-ahoverstyles />
+    </style>
+
+    <style>
+        /* Estilo inicial del icono (invisible y pequeño) */
+        .donation-icon {
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Al hacer hover en el div, hacemos que el icono sea visible y crezca */
+        .bg-customLighterGray:hover .donation-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
     </style>
 
     <img src="{{ asset('img/programs_images/' . $program->img) }}" alt="Niña en pobreza" class="object-cover w-full h-full">
@@ -51,21 +67,17 @@
                 <a href="#" class="text-xl">Ver el calendario</a>
             </div>
 
-            <p class="text-2xl text-customBeige font-bold mb-1">Lugar:</p>
+            <p class="text-2xl text-customBeige font-bold mb-1">Ubicación:</p>
             <p class="text-gray-400 text-xl mb-4">Centro comunitario "Educando para el Futuro"</p>
 
             <div class="flex items-center mb-6 text-gray-400 transition-colors duration-300 hover:text-gray-500 cursor-pointer text-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" class="w-8 h-8 mr-4">
                     <path d="M408 120c0 54.6-73.1 151.9-105.2 192c-7.7 9.6-22 9.6-29.6 0C241.1 271.9 168 174.6 168 120C168 53.7 221.7 0 288 0s120 53.7 120 120zm8 80.4c3.5-6.9 6.7-13.8 9.6-20.6c.5-1.2 1-2.5 1.5-3.7l116-46.4C558.9 123.4 576 135 576 152l0 270.8c0 9.8-6 18.6-15.1 22.3L416 503l0-302.6zM137.6 138.3c2.4 14.1 7.2 28.3 12.8 41.5c2.9 6.8 6.1 13.7 9.6 20.6l0 251.4L32.9 502.7C17.1 509 0 497.4 0 480.4L0 209.6c0-9.8 6-18.6 15.1-22.3l122.6-49zM327.8 332c13.9-17.4 35.7-45.7 56.2-77l0 249.3L192 449.4 192 255c20.5 31.3 42.3 59.6 56.2 77c20.5 25.6 59.1 25.6 79.6 0zM288 152a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
                 </svg>
-                <a href="https://www.google.com/maps/search/?api=1&query={{ $program->latitude }},{{ $program->longitude }}" 
-       target="_blank" 
-       class="text-xl">
-        Ver en el mapa
-    </a>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ $program->latitude }},{{ $program->longitude }}" target="_blank" class="text-xl">Ver en el mapa</a>
             </div>
 
-            <button class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-lg transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
+            <button class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
             <!--<button class="w-full bg-customBeige text-customDarkGray text-xl font-bold py-5 px-6 rounded-lg transition-colors duration-300 hover:bg-customDarkBeige transition">Inscríbete en la fecha programada</button>-->
         </div>
         <div class="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center bottom-8">
@@ -80,6 +92,7 @@
     <div class="bg-customDarkGray h-auto p-32 flex gap-8 flex-wrap">
         <div class="w-full md:w-[50%]">
             <!--Descripción-->
+            <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Descripción:</p>
             <p class="text-customBeige text-xl mb-10 text-justify">{{ $program->description }}</p>
             <!--Detalles del programa-->
             <div class="mb-10">
@@ -113,12 +126,13 @@
             </div>
         </div>
         <div class="w-full md:w-[35%] h-64 md:ml-auto">
+            <!--Mini mapa-->
             <div id="map" class="w-full h-full bg-gray-200 rounded-lg mb-[5%]"></div>
             <!-- Beneficiarios inscritos-->
             <p class="merriweather-bold font-bold text-customGreen text-2xl mb-2">Beneficiarios inscritos:</p>
             <div class="w-full bg-customBeige h-[12%] rounded-full mb-12">
                 <!-- Barra de progreso -->
-                <div class="bg-customGreen h-full rounded-full relative mb-1" style="width: 70%;">
+                <div class="bg-customGreen h-full rounded-full relative mb-1 progress-bar" data-percentage="70">
                     <span class="absolute inset-0 flex items-center justify-center text-customBeige font-bold text-xl">70%</span>
                 </div>
                <p class="text-customBeige text-md ml-[2.5%]">Lugares disponibles: 30</p> 
@@ -127,7 +141,7 @@
             <p class="merriweather-bold font-bold text-customGreen text-2xl mb-2">Voluntarios inscritos:</p>
             <div class="w-full bg-customBeige h-[12%] rounded-full mb-[10%]">
                 <!-- Barra de progreso -->
-                <div class="bg-customGreen h-full rounded-full relative mb-1" style="width: 41.67%;">
+                <div class="bg-customGreen h-full rounded-full relative mb-1 progress-bar" data-percentage="41.67">
                     <span class="absolute inset-0 flex items-center justify-center text-customBeige font-bold text-xl">41.67%</span>
                 </div>
                 <p class="text-customBeige text-md ml-[2.5%]">Lugares disponibles: 7</p>
@@ -138,14 +152,22 @@
                 <p class="text-customBeige text-xl text-justify">El programa se llevará a cabo gracias a la generosidad de nuestros donantes. $50,000 MXN serán destinados a la implementación de este programa, cubriendo materiales educativos, salarios de los instructores, y los costos operativos del centro educativo.</p>
             </div>
             <!-- Apartado de Donación -->
-            <div class="bg-customLighterGray p-6 rounded-lg shadow-lg text-center">
+            <div class="bg-customLighterGray p-6 rounded-lg shadow-lg text-center relative">
+                <!-- SVG oculto inicialmente con transición de visibilidad -->
+                <div class="donation-icon absolute -top-5 -left-5 opacity-0 scale-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#1ab76a" class="w-16 h-16"><path d="M326.7 403.7c-22.1 8-45.9 12.3-70.7 12.3s-48.7-4.4-70.7-12.3l-.8-.3c-30-11-56.8-28.7-78.6-51.4C70 314.6 48 263.9 48 208C48 93.1 141.1 0 256 0S464 93.1 464 208c0 55.9-22 106.6-57.9 144c-1 1-2 2.1-3 3.1c-21.4 21.4-47.4 38.1-76.3 48.6zM256 91.9c-11.1 0-20.1 9-20.1 20.1l0 6c-5.6 1.2-10.9 2.9-15.9 5.1c-15 6.8-27.9 19.4-31.1 37.7c-1.8 10.2-.8 20 3.4 29c4.2 8.8 10.7 15 17.3 19.5c11.6 7.9 26.9 12.5 38.6 16l2.2 .7c13.9 4.2 23.4 7.4 29.3 11.7c2.5 1.8 3.4 3.2 3.7 4c.3 .8 .9 2.6 .2 6.7c-.6 3.5-2.5 6.4-8 8.8c-6.1 2.6-16 3.9-28.8 1.9c-6-1-16.7-4.6-26.2-7.9c0 0 0 0 0 0s0 0 0 0s0 0 0 0c-2.2-.7-4.3-1.5-6.4-2.1c-10.5-3.5-21.8 2.2-25.3 12.7s2.2 21.8 12.7 25.3c1.2 .4 2.7 .9 4.4 1.5c7.9 2.7 20.3 6.9 29.8 9.1l0 6.4c0 11.1 9 20.1 20.1 20.1s20.1-9 20.1-20.1l0-5.5c5.3-1 10.5-2.5 15.4-4.6c15.7-6.7 28.4-19.7 31.6-38.7c1.8-10.4 1-20.3-3-29.4c-3.9-9-10.2-15.6-16.9-20.5c-12.2-8.8-28.3-13.7-40.4-17.4l-.8-.2c-14.2-4.3-23.8-7.3-29.9-11.4c-2.6-1.8-3.4-3-3.6-3.5c-.2-.3-.7-1.6-.1-5c.3-1.9 1.9-5.2 8.2-8.1c6.4-2.9 16.4-4.5 28.6-2.6c4.3 .7 17.9 3.3 21.7 4.3c10.7 2.8 21.6-3.5 24.5-14.2s-3.5-21.6-14.2-24.5c-4.4-1.2-14.4-3.2-21-4.4l0-6.3c0-11.1-9-20.1-20.1-20.1zM48 352l16 0c19.5 25.9 44 47.7 72.2 64L64 416l0 32 192 0 192 0 0-32-72.2 0c28.2-16.3 52.8-38.1 72.2-64l16 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48l0-64c0-26.5 21.5-48 48-48z"/></svg>
+                </div>
+                <div class="donation-icon absolute -bottom-5 -right-5 opacity-0 scale-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="#1ab76a" class="w-20 h-20"><path d="M312 24l0 10.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3s0 0 0 0c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8l0 10.6c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-11.4c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2L264 24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5L192 512 32 512c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l36.8 0 44.9-36c22.7-18.2 50.9-28 80-28l78.3 0 16 0 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0-16 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l120.6 0 119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384c0 0 0 0 0 0l-.9 0c.3 0 .6 0 .9 0z"/></svg>
+                </div>
+                
+                <!-- Contenido del apartado de donación -->
                 <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">¡Ayúdanos a llegar a más personas!</p>
                 <p class="text-customBeige text-lg mb-6">
                     Con tu apoyo, podemos cambiar vidas y crear un mundo con más oportunidades para todos. 
                     ¡Cada donación hace la diferencia y acerca a más personas a una educación digna!
                 </p>
-                <!--<button class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-lg transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>-->
-                <button id="donarBtn" class="bg-transparent text-customBeige font-bold py-2 px-6 rounded-full border-customGreen border-4 transition-colors duration-300 hover:bg-customGreen transition">Donar Ahora</button>
+                <button id="donarBtn" class="bg-transparent text-customBeige font-bold py-2 px-6 rounded-full border-customGreen border-4 transition-colors duration-300 hover:bg-customGreen">Donar Ahora</button>
             </div>
             <!-- Modal -->
             <div id="donationModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
@@ -305,33 +327,25 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Columna izquierda -->
-        <!--<div class="bg-customLighterGray p-6 flex flex-col justify-center m-4 rounded-lg">
-            <h2 class="text-customGreen text-4xl font-bold mb-4">Descripción de la actividad</h2>
-            <p class="text-customBeige text-xl mb-6 text-justify">{{ $program->description }}</p>
-            <h3 class="text-customGreen text-3xl font-bold mb-4">Fechas y horas</h3>
-            <p class="text-customBeige text-xl mb-2">Horario del sábado: 7PM - 10PM</p>
-            <p class="text-customBeige text-xl mb-6">Horario del domingo: 10AM - 3PM</p>
-        </div>-->
+    <!--Sección: Te interesa participar?-->
+    <div class="bg-customDarkGray h-auto flex flex-col items-center justify-center px-32 pb-32">
+        <p class="merriweather-bold font-bold text-customGreen text-5xl text-center mb-8">¿Te interesa participar?</p>
+        <div class="flex w-full justify-around">
+            <button class="w-[40%] bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete como beneficiario</button>
+            <button class="w-[40%] bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete como voluntario</button>
+        </div>
+    </div>
 
-        <!-- Columna derecha -->
-        <!--<div class="bg-customLighterGray p-6 m-4 rounded-lg">
-            <h3 class="text-customGreen text-4xl font-bold mb-4 text-center">Ubicación de la actividad</h3>-->
-            <!--<div class="w-full h-65 bg-gray-200 rounded-lg mb-4">
-                <img src="{{ asset('img/actividad1-activities.jpg') }}" alt="Mapa" class="w-full h-[70%] object-cover rounded-lg">
-            </div>-->
-            
-            <!-- Aquí se añade el contenedor para el minimapa -->
-            <!--<div id="map" class="w-full h-64 bg-gray-200 rounded-lg mb-4"></div>
-
-            <div class="mt-4">
-                <h3 class="text-customGreen text-4xl font-bold">Unidos por la esperanza:</h3>
-                <br>
-                <p class="text-customBeige text-xl mb-4">Ayudando a romper el ciclo de la desigualdad.</p>
-                <p class="text-customBeige text-xl">4728 Poplar Crescent, Residencial Sunset, Apt. 468, junto a la estación del tren, Greenville, Michigan, 46001, México</p>
-            </div>
-        </div>-->
+    <!--Más programas-->
+    <div class="bg-customDarkGray h-auto flex flex-wrap px-32">
+        <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Más programas</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            @foreach($recentPrograms as $recentProgram)
+                <x-program-card :program="$recentProgram" />
+            @endforeach
+        </div>
     </div>
 
     <!-- Footer -->
@@ -422,4 +436,47 @@
                 '<p>Donar anónimamente significa que tu identidad no será registrada ni divulgada.</p>';
         }
     }
+</script>
+
+<!--Animación de los graficos-->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+    
+        const animateBars = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const percentage = parseFloat(bar.getAttribute('data-percentage'));
+                    const span = bar.querySelector('span');
+                    
+                    // Animar el ancho de la barra
+                    bar.style.transition = 'width 1.5s ease-in-out';
+                    bar.style.width = percentage + '%';
+    
+                    // Animar el conteo del número
+                    let currentNumber = 0;
+                    const increment = percentage / 60; // Ajuste de velocidad para animación suave
+                    
+                    const countUp = setInterval(() => {
+                        currentNumber += increment;
+                        if (currentNumber >= percentage) {
+                            currentNumber = percentage;
+                            clearInterval(countUp); // Detener la animación
+                        }
+                        span.textContent = currentNumber.toFixed(0) + '%';
+                    }, 25); // Actualizar cada 25 ms para una animación suave
+                    
+                    observer.unobserve(bar); // Dejar de observar la barra después de animar
+                }
+            });
+        };
+    
+        const observer = new IntersectionObserver(animateBars, { threshold: 0.5 });
+    
+        progressBars.forEach(bar => {
+            bar.style.width = '0%'; // Iniciar con ancho de 0%
+            observer.observe(bar);
+        });
+    });
 </script>

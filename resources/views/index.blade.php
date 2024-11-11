@@ -9,6 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-customLightGray">
     <!-- Estilos globales -->
@@ -37,7 +42,7 @@
 
         <!-- Texto Principal -->
         <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-0">
-            <h1 class="text-customBeige text-7xl font-bold">Transformemos vidas juntos</h1>
+            <h1 class="merriweather-bold text-customBeige text-7xl font-bold">Transformemos vidas juntos</h1>
             <p class="text-customBeige text-2xl mt-4">Tu ayuda puede llevar esperanza y oportunidades a miles de niños y
                 familias.</p>
         </div>
@@ -59,7 +64,7 @@
 
                 <!-- Contenido 1 -->
                 <div class="w-1/2 content-slide h-full flex flex-col justify-center">
-                    <h1 class="text-4xl font-bold text-customGreen leading-tight mb-4">
+                    <h1 class="merriweather-bold text-4xl font-bold text-customGreen leading-tight mb-4">
                         Únete a la Lucha contra la Pobreza y la Desigualdad
                     </h1>
                     <h2 class="text-2xl font-semibold text-customBeige mb-6">
@@ -277,7 +282,7 @@
     <!-- Sección cómo puedes apoyar -->
     <div class="bg-customLightGray py-12">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-customGreen mb-8">¿Cómo puedes ayudar?</h2>
+            <h2 class="merriweather-bold text-4xl font-bold text-center text-customGreen mb-8">¿Cómo puedes ayudar?</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
