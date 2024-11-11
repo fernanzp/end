@@ -58,7 +58,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" class="w-8 h-8 mr-4">
                     <path d="M408 120c0 54.6-73.1 151.9-105.2 192c-7.7 9.6-22 9.6-29.6 0C241.1 271.9 168 174.6 168 120C168 53.7 221.7 0 288 0s120 53.7 120 120zm8 80.4c3.5-6.9 6.7-13.8 9.6-20.6c.5-1.2 1-2.5 1.5-3.7l116-46.4C558.9 123.4 576 135 576 152l0 270.8c0 9.8-6 18.6-15.1 22.3L416 503l0-302.6zM137.6 138.3c2.4 14.1 7.2 28.3 12.8 41.5c2.9 6.8 6.1 13.7 9.6 20.6l0 251.4L32.9 502.7C17.1 509 0 497.4 0 480.4L0 209.6c0-9.8 6-18.6 15.1-22.3l122.6-49zM327.8 332c13.9-17.4 35.7-45.7 56.2-77l0 249.3L192 449.4 192 255c20.5 31.3 42.3 59.6 56.2 77c20.5 25.6 59.1 25.6 79.6 0zM288 152a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
                 </svg>
-                <button class="text-xl">Ver en el mapa</button>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ $program->latitude }},{{ $program->longitude }}" 
+       target="_blank" 
+       class="text-xl">
+        Ver en el mapa
+    </a>
             </div>
 
             <button class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-lg transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
@@ -337,12 +341,16 @@
 
 <!-- Script de Google Maps API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPhXNZwg1HmdhWo7ECKUe_4YY7vMcT7Q&callback=initMap" async defer></script>
+
 <script>
     function initMap() {
-        // Coordenadas del lugar (ejemplo: Manzanillo, Colima)
-        const location = { lat: 19.0536292, lng: -104.3170724 };
+        // Obtener las coordenadas desde los datos de la actividad
+        const location = {
+            lat: {{ $program->latitude }},
+            lng: {{ $program->longitude }}
+        };
 
-        // Crear el mapa y centrarlo en la ubicación
+        // Crear el mapa y centrarlo en la ubicación específica de la actividad
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 15, // Nivel de zoom
             center: location,
