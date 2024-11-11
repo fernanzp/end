@@ -8,19 +8,23 @@
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
-<body class="relative h-screen w-full">
+<body class="relative h-screen w-full bg-customDarkGray">
     <!-- Estilos globales -->
     <style>
         <x-ahoverstyles />
     </style>
 
     <img src="{{ asset('img/programs_images/' . $program->img) }}" alt="Niña en pobreza" class="object-cover w-full h-full">
-    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
 
-    <div class="absolute top-8 left-8 flex items-center text-white text-xl z-20">
-        <a href="{{ url('/programs') }}" class="flex items-center">
+    <div class="absolute top-8 left-8 flex items-center text-customBeige text-xl z-20">
+        <a href="{{ url('/programs') }}" class="flex items-center hover:text-customDarkBeige">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
@@ -30,23 +34,25 @@
 
     <div class="absolute inset-0 flex items-center z-10 px-10 w-full">
         <div class="text-center w-[70%]">
-            <h1 class="text-customBeige text-7xl font-bold leading-tight">{{ $program->title }}</h1>
+            <h1 class="merriweather-bold text-customBeige text-7xl font-bold leading-tight">{{ $program->title }}</h1>
             <!--<p class="text-white text-4xl mt-8">Ayudando a romper el ciclo de la desigualdad</p>-->
         </div>
 
         <div class="w-[20%] p-8 mx-10 bg-customDarkGray rounded-xl shadow-lg">
-            <p class="text-2xl text-customBeige font-bold mb-1">Fecha de inicio:</p>
-            <p class="text-gray-400 text-xl mb-6">{{ ucfirst(\Carbon\Carbon::parse($program->start_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}</p>
-            <p class="text-2xl text-customBeige font-bold mb-1">Fecha de fin:</p>
-            <p class="text-gray-400 text-xl mb-6">{{ ucfirst(\Carbon\Carbon::parse($program->end_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}</p>
+            <p class="text-2xl text-customBeige font-bold mb-1">Inicia:</p>
+            <p class="text-gray-400 text-xl mb-4">{{ ucfirst(\Carbon\Carbon::parse($program->start_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}</p>
+            <p class="text-2xl text-customBeige font-bold mb-1">Finaliza:</p>
+            <p class="text-gray-400 text-xl mb-4">{{ ucfirst(\Carbon\Carbon::parse($program->end_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}</p>
 
-            <div class="flex items-center mb-6 text-customGreen transition-colors duration-300 hover:text-customDarkGreen cursor-pointer text-2xl">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 mr-2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12A9 9 0 1112 3a9 9 0 019 9z" />
+            <div class="flex items-center mb-8 text-customGreen transition-colors duration-300 hover:text-customDarkGreen cursor-pointer text-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" class="w-8 h-8 mr-4">
+                    <path d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z"/>
                 </svg>
-                <a href="#" class="text-xl">Añadir al calendario</a>
+                <a href="#" class="text-xl">Ver el calendario</a>
             </div>
+
+            <p class="text-2xl text-customBeige font-bold mb-1">Lugar:</p>
+            <p class="text-gray-400 text-xl mb-4">Centro comunitario "Educando para el Futuro"</p>
 
             <div class="flex items-center mb-6 text-gray-400 transition-colors duration-300 hover:text-gray-500 cursor-pointer text-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" class="w-8 h-8 mr-4">
@@ -55,31 +61,265 @@
                 <button class="text-xl">Ver en el mapa</button>
             </div>
 
-            <button class="w-full bg-customGreen text-white text-xl font-bold py-5 px-6 rounded-lg mb-6 transition-colors duration-300 hover:bg-customDarkGreen transition">Inscríbete ahora</button>
-            <button class="w-full bg-customBeige text-customDarkGray text-xl font-bold py-5 px-6 rounded-lg transition-colors duration-300 hover:bg-customDarkBeige transition">Inscríbete en la fecha programada</button>
+            <button class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-lg transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
+            <!--<button class="w-full bg-customBeige text-customDarkGray text-xl font-bold py-5 px-6 rounded-lg transition-colors duration-300 hover:bg-customDarkBeige transition">Inscríbete en la fecha programada</button>-->
+        </div>
+        <div class="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center bottom-8">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#ECDFCC" 
+                 class="w-8 h-8 smooth-bounce">
+                <path d="M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5-12.5-32.8-12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z"/>
+            </svg>
         </div>
     </div>
 
-    <!-- Contenedor principal con dos columnas -->
-    <div class="bg-customLightGray grid grid-cols-2 gap-8 h-full">
+    <!-- Contenedor de los detalles del programa-->
+    <div class="bg-customDarkGray h-auto p-32 flex gap-8 flex-wrap">
+        <div class="w-full md:w-[50%]">
+            <!--Descripción-->
+            <p class="text-customBeige text-xl mb-10 text-justify">{{ $program->description }}</p>
+            <!--Detalles del programa-->
+            <div class="mb-10">
+                <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Detalles del programa:</p>
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Modalidad:</span> <span class="text-customBeige text-xl">Presencial</span></p> 
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Días de la semana:</span> <span class="text-customBeige text-xl">Lunes, Miércoles y Viernes</span></p> 
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Horario:</span> <span class="text-customBeige text-xl">10 a.m. - 2:00 p.m.</span></p> 
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Edad:</span> <span class="text-customBeige text-xl">15 - 40 años</span></p>
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de beneficiarios:</span> <span class="text-customBeige text-xl">80</span></p> 
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de voluntarios:</span> <span class="text-customBeige text-xl">12</span></p>
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Ubicación:</span> <span class="text-customBeige text-xl">Centro comunitario "Educando para el Futuro", Av. de la Solidaridad, Ciudad de México</span></p>
+            </div>
+            <!--Objetivo-->
+            <div class="mb-10">
+                <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Objetivo:</p>
+                <p class="text-customBeige text-xl text-justify">El programa tiene como objetivo proporcionar herramientas educativas y técnicas para mejorar las oportunidades laborales de los participantes, con la esperanza de mejorar sus condiciones de vida y contribuir al desarrollo social de su comunidad.</p>
+            </div>
+            <!-- Contenidos -->
+            <div class="mb-10">
+                <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Contenidos:</p>
+                <ul class="list-disc list-inside text-customBeige text-xl mb-4 space-y-2 text-justify">
+                    <li>Clases de matemáticas y ciencias básicas</li>
+                    <li>Talleres de habilidades técnicas como carpintería, costura, tecnología básica</li>
+                    <li>Cursos de alfabetización digital</li>
+                    <li>Actividades de desarrollo personal y liderazgo</li>
+                </ul>
+            </div>
+            <!--Requisitos-->
+            <div class="mb-10">
+
+            </div>
+        </div>
+        <div class="w-full md:w-[35%] h-64 md:ml-auto">
+            <div id="map" class="w-full h-full bg-gray-200 rounded-lg mb-[5%]"></div>
+            <!-- Beneficiarios inscritos-->
+            <p class="merriweather-bold font-bold text-customGreen text-2xl mb-2">Beneficiarios inscritos:</p>
+            <div class="w-full bg-customBeige h-[12%] rounded-full mb-12">
+                <!-- Barra de progreso -->
+                <div class="bg-customGreen h-full rounded-full relative mb-1" style="width: 70%;">
+                    <span class="absolute inset-0 flex items-center justify-center text-customBeige font-bold text-xl">70%</span>
+                </div>
+               <p class="text-customBeige text-md ml-[2.5%]">Lugares disponibles: 30</p> 
+            </div>
+            <!--Voluntarios inscritos-->
+            <p class="merriweather-bold font-bold text-customGreen text-2xl mb-2">Voluntarios inscritos:</p>
+            <div class="w-full bg-customBeige h-[12%] rounded-full mb-[10%]">
+                <!-- Barra de progreso -->
+                <div class="bg-customGreen h-full rounded-full relative mb-1" style="width: 41.67%;">
+                    <span class="absolute inset-0 flex items-center justify-center text-customBeige font-bold text-xl">41.67%</span>
+                </div>
+                <p class="text-customBeige text-md ml-[2.5%]">Lugares disponibles: 7</p>
+            </div>
+            <!--Financiamiento-->
+            <div class="mb-10">
+                <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Financiamiento:</p>
+                <p class="text-customBeige text-xl text-justify">El programa se llevará a cabo gracias a la generosidad de nuestros donantes. $50,000 MXN serán destinados a la implementación de este programa, cubriendo materiales educativos, salarios de los instructores, y los costos operativos del centro educativo.</p>
+            </div>
+            <!-- Apartado de Donación -->
+            <div class="bg-customLighterGray p-6 rounded-lg shadow-lg text-center">
+                <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">¡Ayúdanos a llegar a más personas!</p>
+                <p class="text-customBeige text-lg mb-6">
+                    Con tu apoyo, podemos cambiar vidas y crear un mundo con más oportunidades para todos. 
+                    ¡Cada donación hace la diferencia y acerca a más personas a una educación digna!
+                </p>
+                <!--<button class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-lg transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>-->
+                <button id="donarBtn" class="bg-transparent text-customBeige font-bold py-2 px-6 rounded-full border-customGreen border-4 transition-colors duration-300 hover:bg-customGreen transition">Donar Ahora</button>
+            </div>
+            <!-- Modal -->
+            <div id="donationModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+                <div class="flex items-center justify-center min-h-screen px-4">
+                    <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+                        <!-- Close Button -->
+                        <button id="closeModal"
+                            class="absolute top-2 right-2 text-gray-600 hover:text-gray-800">×</button>
+
+                        <h2 class="text-2xl md:text-3xl font-bold text-customGreen mb-4">Selecciona una opción
+                            de donación</h2>
+
+                        <!-- Tabs Navigation -->
+                        <div class="border-b mb-6">
+                            <ul class="flex justify-center">
+                                <li class="mr-1">
+                                    <a href="#" id="tab-socio"
+                                        class="bg-white inline-block py-2 px-4 text-gray-500 hover:text-blue-500">Soy
+                                        socio o donante</a>
+                                </li>
+                                <li class="mr-1">
+                                    <a href="#" id="tab-anonimo"
+                                        class="bg-white inline-block py-2 px-4 text-gray-500 hover:text-blue-500">Donativo
+                                        anónimo</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Description of each donation type -->
+                        <div id="description" class="text-gray-700 text-sm mb-4">
+                            <!-- Default description (Socio) -->
+                            <p>Donar como socio te permite acceder a beneficios exclusivos y participar en
+                                nuestras decisiones. Ingresa tu correo y usuario.</p>
+                        </div>
+
+                        <!-- Forms -->
+                        <div id="form-socio" class="tab-content">
+                            <h3 class="text-lg md:text-xl font-semibold mb-2">Soy socio o donante</h3>
+
+                            <!-- Verificar si el usuario está autenticado -->
+                            @auth
+                                <!-- Mostrar mensaje y botón de donar cuando está autenticado -->
+                                <p class="text-gray-700 mb-4">Estás donando como
+                                    <strong>{{ Auth::user()->name }}</strong>.
+                                </p>
+                                <div id="donate-button-container">
+                                    <div id="donate-button"></div>
+                                    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+                                    <script>
+                                        PayPal.Donation.Button({
+                                            env: 'sandbox',
+                                            hosted_button_id: 'CUQZLDN7Q48XQ',
+                                            image: {
+                                                src: 'https://www.paypalobjects.com/es_XC/i/btn/btn_donate_LG.gif',
+                                                alt: 'Donar con el botón PayPal',
+                                                title: 'PayPal - The safer, easier way to pay online!',
+                                            },
+                                            onComplete: function(params) {
+                                                fetch('{{ route('getTransactions') }}', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                                            'content')
+                                                    },
+                                                    body: JSON.stringify({
+                                                        status: params.st,
+                                                        amount: params.amt,
+                                                        currency: params.cc,
+                                                        transaction_id: params.tx,
+                                                    })
+                                                }).then(response => {
+                                                    if (response.ok) {
+                                                        //redireccionar a la página de agradecimiento
+                                                        window.location.href = './gracias/' + params.tx;
+                                                    } else {
+                                                        alert('Error al procesar la donación');
+                                                    }
+                                                });
+                                            },
+                                        }).render('#donate-button');
+                                    </script>
+                                </div>
+                            @else
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <!-- Mostrar formulario de inicio de sesión cuando no está autenticado -->
+                                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                                        for="email">Email</label>
+                                    <input id="email" type="text" name="email" required
+                                        placeholder="Correo electrónico"
+                                        class="w-full mb-3 px-4 py-2 border border-gray-300 rounded-lg">
+
+                                    <label class="block text-gray-700 text-sm font-bold mb-2"
+                                        for="passwordSocio">Contraseña:</label>
+                                    <input id="password" type="password" name="password" required
+                                        placeholder="Contraseña"
+                                        class="w-full mb-3 px-4 py-2 border border-gray-300 rounded-lg">
+
+                                    <input id="socioDonarBtn"
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+                                        type="submit" value="Iniciar Sesión" name="btnIngresar">
+                                </form>
+
+
+                                <div class="mt-4">
+                                    <a href="#" class="text-blue-500 hover:underline text-sm">Recuperar mi
+                                        contraseña</a><br>
+                                    <a href="{{route('register')}}" class="text-blue-500 hover:underline text-sm">Regístrate
+                                        ahora</a>
+                                </div>
+                            @endauth
+                        </div>
+
+                        <div id="form-anonimo" class="hidden tab-content">
+                            <h3 class="text-lg md:text-xl font-semibold mb-2">Donativo anónimo</h3>
+                                <div id="donate-button-container-anonimo">
+                                    <div id="donate-button-anonimo"></div>
+                                    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+                                    <script>
+                                        PayPal.Donation.Button({
+                                            env: 'sandbox',
+                                            hosted_button_id: 'CUQZLDN7Q48XQ',
+                                            image: {
+                                                src: 'https://www.paypalobjects.com/es_XC/i/btn/btn_donate_LG.gif',
+                                                alt: 'Donar con el botón PayPal',
+                                                title: 'PayPal - The safer, easier way to pay online!',
+                                            },
+                                            onComplete: function(params) {
+                                                fetch('{{ route('getTransactionsAnonimo') }}', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                                            'content')
+                                                    },
+                                                    body: JSON.stringify({
+                                                        status: params.st,
+                                                        amount: params.amt,
+                                                        currency: params.cc,
+                                                        transaction_id: params.tx,
+                                                    })
+                                                }).then(response => {
+                                                    if (response.ok) {
+                                                        //redireccionar a la página de agradecimiento
+                                                        window.location.href = './gracias/' + params.tx;
+                                                    } else {
+                                                        alert('Error al procesar la donación');
+                                                    }
+                                                });
+                                            },
+                                        }).render('#donate-button-anonimo');
+                                    </script>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Columna izquierda -->
-        <div class="bg-customLighterGray p-6 flex flex-col justify-center m-4 rounded-lg">
+        <!--<div class="bg-customLighterGray p-6 flex flex-col justify-center m-4 rounded-lg">
             <h2 class="text-customGreen text-4xl font-bold mb-4">Descripción de la actividad</h2>
             <p class="text-customBeige text-xl mb-6 text-justify">{{ $program->description }}</p>
             <h3 class="text-customGreen text-3xl font-bold mb-4">Fechas y horas</h3>
             <p class="text-customBeige text-xl mb-2">Horario del sábado: 7PM - 10PM</p>
             <p class="text-customBeige text-xl mb-6">Horario del domingo: 10AM - 3PM</p>
-        </div>
+        </div>-->
 
         <!-- Columna derecha -->
-        <div class="bg-customLighterGray p-6 m-4 rounded-lg">
-            <h3 class="text-customGreen text-4xl font-bold mb-4 text-center">Ubicación de la actividad</h3>
+        <!--<div class="bg-customLighterGray p-6 m-4 rounded-lg">
+            <h3 class="text-customGreen text-4xl font-bold mb-4 text-center">Ubicación de la actividad</h3>-->
             <!--<div class="w-full h-65 bg-gray-200 rounded-lg mb-4">
                 <img src="{{ asset('img/actividad1-activities.jpg') }}" alt="Mapa" class="w-full h-[70%] object-cover rounded-lg">
             </div>-->
             
             <!-- Aquí se añade el contenedor para el minimapa -->
-            <div id="map" class="w-full h-64 bg-gray-200 rounded-lg mb-4"></div>
+            <!--<div id="map" class="w-full h-64 bg-gray-200 rounded-lg mb-4"></div>
 
             <div class="mt-4">
                 <h3 class="text-customGreen text-4xl font-bold">Unidos por la esperanza:</h3>
@@ -87,118 +327,7 @@
                 <p class="text-customBeige text-xl mb-4">Ayudando a romper el ciclo de la desigualdad.</p>
                 <p class="text-customBeige text-xl">4728 Poplar Crescent, Residencial Sunset, Apt. 468, junto a la estación del tren, Greenville, Michigan, 46001, México</p>
             </div>
-        </div>
-    </div>
-
-    <div class="bg-customLightGray w-screen h-screen py-12">
-        <div class="container mx-auto relative h-full">
-
-            <!-- Contenedor del contenido dinámico -->
-            <div class="flex flex-row items-center justify-between space-x-8 px-4 h-full">
-
-                <!-- Contenido 2 -->
-                <div class="w-1/2 content-slide h-full flex flex-col justify-center">
-                    <h1 class="text-4xl font-bold text-customGreen leading-tight mb-4">
-                        Estás a un paso de apoyar a mejorar la educación de miles de estudiantes
-                    </h1>
-                    <h2 class="text-2xl font-semibold text-customBeige mb-6">
-                        Ingresa el monto a donar deseado:
-                    </h2>
-
-                    <!-- Botones de donación -->
-                    <div class="grid grid-cols-3 gap-4">
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            100$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            200$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            300$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            500$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            800$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            1000$
-                        </button>
-                    </div>
-
-                    <button class="mt-6 w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-6 rounded-lg border border-white text-1xl">
-                        Continuar
-                    </button>
-                </div>
-
-                <!-- Imagen 2 -->
-                <div class="w-1/2 content-slide h-full">
-                    <img src="{{ asset('img/seccion2-index.jpeg') }}" alt="Niños en situación de pobreza" class="object-cover rounded-lg shadow-lg w-full h-full">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container bg-customLightGray mx-auto p-16">
-        <h2 class="text-4xl font-bold text-center text-customGreen mb-8">Actividades</h2>
-        <!-- Grid for cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 ">
-            <!-- Card 1 -->
-            <div class=" shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:shadow-xl hover:scale-105">
-                <img class="w-full h-48 object-cover" src="{{ asset('img/actividad1-activities.jpg') }}" alt="Imagen">
-                <div class="p-4">
-                    <h3 class="font-bold text-xl mb-2 text-customGreen">Unidos por la esperanza</h3>
-                    <p class="text-sm text-gray-400 mb-2">85% Participants: 1,500 - Donated Money: 14,000$</p>
-                    <p class="text-sm text-gray-400 mb-4">Fecha: Martes 25 de Febrero del 2025</p>
-                    <p class="text-customBeige">Ayudando a romper el ciclo de la desigualdad. Tu apoyo puede hacer una diferencia significativa en las vidas de los niños más vulnerables.</p>
-                    <div class="flex justify-end">
-                        <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onclick="window.location.href='{{ url('/activities_description') }}';">¡Quiero participar!</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:shadow-xl hover:scale-105">
-                <img class="w-full h-48 object-cover" src="{{ asset('img/actividad2-activities.jpg') }}" alt="Imagen">
-                <div class="p-4">
-                    <h3 class="font-bold text-xl mb-2 text-customGreen">Educación para el futuro</h3>
-                    <p class="text-sm text-gray-400 mb-2">80% Participants: 3,200 - Donated Money: 17,000$</p>
-                    <p class="text-sm text-gray-400 mb-4">Fecha: Martes 25 de Febrero del 2025</p>
-                    <p class="text-customBeige">Juntos por un cambio. Ayudemos a los niños y niñas en situación de riesgo para brindarles mejores oportunidades educativas.</p>
-                    <div class="flex justify-end">
-                        <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">¡Quiero participar!</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-customLighterGray shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:shadow-xl hover:scale-105">
-                <img class="w-full h-48 object-cover" src="{{ asset('img/actividad3-activities.jpg') }}" alt="Imagen">
-                <div class="p-4">
-                    <h3 class="font-bold text-xl mb-2 text-customGreen">Construyendo comunidades</h3>
-                    <p class="text-sm text-gray-400 mb-2">90% Participants: 1,300 - Donated Money: 10,000$</p>
-                    <p class="text-sm text-gray-400 mb-4">Fecha: Martes 25 de Febrero del 2025</p>
-                    <p class="text-customBeige">Empoderando a nuestras vidas. Sigue el camino para generar un cambio profundo en la estructura comunitaria y mejorar la calidad de vida.</p>
-                    <div class="flex justify-end">
-                        <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">¡Quiero participar!</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pagination -->
-        <div class="mt-6 flex justify-center">
-            <nav class="inline-flex space-x-1">
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-300">1</a>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-300">2</a>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-300">3</a>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-300">4</a>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-300">5</a>
-                <span class="px-4 py-2 bg-white border border-gray-300 rounded-md text-gray-500">...</span>
-                <a href="#" class="bg-white border border-gray-300 text-gray-500 px-4 py-2 rounded-md hover:bg-gray-300">10</a>
-            </nav>
-        </div>
+        </div>-->
     </div>
 
     <!-- Footer -->
@@ -224,5 +353,65 @@
             position: location,
             map: map,
         });
+    }
+</script>
+
+
+<!--Donaciones-->
+<script>
+    // Referencias de los elementos de las pestañas
+    const tabSocio = document.getElementById('tab-socio');
+    const tabAnonimo = document.getElementById('tab-anonimo');
+    const formSocio = document.getElementById('form-socio');
+    const formAnonimo = document.getElementById('form-anonimo');
+    const description = document.getElementById('description');
+
+    // Mostrar el modal
+    document.getElementById('donarBtn').addEventListener('click', () => {
+        document.getElementById('donationModal').classList.remove('hidden');
+        resetTabs();
+        formSocio.classList.remove('hidden'); // Mostrar formulario de Socio por defecto
+        tabSocio.classList.add('active-tab');
+        updateDescription('socio');
+    });
+
+    // Cerrar el modal
+    document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('donationModal').classList.add('hidden');
+    });
+
+    // Cambiar entre pestañas y prevenir el recargo
+    tabSocio.addEventListener('click', (e) => {
+        e.preventDefault();
+        resetTabs();
+        formSocio.classList.remove('hidden');
+        tabSocio.classList.add('active-tab');
+        updateDescription('socio');
+    });
+
+    tabAnonimo.addEventListener('click', (e) => {
+        e.preventDefault();
+        resetTabs();
+        formAnonimo.classList.remove('hidden');
+        tabAnonimo.classList.add('active-tab');
+        updateDescription('anonimo');
+    });
+
+    function resetTabs() {
+    formSocio.classList.add('hidden');
+    formAnonimo.classList.add('hidden');
+    tabSocio.classList.remove('active-tab');
+    tabAnonimo.classList.remove('active-tab');
+}
+
+
+    function updateDescription(tab) {
+        if (tab === 'socio') {
+            description.innerHTML =
+                '<p>Donar como socio te permite acceder a beneficios exclusivos y participar en nuestras decisiones. Ingresa tu correo y usuario.</p>';
+        } else if (tab === 'anonimo') {
+            description.innerHTML =
+                '<p>Donar anónimamente significa que tu identidad no será registrada ni divulgada.</p>';
+        }
     }
 </script>
