@@ -97,10 +97,10 @@
             <!--Detalles del programa-->
             <div class="mb-10">
                 <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Detalles del programa:</p>
-                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Modalidad:</span> <span class="text-customBeige text-xl">Presencial</span></p> 
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Modalidad:</span> <span class="text-customBeige text-xl">{{ ucfirst($program->modality) }}</span></p> 
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Días de la semana:</span> <span class="text-customBeige text-xl">Lunes, Miércoles y Viernes</span></p> 
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Horario:</span> <span class="text-customBeige text-xl">10 a.m. - 2:00 p.m.</span></p> 
-                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Edad:</span> <span class="text-customBeige text-xl">15 - 40 años</span></p>
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Edad:</span> <span class="text-customBeige text-xl">{{ $program->age }}</span></p>
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de beneficiarios:</span> <span class="text-customBeige text-xl">80</span></p> 
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de voluntarios:</span> <span class="text-customBeige text-xl">12</span></p>
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Ubicación:</span> <span class="text-customBeige text-xl">Centro comunitario "Educando para el Futuro", Av. de la Solidaridad, Ciudad de México</span></p>
@@ -108,7 +108,7 @@
             <!--Objetivo-->
             <div class="mb-10">
                 <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Objetivo:</p>
-                <p class="text-customBeige text-xl text-justify">El programa tiene como objetivo proporcionar herramientas educativas y técnicas para mejorar las oportunidades laborales de los participantes, con la esperanza de mejorar sus condiciones de vida y contribuir al desarrollo social de su comunidad.</p>
+                <p class="text-customBeige text-xl text-justify">{{ $program->objetive }}</p>
             </div>
             <!-- Contenidos -->
             <div class="mb-10">
