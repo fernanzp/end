@@ -68,13 +68,15 @@
             </div>
 
             <p class="text-2xl text-customBeige font-bold mb-1">Ubicación:</p>
-            <p class="text-gray-400 text-xl mb-4">Centro comunitario "Educando para el Futuro"</p>
+            <p class="text-gray-400 text-xl mb-4">{{ $program->place }}</p>
+
 
             <div class="flex items-center mb-6 text-gray-400 transition-colors duration-300 hover:text-gray-500 cursor-pointer text-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" class="w-8 h-8 mr-4">
                     <path d="M408 120c0 54.6-73.1 151.9-105.2 192c-7.7 9.6-22 9.6-29.6 0C241.1 271.9 168 174.6 168 120C168 53.7 221.7 0 288 0s120 53.7 120 120zm8 80.4c3.5-6.9 6.7-13.8 9.6-20.6c.5-1.2 1-2.5 1.5-3.7l116-46.4C558.9 123.4 576 135 576 152l0 270.8c0 9.8-6 18.6-15.1 22.3L416 503l0-302.6zM137.6 138.3c2.4 14.1 7.2 28.3 12.8 41.5c2.9 6.8 6.1 13.7 9.6 20.6l0 251.4L32.9 502.7C17.1 509 0 497.4 0 480.4L0 209.6c0-9.8 6-18.6 15.1-22.3l122.6-49zM327.8 332c13.9-17.4 35.7-45.7 56.2-77l0 249.3L192 449.4 192 255c20.5 31.3 42.3 59.6 56.2 77c20.5 25.6 59.1 25.6 79.6 0zM288 152a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
                 </svg>
-                <a href="https://www.google.com/maps/search/?api=1&query={{ $program->latitude }},{{ $program->longitude }}" target="_blank" class="text-xl">Ver en el mapa</a>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($program->place) }}" target="_blank" class="text-xl">Ver en el mapa</a>
+
             </div>
 
             <button class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
@@ -103,7 +105,8 @@
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Edad:</span> <span class="text-customBeige text-xl">{{ $program->age }}</span></p>
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de beneficiarios:</span> <span class="text-customBeige text-xl">80</span></p> 
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de voluntarios:</span> <span class="text-customBeige text-xl">12</span></p>
-                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Ubicación:</span> <span class="text-customBeige text-xl">Centro comunitario "Educando para el Futuro", Av. de la Solidaridad, Ciudad de México</span></p>
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Ubicación:</span> <span class="text-customBeige text-xl">{{ $program->place }}</span></p>
+
             </div>
             <!--Objetivo-->
             <div class="mb-10">
