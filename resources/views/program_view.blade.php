@@ -79,9 +79,39 @@
 
             </div>
 
-            <button class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
+            <button id="modal-btn" class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
             <!--<button class="w-full bg-customBeige text-customDarkGray text-xl font-bold py-5 px-6 rounded-lg transition-colors duration-300 hover:bg-customDarkBeige transition">Inscríbete en la fecha programada</button>-->
         </div>
+        <!-- Modal oculto inicialmente -->
+<div id="modal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-60 hidden">
+    <form action="" method="POST" enctype="multipart/form-data" class="h-3/4 bg-white p-8 rounded-xl shadow-lg w-1/4 overflow-y-auto">
+        @csrf
+        <h2 class="text-2xl font-bold mb-4 text-center">Nuevo programa</h2>
+        <input type="text" placeholder="Título" id="title" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
+        <input type="text" placeholder="Descripcion corta" id="short_description" class="w-full p-3 border border-gray-300 rounded-xl mb-4"required>
+        <input type="text" placeholder="Descripcion" id="description" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
+        <input type="date" placeholder="Fecha de inicio" id="start_date" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
+        <input type="date" placeholder="Fecha de finalizacion" id="end_date" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
+        <label for="modality">Elige la modalidad:</label>       
+        <select name= "modality" id="modality" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
+            <option value="presencial">Presencial</option>
+            <option value="en línea">Virtual</option>
+        </select>
+
+            <input type="text" placeholder="Ubicacion" id="direccion" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
+            <label for="days_of_the_week">Días de la Semana:</label>
+        <div>
+            @foreach(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'] as $day)
+                <input type="checkbox" name="days_of_the_week[]" value="{{ $day }}" id="day-{{ $day }}">
+                <label for="day-{{ $day }}">{{ $day }}</label>
+            @endforeach
+        </div>
+        <button onclick="submitForm()" class="bg-customGreen text-white px-8 py-2 rounded-xl w-full text-xl font-bold">Enviar</button>
+        <button onclick="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded-xl mt-4 w-full text-xl">Cerrar</button>
+    </form>
+</div>
+
+
         <div class="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center bottom-8">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#ECDFCC" 
                  class="w-8 h-8 smooth-bounce">
@@ -381,6 +411,77 @@
     }
 </script>
 
+<!--Script para el modal de "Inscribirse ahora que en realidad es para crear un programa-->
+
+<script>
+    // Seleccionar el botón y el modal
+const modalBtn = document.getElementById('modal-btn');
+const modal = document.getElementById('modal');
+
+// Abrir el modal cuando se hace clic en el botón
+modalBtn.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+});
+
+// Función para cerrar el modal
+function closeModal() {
+    modal.classList.add('hidden');
+}
+
+// Función para enviar el formulario (puedes agregar la lógica de envío aquí)
+function submitForm() {
+    alert('Formulario enviado');
+    closeModal();
+}
+    </script>
+
+
+
+<!-- Google Places API for autocomplete -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPhXNZwg1HmdhWo7ECKUe_4YY7vMcT7Q&libraries=places&callback=initAutocomplete" async defer></script>
+
+<script>
+  // Función para inicializar el autocompletado
+  function initAutocomplete() {
+    const direccionInput = document.getElementById("direccion");
+
+    const autocomplete = new google.maps.places.Autocomplete(direccionInput, {
+      types: ['geocode', 'establishment'], // Permitir tanto direcciones como establecimientos
+      componentRestrictions: { country: "mx" } // Restricción solo al país
+    });
+
+    // Escuchar el evento de selección de lugar
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      if (place.geometry) {
+        console.log("Coordenadas:", place.geometry.location.lat(), place.geometry.location.lng());
+      } else {
+        console.log("No se pudo obtener información de ubicación.");
+      }
+    });
+  }
+
+  // Función para obtener coordenadas a partir de una dirección
+  function obtenerCoordenadas() {
+    const direccion = document.getElementById("direccion").value;
+    const geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({ 'address': direccion }, function(results, status) {
+      if (status === 'OK') {
+        const location = results[0].geometry.location;
+        console.log("Coordenadas: ", location.lat(), location.lng());
+      } else {
+        console.log("Geocodificación fallida debido a: " + status);
+      }
+    });
+  }
+
+  // Evitar el envío del formulario y llamar a la función de obtener coordenadas
+  document.querySelector("form.rellenar").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evita el envío del formulario
+    obtenerCoordenadas(); // Llama a la función para obtener coordenadas
+  });
+</script>
 
 <!--Donaciones-->
 <script>
