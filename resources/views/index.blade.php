@@ -13,17 +13,14 @@
 <body class="bg-customLightGray">
     <!-- Estilos globales -->
     <style>
-        <x-ahoverstyles />
-    </style>
-    <style>
         .active-tab {
             border-bottom: 2px solid #1D4ED8;
             /* Color azul para la pestaña activa */
             color: #1D4ED8;
             /* Color del texto de la pestaña activa */
         }
+        <x-ahoverstyles />
     </style>
-
     <div class="relative h-screen w-full">
         <!-- <img src="{{ asset('img/Fondo-index.jpg') }}" alt="Niña en pobreza" class="object-cover w-full h-full"> -->
         <video autoplay muted loop class="object-cover w-full h-full">
@@ -372,63 +369,63 @@
         });
     </script>
 
-<script>
-    // Referencias de los elementos de las pestañas
-    const tabSocio = document.getElementById('tab-socio');
-    const tabAnonimo = document.getElementById('tab-anonimo');
-    const formSocio = document.getElementById('form-socio');
-    const formAnonimo = document.getElementById('form-anonimo');
-    const description = document.getElementById('description');
+    <script>
+        // Referencias de los elementos de las pestañas
+        const tabSocio = document.getElementById('tab-socio');
+        const tabAnonimo = document.getElementById('tab-anonimo');
+        const formSocio = document.getElementById('form-socio');
+        const formAnonimo = document.getElementById('form-anonimo');
+        const description = document.getElementById('description');
 
-    // Mostrar el modal
-    document.getElementById('donarBtn').addEventListener('click', () => {
-        document.getElementById('donationModal').classList.remove('hidden');
-        resetTabs();
-        formSocio.classList.remove('hidden'); // Mostrar formulario de Socio por defecto
-        tabSocio.classList.add('active-tab');
-        updateDescription('socio');
-    });
+        // Mostrar el modal
+        document.getElementById('donarBtn').addEventListener('click', () => {
+            document.getElementById('donationModal').classList.remove('hidden');
+            resetTabs();
+            formSocio.classList.remove('hidden'); // Mostrar formulario de Socio por defecto
+            tabSocio.classList.add('active-tab');
+            updateDescription('socio');
+        });
 
-    // Cerrar el modal
-    document.getElementById('closeModal').addEventListener('click', () => {
-        document.getElementById('donationModal').classList.add('hidden');
-    });
+        // Cerrar el modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('donationModal').classList.add('hidden');
+        });
 
-    // Cambiar entre pestañas y prevenir el recargo
-    tabSocio.addEventListener('click', (e) => {
-        e.preventDefault();
-        resetTabs();
-        formSocio.classList.remove('hidden');
-        tabSocio.classList.add('active-tab');
-        updateDescription('socio');
-    });
+        // Cambiar entre pestañas y prevenir el recargo
+        tabSocio.addEventListener('click', (e) => {
+            e.preventDefault();
+            resetTabs();
+            formSocio.classList.remove('hidden');
+            tabSocio.classList.add('active-tab');
+            updateDescription('socio');
+        });
 
-    tabAnonimo.addEventListener('click', (e) => {
-        e.preventDefault();
-        resetTabs();
-        formAnonimo.classList.remove('hidden');
-        tabAnonimo.classList.add('active-tab');
-        updateDescription('anonimo');
-    });
+        tabAnonimo.addEventListener('click', (e) => {
+            e.preventDefault();
+            resetTabs();
+            formAnonimo.classList.remove('hidden');
+            tabAnonimo.classList.add('active-tab');
+            updateDescription('anonimo');
+        });
 
-    function resetTabs() {
-    formSocio.classList.add('hidden');
-    formAnonimo.classList.add('hidden');
-    tabSocio.classList.remove('active-tab');
-    tabAnonimo.classList.remove('active-tab');
-}
-
-
-    function updateDescription(tab) {
-        if (tab === 'socio') {
-            description.innerHTML =
-                '<p>Donar como socio te permite acceder a beneficios exclusivos y participar en nuestras decisiones. Ingresa tu correo y usuario.</p>';
-        } else if (tab === 'anonimo') {
-            description.innerHTML =
-                '<p>Donar anónimamente significa que tu identidad no será registrada ni divulgada.</p>';
-        }
+        function resetTabs() {
+        formSocio.classList.add('hidden');
+        formAnonimo.classList.add('hidden');
+        tabSocio.classList.remove('active-tab');
+        tabAnonimo.classList.remove('active-tab');
     }
-</script>
+
+
+        function updateDescription(tab) {
+            if (tab === 'socio') {
+                description.innerHTML =
+                    '<p>Donar como socio te permite acceder a beneficios exclusivos y participar en nuestras decisiones. Ingresa tu correo y usuario.</p>';
+            } else if (tab === 'anonimo') {
+                description.innerHTML =
+                    '<p>Donar anónimamente significa que tu identidad no será registrada ni divulgada.</p>';
+            }
+        }
+    </script>
 
 </body>
 </html>
