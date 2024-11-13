@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
+<x-head />
+
 <body class="bg-customLightGray">
     <!-- Estilos globales -->
     <style>
-        <x-ahoverstyles />
+        <x-styles />
     </style>
     
     <div class="relative h-screen w-full">
@@ -27,7 +19,7 @@
 
         <!-- Texto Principal -->
         <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-0">
-            <h1 class="text-customBeige text-7xl font-bold">Transformemos vidas juntos</h1>
+            <h1 class="merriweather-bold text-customBeige text-7xl font-bold">Transformemos vidas juntos</h1>
             <p class="text-customBeige text-2xl mt-4">Tu ayuda puede llevar esperanza y oportunidades a miles de niños y familias.</p>
         </div>
         <div class="absolute w-full flex justify-center items-center bottom-8">
