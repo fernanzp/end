@@ -55,9 +55,112 @@ Route::get('/google-auth/redirect', [Login_registerController::class, 'google_re
 Route::get('/google-auth/callback', [Login_registerController::class, 'googleLogin'])->name('google.login');
 
 Route::get('/terms', function (){
-        return view('terms');
+    return view('terms');
 }); 
 
 Route::get('/privacy-policy', function (){
-         return view('privacy-policy');
+    return view('privacy-policy');
+});
+
+//Ruta para el chat
+
+
+
+//Rutas para el Admin
+
+Route::get('/admin-coordinador', function(){
+    return view('dashboard/dashboard');
+});
+
+Route::get('/usuario/perfil', function(){
+    return view('dashboard/profile');
+});
+
+Route::get('/usuario/programas', function(){
+    return view('dashboard/programs_register');
+});
+
+Route::get('/admin/gestion_de_usuarios', function(){
+    return view('dashboard/user_management');
+});
+
+Route::get('/admin/solicitudes_de_usuarios', function(){
+    return view('dashboard/user_request');
+});
+
+Route::get('/admin/recursos', function(){
+    return view('dashboard.admin.recursos');
+});
+
+Route::get('/admin/informes', function(){
+    return view('dashboard.admin.informes');
+});
+
+Route::get('/admin/comentarios', function(){
+    return view('dashboard.admin.feedback');
+});
+
+//Rutas del Coordinador
+
+Route::get('/coordinador/dashboard', function(){
+    return view('dashboard.coordinador.dashboard');
+});
+
+Route::get('/coordinador/perfil', function(){
+    return view('dashboard.coordinador.profile');
+});
+
+Route::get('/coordinador/actividades', function(){
+    return view('dashboard.coordinador.actividades');
+});
+
+Route::get('/coordinador/usuarios', function(){
+    return view('dashboard.coordinador.users');
+});
+
+Route::get('/coordinador/solicitudes', function(){
+    return view('dashboard.coordinador.solicitudes');
+});
+
+//Rutas del Voluntario
+
+Route::get('/voluntario/dashboard', function(){
+    return view('dashboard.voluntario.dashboard');
+});
+
+Route::get('/voluntario/perfil', function(){
+    return view('dashboard.voluntario.profile');
+});
+
+Route::get('/voluntario/actividades', function(){
+    return view('dashboard.voluntario.actividades');
+});
+
+Route::get('/voluntario/comentarios', function(){
+    return view('dashboard.voluntario.feedback');
+});
+
+
+//Rutas Beneficiario
+
+Route::get('/beneficiario/dashboard', function(){
+    return view('dashboard.beneficiario.dashboard');
+});
+
+Route::get('/beneficiario/perfil', function(){
+    return view('dashboard.beneficiario.profile');
+});
+
+Route::get('/beneficiario/actividades', function(){
+    return view('dashboard.beneficiario.actividades');
+});
+
+Route::get('/beneficiario/comentarios', function(){
+    return view('dashboard.beneficiario.feedback');
+});
+
+//Rutas Usuario
+
+Route::get('/user/perfil', function(){
+    return view('dashboard.user.profile');
 });
