@@ -14,4 +14,17 @@
         width: 95%;
         left: 0%;
     }
+
+    @keyframes smooth-bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); } /* Mueve 2 cm hacia arriba */
+    }
+
+    .smooth-bounce {
+        animation: smooth-bounce 2s infinite ease-in-out;
+    }
+
+    .merriweather-bold {
+        font-family: "Merriweather", serif;
+      }
 }

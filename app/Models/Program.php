@@ -15,6 +15,18 @@ class Program extends Model
         'description',
         'start_date',
         'end_date',
+        'latitude',
+        'longitude',
+        'place',
+        'modality',
+        'days_of_the_week',
+        'schedule',
+        'age',
+        'beneficiary_capacity',
+        'volunteer_capacity',
+        'objetive',
+        'contents',
+        'financing',
         'img'
     ];
 }

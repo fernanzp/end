@@ -18,7 +18,20 @@ return new class extends Migration
             $table->text('description');
             $table->date('start_date');
             $table->date('end_date')->nullable();
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
+            $table->string('place')->nullable();
+            $table->enum('modality', ['presencial', 'en línea']);
+            $table->json('days_of_the_week');
+            $table->string('schedule');
+            $table->string('age');
+            $table->unsignedInteger('beneficiary_capacity');
+            $table->unsignedInteger('volunteer_capacity');
+            $table->text('objetive');
+            $table->json('contents')->nullable();
+            $table->text('financing')->nullable();
             $table->string('img');
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

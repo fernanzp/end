@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
+<x-head />
+
 <body class="bg-customLightGray">
     <!-- Estilos globales -->
     <style>
-        <x-ahoverstyles />
+        <x-styles />
     </style>
     
     <div class="relative h-screen w-full">
@@ -27,8 +19,14 @@
 
         <!-- Texto Principal -->
         <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-0">
-            <h1 class="text-customBeige text-7xl font-bold">Transformemos vidas juntos</h1>
+            <h1 class="merriweather-bold text-customBeige text-7xl font-bold">Transformemos vidas juntos</h1>
             <p class="text-customBeige text-2xl mt-4">Tu ayuda puede llevar esperanza y oportunidades a miles de niños y familias.</p>
+        </div>
+        <div class="absolute w-full flex justify-center items-center bottom-8">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#ECDFCC" 
+                 class="w-8 h-8 smooth-bounce">
+                <path d="M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5-12.5-32.8-12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z"/>
+            </svg>
         </div>
     </div>
     

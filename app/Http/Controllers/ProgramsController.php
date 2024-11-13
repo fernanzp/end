@@ -13,9 +13,19 @@ class ProgramsController extends Controller
         return view('programs', compact('programs'));
     }
 
+    public function recentPrograms($currentProgramId)
+    {
+        $recentPrograms = Program::where('id', '!=', $currentProgramId)
+                                 ->orderBy('id', 'desc')
+                                 ->take(3)
+                                 ->get();
+        return $recentPrograms;
+    }
+
     public function show($id)
     {
         $program = Program::findOrFail($id);
-        return view('program_view', compact('program'));
+        $recentPrograms = $this->recentPrograms($id);
+        return view('program_view', compact('program', 'recentPrograms'));
     }
 }
