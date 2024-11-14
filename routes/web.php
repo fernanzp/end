@@ -30,6 +30,10 @@ Route::get('/donations', function () {
     return view('donations');
 });
 
+
+//Ruta para crear un nuevo programa
+Route::post('/programs/create', [NewProgram::class, 'CreateNewProgram'])->name('programs.create');
+
 //Ruta para el logout
 Route::get('/logout', function (Request $request) {
     Auth::logout();

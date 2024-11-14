@@ -82,34 +82,12 @@
             <button id="modal-btn" class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
             <!--<button class="w-full bg-customBeige text-customDarkGray text-xl font-bold py-5 px-6 rounded-lg transition-colors duration-300 hover:bg-customDarkBeige transition">Inscríbete en la fecha programada</button>-->
         </div>
-        <!-- Modal oculto inicialmente -->
-<div id="modal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-60 hidden">
-    <form action="" method="POST" enctype="multipart/form-data" class="h-3/4 bg-white p-8 rounded-xl shadow-lg w-1/4 overflow-y-auto">
-        @csrf
-        <h2 class="text-2xl font-bold mb-4 text-center">Nuevo programa</h2>
-        <input type="text" placeholder="Título" id="title" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
-        <input type="text" placeholder="Descripcion corta" id="short_description" class="w-full p-3 border border-gray-300 rounded-xl mb-4"required>
-        <input type="text" placeholder="Descripcion" id="description" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
-        <input type="date" placeholder="Fecha de inicio" id="start_date" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
-        <input type="date" placeholder="Fecha de finalizacion" id="end_date" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
-        <label for="modality">Elige la modalidad:</label>       
-        <select name= "modality" id="modality" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
-            <option value="presencial">Presencial</option>
-            <option value="en línea">Virtual</option>
-        </select>
 
-            <input type="text" placeholder="Ubicacion" id="direccion" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
-            <label for="days_of_the_week">Días de la Semana:</label>
-        <div>
-            @foreach(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'] as $day)
-                <input type="checkbox" name="days_of_the_week[]" value="{{ $day }}" id="day-{{ $day }}">
-                <label for="day-{{ $day }}">{{ $day }}</label>
-            @endforeach
-        </div>
-        <button onclick="submitForm()" class="bg-customGreen text-white px-8 py-2 rounded-xl w-full text-xl font-bold">Enviar</button>
-        <button onclick="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded-xl mt-4 w-full text-xl">Cerrar</button>
-    </form>
-</div>
+
+        <!--Nuevo programa-->
+        <x-newprogram />
+
+
 
 
         <div class="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center bottom-8">
@@ -443,7 +421,7 @@ function submitForm() {
 <script>
   // Función para inicializar el autocompletado
   function initAutocomplete() {
-    const direccionInput = document.getElementById("direccion");
+    const direccionInput = document.getElementById("place");
 
     const autocomplete = new google.maps.places.Autocomplete(direccionInput, {
       types: ['geocode', 'establishment'], // Permitir tanto direcciones como establecimientos
