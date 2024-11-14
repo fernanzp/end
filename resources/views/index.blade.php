@@ -172,7 +172,9 @@
 
         // Mostrar el primer slide inicialmente
         showSlide(0);
-
+    </script>
+    
+    <script>
         var perfilBtn = document.getElementById('perfilBtn');
         var perfilContent = document.getElementById('perfilContent');
 
