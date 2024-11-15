@@ -41,13 +41,13 @@
     <!--Sección ¿Quiénes somos? 2?-->
     <div class="bg-customDarkGray px-40 py-32 flex flex-col items-center justify-center">
         <!--Subsección 1 | ¿Quiénes somos?-->
-        <div class="w-full flex justify-between items-center">
+        <div class="w-full flex justify-between items-center pb-32">
             <div class="w-[40%] flex justify-center">
                 <img src="{{ asset('img/logo.png') }}" alt="Imagen representativa" class="w-full h-auto">
             </div>
             <div class="w-[50%] flex items-center">
                 <div class="w-full">
-                    <p class="merriweather-bold font-bold text-customGreen text-5xl mb-12">¿Quiénes somos?</p>
+                    <p class="merriweather-bold font-bold text-customGreen text-6xl mb-12">¿Quiénes somos?</p>
                     <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Impulsamos el derecho a la educación para todos.</p>
                     <p class="text-customBeige text-xl mb-12 text-justify">En Education Non Disparity, trabajamos para crear un camino hacia una educación digna y de calidad, especialmente para quienes han sido excluidos de ella. Creemos que cada persona, sin importar su origen o situación, merece la oportunidad de aprender y desarrollarse plenamente.</p>
                     <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Nos impulsa nuestra comunidad.</p>
@@ -56,38 +56,66 @@
             </div>
         </div>
         <!--Subsección 2 | Nuestros valores-->
-        <div class="w-full">
-
+        <div class="w-full flex flex-col">
+            <p class="merriweather-bold font-bold text-customGreen text-5xl mb-12">Nuestros valores</p>
+            <div class="w-full flex justify-between">
+                <div class="w-[30%] flex flex-col">
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Inclusión.</p>
+                    <p class="text-customBeige text-xl mb-12">Creemos en una educación inclusiva. Abrimos nuestras puertas para que cada persona, sin importar sus antecedentes o experiencias, encuentre su lugar en nuestros programas y actividades.</p>
+                </div>
+                <div class="w-[30%] flex flex-col">
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Colaboración.</p>
+                    <p class="text-customBeige text-xl mb-12">Fomentamos un ambiente de aprendizaje en equipo, donde compartimos conocimiento y apoyamos a quienes lo necesitan. Nos unimos en torno a un propósito común: construir un futuro con más igualdad y menos barreras.</p>
+                </div>
+                <div class="w-[30%] flex flex-col">
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Compromiso.</p>
+                    <p class="text-customBeige text-xl mb-12">Estamos comprometidos con la mejora continua y el impacto positivo. Día a día, innovamos y buscamos maneras de servir mejor a nuestra comunidad, con un enfoque en el desarrollo humano y la equidad educativa.</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!--Sección ¿Quiénes somos?
-    <div class="bg-customDarkGray p-32 flex flex-col items-center justify-center">-->
-        <!--Subsección 1 | ¿Quiénes somos?
-        <p class="merriweather-bold font-bold text-customGreen text-4xl mb-12">¿Quiénes somos?</p>
-        <div class="w-full flex justify-between">
-            <div class="w-[40%] flex items-center">
+    <!--Sección ¿Qué hacemos? 2?-->
+    <div class="bg-customDarkGray px-40 pb-32 flex flex-col items-center justify-center">
+        <!--Subsección 1 | ¿Quiénes somos?-->
+        <div class="w-full flex justify-between items-center pb-32">
+            <div class="w-[50%] flex items-center">
                 <div class="w-full">
-                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Impulsamos el derecho a la educación para todos.</p>
-                    <p class="text-customBeige text-xl mb-12">En Education Non Disparity, trabajamos para crear un camino hacia una educación digna y de calidad, especialmente para quienes han sido excluidos de ella. Creemos que cada persona, sin importar su origen o situación, merece la oportunidad de aprender y desarrollarse plenamente.</p>
-                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Nos impulsa nuestra comunidad.</p>
-                    <p class="text-customBeige text-xl">Ponemos a las personas en el centro de cada acción que emprendemos. A través de nuestros programas, talleres y eventos, buscamos empoderar a estudiantes y comunidades, ofreciendo herramientas y oportunidades que promuevan su crecimiento. La educación cambia vidas, y nosotros nos dedicamos a acercarla a todos.</p>
+                    <p class="merriweather-bold font-bold text-customGreen text-6xl mb-12">¿Qué hacemos?</p>
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Transformamos vidas a través de la educación.</p>
+                    <p class="text-customBeige text-xl mb-12 text-justify">Nuestra misión es brindar oportunidades educativas que empoderen a personas y comunidades, conectándolas con las herramientas y el conocimiento que necesitan para alcanzar su máximo potencial. Creemos que la educación es un derecho universal y el medio más poderoso para construir un futuro con igualdad y justicia.</p>
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Un enfoque cercano y colaborativo.</p>
+                    <p class="text-customBeige text-xl text-justify">Trabajamos de la mano con nuestra comunidad y socios para entender sus necesidades y ofrecer programas adaptados a cada contexto. Nos comprometemos con cada paso del proceso: desde identificar áreas con falta de acceso educativo, hasta implementar proyectos que cambian vidas. Juntos, logramos lo que solos no podríamos alcanzar.</p>
                 </div>
             </div>
-            <div class="w-1/2 flex justify-center">
-                <img src="{{ asset('img/who_we_are_img.jpg') }}" alt="Imagen representativa" class="w-full h-auto">
+            <div class="w-[40%] flex justify-center">
+                <img src="{{ asset('img/what_we_do_img.jpg') }}" alt="Imagen representativa" class="w-full h-auto">
             </div>
-        </div>-->
-        <!--Subsección 2 | Nuestros valores
-        <div class="w-full">
-
         </div>
-    </div>-->
+        <!--Subsección 2 | Nuestro enfoque-->
+        <div class="w-full flex flex-col">
+            <p class="merriweather-bold font-bold text-customGreen text-5xl mb-12">Nuestro enfoque</p>
+            <div class="w-full flex justify-between">
+                <div class="w-[30%] flex flex-col">
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Inclusión.</p>
+                    <p class="text-customBeige text-xl mb-12">Creemos en una educación inclusiva. Abrimos nuestras puertas para que cada persona, sin importar sus antecedentes o experiencias, encuentre su lugar en nuestros programas y actividades.</p>
+                </div>
+                <div class="w-[30%] flex flex-col">
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Colaboración.</p>
+                    <p class="text-customBeige text-xl mb-12">Fomentamos un ambiente de aprendizaje en equipo, donde compartimos conocimiento y apoyamos a quienes lo necesitan. Nos unimos en torno a un propósito común: construir un futuro con más igualdad y menos barreras.</p>
+                </div>
+                <div class="w-[30%] flex flex-col">
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Compromiso.</p>
+                    <p class="text-customBeige text-xl mb-12">Estamos comprometidos con la mejora continua y el impacto positivo. Día a día, innovamos y buscamos maneras de servir mejor a nuestra comunidad, con un enfoque en el desarrollo humano y la equidad educativa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Sección ¿cómo puedes ayudar? -->
     <div class="bg-customDarkGray pb-32 px-48">
-        <h2 class="merriweather-bold text-4xl font-bold text-center text-customGreen mb-8">¿Cómo puedes ayudar?</h2>
+        <h2 class="merriweather-bold text-6xl font-bold text-center text-customGreen mb-8">¿Cómo puedes ayudar?</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
@@ -146,50 +174,22 @@
 </body>
 </html>
     
-    <script>
-        const slides = document.querySelectorAll('.content-slide');
-        let currentIndex = 0;
+<script>
+    var perfilBtn = document.getElementById('perfilBtn');
+    var perfilContent = document.getElementById('perfilContent');
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                if (i === index * 2 || i === index * 2 + 1) {
-                    slide.classList.remove('hidden');
-                } else {
-                    slide.classList.add('hidden');
-                }
-            });
+    // Toggle para mostrar/ocultar el contenido de perfil
+    perfilBtn.addEventListener('click', function () {
+        perfilContent.classList.toggle('hidden');
+    });
+
+    // Ocultar el contenido de perfil si se hace clic fuera del área
+    window.addEventListener('click', function (e) {
+        if (!perfilBtn.contains(e.target) && !perfilContent.contains(e.target)) {
+            perfilContent.classList.add('hidden');
         }
-
-        document.getElementById('next').addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % (slides.length / 2);
-            showSlide(currentIndex);
-        });
-
-        document.getElementById('prev').addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slides.length / 2) % (slides.length / 2);
-            showSlide(currentIndex);
-        });
-
-        // Mostrar el primer slide inicialmente
-        showSlide(0);
-    </script>
-    
-    <script>
-        var perfilBtn = document.getElementById('perfilBtn');
-        var perfilContent = document.getElementById('perfilContent');
-
-        // Toggle para mostrar/ocultar el contenido de perfil
-        perfilBtn.addEventListener('click', function () {
-            perfilContent.classList.toggle('hidden');
-        });
-
-        // Ocultar el contenido de perfil si se hace clic fuera del área
-        window.addEventListener('click', function (e) {
-            if (!perfilBtn.contains(e.target) && !perfilContent.contains(e.target)) {
-                perfilContent.classList.add('hidden');
-            }
-        });
-    </script>
+    });
+</script>
 
 <script>
     // Referencias de los elementos de las pestañas
