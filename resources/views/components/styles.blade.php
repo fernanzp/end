@@ -24,7 +24,22 @@
         animation: smooth-bounce 2s infinite ease-in-out;
     }
 
+    @keyframes hover-bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(5px); } /* Mueve 1 cm hacia abajo */
+    }
+    
+    .group:hover .hover-bounce-img {
+        animation: hover-bounce 1.5s infinite ease-in-out forwards;
+    }
+
     .merriweather-bold {
         font-family: "Merriweather", serif;
       }
+
+    #tooltip {
+        pointer-events: none; /* El tooltip no interferirá con el cursor */
+        position: absolute;
+        z-index: 10;
+    }
 }
