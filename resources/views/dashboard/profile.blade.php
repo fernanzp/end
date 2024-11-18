@@ -188,6 +188,8 @@
         </div>
     </div>
 <script>
+
+    //Estas son los scripts de las dos
      // Funcionalidad de guardar Información Personal
 document.getElementById('save-personal-info').addEventListener('click', function () {
     const nombres = document.getElementById('edit-nombres').value;
