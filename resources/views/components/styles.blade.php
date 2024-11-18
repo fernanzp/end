@@ -42,4 +42,15 @@
         position: absolute;
         z-index: 10;
     }
+
+    .scroll-animation {
+        opacity: 0;
+        transform: translateY(25px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .scroll-animation.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

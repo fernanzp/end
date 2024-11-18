@@ -38,10 +38,10 @@
         </div>
     </div>
 
-    <!--Sección ¿Quiénes somos? 2?-->
+    <!--Sección ¿Quiénes somos?-->
     <div class="bg-customDarkGray px-40 py-32 flex flex-col items-center justify-center">
         <!--Subsección 1 | ¿Quiénes somos?-->
-        <div class="w-full flex justify-between items-center pb-32">
+        <div class="w-full flex justify-between items-center pb-32 scroll-animation">
             <div class="w-[40%] flex justify-center">
                 <img src="{{ asset('img/logo.png') }}" alt="Imagen representativa" class="w-full h-auto">
             </div>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <!--Subsección 2 | Nuestros valores-->
-        <div class="w-full flex flex-col">
+        <div class="w-full flex flex-col scroll-animation">
             <p class="merriweather-bold font-bold text-customGreen text-5xl mb-12">Nuestros valores</p>
             <div class="w-full flex justify-between">
                 <div class="w-[30%] flex flex-col">
@@ -75,10 +75,10 @@
         </div>
     </div>
 
-    <!--Sección ¿Qué hacemos? 2?-->
+    <!--Sección ¿Qué hacemos?-->
     <div class="bg-customDarkGray px-40 pb-32 flex flex-col items-center justify-center">
-        <!--Subsección 1 | ¿Quiénes somos?-->
-        <div class="w-full flex justify-between items-center pb-32">
+        <!--Subsección 1 | ¿Qué hacemos?-->
+        <div class="w-full flex justify-between items-center pb-32 scroll-animation">
             <div class="w-[50%] flex items-center">
                 <div class="w-full">
                     <p class="merriweather-bold font-bold text-customGreen text-6xl mb-12">¿Qué hacemos?</p>
@@ -93,7 +93,7 @@
             </div>
         </div>
         <!--Subsección 2 | Nuestro enfoque-->
-        <div class="w-full flex flex-col pb-16">
+        <div class="w-full flex flex-col pb-16 scroll-animation">
             <p class="merriweather-bold font-bold text-customGreen text-5xl mb-12">Nuestro enfoque</p>
             <div class="w-full flex justify-between">
                 <div class="w-[30%] flex flex-col">
@@ -111,7 +111,7 @@
             </div>
         </div>
         <!--Subsección 3 | Resultados de la ONG-->
-        <div class="w-full flex flex-col items-center">
+        <div class="w-full flex flex-col items-center scroll-animation">
             <h2 class="merriweather-bold font-bold text-customGreen text-5xl mb-12">Nuestros Resultados en 2023</h2>
             <div class="w-full flex flex-wrap justify-center gap-6">
                 <!-- Card 1 -->
@@ -134,7 +134,7 @@
     </div>
 
     <!--Sección ¿cómo puedes ayudar?-->
-    <div class="bg-customDarkGray pb-32 px-48">
+    <div class="bg-customDarkGray pb-32 px-48 scroll-animation">
         <h2 class="merriweather-bold text-6xl font-bold text-center text-customGreen mb-8">¿Cómo puedes ayudar?</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -182,7 +182,7 @@
                     <img src="{{ asset('img/volunteers-img-index.png') }}" alt="Vuélvete un voluntario" class="mx-auto h-16 w-16 hover-bounce-img">
                 </div>
                 <h3 class="text-lg font-semibold text-customBeige mb-2">Vuélvete un voluntario</h3>
-                <p class="text-customBeige text-sm text-center">
+                <p class="text-customBeige text-sm text-center text-justify">
                     Sé parte del cambio. Únete como voluntario y contribuye activamente a nuestros programas e iniciativas.
                 </p>
                 <div class="mt-[1rem] flex items-center">
@@ -199,7 +199,7 @@
                     <img src="{{ asset('img/programs-img-index.png') }}" alt="Forma parte de las actividades" class="mx-auto h-16 w-16 hover-bounce-img">
                 </div>
                 <h3 class="text-lg font-semibold text-customBeige mb-2">Forma parte de nuestros programas</h3>
-                <p class="text-customBeige text-sm text-center">
+                <p class="text-customBeige text-sm text-center text-justify">
                     Participa en nuestros programas para sensibilizar sobre la educación y la desigualdad. Tu apoyo inspira a otros y fortalece el cambio social.
                 </p>
                 <div class="mt-[1rem] flex items-center">
@@ -320,4 +320,33 @@
         const tooltip = document.getElementById("tooltip");
         tooltip.classList.add("hidden");
     }
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const scrollElements = document.querySelectorAll(".scroll-animation");
+
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add("visible");
+        };
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.25) && !el.classList.contains("visible")) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+
+        window.addEventListener("scroll", () => {
+            handleScrollAnimation();
+        });
+    });
 </script>
