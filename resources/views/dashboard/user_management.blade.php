@@ -129,20 +129,15 @@
     </div>
 
     <!-- Modal para borrar un usuario -->
-<div id="delete_user-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-        <h2 class="text-xl font-semibold mb-4">¿Deseas eliminar a este usuario?</h2>
-        <p class="text-gray-700 mb-4">Esta acción eliminará permanentemente al usuario.</p>
-        <div class="flex justify-end space-x-4">
-            <!-- Botones de Cancelar y Aceptar -->
-            <button id="cancel-delete" class="bg-gray-500 text-white px-4 py-2 rounded-lg">Cancelar</button>
-            <button id="confirm-delete" class="bg-red-500 text-white px-4 py-2 rounded-lg">Aceptar</button>
+    <div id="delete_user-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
+            <h2 class="text-xl font-semibold mb-4">¿Deseas eliminar a este usuario?</h2>
+            <p class="text-gray-700 mb-4">Aquí van las 2 opciones</p>
+            <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-        <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-            <i class="fas fa-times"></i>
-        </button>
     </div>
-</div>
     
     <!-- MAIN -->
     </section>
@@ -218,33 +213,5 @@
             });
         });
     </script>
-    
-    <script>
-        // Selección de los botones
-        const cancelDeleteButton = document.getElementById('cancel-delete');
-        const confirmDeleteButton = document.getElementById('confirm-delete');
-        const deleteUserModal = document.getElementById('delete_user-modal');
-        
-        // Botón de cancelar: cierra el modal sin eliminar
-        cancelDeleteButton.addEventListener('click', function() {
-            deleteUserModal.classList.add('hidden');
-        });
-        
-        // Botón de aceptar: elimina al usuario (aquí puedes agregar la lógica para eliminar al usuario)
-        confirmDeleteButton.addEventListener('click', function() {
-            // Aquí agregas la lógica para eliminar al usuario
-            console.log("Usuario eliminado"); // Este es solo un ejemplo
-            deleteUserModal.classList.add('hidden'); // Cerrar el modal después de eliminar
-        });
-    
-        // Mostrar modal de eliminación al hacer clic en el botón correspondiente
-        const deleteUserButtons = document.querySelectorAll('[data-modal-target="delete_user-modal"]');
-        deleteUserButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                deleteUserModal.classList.remove('hidden');
-            });
-        });
-    </script>
 </body>
 </html>
-
