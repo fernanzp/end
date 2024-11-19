@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Login_registerController;
 use App\Http\Controllers\ProgramsController;
+use App\Http\Controllers\AdministrationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,10 +68,7 @@ Route::get('/privacy-policy', function (){
 
 
 //Rutas para el Admin
-
-Route::get('/admin-coordinador', function(){
-    return view('dashboard/dashboard');
-});
+Route::get('/administration', [AdministrationController::class, 'index'])->name('administration');
 
 Route::get('/usuario/perfil', function(){
     return view('dashboard/profile');

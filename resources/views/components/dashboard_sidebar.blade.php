@@ -2,7 +2,7 @@
 <section id="sidebar" class="bg-gray-900 w-64 h-screen fixed transform transition-all duration-300 z-50">
     <div class="brand flex items-center px-6 py-4 text-white text-lg font-bold">
         <a href="{{ url('/') }}" class="flex items-center">
-            <i class="fa-solid fa-graduation-cap mr-3"></i>
+            <img src="{{ asset('img/logo.png') }}" alt="User Image" class="mr-3 w-4 h-4 rounded-full">
             <!-- Texto que se ocultará en modo comprimido -->
             <span class="sidebar-text">Education Non-Disparity</span>
         </a>
@@ -25,7 +25,7 @@
                 <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                     Dashboard
                 </span>
-                <span class="sidebar-text">Panel de control</span>
+                <span class="sidebar-text">Administración</span>
             </a>
         </li>
         <li class="my-2 relative group">

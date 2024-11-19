@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/cee8dd5548.js" crossorigin="anonymous"></script>
-    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <title>Dashboard</title>
-</head>
-<body class=" bg-gray-100 font-sans antialiased">
+<x-head />
+
+<body class=" bg-customDarkGray font-sans antialiased">
 
     <style>
         .compressed .sidebar-text {
@@ -34,12 +26,12 @@
     <section id="content" class="ml-64 p-8 transition-all duration-300">
 
         <!-- NAVBAR -->
-        <nav class="flex items-center justify-between bg-white shadow px-6 py-4 relative">
-            <i class='bx bx-menu text-2xl cursor-pointer' id="menuBar"></i>
+        <nav class="flex items-center justify-between rounded-lg bg-customLighterGray shadow px-6 py-4 relative">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" id="menuBar" class="w-8 h-8 cursor-pointer" fill="#1ab76a"><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
             <div class="flex items-center relative">
                 <a href="#" class="notification relative mr-6" id="notificationBell">
-                    <i class='bx bxs-bell text-2xl'></i>
-                    <span class="num bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center absolute -top-2 -right-2">8</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-8 h-8 cursor-pointer" fill="#1ab76a"><path d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416l384 0c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8l0-18.8c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"/></svg>
+                    <span class="num bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center absolute -top-1 -right-1">8</span>
                 </a>
                 <!-- Dropdown de Notificaciones -->
                 <div id="notificationDropdown" class="hidden absolute right-0 mt-64 w-64 bg-white shadow-lg rounded-md overflow-hidden z-20">
@@ -54,7 +46,7 @@
                     </div>
                 </div>
                 <a href="#" class="profile" onclick="toggleMenu()">
-                    <img src="https://via.placeholder.com/40" class="rounded-full" alt="User Image">
+                    <img src="{{ asset(Auth::user()->profile_img) }}" alt="User Image" class="w-12 h-12 rounded-full mx-auto">
                 </a>
             </div>
         </nav>
@@ -64,44 +56,44 @@
         <main class="mt-8">
             <div class="head-title flex items-center justify-between mb-8">
                 <div class="flex items-center">
-                    <h1 class="text-2xl font-bold">Panel de control</h1>
-                    <span class="mx-2 mt-1 text-gray-400"> &gt; </span>
-                    <p class="text-gray-500 mt-1">Donaciones recientes</p>
-                    <span class="mx-2 mt-1 text-gray-400"> &gt; </span>
-                    <p class="text-gray-500 mt-1">Nuevos usuarios</p>
-                    <span class="mx-2 mt-1 text-gray-400"> &gt; </span>
-                    <p class="text-gray-500 mt-1">Nuevos programas solicitados</p>
+                    <h1 class="text-2xl text-customGreen font-bold">Administración</h1>
+                    <span class="mx-2 mt-1 text-gray-500"> &gt; </span>
+                    <p class="text-gray-500 mt-1 cursor-pointer hover:text-gray-400 duration-300 ease-in-out">Donaciones recientes</p>
+                    <span class="mx-2 mt-1 text-gray-500"> &gt; </span>
+                    <p class="text-gray-500 mt-1 cursor-pointer hover:text-gray-400 duration-300 ease-in-out">Nuevos usuarios</p>
+                    <span class="mx-2 mt-1 text-gray-500"> &gt; </span>
+                    <p class="text-gray-500 mt-1 cursor-pointer hover:text-gray-400 duration-300 ease-in-out">Nuevos programas solicitados</p>
                 </div>
             </div>
 
             <!-- Caja de Informacion -->
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <li class="bg-white p-6 shadow rounded-lg flex items-center">
-                    <i class="fa-solid fa-users text-blue-500 text-2xl"></i>
+                <li class="bg-customLighterGray p-6 shadow rounded-lg flex items-center text-customBeige">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-8 h-8" fill="#1ab76a"><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>
                     <div class="ml-4">
-                        <p>Total de usuarios</p>
-                        <h3 class="text-xl font-semibold">1020</h3>
+                        <p class="font-bold">Usuarios registrados</p>
+                        <h3 class="text-xl">{{ $totalUsers }}</h3>
                     </div>
                 </li>
-                <li class="bg-white p-6 shadow rounded-lg flex items-center">
-                    <i class='bx bxs-group text-blue-500 text-2xl'></i>
+                <li class="bg-customLighterGray p-6 shadow rounded-lg flex items-center text-customBeige">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-8 h-8" fill="#1ab76a"><path d="M544 248l0 3.3 69.7-69.7c21.9-21.9 21.9-57.3 0-79.2L535.6 24.4c-21.9-21.9-57.3-21.9-79.2 0L416.3 64.5c-2.7-.3-5.5-.5-8.3-.5L296 64c-37.1 0-67.6 28-71.6 64l-.4 0 0 120c0 22.1 17.9 40 40 40s40-17.9 40-40l0-72c0 0 0-.1 0-.1l0-15.9 16 0 136 0c0 0 0 0 .1 0l7.9 0c44.2 0 80 35.8 80 80l0 8zM336 192l0 56c0 39.8-32.2 72-72 72s-72-32.2-72-72l0-118.6c-35.9 6.2-65.8 32.3-76 68.2L99.5 255.2 26.3 328.4c-21.9 21.9-21.9 57.3 0 79.2l78.1 78.1c21.9 21.9 57.3 21.9 79.2 0l37.7-37.7c.9 0 1.8 .1 2.7 .1l160 0c26.5 0 48-21.5 48-48c0-5.6-1-11-2.7-16l2.7 0c26.5 0 48-21.5 48-48c0-12.8-5-24.4-13.2-33c25.7-5 45.1-27.6 45.2-54.8l0-.4c-.1-30.8-25.1-55.8-56-55.8c0 0 0 0 0 0l-120 0z"/></svg>
                     <div class="ml-4">
-                        <p>Voluntarios</p>
-                        <h3 class="text-xl font-semibold">203</h3>
+                        <p class="font-bold">Voluntarios</p>
+                        <h3 class="text-xl">{{ $totalVolunteers }}</h3>
                     </div>
                 </li>
-                <li class="bg-white p-6 shadow rounded-lg flex items-center">
-                    <i class="fa-solid fa-hand-holding-heart text-blue-500 text-2xl"></i>
+                <li class="bg-customLighterGray p-6 shadow rounded-lg flex items-center text-customBeige">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-8 h-8" fill="#1ab76a"><path d="M312 24l0 10.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3s0 0 0 0c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8l0 10.6c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-11.4c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2L264 24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5L192 512 32 512c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l36.8 0 44.9-36c22.7-18.2 50.9-28 80-28l78.3 0 16 0 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0-16 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l120.6 0 119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384c0 0 0 0 0 0l-.9 0c.3 0 .6 0 .9 0z"/></svg>
                     <div class="ml-4">
-                        <p>Total de donaciones</p>
-                        <h3 class="text-xl font-semibold">$2543</h3>
+                        <p class="font-bold">Monto recaudado</p>
+                        <h3 class="text-xl">$2543</h3>
                     </div>
                 </li>
-                <li class="bg-white p-6 shadow rounded-lg flex items-center">
-                    <i class="fa-solid fa-heart text-blue-500 text-2xl"></i>
+                <li class="bg-customLighterGray p-6 shadow rounded-lg flex items-center text-customBeige">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-7 h-7" fill="#1ab76a"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
                     <div class="ml-4">
-                        <p>Beneficiarios</p>
-                        <h3 class="text-xl font-semibold">800</h3>
+                        <p class="font-bold">Beneficiarios</p>
+                        <h3 class="text-xl">{{ $totalBeneficiaries }}</h3>
                     </div>
                 </li>
             </ul>
@@ -194,6 +186,7 @@
                     <thead>
                         <tr class="bg-gray-200">
                             <th class="p-3">Nombre</th>
+                            <th class="p-3">Correo</th>
                             <th class="p-3">Rol</th>
                             <th class="p-3">Fecha de aceptado</th>
                             <th class="p-3">Estado</th>
@@ -202,18 +195,21 @@
                     <tbody>
                         <tr class="border-b">
                             <td class="p-3 "><span>Derick Fernandez</span></td>
+                            <td class="p-3">fff@gmail.com</td>
                             <td class="p-3">Voluntario</td>
                             <td class="p-3">01-10-2024</td>
                             <td class="p-3"><span class="bg-green-300 text-green-700 py-1 px-3 rounded-full">Activo</span></td>
                         </tr>
                         <tr class="border-b">
                             <td class="p-3 "><span>Papu Fer</span></td>
+                            <td class="p-3">fff@gmail.com</td>
                             <td class="p-3">Beneficiario</td>
                             <td class="p-3">05-09-2024</td>
                             <td class="p-3"><span class="bg-red-300 text-red-700 py-1 px-3 rounded-full">Inactivo</span></td>
                         </tr>
                         <tr class="border-b">
                             <td class="p-3 "><span>Papu Hector</span></td>
+                            <td class="p-3">fff@gmail.com</td>
                             <td class="p-3">Beneficiario</td>
                             <td class="p-3">01-07-2024</td>
                             <td class="p-3"><span class="bg-gray-300 text-gray-700 py-1 px-3 rounded-full">Desactivado</span></td>
@@ -221,7 +217,7 @@
                     </tbody>
                 </table>
                 <div class="mt-4 right-4 text-blue-500 text-right">
-                    <a href="{{ url('/admin/gestion_de_usuarios') }}">Ver todas los usuarios</a>
+                    <a href="{{ url('/admin/gestion_de_usuarios') }}">Ver más</a>
                 </div>
             </div>
 
