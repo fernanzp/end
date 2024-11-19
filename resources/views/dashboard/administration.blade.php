@@ -3,6 +3,8 @@
 <body class=" bg-customDarkGray font-sans antialiased">
 
     <style>
+        <x-styles />
+
         .compressed .sidebar-text {
             display: none;
         }
@@ -56,7 +58,7 @@
         <main class="mt-8">
             <div class="head-title flex items-center justify-between mb-8">
                 <div class="flex items-center">
-                    <h1 class="text-2xl text-customGreen font-bold">Administración</h1>
+                    <h1 class="text-xl text-customGreen font-bold">Administración</h1>
                     <span class="mx-2 mt-1 text-gray-500"> &gt; </span>
                     <p class="text-gray-500 mt-1 cursor-pointer hover:text-gray-400 duration-300 ease-in-out">Donaciones recientes</p>
                     <span class="mx-2 mt-1 text-gray-500"> &gt; </span>
@@ -67,7 +69,8 @@
             </div>
 
             <!-- Caja de Informacion -->
-            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <h2 class="merriweather-bold text-customGreen text-4xl font-bold mb-4">Cifras totales</h2>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                 <li class="bg-customLighterGray p-6 shadow rounded-lg flex items-center text-customBeige">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-8 h-8" fill="#1ab76a"><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>
                     <div class="ml-4">
@@ -98,6 +101,7 @@
                 </li>
             </ul>
 
+            <h2 class="merriweather-bold text-customGreen text-4xl font-bold mb-4">Estadísticas recientes</h2>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
                 <!-- Columna Izquierda: Gráfico de Contacto Creado -->
                 <div class="bg-white p-6 rounded-lg shadow-md w-full flex flex-col items-center justify-center">
