@@ -98,166 +98,185 @@
                 </li>
             </ul>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8 ">
                 <!-- Columna Izquierda: Gráfico de Contacto Creado -->
-                <div class="bg-white p-6 rounded-lg shadow-md w-full flex flex-col items-center justify-center">
-                    <h2 class="text-gray-700 text-xl font-semibold mb-4 text-center">Nuevos usuarios</h2>
-                    <canvas id="grafica_nuevos_usuarios" class="w-full h-48 md:h-64 mx-auto"></canvas>
+                <div class="bg-customLighterGray p-6 rounded-lg shadow-md w-full flex flex-col items-center justify-center">
+                    <div class="relative w-full max-w-4xl bg-white shadow-md rounded-lg pt-12">
+                        <canvas id="lineChart"></canvas>
+                        <div class="absolute top-4 right-4 flex space-x-2 mb-4">
+                            <!-- <button onclick="updateChart('1D')" class="interval-btn active bg-blue-500 text-white px-3 py-1 text-sm rounded-md">1D</button> -->
+                            <button onclick="updateChart('1W')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">1W</button>
+                            <button onclick="updateChart('1M')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">1M</button>
+                            <button onclick="updateChart('1Y')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">1Y</button>
+                            <!-- <button onclick="updateChart('6M')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">6M</button> -->
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Columna Central: Cuadros de Métricas -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <!-- Tarjeta de Contactos Nuevos -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h2 class="text-gray-700 text-xl font-semibold mb-4">Voluntarios</h2>
-                        <p class="text-gray-700 text-3xl font-bold">444</p>
+                    <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                        <h2 class="text-customBeige text-xl font-semibold mb-4">Voluntarios</h2>
+                        <p class="text-customBeige text-3xl font-bold">444</p>
                     </div>
 
                     <!-- Tarjeta de Totales por Etapa de Ciclo -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h2 class="text-gray-700 text-xl font-semibold mb-4">Beneficiarios</h2>
-                        <p class="text-gray-700 text-3xl font-bold">69</p>
+                    <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                        <h2 class="text-customBeige text-xl font-semibold mb-4">Beneficiarios</h2>
+                        <p class="text-customBeige text-3xl font-bold">69</p>
                         <p class="text-green-500 text-lg">▲ 43,75%</p>
                     </div>
 
                     <!-- Tarjeta de Total de Visitas al Blog -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h2 class="text-gray-700 text-xl font-semibold mb-4">Usuarios</h2>
-                        <p class="text-gray-700 text-3xl font-bold">50.812</p>
+                    <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                        <h2 class="text-customBeige text-xl font-semibold mb-4">Usuarios</h2>
+                        <p class="text-customBeige text-3xl font-bold">50.812</p>
                         <p class="text-green-500 text-lg">▲ 1,17%</p>
                     </div>
 
                     <!-- Tarjeta de Total de Visitas a LP -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h2 class="text-gray-700 text-xl font-semibold mb-4">Visitantes</h2>
-                        <p class="text-gray-700 text-3xl font-bold">428.376</p>
+                    <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                        <h2 class="text-customBeige text-xl font-semibold mb-4">Visitantes</h2>
+                        <p class="text-customBeige text-3xl font-bold">428.376</p>
                         <p class="text-red-500 text-lg">▼ 2,78%</p>
                     </div>
                 </div>
 
                 <!-- Columna Derecha: Gráfico de Leads Calificados -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-gray-700 text-xl font-semibold mb-4">Programas</h2>
+                <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                    <h2 class="text-customBeige text-center text-xl font-semibold mb-4">Programas</h2>
                     <canvas id="grafica_programas" class="w-full h-48 md:h-64"></canvas>
                 </div>
             </div>
+<!-- 
+            <section class="bg-gray-100 flex items-center justify-center mt-8">
+                <div class="relative w-full max-w-4xl bg-white shadow-md rounded-lg p-6">
+                    <canvas id="lineChart"></canvas>
+                    <div class="absolute top-4 right-4 flex space-x-2">
+                        <button onclick="updateChart('1W')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">1W</button>
+                        <button onclick="updateChart('1M')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">1M</button>
+                        <button onclick="updateChart('1Y')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">1Y</button>
+                    </div>
+                </div>
+            </section> -->
 
             <!-- Tabla de Donaciones recientes -->
-            <div class="mt-8 bg-white p-6 shadow rounded-lg">
-                <h3 class="text-lg font-semibold mb-4 text-center">Donaciones recientes</h3>
+            <div class="mt-8 bg-customLighterGray p-6 shadow rounded-lg">
+                <h3 class="text-lg text-customGreen font-semibold mb-4 text-center">Donaciones recientes</h3>
                 <table class="w-full border-collapse text-center">
                     <thead>
-                        <tr class="bg-gray-200">
-                            <th class="p-3">Nombre</th>
-                            <th class="p-3">Cantidad</th>
-                            <th class="p-3">Fecha de la donación</th>
-                            <th class="p-3">Estado</th>
+                        <tr class="bg-customDarkGray">
+                            <th class="p-3 text-customBeige">Nombre</th>
+                            <th class="p-3 text-customBeige">Cantidad</th>
+                            <th class="p-3 text-customBeige">Fecha de la donación</th>
+                            <th class="p-3 text-customBeige">Estado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b">
-                            <td class="p-3 "><span>Derick Fernandez</span></td>
-                            <td class="p-3">$200</td>
-                            <td class="p-3">01-10-2024</td>
-                            <td class="p-3"><span class="bg-green-300 text-green-700 py-1 px-3 rounded-full">Finalizado</span></td>
+                        <tr class="border-b border-black bg-customLightGray">
+                            <td class="p-3 text-customBeige"><span>Derick Fernandez</span></td>
+                            <td class="p-3 text-customBeige">$200</td>
+                            <td class="p-3 text-customBeige">01-10-2024</td>
+                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-700 w-28 py-1 px-3 rounded-full inline-block">Finalizado</span></td>
                         </tr>
-                        <tr class="border-b">
-                            <td class="p-3 "><span>Papu Fernado Piper</span></td>
-                            <td class="p-3">$2000</td>
-                            <td class="p-3">10-10-2024</td>
-                            <td class="p-3"><span class="bg-gray-300 text-gray-700 py-1 px-3 rounded-full">En proceso</span></td>
+                        <tr class="border-b border-black bg-customLightGray">
+                            <td class="p-3 text-customBeige"><span>Papu Fernado Piper</span></td>
+                            <td class="p-3 text-customBeige">$2000</td>
+                            <td class="p-3 text-customBeige">10-10-2024</td>
+                            <td class="p-3 text-customBeige"><span class="bg-gray-300 text-gray-700 w-28 py-1 px-3 rounded-full inline-block">En proceso</span></td>
                         </tr>
-                        <tr class="border-b">
-                            <td class="p-3 "><span>Papu Hector</span></td>
-                            <td class="p-3">$10 bolivares</td>
-                            <td class="p-3">01-10-2024</td>
-                            <td class="p-3"><span class="bg-red-300 text-red-700 py-1 px-3 rounded-full">Cancelado</span></td>
+                        <tr class="border-b border-black bg-customLightGray">
+                            <td class="p-3 text-customBeige"><span>Papu Hector</span></td>
+                            <td class="p-3 text-customBeige">$10 bolivares</td>
+                            <td class="p-3 text-customBeige">01-10-2024</td>
+                            <td class="p-3 text-customBeige"><span class="bg-red-300 text-red-700 w-28 py-1 px-3 rounded-full inline-block">Cancelado</span></td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="mt-4 right-4 text-blue-500 text-right">
+                <div class="mt-4 right-4 text-customBeige hover:text-customDarkBeige text-right">
                     <a href="#">Ver todas las donaciones</a>
                 </div>
             </div>
 
-            <div class="mt-8 bg-white p-6 shadow rounded-lg">
-                <h3 class="text-lg font-semibold mb-4 text-center">Nuevos usuarios</h3>
+            <div class="mt-8 bg-customLighterGray p-6 shadow rounded-lg">
+                <h3 class="text-lg font-semibold text-customGreen mb-4 text-center">Nuevos usuarios</h3>
                 <table class="w-full border-collapse text-center">
                     <thead>
-                        <tr class="bg-gray-200">
-                            <th class="p-3">Nombre</th>
-                            <th class="p-3">Correo</th>
-                            <th class="p-3">Rol</th>
-                            <th class="p-3">Fecha de aceptado</th>
-                            <th class="p-3">Estado</th>
+                        <tr class="bg-customDarkGray">
+                            <th class="p-3 text-customBeige">Nombre</th>
+                            <th class="p-3 text-customBeige">Correo</th>
+                            <th class="p-3 text-customBeige">Rol</th>
+                            <th class="p-3 text-customBeige">Fecha de aceptado</th>
+                            <th class="p-3 text-customBeige">Estado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b">
-                            <td class="p-3 "><span>Derick Fernandez</span></td>
-                            <td class="p-3">fff@gmail.com</td>
-                            <td class="p-3">Voluntario</td>
-                            <td class="p-3">01-10-2024</td>
-                            <td class="p-3"><span class="bg-green-300 text-green-700 py-1 px-3 rounded-full">Activo</span></td>
+                        <tr class="border-b border-black bg-customLightGray">
+                            <td class="p-3 text-customBeige"><span>Derick Fernandez</span></td>
+                            <td class="p-3 text-customBeige">fff@gmail.com</td>
+                            <td class="p-3 text-customBeige">Voluntario</td>
+                            <td class="p-3 text-customBeige">01-10-2024</td>
+                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-700 w-28 py-1 px-3 rounded-full inline-block">Activo</span></td>
                         </tr>
-                        <tr class="border-b">
-                            <td class="p-3 "><span>Papu Fer</span></td>
-                            <td class="p-3">fff@gmail.com</td>
-                            <td class="p-3">Beneficiario</td>
-                            <td class="p-3">05-09-2024</td>
-                            <td class="p-3"><span class="bg-red-300 text-red-700 py-1 px-3 rounded-full">Inactivo</span></td>
+                        <tr class="border-b border-black bg-customLightGray">
+                            <td class="p-3 text-customBeige"><span>Papu Fer</span></td>
+                            <td class="p-3 text-customBeige">fff@gmail.com</td>
+                            <td class="p-3 text-customBeige">Beneficiario</td>
+                            <td class="p-3 text-customBeige">05-09-2024</td>
+                            <td class="p-3 text-customBeige"><span class="bg-red-300 text-red-700 w-28 py-1 px-3 rounded-full inline-block">Inactivo</span></td>
                         </tr>
-                        <tr class="border-b">
-                            <td class="p-3 "><span>Papu Hector</span></td>
-                            <td class="p-3">fff@gmail.com</td>
-                            <td class="p-3">Beneficiario</td>
-                            <td class="p-3">01-07-2024</td>
-                            <td class="p-3"><span class="bg-gray-300 text-gray-700 py-1 px-3 rounded-full">Desactivado</span></td>
+                        <tr class="border-b border-black bg-customLightGray">
+                            <td class="p-3 text-customBeige"><span>Papu Hector</span></td>
+                            <td class="p-3 text-customBeige">fff@gmail.com</td>
+                            <td class="p-3 text-customBeige">Beneficiario</td>
+                            <td class="p-3 text-customBeige">01-07-2024</td>
+                            <td class="p-3 text-customBeige"><span class="bg-gray-300 text-gray-700 w-28 py-1 px-3 rounded-full inline-block">Desactivado</span></td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="mt-4 right-4 text-blue-500 text-right">
-                    <a href="{{ url('/admin/gestion_de_usuarios') }}">Ver más</a>
+                <div class="mt-4 right-4 text-customBeige hover:text-customDarkBeige text-right">
+                    <a href="{{ url('/admin/gestion_de_usuarios') }}">Ver todos los usuarios</a>
                 </div>
             </div>
 
-            <div class="mt-8 bg-white p-6 shadow rounded-lg">
-                <h3 class="text-lg font-semibold mb-4 text-center">Nuevos programas solicitado</h3>
+            <div class="mt-8 bg-customLighterGray p-6 shadow rounded-lg">
+                <h3 class="text-lg font-semibold text-customGreen mb-4 text-center">Nuevos programas solicitado</h3>
                 <table class="w-full border-collapse text-center">
                     <thead>
-                        <tr class="bg-gray-200">
-                            <th class="p-3">Nombre del programa</th>
-                            <th class="p-3">Tipo de programa</th>
-                            <th class="p-3">Rol del solicitado</th>
-                            <th class="p-3">Fecha de solicitud</th>
-                            <th class="p-3">Estado del programa</th>
+                        <tr class="bg-customDarkGray">
+                            <th class="p-3 text-customBeige">Nombre del programa</th>
+                            <th class="p-3 text-customBeige">Tipo de programa</th>
+                            <th class="p-3 text-customBeige">Rol del solicitado</th>
+                            <th class="p-3 text-customBeige">Fecha de solicitud</th>
+                            <th class="p-3 text-customBeige">Estado del programa</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b">
-                            <td class="p-3 "><span>Unidos por la esperanza</span></td>
-                            <td class="p-3">Educativo</td>
-                            <td class="p-3">Beneficiario</td>
-                            <td class="p-3">01-08-2025</td>
-                            <td class="p-3"><span class="bg-gray-200 text-gray-600 py-1 px-3 rounded-full">En progreso</span></td>
+                        <tr class="border-b border-black bg-customLightGray">
+                            <td class="p-3 text-customBeige"><span>Unidos por la esperanza</span></td>
+                            <td class="p-3 text-customBeige">Educativo</td>
+                            <td class="p-3 text-customBeige">Beneficiario</td>
+                            <td class="p-3 text-customBeige">01-08-2025</td>
+                            <td class="p-3"><span class="bg-gray-200 text-gray-600 w-28 py-1 px-3 rounded-full inline-block">En progreso</span></td>
                         </tr>
-                        <tr class="border-b">
-                            <td class="p-3 "><span>Curso de lenguaje español</span></td>
-                            <td class="p-3">Educativo</td>
-                            <td class="p-3">Voluntario</td>
-                            <td class="p-3">05-010-2025</td>
-                            <td class="p-3"><span class="bg-green-200 text-green-600 py-1 px-3 rounded-full">Completo</span></td>
+                        <tr class="border-b border-black bg-customLightGray">
+                            <td class="p-3 text-customBeige"><span>Curso de lenguaje español</span></td>
+                            <td class="p-3 text-customBeige">Educativo</td>
+                            <td class="p-3 text-customBeige">Voluntario</td>
+                            <td class="p-3 text-customBeige">05-010-2025</td>
+                            <td class="p-3 "><span class="bg-green-200 text-green-600 w-28 py-1 px-3 rounded-full inline-block">Completo</span></td>
                         </tr>
-                        <tr class="border-b">
-                            <td class="p-3 "><span>Unidos por la esperanza</span></td>
-                            <td class="p-3">Educativo</td>
-                            <td class="p-3">Beneficiario</td>
-                            <td class="p-3">01-08-2025</td>
-                            <td class="p-3"><span class="bg-red-200 text-red-600 py-1 px-3 rounded-full">Cancelado</span></td>
+                        <tr class="border-b border-black bg-customLightGray">
+                            <td class="p-3 text-customBeige"><span>Unidos por la esperanza</span></td>
+                            <td class="p-3 text-customBeige">Educativo</td>
+                            <td class="p-3 text-customBeige">Beneficiario</td>
+                            <td class="p-3 text-customBeige">01-08-2025</td>
+                            <td class="p-3"><span class="bg-red-200 text-red-600 w-28 py-1 px-3 rounded-full inline-block">Cancelado</span></td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="mt-4 right-4 text-blue-500 text-right">
+                <div class="mt-4 right-4 text-customBeige hover:text-customDarkBeige text-right">
                     <a href="#">Ver todos los programas</a>
                 </div>
             </div>
@@ -269,40 +288,64 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        // Gráfico de Contacto Creado
-        let chartContact;
-        const ctxContact = document.getElementById('grafica_nuevos_usuarios').getContext('2d');
-        function createContactChart() {
-            chartContact = new Chart(ctxContact, {
-                type: 'bar',
-                data: {
-                    labels: ['Usuarios', 'Beneficiarios', 'Voluntarios', 'Donantes'],
-                    datasets: [{
-                        label: 'Contactos',
-                        data: [15, 25, 10, 20],
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-        createContactChart();
+        // Gráfico de rectángulos
+        // let chartContact;
+        // const ctxContact = document.getElementById('grafica_nuevos_usuarios').getContext('2d');
 
-        // Gráfico de Leads Calificados
+        // function createContactChart() {
+        //     chartContact = new Chart(ctxContact, {
+        //         type: 'bar',
+        //         data: {
+        //             labels: ['Usuarios', 'Beneficiarios', 'Voluntarios', 'Donantes'],
+        //             datasets: [{
+        //                 label: 'Contactos',
+        //                 data: [15, 25, 10, 20],
+        //                 backgroundColor: 'rgba(80, 200, 250, 1)'
+        //             }]
+        //         },
+        //         options: {
+        //             responsive: true,
+        //             plugins: {
+        //                 legend: {
+        //                     labels: {
+        //                         color: '#ECDFCC'
+        //                     }
+        //                 },
+        //             },
+        //             scales: {
+        //                 x: {
+        //                     ticks: {
+        //                         color: '#ECDFCC'
+        //                     },
+        //                     grid: {
+        //                         color: '#1E201E',
+        //                         drawBorder: true
+        //                     }
+        //                 },
+        //                 y: {
+        //                     ticks: {
+        //                         color: '#ECDFCC'
+        //                     },
+        //                     grid: {
+        //                         color: '#1E201E',
+        //                         drawBorder: true
+        //                     },
+        //                     beginAtZero: true
+        //                 }
+        //             }
+        //         }
+        //     });
+        // }
+        // createContactChart();
+
+        // Gráfico circular
         let chartLeads;
         const ctxLeads = document.getElementById('grafica_programas').getContext('2d');
         function createLeadsChart() {
             chartLeads = new Chart(ctxLeads, {
                 type: 'pie',
                 data: {
-                    labels: ['Educativos', 'Culturales', 'Pobreza', 'Sociales'],
+                    labels: ['Educativos', 'Culturales', 'Económico', 'Caritativo'],
                     datasets: [{
                         label: 'Leads',
                         data: [20, 30, 25, 25],
@@ -312,7 +355,7 @@
                             'rgba(153, 102, 255, 0.6)',
                             'rgba(255, 205, 86, 0.6)'
                         ],
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderColor: 'rgba(255, 255, 255, 255)',
                         borderWidth: 1
                     }]
                 },
@@ -320,13 +363,143 @@
                     responsive: true,
                     plugins: {
                         legend: {
-                            position: 'right'
+                            position: 'right',
+                            labels: {
+                                color: '#ECDFCC', // Cambia el color del texto de las leyendas
+                                font: {
+                                    size: 12, // Ajusta el tamaño de la fuente
+                                    // family: 'Sans' // Cambia la familia de la fuente
+                                }
+                            }
+                        },
+                        tooltip: {
+                            bodyColor: '#0000FF', // Cambia el color del texto en las tooltips
+                            titleColor: '#00FF00', // Cambia el color del título en las tooltips
+                            footerColor: '#FF00FF' // Cambia el color del pie en las tooltips
                         }
                     }
                 }
             });
         }
         createLeadsChart();
+
+        const ctx = document.getElementById('lineChart').getContext('2d');
+        const dataSets = {
+            '1W': { 
+                labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'], 
+                datasets: [
+                    { 
+                        label: 'Usuario', 
+                        data: [1300, 1210, 520, 1330, 1110, 1350, 1360], 
+                        borderColor: 'rgba(75, 192, 192, 1)', 
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                        borderWidth: 2, 
+                        tension: 0.4, 
+                        pointRadius: 4, 
+                        pointBackgroundColor: 'rgba(75, 192, 192, 1)' 
+                    },
+                    { 
+                        label: 'Voluntario', 
+                        data: [1250, 1150, 600, 1200, 1020, 1300, 1400], 
+                        borderColor: 'rgba(255, 99, 132, 1)', 
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)', 
+                        borderWidth: 2, 
+                        tension: 0.4, 
+                        pointRadius: 4, 
+                        pointBackgroundColor: 'rgba(255, 99, 132, 1)' 
+                    },
+                    { 
+                        label: 'Beneficiario', 
+                        data: [1200, 1050, 500, 1100, 920, 1200, 1100], 
+                        borderColor: 'rgba(255, 255, 100, 1)', 
+                        backgroundColor: 'rgba(255, 255, 100, 1)', 
+                        borderWidth: 2, 
+                        tension: 0.4, 
+                        pointRadius: 4, 
+                        pointBackgroundColor: 'rgba(255, 255, 100, 1)' 
+                    },
+                ] 
+            },
+            '1M': { 
+                labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'], 
+                datasets: [
+                    {
+                        label: 'Tipos de usuarios', 
+                        data: [1280, 1300, 1320, 1340], 
+                        borderColor: 'rgba(75, 192, 192, 1)', 
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                        borderWidth: 2, 
+                        tension: 0.4, 
+                        pointRadius: 4, 
+                        pointBackgroundColor: 'rgba(75, 192, 192, 1)'
+                    }
+                ]
+            },
+            '1Y': { 
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'], 
+                datasets: [
+                    {
+                        label: 'Tipos de usuarios', 
+                        data: [1200, 1250, 1300, 1500, 1700, 2000, 2100, 2200, 2300, 2145, 2213, 2531], 
+                        borderColor: 'rgba(75, 192, 192, 1)', 
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                        borderWidth: 2, 
+                        tension: 0.4, 
+                        pointRadius: 4, 
+                        pointBackgroundColor: 'rgba(75, 192, 192, 1)'
+                    }
+                ]
+            }
+        };
+
+        let currentInterval = '1W';
+        const chartConfig = {
+            type: 'line',
+            data: {
+                labels: dataSets[currentInterval].labels,
+                datasets: dataSets[currentInterval].datasets
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `$${context.raw}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tiempo'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Precio ($)'
+                        },
+                        beginAtZero: false
+                    }
+                }
+            }
+        };
+
+        let lineChart = new Chart(ctx, chartConfig);
+
+        function updateChart(interval) {
+            currentInterval = interval;
+            lineChart.data.labels = dataSets[interval].labels;
+            lineChart.data.datasets = dataSets[interval].datasets;
+            lineChart.update();
+        }
     </script>
 
     <script>
