@@ -1,5 +1,5 @@
 <!-- SIDEBAR -->
-<section id="sidebar" class="bg-gray-900 w-64 h-screen fixed transform transition-all duration-300 z-50">
+<section id="sidebar" class="bg-gray-900 w-64 h-screen fixed transform transition-all duration-300 z-50 ">
     <div class="brand flex items-center px-6 py-4 text-white text-lg font-bold">
         <a href="{{ url('/') }}" class="flex items-center">
             <img src="{{ asset('img/logo.png') }}" alt="User Image" class="mr-3 w-4 h-4 rounded-full">
@@ -12,8 +12,8 @@
         <!-- PANTALLAS TERMINADAS -->
         <!--Inicio-->
         <li class="my-2 relative group">
-            <a href="{{ url('/') }}" class="flex items-center text-white py-2 hover:bg-gray-700">
-                <i class="fa-solid fa-house mr-4"></i>
+            <a href="{{ url('/') }}" class="flex items-center text-center text-white py-2 hover:bg-gray-700">
+                <i class="fa-solid fa-house mr-4 "></i>
                 <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                     Inicio
                 </span>
