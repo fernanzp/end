@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('short_description');
             $table->text('description');
+            $table->enum('category', ['educativo', 'económico', 'caritativo', 'inclusivo', 'capacitación', 'otro']);
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->decimal('latitude', 10, 8)->nullable();

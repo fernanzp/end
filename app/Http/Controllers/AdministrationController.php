@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Donations;
 
 class AdministrationController extends Controller
 {
@@ -18,7 +19,10 @@ class AdministrationController extends Controller
         // Contar usuarios con rol 'beneficiary'
         $totalBeneficiaries = User::where('rol', 'beneficiary')->count();
 
+        //Calcular el monto total recaudado
+        $totalAmountRaised = Donations::sum('amount');
+
         // Pasar los datos a la vista
-        return view('dashboard/administration', compact('totalUsers', 'totalVolunteers', 'totalBeneficiaries'));
+        return view('dashboard/administration', compact('totalUsers', 'totalVolunteers', 'totalBeneficiaries', 'totalAmountRaised'));
     }
 }

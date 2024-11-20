@@ -58,7 +58,7 @@
         <main class="mt-8">
             <div class="head-title flex items-center justify-between mb-8">
                 <div class="flex items-center">
-                    <h1 class="text-xl text-customGreen font-bold">Administración</h1>
+                    <h1 class="text-xl text-customGreen">Análisis</h1>
                     <span class="mx-2 mt-1 text-gray-500"> &gt; </span>
                     <p class="text-gray-500 mt-1 cursor-pointer hover:text-gray-400 duration-300 ease-in-out">Donaciones recientes</p>
                     <span class="mx-2 mt-1 text-gray-500"> &gt; </span>
@@ -69,7 +69,12 @@
             </div>
 
             <!-- Caja de Informacion -->
-            <h2 class="merriweather-bold text-customGreen text-4xl font-bold mb-4">Cifras totales</h2>
+            <div class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#1ab76a" class="w-8 h-8 mr-4">
+                    <path d="M160 80c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 352c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-352zM0 272c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 160c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48L0 272zM368 96l32 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48z"/>
+                </svg>
+                <h2 class="merriweather-bold text-customGreen text-4xl font-bold mb-4">Cifras totales</h2>
+            </div>
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                 <li class="bg-customLighterGray p-6 shadow rounded-lg flex items-center text-customBeige">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-8 h-8" fill="#1ab76a"><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>
@@ -81,67 +86,72 @@
                 <li class="bg-customLighterGray p-6 shadow rounded-lg flex items-center text-customBeige">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-8 h-8" fill="#1ab76a"><path d="M544 248l0 3.3 69.7-69.7c21.9-21.9 21.9-57.3 0-79.2L535.6 24.4c-21.9-21.9-57.3-21.9-79.2 0L416.3 64.5c-2.7-.3-5.5-.5-8.3-.5L296 64c-37.1 0-67.6 28-71.6 64l-.4 0 0 120c0 22.1 17.9 40 40 40s40-17.9 40-40l0-72c0 0 0-.1 0-.1l0-15.9 16 0 136 0c0 0 0 0 .1 0l7.9 0c44.2 0 80 35.8 80 80l0 8zM336 192l0 56c0 39.8-32.2 72-72 72s-72-32.2-72-72l0-118.6c-35.9 6.2-65.8 32.3-76 68.2L99.5 255.2 26.3 328.4c-21.9 21.9-21.9 57.3 0 79.2l78.1 78.1c21.9 21.9 57.3 21.9 79.2 0l37.7-37.7c.9 0 1.8 .1 2.7 .1l160 0c26.5 0 48-21.5 48-48c0-5.6-1-11-2.7-16l2.7 0c26.5 0 48-21.5 48-48c0-12.8-5-24.4-13.2-33c25.7-5 45.1-27.6 45.2-54.8l0-.4c-.1-30.8-25.1-55.8-56-55.8c0 0 0 0 0 0l-120 0z"/></svg>
                     <div class="ml-4">
-                        <p class="font-bold">Voluntarios</p>
+                        <p class="font-bold">Voluntarios totales</p>
                         <h3 class="text-xl">{{ $totalVolunteers }}</h3>
                     </div>
                 </li>
                 <li class="bg-customLighterGray p-6 shadow rounded-lg flex items-center text-customBeige">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-8 h-8" fill="#1ab76a"><path d="M312 24l0 10.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3s0 0 0 0c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8l0 10.6c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-11.4c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2L264 24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5L192 512 32 512c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l36.8 0 44.9-36c22.7-18.2 50.9-28 80-28l78.3 0 16 0 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0-16 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l120.6 0 119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384c0 0 0 0 0 0l-.9 0c.3 0 .6 0 .9 0z"/></svg>
                     <div class="ml-4">
-                        <p class="font-bold">Monto recaudado</p>
-                        <h3 class="text-xl">$2543</h3>
+                        <p class="font-bold">Monto total recaudado</p>
+                        <h3 class="text-xl">${{ number_format($totalAmountRaised, 2) }}</h3>
                     </div>
                 </li>
                 <li class="bg-customLighterGray p-6 shadow rounded-lg flex items-center text-customBeige">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-7 h-7" fill="#1ab76a"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
                     <div class="ml-4">
-                        <p class="font-bold">Beneficiarios</p>
+                        <p class="font-bold">Beneficiarios totales</p>
                         <h3 class="text-xl">{{ $totalBeneficiaries }}</h3>
                     </div>
                 </li>
             </ul>
 
-            <h2 class="merriweather-bold text-customGreen text-4xl font-bold mb-4">Estadísticas recientes</h2>
+            <div class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#1ab76a" class="w-8 h-8 mr-4">
+                    <path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+                </svg>
+                <h2 class="merriweather-bold text-customGreen text-4xl font-bold mb-4">Estadísticas recientes</h2>
+            </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
                 <!-- Columna Izquierda: Gráfico de Contacto Creado -->
-                <div class="bg-white p-6 rounded-lg shadow-md w-full flex flex-col items-center justify-center">
-                    <h2 class="text-gray-700 text-xl font-semibold mb-4 text-center">Nuevos usuarios</h2>
+                <div class="bg-customLighterGray p-6 rounded-lg shadow-md w-full flex flex-col justify-center">
+                    <h2 class="text-customGreen text-xl font-semibold mb-4">Nuevos usuarios</h2>
                     <canvas id="grafica_nuevos_usuarios" class="w-full h-48 md:h-64 mx-auto"></canvas>
                 </div>
 
                 <!-- Columna Central: Cuadros de Métricas -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <!-- Tarjeta de Contactos Nuevos -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h2 class="text-gray-700 text-xl font-semibold mb-4">Voluntarios</h2>
+                    <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                        <h2 class="text-customGreen text-xl font-semibold mb-4">Voluntarios</h2>
                         <p class="text-gray-700 text-3xl font-bold">444</p>
                     </div>
 
                     <!-- Tarjeta de Totales por Etapa de Ciclo -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h2 class="text-gray-700 text-xl font-semibold mb-4">Beneficiarios</h2>
+                    <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                        <h2 class="text-customGreen text-xl font-semibold mb-4">Beneficiarios</h2>
                         <p class="text-gray-700 text-3xl font-bold">69</p>
                         <p class="text-green-500 text-lg">▲ 43,75%</p>
                     </div>
 
                     <!-- Tarjeta de Total de Visitas al Blog -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h2 class="text-gray-700 text-xl font-semibold mb-4">Usuarios</h2>
+                    <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                        <h2 class="text-customGreen text-xl font-semibold mb-4">Usuarios</h2>
                         <p class="text-gray-700 text-3xl font-bold">50.812</p>
                         <p class="text-green-500 text-lg">▲ 1,17%</p>
                     </div>
 
                     <!-- Tarjeta de Total de Visitas a LP -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h2 class="text-gray-700 text-xl font-semibold mb-4">Visitantes</h2>
+                    <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                        <h2 class="text-customGreen text-xl font-semibold mb-4">Visitantes</h2>
                         <p class="text-gray-700 text-3xl font-bold">428.376</p>
                         <p class="text-red-500 text-lg">▼ 2,78%</p>
                     </div>
                 </div>
 
                 <!-- Columna Derecha: Gráfico de Leads Calificados -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-gray-700 text-xl font-semibold mb-4">Programas</h2>
+                <div class="bg-customLighterGray p-6 rounded-lg shadow-md">
+                    <h2 class="text-customGreen text-xl font-semibold mb-4">Programas</h2>
                     <canvas id="grafica_programas" class="w-full h-48 md:h-64"></canvas>
                 </div>
             </div>

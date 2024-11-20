@@ -13,6 +13,7 @@ class Program extends Model
         'title',
         'short_description',
         'description',
+        'category',
         'start_date',
         'end_date',
         'latitude',
