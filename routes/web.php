@@ -83,7 +83,19 @@ Route::get('/admin/gestion_de_usuarios', function(){
 });
 
 Route::get('/admin/solicitudes_de_usuarios', function(){
-    return view('dashboard/user_request');
+    return view('dashboard/user_requests');
+});
+
+Route::get('/admin/solicitudes_de_programas', function(){
+    return view('dashboard/program_requests');
+});
+
+Route::get('/user/resumen_del_usuario', function(){
+    return view('dashboard/user_summary');
+});
+
+Route::get('/usuario/mensajeria', function(){
+    return view('dashboard/messaging');
 });
 
 Route::get('/admin/recursos', function(){

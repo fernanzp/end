@@ -11,7 +11,7 @@
 
         <!-- PANTALLAS TERMINADAS -->
         <!--Inicio-->
-        <li class="my-2 relative group">
+        <li class="my-2 mx-1 relative group">
             <a href="{{ url('/') }}" class="flex items-center text-center text-white py-2 hover:bg-gray-700">
                 <i class="fa-solid fa-house mr-4 "></i>
                 <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
@@ -104,7 +104,16 @@
             <a href="{{ url('/programas') }}" class="flex items-center text-white py-2 hover:bg-gray-700">
                 <i class='bx bx-calendar mr-4'></i>
                 <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
-                    Dashboard del usuario
+                    Resumen del usuario
+                </span>
+                <span class="sidebar-text">Resumen del usuario</span>
+            </a>
+        </li>
+        <li class="my-2 mx-1 relative group">
+            <a href="{{ url('/usuario/mensajeria') }}" class="flex items-center text-white py-2 hover:bg-gray-700">
+                <i class='bx bxs-conversation mr-4'></i>
+                <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
+                    Mensajería
                 </span>
                 <span class="sidebar-text">Dasboard del usuario</span> <!-- U B V A C -->
             </a>

@@ -198,19 +198,19 @@
                             <td class="p-3 text-customBeige"><span>Derick Fernandez</span></td>
                             <td class="p-3 text-customBeige">$200</td>
                             <td class="p-3 text-customBeige">01-10-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-700 w-28 py-1 px-3 rounded-full inline-block">Finalizado</span></td>
+                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Aceptado</span></td>
                         </tr>
                         <tr class="border-b border-black bg-customLightGray">
                             <td class="p-3 text-customBeige"><span>Papu Fernado Piper</span></td>
                             <td class="p-3 text-customBeige">$2000</td>
                             <td class="p-3 text-customBeige">10-10-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-gray-300 text-gray-700 w-28 py-1 px-3 rounded-full inline-block">En proceso</span></td>
+                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Aceptado</span></td>
                         </tr>
                         <tr class="border-b border-black bg-customLightGray">
                             <td class="p-3 text-customBeige"><span>Papu Hector</span></td>
                             <td class="p-3 text-customBeige">$10 bolivares</td>
                             <td class="p-3 text-customBeige">01-10-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-red-300 text-red-700 w-28 py-1 px-3 rounded-full inline-block">Cancelado</span></td>
+                            <td class="p-3 text-customBeige"><span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Cancelado</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -237,21 +237,21 @@
                             <td class="p-3 text-customBeige">fff@gmail.com</td>
                             <td class="p-3 text-customBeige">Voluntario</td>
                             <td class="p-3 text-customBeige">01-10-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-700 w-28 py-1 px-3 rounded-full inline-block">Activo</span></td>
+                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Activo</span></td>
                         </tr>
                         <tr class="border-b border-black bg-customLightGray">
                             <td class="p-3 text-customBeige"><span>Papu Fer</span></td>
                             <td class="p-3 text-customBeige">fff@gmail.com</td>
                             <td class="p-3 text-customBeige">Beneficiario</td>
                             <td class="p-3 text-customBeige">05-09-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-red-300 text-red-700 w-28 py-1 px-3 rounded-full inline-block">Inactivo</span></td>
+                            <td class="p-3 text-customBeige"><span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Inactivo</span></td>
                         </tr>
                         <tr class="border-b border-black bg-customLightGray">
                             <td class="p-3 text-customBeige"><span>Papu Hector</span></td>
                             <td class="p-3 text-customBeige">fff@gmail.com</td>
                             <td class="p-3 text-customBeige">Beneficiario</td>
                             <td class="p-3 text-customBeige">01-07-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-gray-300 text-gray-700 w-28 py-1 px-3 rounded-full inline-block">Desactivado</span></td>
+                            <td class="p-3 text-customBeige"><span class="bg-gray-300 text-gray-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Desactivado</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -278,21 +278,21 @@
                             <td class="p-3 text-customBeige">Educativo</td>
                             <td class="p-3 text-customBeige">Beneficiario</td>
                             <td class="p-3 text-customBeige">01-08-2025</td>
-                            <td class="p-3"><span class="bg-gray-200 text-gray-600 w-28 py-1 px-3 rounded-full inline-block">En progreso</span></td>
+                            <td class="p-3"><span class="bg-gray-300 text-gray-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Pendiente</span></td>
                         </tr>
                         <tr class="border-b border-black bg-customLightGray">
                             <td class="p-3 text-customBeige"><span>Curso de lenguaje español</span></td>
                             <td class="p-3 text-customBeige">Educativo</td>
                             <td class="p-3 text-customBeige">Voluntario</td>
                             <td class="p-3 text-customBeige">05-010-2025</td>
-                            <td class="p-3 "><span class="bg-green-200 text-green-600 w-28 py-1 px-3 rounded-full inline-block">Completo</span></td>
+                            <td class="p-3 "><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block">Aceptado</span></td>
                         </tr>
                         <tr class="border-b border-black bg-customLightGray">
                             <td class="p-3 text-customBeige"><span>Unidos por la esperanza</span></td>
                             <td class="p-3 text-customBeige">Educativo</td>
                             <td class="p-3 text-customBeige">Beneficiario</td>
                             <td class="p-3 text-customBeige">01-08-2025</td>
-                            <td class="p-3"><span class="bg-red-200 text-red-600 w-28 py-1 px-3 rounded-full inline-block">Cancelado</span></td>
+                            <td class="p-3"><span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block">Rechazado</span></td>
                         </tr>
                     </tbody>
                 </table>
