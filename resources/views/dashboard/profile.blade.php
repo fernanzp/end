@@ -1,10 +1,10 @@
 <x-head />
+
 <body class="bg-customDarkGray font-sans antialiased">
 
-    <!-- Sidebar -->
-    <x-dashboard_sidebar />
-
     <style>
+        <x-styles />
+
         .compressed .sidebar-text {
             display: none;
         }
@@ -20,14 +20,16 @@
             opacity: 1;
         }
     </style>
+    
+
+    <x-dashboard_sidebar />
 
     <!-- CONTENT -->
     <section id="content" class="ml-64 p-8 transition-all duration-300">
 
-        {{-- <x-navbar_configuration /> --}}
-        {{-- MANERA ORIGINAL DE CREAR COMENTARIOS DESDE UN ARCHIVO .BLADE --}}
+        <!--Navbar-->
         <x-navbar_configuration />
-    
+
         <!-- MAIN -->
         <main class="flex-1 mt-8">
             <h2 class="text-2xl text-customGreen font-bold mb-4">Mi Perfil</h2>
@@ -36,11 +38,11 @@
             <div class="bg-customLighterGray shadow rounded-lg p-6 mb-6">
                 <div class="flex items-center space-x-4">
                     <div>
-                        <img src="#" class="w-16 h-16 bg-gray-200 rounded-full">
+                        <img src="{{ asset(Auth::user()->profile_img) }}" alt="User Image" class="w-16 h-16 rounded-full mx-auto">
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold text-customBeige">VERDUZCO LOPEZ WILVER ALEXIS</h3>
-                        <p class="text-gray-500">BENEFICIARIO</p>
+                        <h3 class="text-lg font-semibold text-customBeige">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h3>
+                        <p class="text-gray-500">{{ Auth::user()->rol }}</p>
                         <p class="text-gray-400 text-sm">Creada: 19/02/2007</p>
                     </div>
                 </div>
@@ -55,11 +57,11 @@
                     </button>
                 </div>
                 <div id="info-personal" class="grid grid-cols-2 gap-4 text-gray-400">
-                    <p class="text-gray-400 font-semibold">Nombres: <span id="nombres-text" class="text-customBeige">WILVER ALEXIS</span></p>
-                    <p class="text-gray-400 font-semibold">Apellidos: <span id="apellidos-text" class="text-customBeige">VERDUZCO LÓPEZ</span></p>
-                    <p class="text-gray-400 font-semibold">Correo: <span class="text-customBeige">wverduzcoucol.mx</span></p>
+                    <p class="text-gray-400 font-semibold">Nombre(s): <span id="nombres-text" class="text-customBeige">{{ Auth::user()->name }}</span></p>
+                    <p class="text-gray-400 font-semibold">Apellidos: <span id="apellidos-text" class="text-customBeige">{{ Auth::user()->last_name }}</span></p>
+                    <p class="text-gray-400 font-semibold">Correo: <span class="text-customBeige">{{ Auth::user()->email }}</span></p>
                     <p class="text-gray-400 font-semibold">Número de teléfono: <span id="telefono-text" class="text-customBeige">+543142413571</span></p>
-                    <p class="text-gray-400 font-semibold">Rol: <span class="text-customBeige">Beneficiario</span></p>
+                    <p class="text-gray-400 font-semibold">Rol: <span class="text-customBeige">{{ Auth::user()->rol }}</span></p>
                     <p class="text-gray-400 font-semibold">Contraseña: <span class="text-customBeige">contraseña123</span></p>
                 </div>
                 <p class="text-customBeige text-sm ml-auto block text-right mt-4">

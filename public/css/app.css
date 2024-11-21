@@ -918,6 +918,14 @@ video {
   margin-top: 1rem;
 }
 
+.mr-16 {
+  margin-right: 4rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
 .block {
   display: block;
 }

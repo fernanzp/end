@@ -68,9 +68,9 @@ Route::get('/privacy-policy', function (){
 
 
 //Rutas para el Admin
-Route::get('/administration', [AdministrationController::class, 'index'])->name('administration');
+Route::get('/administration/analysis', [AdministrationController::class, 'index'])->name('administration');
 
-Route::get('/usuario/perfil', function(){
+Route::get('/configuration/myaccount', function(){
     return view('dashboard/profile');
 });
 
