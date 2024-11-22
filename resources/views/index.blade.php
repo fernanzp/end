@@ -214,6 +214,7 @@
     
     <!-- Footer -->
     <x-footer />
+    <x-modal_change_user />
 </body>
 </html>
     
@@ -349,4 +350,136 @@
             handleScrollAnimation();
         });
     });
+</script>
+
+<script>
+
+// Selecciona todos los elementos con el atributo data-modal-toggle
+document.querySelectorAll('[data-modal-toggle]').forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+        const modalId = toggle.getAttribute('data-modal-toggle'); // Obtén el ID del modal
+        const modal = document.getElementById(modalId); // Busca el modal en el DOM
+
+
+        if (modal) {
+            modal.classList.toggle('hidden'); // Alterna la clase "hidden" para mostrar/ocultar
+        }
+    });
+});
+
+//aqui detectara la api para el codigo postal
+document.getElementById('codigo-postal').addEventListener('input', async (e) => {
+    const cp = e.target.value;
+
+    if (cp.length === 5) {
+        try {
+            const response = await fetch(`https://api-tu-servicio.com/cp/${cp}`);
+            const data = await response.json();
+
+            if (data.estado && data.municipio) {
+                document.getElementById('estado').value = data.estado;
+                document.getElementById('municipio').value = data.municipio;
+            } else {
+                alert('Código postal no válido.');
+            }
+        } catch (error) {
+            console.error('Error al buscar el CP:', error);
+        }
+    }
+});
+//detectar si ya se puso el numero interior o exterior
+['numero-exterior', 'numero-interior'].forEach(id => {
+    document.getElementById(id).addEventListener('input', (e) => {
+        if (e.target.value.trim() !== '') {
+            console.log(`${id} ha sido llenado con: ${e.target.value}`);
+        }
+    });
+});
+
+
+// Cerrar modal al hacer clic fuera del contenido
+document.querySelectorAll('.fixed').forEach((modal) => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnMayor = document.getElementById("btn-mayor");
+    const btnMenor = document.getElementById("btn-menor");
+    const formMayor = document.getElementById("form-mayor");
+    const formMenor = document.getElementById("form-menor");
+
+    // Mostrar formulario de mayores por defecto
+    formMayor.classList.remove("hidden");
+
+    // Alternar a formulario de mayores de edad
+    btnMayor.addEventListener("click", () => {
+        formMayor.classList.remove("hidden");
+        formMenor.classList.add("hidden");
+    });
+
+    // Alternar a formulario de menores de edad
+    btnMenor.addEventListener("click", () => {
+        formMenor.classList.remove("hidden");
+        formMayor.classList.add("hidden");
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const formMayor = document.getElementById("beneficiario-mayor-form");
+    const formMenor = document.getElementById("beneficiario-menor-form");
+
+    // Manejo del envío del formulario de mayores
+    formMayor.addEventListener("submit", (event) => {
+        event.preventDefault(); // Evitar el envío por defecto
+        if (!formMayor.classList.contains("hidden")) {
+            const formData = new FormData(formMayor);
+            console.log(Object.fromEntries(formData));
+            // Enviar datos al servidor con fetch() o axios
+        }
+    });
+
+    // Manejo del envío del formulario de menores
+    formMenor.addEventListener("submit", (event) => {
+        event.preventDefault(); // Evitar el envío por defecto
+        if (!formMenor.classList.contains("hidden")) {
+            const formData = new FormData(formMenor);
+            console.log(Object.fromEntries(formData));
+            // Enviar datos al servidor con fetch() o axios
+        }
+    });
+});
+
+// Selección de elementos
+const modalVoluntario = document.getElementById("modal-voluntario");
+const abrirModalVoluntario = document.getElementById("abrir-modal-voluntario"); // El botón para abrir
+const cerrarModalVoluntario = document.getElementById("cerrar-modal-voluntario");
+
+// Función para abrir el modal
+abrirModalVoluntario.addEventListener("click", () => {
+    modalVoluntario.classList.remove("hidden");
+});
+
+
+
+// Función para abrir/cerrar el modal
+document.querySelectorAll("[data-modal-toggle]").forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+        const targetId = btn.getAttribute("data-modal-target");
+        const modal = document.getElementById(targetId);
+        modal.classList.toggle("hidden");
+    });
+});
+
+// Función para cerrar modales con el botón de cerrar
+document.querySelectorAll("[data-modal-hide]").forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+        const targetId = btn.getAttribute("data-modal-hide");
+        const modal = document.getElementById(targetId);
+        modal.classList.add("hidden");
+    });
+});
 </script>
