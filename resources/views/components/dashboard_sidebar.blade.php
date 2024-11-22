@@ -88,7 +88,7 @@
         <!--Solicitud de programas-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
             <li class="my-2 relative group">
-                <a href="{{ url('admin/perfil') }}" class="flex items-center text-white py-2 hover:bg-gray-700">
+                <a href="{{ url('admin/solicitudes_de_programas') }}" class="flex items-center text-white py-2 hover:bg-gray-700">
                     <i class='bx bxs-calendar-plus mr-4'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Solicitud de programas
@@ -101,7 +101,7 @@
         <!-- PANTALLAS POR HACER -->
         <!--Dasboard del usuario-->
         <li class="my-2 relative group">
-            <a href="{{ url('/programas') }}" class="flex items-center text-white py-2 hover:bg-gray-700">
+            <a href="{{ url('/user/resumen_del_usuario') }}" class="flex items-center text-white py-2 hover:bg-gray-700">
                 <i class='bx bx-calendar mr-4'></i>
                 <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                     Resumen del usuario

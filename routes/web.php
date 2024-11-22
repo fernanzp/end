@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Login_registerController;
 use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\AdministrationController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,9 +71,9 @@ Route::get('/privacy-policy', function (){
 //Rutas para el Admin
 Route::get('/administration/analysis', [AdministrationController::class, 'index'])->name('administration');
 
-Route::get('/configuration/myaccount', function(){
-    return view('dashboard/profile');
-});
+Route::get('/configuration/myaccount', [ProfileController::class, 'index'])->name('profile.index');
+Route::post('/configuration/myaccount/update', [ProfileController::class, 'update'])->name('profile.update');
+Route::post('/configuration/myaccount/update-image', [ProfileController::class, 'updateImage'])->name('profile.updateImage');
 
 Route::get('/usuario/programas', function(){
     return view('dashboard/programs_register');

@@ -183,121 +183,105 @@
 
             <!-- Tabla de Donaciones recientes -->
             <div class="mt-8 bg-customLighterGray p-6 shadow rounded-lg">
-                <h3 class="text-lg text-customGreen font-semibold mb-4 text-center">Donaciones recientes</h3>
+                <h3 class="text-xl text-customGreen font-semibold mb-4 text-center">Donaciones recientes</h3>
                 <table class="w-full border-collapse text-center">
                     <thead>
                         <tr class="bg-customDarkGray">
-                            <th class="p-3 text-customBeige">Nombre</th>
+                            <th class="p-3 text-customBeige">Nombre del donante</th>
+                            <th class="p-3 text-customBeige">Correo del donante</th>
                             <th class="p-3 text-customBeige">Cantidad</th>
-                            <th class="p-3 text-customBeige">Fecha de la donación</th>
+                            <th class="p-3 text-customBeige">Fecha</th>
                             <th class="p-3 text-customBeige">Estado</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($recentDonations as $donation)
                         <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Derick Fernandez</span></td>
-                            <td class="p-3 text-customBeige">$200</td>
-                            <td class="p-3 text-customBeige">01-10-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Aceptado</span></td>
+                            <td class="p-3 text-customBeige">{{ $donation->user->name ?? 'N/A' }}</td>
+                            <td class="p-3 text-customBeige">{{ $donation->user->email ?? 'N/A' }}</td>
+                            <td class="p-3 text-customBeige">${{ number_format($donation->amount, 2) }}</td>
+                            <td class="p-3 text-customBeige">{{ $donation->created_at->format('d/m/Y') }}</td>
+                            <td class="p-3 text-customBeige">
+                                @if($donation->status == 'completada')
+                                    <span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Completada</span>
+                                @else
+                                    <span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Fallida</span>
+                                @endif
+                            </td>
                         </tr>
-                        <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Papu Fernado Piper</span></td>
-                            <td class="p-3 text-customBeige">$2000</td>
-                            <td class="p-3 text-customBeige">10-10-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Aceptado</span></td>
-                        </tr>
-                        <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Papu Hector</span></td>
-                            <td class="p-3 text-customBeige">$10 bolivares</td>
-                            <td class="p-3 text-customBeige">01-10-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Cancelado</span></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div class="mt-4 right-4 text-customBeige hover:text-customDarkBeige text-right">
-                    <a href="#">Ver todas las donaciones</a>
+                    <a href="#">Ver mas</a>
                 </div>
             </div>
 
             <div class="mt-8 bg-customLighterGray p-6 shadow rounded-lg">
-                <h3 class="text-lg font-semibold text-customGreen mb-4 text-center">Nuevos usuarios</h3>
+                <h3 class="text-xl font-semibold text-customGreen mb-4 text-center">Nuevos usuarios</h3>
                 <table class="w-full border-collapse text-center">
                     <thead>
                         <tr class="bg-customDarkGray">
-                            <th class="p-3 text-customBeige">Nombre</th>
+                            <th class="p-3 text-customBeige">Nombre(s)</th>
+                            <th class="p-3 text-customBeige">Apellido(s)</th>
                             <th class="p-3 text-customBeige">Correo</th>
                             <th class="p-3 text-customBeige">Rol</th>
-                            <th class="p-3 text-customBeige">Fecha de aceptado</th>
+                            <th class="p-3 text-customBeige">Fecha de registro</th>
                             <th class="p-3 text-customBeige">Estado</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($recentUsers as $user)
                         <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Derick Fernandez</span></td>
-                            <td class="p-3 text-customBeige">fff@gmail.com</td>
-                            <td class="p-3 text-customBeige">Voluntario</td>
-                            <td class="p-3 text-customBeige">01-10-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Activo</span></td>
+                            <td class="p-3 text-customBeige">{{ $user->name }}</td>
+                            <td class="p-3 text-customBeige">{{ $user->last_name }}</td>
+                            <td class="p-3 text-customBeige">{{ $user->email }}</td>
+                            <td class="p-3 text-customBeige">{{ ucfirst($user->rol) }}</td>
+                            <td class="p-3 text-customBeige">{{ $user->created_at->format('d/m/Y') }}</td>
+                            <td class="p-3 text-customBeige">
+                                @if($user->status === 1)
+                                    <span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Activo</span>
+                                @else
+                                    <span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Baneado</span>
+                                @endif
+                            </td>                            
                         </tr>
-                        <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Papu Fer</span></td>
-                            <td class="p-3 text-customBeige">fff@gmail.com</td>
-                            <td class="p-3 text-customBeige">Beneficiario</td>
-                            <td class="p-3 text-customBeige">05-09-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Inactivo</span></td>
-                        </tr>
-                        <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Papu Hector</span></td>
-                            <td class="p-3 text-customBeige">fff@gmail.com</td>
-                            <td class="p-3 text-customBeige">Beneficiario</td>
-                            <td class="p-3 text-customBeige">01-07-2024</td>
-                            <td class="p-3 text-customBeige"><span class="bg-gray-300 text-gray-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Desactivado</span></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div class="mt-4 right-4 text-customBeige hover:text-customDarkBeige text-right">
-                    <a href="{{ url('/admin/gestion_de_usuarios') }}">Ver todos los usuarios</a>
+                    <a href="{{ url('/admin/gestion_de_usuarios') }}">Ver mas</a>
                 </div>
             </div>
 
             <div class="mt-8 bg-customLighterGray p-6 shadow rounded-lg">
-                <h3 class="text-lg font-semibold text-customGreen mb-4 text-center">Nuevos programas solicitado</h3>
+                <h3 class="text-xl font-semibold text-customGreen mb-4 text-center">Nuevos programas</h3>
                 <table class="w-full border-collapse text-center">
                     <thead>
                         <tr class="bg-customDarkGray">
-                            <th class="p-3 text-customBeige">Nombre del programa</th>
-                            <th class="p-3 text-customBeige">Tipo de programa</th>
-                            <th class="p-3 text-customBeige">Rol del solicitado</th>
-                            <th class="p-3 text-customBeige">Fecha de solicitud</th>
-                            <th class="p-3 text-customBeige">Estado del programa</th>
+                            <th class="p-3 text-customBeige">Titulo</th>
+                            <th class="p-3 text-customBeige">Categoría</th>
+                            <th class="p-3 text-customBeige">Modalidad</th>
+                            <th class="p-3 text-customBeige">Fecha de creación</th>
+                            <!--<th class="p-3 text-customBeige">Estado del programa</th>-->
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($recentPrograms as $program)
                         <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Unidos por la esperanza</span></td>
-                            <td class="p-3 text-customBeige">Educativo</td>
-                            <td class="p-3 text-customBeige">Beneficiario</td>
-                            <td class="p-3 text-customBeige">01-08-2025</td>
-                            <td class="p-3"><span class="bg-gray-300 text-gray-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Pendiente</span></td>
+                            <td class="p-3 text-customBeige">{{ $program->title }}</td>
+                            <td class="p-3 text-customBeige">{{ ucfirst($program->category) }}</td>
+                            <td class="p-3 text-customBeige">{{ ucfirst($program->modality) }}</td>
+                            <td class="p-3 text-customBeige">{{ $program->created_at->format('d/m/Y') }}</td>
+                            <!--<td class="p-3"><span class="bg-gray-300 text-gray-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Pendiente</span></td>-->
+                            <!--<td class="p-3 "><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Aceptado</span></td>-->
+                            <!--<td class="p-3"><span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Rechazado</span></td>-->
                         </tr>
-                        <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Curso de lenguaje español</span></td>
-                            <td class="p-3 text-customBeige">Educativo</td>
-                            <td class="p-3 text-customBeige">Voluntario</td>
-                            <td class="p-3 text-customBeige">05-010-2025</td>
-                            <td class="p-3 "><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block">Aceptado</span></td>
-                        </tr>
-                        <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Unidos por la esperanza</span></td>
-                            <td class="p-3 text-customBeige">Educativo</td>
-                            <td class="p-3 text-customBeige">Beneficiario</td>
-                            <td class="p-3 text-customBeige">01-08-2025</td>
-                            <td class="p-3"><span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block">Rechazado</span></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div class="mt-4 right-4 text-customBeige hover:text-customDarkBeige text-right">
-                    <a href="#">Ver todos los programas</a>
+                    <a href="#">Ver mas</a>
                 </div>
             </div>
         </main>
@@ -362,13 +346,15 @@
         let chartLeads;
         const ctxLeads = document.getElementById('grafica_programas').getContext('2d');
         function createLeadsChart() {
+            const categoryData = @json($categoryData); // Datos dinámicos desde el controlador
+
             chartLeads = new Chart(ctxLeads, {
                 type: 'pie',
                 data: {
-                    labels: ['Educativos', 'Económicos', 'Caritativos', 'Inclusivos', 'Capasitativos', 'Otros'],
+                    labels: ['Educativos', 'Económicos', 'Caritativos', 'Inclusivos', 'Capacitación', 'Otros'],
                     datasets: [{
-                        label: 'Leads',
-                        data: [44, 21, 16, 8, 7, 4],
+                        label: 'Programas',
+                        data: categoryData,
                         backgroundColor: [
                             'rgba(249, 115, 22, 1)',
                             'rgba(26, 183, 106, 1)',
