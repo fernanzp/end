@@ -198,38 +198,38 @@
     </div>
 </div>
 
-<!-- Modal para Voluntario (Placeholder) -->
-<div id="voluntario-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white w-full max-w-lg rounded-lg shadow-lg p-6 max-h-screen overflow-y-auto">
-        <h2 class="text-xl font-bold mb-4">Conviértete en Voluntario</h2>
-        <form id="voluntario-form" class="space-y-4">
+<!-- Modal para Voluntario -->
+<div id="voluntario-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+    <div class="bg-customLighterGray w-1/3 rounded-lg shadow-lg p-6 h-4/5 overflow-y-auto">
+        <h2 class="merriweather-bold text-customGreen text-3xl font-bold mb-4 text-center">Conviértete en Voluntario</h2>
+        <form id="voluntario-form" class="space-y-4" enctype="multipart/form-data" onsubmit="return validateForm()">
             @csrf
             <!-- Fecha de nacimiento -->
             <div>
-                <label for="fecha-nacimiento" class="block text-gray-700">Fecha de nacimiento:</label>
-                <input type="date" id="fecha-nacimiento" class="w-full border rounded-lg p-2" required>
+                <label for="fecha-nacimiento" class="block text-customGreen font-bold text-xl mb-1">Fecha de nacimiento:</label>
+                <input type="date" id="fecha-nacimiento" class="w-full bg-customLightGray text-customBeige font-bold rounded-lg p-4 border border-transparent focus:border-customGreen focus:ring-0 focus:outline-none" required>
             </div>
-
+        
             <!-- Género -->
             <div>
-                <label for="genero" class="block text-gray-700">Género:</label>
-                <select id="genero" class="w-full border rounded-lg p-2">
+                <label for="genero" class="block text-customGreen font-bold text-xl mb-1">Género:</label>
+                <select id="genero" class="w-full bg-customLightGray text-customBeige font-bold rounded-lg p-4">
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
                     <option value="Otro">Otro</option>
                 </select>
             </div>
-
+        
             <!-- Número telefónico -->
             <div>
-                <label for="telefono" class="block text-gray-700">Número telefónico:</label>
-                <input type="tel" id="telefono" class="w-full border rounded-lg p-2" pattern="[0-9]{10}" placeholder="10 dígitos" required>
+                <label for="telefono" class="block text-customGreen font-bold text-xl mb-1">Número telefónico:</label>
+                <input type="tel" id="telefono" class="w-full bg-customLightGray text-customBeige font-bold rounded-lg p-4 placeholder:text-customBeige border border-transparent focus:border-customGreen focus:ring-0 focus:outline-none" pattern="[0-9]{10}" placeholder="Ej: 3141557864" required>
             </div>
-
+        
             <!-- Nivel de educación -->
             <div>
-                <label for="educacion" class="block text-gray-700">Nivel de educación:</label>
-                <select id="educacion" class="w-full border rounded-lg p-2">
+                <label for="educacion" class="block text-customGreen font-bold text-xl mb-1">Nivel de educación:</label>
+                <select id="educacion" class="w-full bg-customLightGray text-customBeige font-bold rounded-lg p-4">
                     <option value="Primaria">Primaria</option>
                     <option value="Secundaria">Secundaria</option>
                     <option value="Preparatoria">Preparatoria</option>
@@ -237,50 +237,46 @@
                     <option value="Otro">Otro</option>
                 </select>
             </div>
-
+        
             <!-- Dirección -->
             <div>
-                <h3 class="text-lg font-semibold">Dirección</h3>
-                <label for="codigo-postal" class="block text-gray-700">Código Postal:</label>
-                <input type="text" id="codigo-postal" class="w-full border rounded-lg p-2" maxlength="5" placeholder="Ingrese su CP" required>
-                
-                <label for="estado" class="block text-gray-700 mt-2">Estado:</label>
-                <input type="text" id="estado" class="w-full border rounded-lg p-2 bg-gray-200" disabled>
-
-                <label for="municipio" class="block text-gray-700 mt-2">Municipio:</label>
-                <input type="text" id="municipio" class="w-full border rounded-lg p-2 bg-gray-200" disabled>
-
-                <label for="colonia" class="block text-gray-700 mt-2">Colonia:</label>
-                <input type="text" id="colonia" class="w-full border rounded-lg p-2">
-
-                <label for="calle" class="block text-gray-700 mt-2">Calle:</label>
-                <input type="text" id="calle" class="w-full border rounded-lg p-2">
-
-                <div class="grid grid-cols-2 gap-4 mt-2">
-                    <div>
-                        <label for="numero-exterior" class="block text-gray-700">Número Exterior:</label>
-                        <input type="text" id="numero-exterior" class="w-full border rounded-lg p-2">
-                    </div>
-                    <div>
-                        <label for="numero-interior" class="block text-gray-700">Número Interior:</label>
-                        <input type="text" id="numero-interior" class="w-full border rounded-lg p-2">
-                    </div>
-                </div>
+                <label for="codigo-postal" class="block text-customGreen font-bold text-xl mb-1">Dirección:</label>
+                <input type="text" id="codigo-postal" class="w-full bg-customLightGray text-customBeige font-bold rounded-lg p-4 placeholder:text-customBeige border border-transparent focus:border-customGreen focus:ring-0 focus:outline-none" maxlength="5" placeholder="Ingrese su dirección" required>
             </div>
-
-            <!-- Cargar INE -->
-            <div>
-                <label for="dni" class="block text-gray-700">Subir INE/DNI:</label>
-                <input type="file" id="dni" class="w-full border rounded-lg p-2" accept="image/*" required>
-            </div>
-
-            <!-- Botón de enviar -->
-            <button type="submit" class="w-full bg-customGreen text-white py-2 rounded-lg mt-4">
-                Enviar
-            </button>
-            <button data-modal-toggle="voluntario-modal" class="w-full bg-red-500 text-white py-2 rounded-lg mt-4">Cerrar</button>
-        </form>
         
+            <!-- Cargar INE/DNI -->
+            <div>
+                <label for="dni" class="block text-customGreen font-bold text-xl mb-1">INE/DNI:</label>
+                <div class="relative bg-customLightGray rounded-lg p-4 border border-transparent focus-within:border-customGreen">
+                    <!-- Contenedor para el botón y la descripción -->
+                    <div class="flex items-center justify-between">
+                        <button type="button" 
+                                onclick="document.getElementById('dni').click()" 
+                                class="text-customGreen font-bold bg-transparent px-4 py-2 border border-customGreen rounded-lg hover:bg-customGreen hover:text-customLighterGray transition-colors duration-300">
+                            Subir archivo
+                        </button>
+                    </div>
+                    <!-- Input de archivo (oculto visualmente) -->
+                    <input 
+                        type="file" 
+                        id="dni" 
+                        accept="image/*" 
+                        onchange="updateFileName(this)" 
+                        style="display: none;">
+                </div>
+                <p class="text-customGreen text-sm mt-2">Formato permitido: imágenes (JPG, PNG)</p>
+            </div>
+        
+            <!-- Botón de enviar -->
+            <div class="grid grid-cols-2 gap-4 mt-2">
+                <button type="button" data-modal-toggle="voluntario-modal" class="close-modal bg-transparent text-gray-500 font-bold py-2 px-4 rounded border-gray-500 border-4 hover:text-gray-400 hover:border-gray-400 transition-colors duration-300 ease-in-out">
+                    Cancelar
+                </button>
+                <button type="submit" class="bg-transparent text-customGreen font-bold py-2 px-4 rounded border-customGreen border-4 hover:text-customLighterGray hover:bg-customGreen transition-colors duration-300 ease-in-out">
+                    Enviar
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -414,4 +410,21 @@
             modal.classList.add("hidden");
         });
     });
+</script>
+
+<script>
+    // Actualiza el nombre del archivo (se mantiene para validación interna, pero no se muestra en el HTML)
+    function updateFileName(input) {
+        // Aquí ya no actualizamos el texto en el HTML, solo se mantiene la validación interna
+    }
+
+    // Validación del formulario
+    function validateForm() {
+        const dniInput = document.getElementById('dni');
+        if (!dniInput.files || dniInput.files.length === 0) {
+            alert('Por favor, selecciona un archivo para tu INE/DNI.');
+            return false; // Evita el envío
+        }
+        return true; // Permite el envío
+    }
 </script>
