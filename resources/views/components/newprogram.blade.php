@@ -2,17 +2,28 @@
 <div id="modal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-60 hidden">
     
     <!-- Formulario para crear un nuevo programa, con envío de datos mediante POST y soporte para archivos adjuntos -->
-    <form action="{{ route('programs.create') }}" method="POST" enctype="multipart/form-data" class="h-3/4 bg-white p-8 rounded-xl shadow-lg w-1/4 overflow-y-auto">
+    <form id="program-form" action="{{ route('dashboard.programs.create') }}" method="POST" enctype="multipart/form-data" class="h-3/4 bg-white p-8 rounded-xl shadow-lg w-1/4 overflow-y-auto">
         
         <!-- Token CSRF para proteger el formulario contra ataques Cross-Site Request Forgery -->
         @csrf
         
         <!-- Título del formulario -->
         <h2 class="text-2xl font-bold mb-4 text-center">Nuevo programa</h2>
-        
+       
         <!-- Campo de texto para el título del programa, requerido -->
         <input type="text" placeholder="Título" name="title" id="title" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
         
+        <!-- Lista desplegable para la categoría -->
+        <select name="category" id="category" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
+            <option value="" disabled selected>Selecciona una categoría</option>
+            <option value="educativo">Educativo</option>
+            <option value="economico">Económico</option>
+            <option value="caritativo">Caritativo</option>
+            <option value="inclusivo">Inclusivo</option>
+            <option value="capacitacion">Capacitación</option>
+            <option value="otro">Otro</option>
+        </select>
+
         <!-- Campo de texto para una descripción corta del programa, requerido -->
         <input type="text" placeholder="Descripción corta" name="short_description" id="short_description" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
         
@@ -20,7 +31,7 @@
         <textarea placeholder="Descripción" name="description" id="description" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required></textarea>
         
 
-        <!-- Botón de radio para seleccionar la duración del evento -->
+        <!-- Duración del evento (radio buttons) -->
         <label class="block text-lg font-medium mb-2">Duración del Evento:</label>
         <div class="mb-4">
             <input type="radio" id="single_day" name="event_duration" value="single_day" onchange="toggleDateFields()" checked>
@@ -40,13 +51,12 @@
         <div id="multiple_dates_fields" class="mb-4 hidden">
             <!-- Campo de fecha de inicio -->
             <label for="start_date" class="block text-lg font-medium mb-2">Fecha de inicio:</label>
-            <input type="date" name="start_date" id="start_date" class="w-full p-3 border border-gray-300 rounded-xl mb-4" onchange="updateEndDateMin()"required>
+            <input type="date" name="start_date" id="start_date" class="w-full p-3 border border-gray-300 rounded-xl mb-4" onchange="updateEndDateMin()" required>
 
             <!-- Campo de fecha de finalización -->
             <label for="end_date" class="block text-lg font-medium mb-2">Fecha de finalización:</label>
-            <input type="date" name="end_date" id="end_date" class="w-full p-3 border border-gray-300 rounded-xl" required>
+            <input type="date" name="end_date" id="end_date" class="w-full p-3 border border-gray-300 rounded-xl">
         </div>
-
 
 
         <!-- Selección de modalidad: presencial o en línea, requerido -->
@@ -58,6 +68,13 @@
 
         <!-- Campo de texto para la ubicación (solo si es presencial) -->
         <input type="text" placeholder="Ubicación" name="place" id="place" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
+
+        <!-- Campo de latitud -->
+        <input type="hidden" id="latitude" name="latitude">
+
+        <!-- Campo de longitud -->
+        <input type="hidden" id="longitude" name="longitude">
+
 
         <!-- Campo de texto para el link de la reunión (solo si es en línea) -->
         <input type="url" placeholder="Link de la reunión" name="meeting_link" id="meeting_link" class="w-full p-3 border border-gray-300 rounded-xl mb-4 hidden">
@@ -120,10 +137,16 @@
         
         <!-- Campo de texto para el objetivo del programa, requerido -->
         <textarea placeholder="Objetivo" name="objetive" id="objetive" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required></textarea>
-        
-        <!-- Campo de texto para especificar el contenido, en formato JSON (opcional) -->
-        <textarea placeholder="Contenido (opcional)" name="contents" id="contents" class="w-full p-3 border border-gray-300 rounded-xl mb-4"></textarea>
-        
+       
+       
+        <div id="input-container">
+    <div class="input-group flex items-center mb-4">
+        <input type="text" name="contents[]" placeholder="Contenido (opcional)" id="contents" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
+        <button type="button" class="remove-button bg-red-500 text-white p-2 rounded-md hover:bg-red-600 hidden">Eliminar</button>
+        <button type="button" id="add-input" class="add-button bg-green-500 text-white p-2 rounded-md hover:bg-green-600">+</button>
+    </div>
+        </div>
+
         <!-- Campo de texto para la información de financiamiento (opcional) -->
         <textarea placeholder="Financiamiento (opcional)" name="financing" id="financing" class="w-full p-3 border border-gray-300 rounded-xl mb-4"></textarea>
         
@@ -143,33 +166,16 @@
 <!--TODA LA LOGICA DE JAVASCRIPT-->
 <script>
 
-//Funcion para validar la fecha
-
-document.getElementById('program-form').addEventListener('submit', function(event) {
-    const startDate = document.getElementById('start_date').value;
-    const endDate = document.getElementById('end_date').value;
-
-    // Si no hay fecha de inicio o de finalización, o si la fecha final es antes de la fecha de inicio, bloqueamos el envío
-    if (!startDate || !endDate) {
-        alert('Por favor, complete ambos campos de fecha.');
-        event.preventDefault(); // Evita el envío del formulario
-        return;
-    }
-
-    if (new Date(endDate) < new Date(startDate)) {
-        alert('La fecha de finalización no puede ser anterior a la fecha de inicio.');
-        event.preventDefault(); // Evita el envío del formulario
-    }
-});
 
     // Función para actualizar la fecha mínima en el campo de fecha final
-function updateEndDateMin() {
+    function updateEndDateMin() {
     const startDate = document.getElementById('start_date').value;
     const endDateInput = document.getElementById('end_date');
-    
-    // Actualiza el atributo min para la fecha de finalización
-    endDateInput.setAttribute('min', startDate);
-}        
+    if (startDate) {
+        endDateInput.setAttribute('min', startDate);
+    }
+}
+
 </script>
 <script>
 // Función para mostrar/ocultar campos basados en la modalidad seleccionada
@@ -222,12 +228,17 @@ document.getElementById('modal').addEventListener('submit', function(event) {
 
 
 <script>
-//Funcion para el input de edad
+
+// Función para actualizar el rango de edad
 function updateAgeRange() {
     const minAgeInput = document.getElementById('min_age');
     const maxAgeInput = document.getElementById('max_age');
     const minAgeValue = document.getElementById('min_age_value');
     const maxAgeValue = document.getElementById('max_age_value');
+
+    // Ajusta el valor mínimo y máximo permitidos
+    maxAgeInput.min = minAgeInput.value;
+    minAgeInput.max = maxAgeInput.value;
 
     // Actualiza los valores mostrados en las etiquetas
     minAgeValue.textContent = minAgeInput.value;
@@ -241,7 +252,7 @@ function updateAgeRange() {
     }
 }
 
-    // Evita que se envíe el formulario si hay un error de validación en el rango de edad
+// Evita que se envíe el formulario si hay un error de validación en el rango de edad
 document.getElementById('modal').addEventListener('submit', function(event) {
     const maxAgeInput = document.getElementById('max_age');
     if (!maxAgeInput.checkValidity()) {
@@ -253,35 +264,152 @@ document.getElementById('modal').addEventListener('submit', function(event) {
 
 <script>
 
-//Funcion para verificar eventos de uno o varios dias
-function toggleDateFields() {
-    const isSingleDay = document.getElementById('single_day').checked;
-    const singleDateField = document.getElementById('single_date_field');
-    const multipleDatesFields = document.getElementById('multiple_dates_fields');
-    const weekDaysField = document.getElementById('week_days_field');
 
-    if (isSingleDay) {
-        // Muestra solo el campo de fecha única y oculta los de fechas múltiples y días de la semana
-        singleDateField.classList.remove('hidden');
-        multipleDatesFields.classList.add('hidden');
-        weekDaysField.classList.add('hidden');
-        
-        // Desactiva la necesidad de los campos de fecha de inicio y fin cuando no son necesarios
-        document.getElementById('start_date').removeAttribute('required');
-        document.getElementById('end_date').removeAttribute('required');
+    document.getElementById('program-form').addEventListener('submit', function(event) {
+    const eventDuration = document.querySelector('input[name="event_duration"]:checked').value;
+    let startDate = document.getElementById('start_date').value;
+    let endDate = document.getElementById('end_date').value;
+    let date = document.getElementById('date').value;
+
+    // Validación para evento de varios días
+    if (eventDuration === 'multiple_days') {
+        if (!startDate || !endDate) {
+            alert('Por favor, complete ambos campos de fecha de inicio y finalización.');
+            event.preventDefault(); // Evita el envío del formulario
+            return;
+        }
+
+        // Verificar que la fecha de finalización no sea anterior a la fecha de inicio
+        if (new Date(endDate) <= new Date(startDate)) {
+            alert('La fecha de finalización no puede ser anterior o igual a la fecha de inicio.');
+            event.preventDefault(); // Evita el envío del formulario
+        }
+    } 
+    // Validación para evento de un solo día
+    else if (eventDuration === 'single_day') {
+        if (!date) {
+            alert('Por favor, seleccione una fecha para el evento.');
+            event.preventDefault(); // Evita el envío del formulario
+            return;
+        }
+    }
+});
+
+
+
+
+function toggleDateFields() {
+    const singleDayField = document.getElementById('single_date_field');
+    const multipleDatesFields = document.getElementById('multiple_dates_fields');
+    const startDateField = document.getElementById('start_date');
+    const endDateField = document.getElementById('end_date');
+    const singleDayRadio = document.getElementById('single_day');
+    const multipleDaysRadio = document.getElementById('multiple_days');
+    const weekDaysField = document.getElementById('week_days_field');
+    const dateField = document.getElementById('date');
+    
+    // Si el evento es de un solo día
+    if (singleDayRadio.checked) {
+        // Mostrar solo el campo de un solo día
+        singleDayField.style.display = 'block';
+        multipleDatesFields.style.display = 'none';
+        weekDaysField.style.display = 'none'; // Ocultar días de la semana
+
+        // Deshabilitar los campos de fecha de inicio y fin
+        startDateField.disabled = true;
+        endDateField.disabled = true;
+
+        // Deshabilitar y limpiar el campo de 'date'
+        dateField.disabled = false; // Asegurarse de que 'date' está habilitado para un solo día
+        dateField.value = ''; // Limpiar su valor
+
+        // Limpiar los valores de start_date y end_date para que no se envíen
+        startDateField.value = '';
+        endDateField.value = '';
     } else {
-        // Muestra los campos de fecha de inicio, fecha de fin y días de la semana
-        singleDateField.classList.add('hidden');
-        multipleDatesFields.classList.remove('hidden');
-        weekDaysField.classList.remove('hidden');
-        
-        // Activa la necesidad de los campos de fecha de inicio y fin
-        document.getElementById('start_date').setAttribute('required', 'required');
-        document.getElementById('end_date').setAttribute('required', 'required');
+        // Si el evento es de varios días
+        singleDayField.style.display = 'none';
+        multipleDatesFields.style.display = 'block';
+        weekDaysField.style.display = 'block'; // Mostrar días de la semana
+
+        // Habilitar los campos de fecha de inicio y fin
+        startDateField.disabled = false;
+        endDateField.disabled = false;
+
+        // Deshabilitar 'date' si el evento es de varios días
+        dateField.disabled = true;
+        dateField.value = ''; // Limpiar su valor
     }
 }
 
-// Llamamos a la función una vez al cargar la página para aplicar el estado inicial
+// Llamamos la función al cargar la página para configurar el estado inicial
 document.addEventListener('DOMContentLoaded', toggleDateFields);
 
+// Llamamos la función cuando el radio button cambia para actualizar los campos
+document.getElementById('single_day').addEventListener('change', toggleDateFields);
+document.getElementById('multiple_days').addEventListener('change', toggleDateFields);
+
+
+</script>
+
+
+<script>
+//Funcion para dar una alerta cuando la edad minima sea mayor que la maxima
+function showTemporaryMessage(message) {
+    const tempMessage = document.createElement('div');
+    tempMessage.textContent = message;
+    tempMessage.style.color = 'red';
+    tempMessage.style.fontSize = '0.9em';
+    document.getElementById('max_age').parentNode.appendChild(tempMessage);
+    setTimeout(() => tempMessage.remove(), 3000); // Elimina el mensaje después de 3 segundos
+}
+
+if (parseInt(maxAgeInput.value) < parseInt(minAgeInput.value)) {
+    maxAgeInput.setCustomValidity('La edad máxima debe ser mayor o igual a la edad mínima.');
+    showTemporaryMessage('La edad máxima debe ser mayor o igual a la edad mínima.');
+} else {
+    maxAgeInput.setCustomValidity('');
+}
+
+</script>
+
+
+<script>
+    const inputContainer = document.getElementById('input-container');
+
+    // Función para agregar un nuevo campo
+    const addInput = () => {
+        const newInputGroup = document.createElement('div');
+        newInputGroup.className = 'input-group flex items-center mb-4';
+        newInputGroup.innerHTML = `
+            <input type="text" name="contents[]" placeholder="Contenido (opcional)" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
+            <button type="button" class="remove-button bg-red-500 text-white p-2 rounded-md hover:bg-red-600">Eliminar</button>
+        `;
+        newInputGroup.querySelector('.remove-button').addEventListener('click', removeInput);
+        inputContainer.appendChild(newInputGroup);
+        updateRemoveButtons();
+    };
+
+    // Función para eliminar un campo
+    const removeInput = (e) => {
+        e.target.closest('.input-group').remove();
+        updateRemoveButtons();
+    };
+
+    // Función para actualizar los botones "Eliminar"
+    const updateRemoveButtons = () => {
+        const inputGroups = document.querySelectorAll('.input-group');
+        inputGroups.forEach((group, index) => {
+            const removeButton = group.querySelector('.remove-button');
+            if (removeButton) {
+                removeButton.classList.toggle('hidden', index === 0); // Oculta el botón en el primer grupo
+            }
+        });
+    };
+
+    // Inicializar eventos en el botón de agregar
+    document.getElementById('add-input').addEventListener('click', addInput);
+
+    // Asegurarse de que el botón "Eliminar" esté oculto al inicio
+    updateRemoveButtons();
 </script>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NewProgramController;
 
 Route::get('/', function () {
     return view('index');
@@ -32,7 +33,7 @@ Route::get('/donations', function () {
 
 
 //Ruta para crear un nuevo programa
-Route::post('/programs/create', [NewProgram::class, 'CreateNewProgram'])->name('programs.create');
+Route::post('/dashboard/programs/create', [NewProgramController::class, 'CreateNewProgram'])->name('dashboard.programs.create');
 
 //Ruta para el logout
 Route::get('/logout', function (Request $request) {
