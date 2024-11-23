@@ -37,18 +37,16 @@
         
         <!-- Únete a nuestra ONG -->
         <div>
-            <h3 class="text-customGreen font-semibold mb-4">Únete a nuestra ONG</h3>
+            <h3 class="text-customGreen font-semibold mb-4">Únete a Education Non Disparity</h3>
             <ul class="space-y-2">
                 <li>
-                    <button data-modal-target="beneficiario-modal" data-modal-toggle="beneficiario-modal" 
-                            class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
-                        Conviértete en beneficiario
+                    <button id="open-beneficiary-modal" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
+                        Solicitar ser beneficiario
                     </button>
                 </li>
                 <li>
-                    <button data-modal-target="voluntario-modal" data-modal-toggle="voluntario-modal" 
-                            class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
-                        Conviértete en voluntario
+                    <button id="open-volunteer-modal" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
+                        Solicitar ser voluntario
                     </button>
                 </li>
             </ul>
