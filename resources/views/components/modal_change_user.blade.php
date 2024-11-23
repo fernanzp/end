@@ -1,13 +1,13 @@
 <div id="beneficiario-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
     <style>
-        .hidden {
+        /*.hidden {
             display: none;
         }
         
         .bg-customGreen {
             background-color: #4CAF50;
-        }
-        </style>
+        }*/
+    </style>
     <div class="bg-white w-full max-w-lg rounded-lg shadow-lg p-6 max-h-screen overflow-y-auto">
         <!-- Título -->
         <h2 class="text-xl font-bold mb-4">Postulate como Beneficiario</h2>
@@ -245,26 +245,12 @@
             </div>
         
             <!-- Cargar INE/DNI -->
-            <div>
-                <label for="dni" class="block text-customGreen font-bold text-xl mb-1">INE/DNI:</label>
-                <div class="relative bg-customLightGray rounded-lg p-4 border border-transparent focus-within:border-customGreen">
-                    <!-- Contenedor para el botón y la descripción -->
-                    <div class="flex items-center justify-between">
-                        <button type="button" 
-                                onclick="document.getElementById('dni').click()" 
-                                class="text-customGreen font-bold bg-transparent px-4 py-2 border border-customGreen rounded-lg hover:bg-customGreen hover:text-customLighterGray transition-colors duration-300">
-                            Subir archivo
-                        </button>
-                    </div>
-                    <!-- Input de archivo (oculto visualmente) -->
-                    <input 
-                        type="file" 
-                        id="dni" 
-                        accept="image/*" 
-                        onchange="updateFileName(this)" 
-                        style="display: none;">
+            <div class="w-full">
+                <p class="block text-customGreen font-bold text-xl mb-1">INE/DNI:</p>
+                <input type="file" name="ine_document" id="ine_document" accept="image/*" class="hidden" onchange="updateFileName()">
+                <div onclick="document.getElementById('ine_document').click();" class="w-full cursor-pointer bg-customLightGray text-customBeige font-bold rounded-lg p-4">
+                    <label for="ine_document" id="file_label" class="cursor-pointer">Selecciona un archivo</label>
                 </div>
-                <p class="text-customGreen text-sm mt-2">Formato permitido: imágenes (JPG, PNG)</p>
             </div>
         
             <!-- Botón de enviar -->
@@ -413,18 +399,14 @@
 </script>
 
 <script>
-    // Actualiza el nombre del archivo (se mantiene para validación interna, pero no se muestra en el HTML)
-    function updateFileName(input) {
-        // Aquí ya no actualizamos el texto en el HTML, solo se mantiene la validación interna
-    }
-
-    // Validación del formulario
-    function validateForm() {
-        const dniInput = document.getElementById('dni');
-        if (!dniInput.files || dniInput.files.length === 0) {
-            alert('Por favor, selecciona un archivo para tu INE/DNI.');
-            return false; // Evita el envío
+    function updateFileName() {
+        const input = document.getElementById('ine_document');
+        const label = document.getElementById('file_label');
+        
+        if (input.files && input.files[0]) {
+            label.textContent = input.files[0].name; // Cambia el texto al nombre del archivo
+        } else {
+            label.textContent = 'Selecciona un archivo'; // Por si se borra el archivo seleccionado
         }
-        return true; // Permite el envío
     }
 </script>
