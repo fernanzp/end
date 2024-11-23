@@ -16,16 +16,51 @@
             opacity: 1;
         }
     </style>
+    <link rel="stylesheet" href="style.css">
 
     <x-dashboard_sidebar />
 
     <!-- CONTENT -->
-    <section id="content" class="ml-64 p-8 transition-all duration-300">
+    <section id="content" class="ml-64 p-6 transition-all duration-300">
 
         <x-navbar_configuration />
-        
+
         <main class="mt-8">
-            <!-- PAPU ÁNGEL, AQUÍ INGRESA EL CÓDIGO DEL CHAT Y ADAPTALO -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <header class="flex items-center justify-between mb-6">
+                    <div class="flex items-center space-x-4">
+                        <img src="{{ auth()->user()->profile_img }}" alt="Foto de perfil" class="w-12 h-12 rounded-full border-2 border-gray-700">
+                        <div>
+                            <h2 class="text-lg font-bold">{{ auth()->user()->name }} {{ auth()->user()->last_name }}</h2>
+                            <p class="text-sm text-gray-400">{{ auth()->user()->email }}</p>
+                        </div>
+                    </div>
+                    <a href="{{ route('logout') }}" class="text-red-400 hover:text-red-600 transition">Cerrar Sesión</a>
+                </header>
+
+                <!-- Buscador -->
+                <div class="mb-6 relative">
+                    <label for="searchBar" class="block text-sm text-gray-400 mb-2">Buscar usuario:</label>
+                    <div class="flex items-center">
+                        <input 
+                            type="text" 
+                            id="searchBar" 
+                            placeholder="Escribe un nombre..." 
+                            class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                        />
+                        <button 
+                            id="searchButton" 
+                            class="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition hidden">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="usersList" class="space-y-4">
+                    <!-- Resultados de búsqueda dinámicos aquí -->
+                </div>
+                
+            </div>
         </main>
     </section>
 
@@ -99,5 +134,6 @@
             });
         });
     </script>
+    <script src="{{ asset('js/chat.js') }}"></script>
 </body>
 </html>

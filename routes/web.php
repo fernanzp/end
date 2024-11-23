@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Login_registerController;
 use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\AdministrationController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,9 +95,12 @@ Route::get('/user/resumen_del_usuario', function(){
     return view('dashboard/user_summary');
 });
 
-Route::get('/usuario/mensajeria', function(){
-    return view('dashboard/messaging');
-});
+Route::get('/usuario/mensajeria',[ChatController::class, 'index'])->name('messaging');
+Route::post('usuario/users/search', [ChatController::class, 'search'])->name('chat.search');
+Route::get('usuario/users/fetch-messages', [ChatController::class, 'fetchMessages'])->name('chat.fetchMessages');
+Route::get('usuario/chat/{user}', [ChatController::class, 'showChat'])->name('chat.show');
+Route::post('usuario/chat/get-messages', [ChatController::class, 'getMessages'])->name('chat.getMessages');
+Route::post('usuario/chat/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
 
 Route::get('/admin/recursos', function(){
     return view('dashboard.admin.recursos');
