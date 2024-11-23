@@ -214,6 +214,8 @@
     
     <!-- Footer -->
     <x-footer />
+    <x-modal_change_user />
+    <x-chat_global />
 </body>
 </html>
     
