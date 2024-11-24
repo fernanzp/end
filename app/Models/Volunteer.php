@@ -9,7 +9,17 @@ class Volunteer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'birthdate', 'address', 'phone', 'ine_document', 'status'];
+    protected $fillable = [
+        'user_id',
+        'birthdate',
+        'gender',
+        'phone',
+        'education',
+        'address',
+        'ine_document',
+        'status',
+    ];
+    
 
     public function user()
     {

@@ -57,15 +57,20 @@ class User extends Authenticatable
         });
     }
     
+    public function messagesSent()
+    {
+        return $this->hasMany(Message::class, 'outgoing_msg_id');
+    }
+
+    public function messagesReceived()
+    {
+        return $this->hasMany(Message::class, 'incoming_msg_id');
+    }
     
+    // En el modelo User (app/Models/User.php)
+    public function volunteers()
+    {
+        return $this->hasMany(Volunteer::class);
+    }
 
-public function messagesSent()
-{
-    return $this->hasMany(Message::class, 'outgoing_msg_id');
-}
-
-public function messagesReceived()
-{
-    return $this->hasMany(Message::class, 'incoming_msg_id');
-}
 }

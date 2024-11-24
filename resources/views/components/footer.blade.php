@@ -45,9 +45,18 @@
                     </button>
                 </li>
                 <li>
-                    <button id="open-volunteer-modal" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
-                        Solicitar ser voluntario
-                    </button>
+                            @if(Auth::check())
+                <!-- Solo se muestra el botón si el usuario está autenticado -->
+                <button id="open-volunteer-modal" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
+                    Solicitar ser voluntario
+                </button>
+            @else
+                <!-- Si no está autenticado, redirige al login -->
+                <a href="{{ route('login') }}" class="hover:text-gray-300">
+                    Solicitar ser voluntario
+                </a>
+            @endif
+
                 </li>
             </ul>
         </div>
@@ -62,3 +71,4 @@
         </div>
     </div>
 </footer>
+
