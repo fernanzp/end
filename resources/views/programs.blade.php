@@ -48,8 +48,6 @@
 
     <!-- Footer -->
     <x-footer />
-    <!--Cambio de usuario-->
-    <x-modal_change_user />
     <!--Chat-->
     <x-chat_global />
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Login_registerController;
 use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BeneficiaryApplicationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,11 @@ Route::get('/google-auth/redirect', [Login_registerController::class, 'google_re
 
 //Ruta para procesar el inicio de sesión con google
 Route::get('/google-auth/callback', [Login_registerController::class, 'googleLogin'])->name('google.login');
+
+// Ruta para guardar la fecha de nacimiento del beneficiario
+Route::post('/beneficiaryapplication', [BeneficiaryApplicationController::class, 'store'])->middleware('auth')->name('beneficiary.store');
+// Ruta para guardar los demás datos del beneficiario
+Route::post('/beneficiary/update', [BeneficiaryApplicationController::class, 'update'])->name('beneficiary.update');
 
 Route::get('/terms', function (){
     return view('terms');

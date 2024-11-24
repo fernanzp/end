@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unique();
             $table->date('birthdate');
-            $table->enum('gender', ['male', 'female', 'other']);
-            $table->string('education_level');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('guardian_email')->unique();
-            $table->string('guardian_ine');
-            $table->string('kinship');
+            $table->enum('gender', ['male', 'female', 'other'])->nullable();
+            $table->enum('education_level', ['sineducaciónformal', 'primaria', 'secundaria', 'preparatoria', 'licenciatura', 'other'])->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('guardian_email')->unique()->nullable();
+            $table->string('guardian_ine')->nullable();
+            $table->enum('kinship', ['father', 'mother', 'tutor', 'other'])->nullable();
             $table->integer('status');
             $table->timestamps();
 
