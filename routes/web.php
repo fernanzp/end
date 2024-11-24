@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NewProgramController;
+use App\Http\Controllers\VolunteerApplicationController;
 
 Route::get('/', function () {
     return view('index');
@@ -155,6 +156,12 @@ Route::get('/voluntario/actividades', function(){
 Route::get('/voluntario/comentarios', function(){
     return view('dashboard.voluntario.feedback');
 });
+
+// Ruta para procesar la solicitud de voluntariado
+
+Route::post('/volunteerapplication', [VolunteerApplicationController::class, 'submitApplication'])
+    ->middleware('auth')  // Asegúrate de que esta línea esté aquí
+    ->name('volunteer.submit');
 
 
 //Rutas Beneficiario

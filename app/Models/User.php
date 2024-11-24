@@ -49,4 +49,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    // En el modelo User (app/Models/User.php)
+public function volunteers()
+{
+    return $this->hasMany(Volunteer::class);
+}
+
 }

@@ -372,3 +372,33 @@
         });
     });
 </script>
+
+
+<script>
+    // Variable que Laravel pasa para verificar si el usuario está autenticado
+    const isAuthenticated = @json(auth()->check());
+
+    // Referencia al botón que abre el modal
+    const openVolunteerModalButton = document.getElementById('open-volunteer-modal');
+
+    // Escuchar el evento de clic
+    openVolunteerModalButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Evita que el enlace navegue
+
+        if (isAuthenticated) {
+            // Si está autenticado, mostrar el modal
+            document.getElementById('voluntario-modal').classList.remove('hidden');
+        } else {
+            // Si no está autenticado, redirigir al inicio de sesión
+            window.location.href = "{{ route('login') }}";
+        }
+    });
+
+    // Cerrar el modal al hacer clic fuera de él o en el botón de cerrar
+    document.addEventListener('click', function (event) {
+        const modal = document.getElementById('voluntario-modal');
+        if (event.target === modal || event.target.classList.contains('close-modal')) {
+            modal.classList.add('hidden');
+        }
+    });
+</script>
