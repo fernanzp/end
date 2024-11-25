@@ -24,7 +24,7 @@
 
 <script>
     document.getElementById('open-beneficiary-modal').addEventListener('click', () => {
-        // Realizar una solicitud AJAX para verificar si ya tiene fecha de nacimiento
+        // Realizar una solicitud AJAX para verificar si ya tiene un registro de beneficiario
         fetch("{{ route('check.beneficiary') }}", {
             method: 'GET',
             headers: {
@@ -34,16 +34,25 @@
         .then(response => response.json())
         .then(data => {
             if (data.exists) {
-                // Si ya existe fecha de nacimiento, mostramos el segundo modal
-                document.getElementById('additional-info-modal').classList.remove('hidden');
-                document.getElementById('modal-info').innerText = data.isAdult ? 
-                    'Información adicional (Adulto)' : 'Información adicional (Menor de Edad)';
-                
-                if (!data.isAdult) {
-                    document.getElementById('minor-fields').classList.remove('hidden');
+                // Si ya existe un registro de beneficiario, verificar si está completo
+                if (data.status === 'incomplete') {
+                    // Si el formulario está incompleto, mostramos el segundo modal
+                    document.getElementById('additional-info-modal').classList.remove('hidden');
+                    document.getElementById('modal-info').innerText = data.isAdult ? 
+                        'Información adicional (Adulto)' : 'Información adicional (Menor de Edad)';
+                    
+                    if (!data.isAdult) {
+                        document.getElementById('minor-fields').classList.remove('hidden');
+                    }
+                } else if (data.status === 'pending') {
+                    // Si la solicitud está pendiente
+                    alert(data.message);
+                } else if (data.status === 'approved') {
+                    // Si ya es beneficiario
+                    alert(data.message);
                 }
             } else {
-                // Si no existe fecha de nacimiento, mostramos el primer modal
+                // Si no existe un registro de beneficiario, mostramos el primer modal
                 document.getElementById('beneficiary-modal').classList.remove('hidden');
             }
         })

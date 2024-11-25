@@ -64,23 +64,46 @@ class BeneficiaryApplicationController extends Controller
     {
         // Buscar el beneficiario del usuario
         $beneficiary = Beneficiary::where('user_id', Auth::id())->first();
-
+    
         if ($beneficiary) {
+            // Verificar si el beneficiario ha completado el segundo formulario
+            $isFormComplete = $beneficiary->guardian_ine && $beneficiary->gender && $beneficiary->phone;
+    
             // Calcular la edad
             $age = \Carbon\Carbon::parse($beneficiary->birthdate)->age;
             $isAdult = $age >= 18;
-
-            // Guardar beneficiary_id en la sesión
-            session(['beneficiary_id' => $beneficiary->id]);
-
-            // Devolver respuesta JSON para indicar que ya existe el beneficiario y si es adulto o menor
-            return response()->json(['exists' => true, 'isAdult' => $isAdult]);
+    
+            // Si el formulario está completo, verificar el estado
+            if ($isFormComplete) {
+                if ($beneficiary->status == 2) {
+                    // Estado pendiente
+                    return response()->json([
+                        'exists' => true, 
+                        'status' => 'pending', 
+                        'message' => 'Su solicitud para ser beneficiario está pendiente.',
+                        'isAdult' => $isAdult
+                    ]);
+                } elseif ($beneficiary->status == 1) {
+                    // Estado aprobado
+                    return response()->json([
+                        'exists' => true, 
+                        'status' => 'approved', 
+                        'message' => 'Ya es beneficiario.',
+                        'isAdult' => $isAdult
+                    ]);
+                }
+            } else {
+                // Si el formulario no está completo, abrir el segundo modal
+                return response()->json([
+                    'exists' => true, 
+                    'status' => 'incomplete', 
+                    'message' => 'Por favor complete el segundo formulario para completar su solicitud.',
+                    'isAdult' => $isAdult
+                ]);
+            }
         }
-
-        // Si no existe un registro de beneficiario, limpiar la sesión para beneficiary_id
-        session()->forget('beneficiary_id');
-
-        // Devolver respuesta JSON
+    
+        // Si no existe un registro de beneficiario
         return response()->json(['exists' => false]);
     }
 }
