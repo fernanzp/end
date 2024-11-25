@@ -24,7 +24,6 @@
 
 <script>
     document.getElementById('open-beneficiary-modal').addEventListener('click', () => {
-        // Realizar una solicitud AJAX para verificar si ya tiene un registro de beneficiario
         fetch("{{ route('check.beneficiary') }}", {
             method: 'GET',
             headers: {
@@ -33,10 +32,12 @@
         })
         .then(response => response.json())
         .then(data => {
+            const alertContainer = document.getElementById('alert-container');
+            alertContainer.innerHTML = ''; // Limpiar alertas previas
+
             if (data.exists) {
-                // Si ya existe un registro de beneficiario, verificar si está completo
                 if (data.status === 'incomplete') {
-                    // Si el formulario está incompleto, mostramos el segundo modal
+                    // Si el formulario está incompleto, abrir el segundo modal
                     document.getElementById('additional-info-modal').classList.remove('hidden');
                     document.getElementById('modal-info').innerText = data.isAdult ? 
                         'Información adicional (Adulto)' : 'Información adicional (Menor de Edad)';
@@ -44,15 +45,26 @@
                     if (!data.isAdult) {
                         document.getElementById('minor-fields').classList.remove('hidden');
                     }
-                } else if (data.status === 'pending') {
-                    // Si la solicitud está pendiente
-                    alert(data.message);
-                } else if (data.status === 'approved') {
-                    // Si ya es beneficiario
-                    alert(data.message);
+                } else if (data.html) {
+                    // Si hay HTML (alerta para pendiente o aprobado), inyectarlo
+                    alertContainer.innerHTML = data.html;
+
+                    // Configurar cierre del modal
+                    const modal = document.getElementById('alert-modal');
+                    const closeModal = document.getElementById('close-modal');
+
+                    closeModal.addEventListener('click', () => {
+                        modal.remove();
+                    });
+
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.remove();
+                        }
+                    });
                 }
             } else {
-                // Si no existe un registro de beneficiario, mostramos el primer modal
+                // Si no existe beneficiario, abrir el primer modal
                 document.getElementById('beneficiary-modal').classList.remove('hidden');
             }
         })

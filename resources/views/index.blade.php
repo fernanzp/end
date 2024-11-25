@@ -211,7 +211,9 @@
             </a>
         </div>
     </div>
-    
+
+    <div id="alert-container"></div>
+
     <!-- Footer -->
     <x-footer />
     <x-volunteer_application />

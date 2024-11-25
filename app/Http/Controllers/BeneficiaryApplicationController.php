@@ -62,48 +62,46 @@ class BeneficiaryApplicationController extends Controller
 
     public function checkBeneficiary()
     {
-        // Buscar el beneficiario del usuario
         $beneficiary = Beneficiary::where('user_id', Auth::id())->first();
     
         if ($beneficiary) {
-            // Verificar si el beneficiario ha completado el segundo formulario
             $isFormComplete = $beneficiary->guardian_ine && $beneficiary->gender && $beneficiary->phone;
-    
-            // Calcular la edad
             $age = \Carbon\Carbon::parse($beneficiary->birthdate)->age;
             $isAdult = $age >= 18;
     
-            // Si el formulario está completo, verificar el estado
             if ($isFormComplete) {
                 if ($beneficiary->status == 2) {
-                    // Estado pendiente
-                    return response()->json([
-                        'exists' => true, 
-                        'status' => 'pending', 
-                        'message' => 'Su solicitud para ser beneficiario está pendiente.',
-                        'isAdult' => $isAdult
-                    ]);
+                    // Solicitud pendiente
+                    $html = view('components.alert', [
+                        'type' => 'info',
+                        'title' => 'Solicitud pendiente.',
+                        'message' => 'Hemos recibido su solicitud para ser beneficiario y está siendo procesada. Le notificaremos tan pronto como haya una resolución. Agradecemos su paciencia.',
+                        'showModal' => true,
+                    ])->render();
+    
+                    return response()->json(['exists' => true, 'status' => 'pending', 'html' => $html]);
                 } elseif ($beneficiary->status == 1) {
-                    // Estado aprobado
-                    return response()->json([
-                        'exists' => true, 
-                        'status' => 'approved', 
-                        'message' => 'Ya es beneficiario.',
-                        'isAdult' => $isAdult
-                    ]);
+                    // Solicitud aprobada
+                    $html = view('components.alert', [
+                        'type' => 'success',
+                        'title' => 'Ya es beneficiario.',
+                        'message' => 'Usted ya forma parte de nuestros beneficiarios. Le invitamos a revisar nuestros programas. Si tiene alguna duda, no dude en comunicarse con nuestros coordinadores.',
+                        'showModal' => true,
+                    ])->render();
+    
+                    return response()->json(['exists' => true, 'status' => 'approved', 'html' => $html]);
                 }
             } else {
-                // Si el formulario no está completo, abrir el segundo modal
+                // Formulario incompleto: abrir el segundo modal
                 return response()->json([
-                    'exists' => true, 
-                    'status' => 'incomplete', 
-                    'message' => 'Por favor complete el segundo formulario para completar su solicitud.',
-                    'isAdult' => $isAdult
+                    'exists' => true,
+                    'status' => 'incomplete',
+                    'isAdult' => $isAdult,
                 ]);
             }
         }
     
-        // Si no existe un registro de beneficiario
+        // Sin registro de beneficiario: abrir el primer modal
         return response()->json(['exists' => false]);
     }
 }
