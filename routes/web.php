@@ -68,6 +68,8 @@ Route::get('/google-auth/callback', [Login_registerController::class, 'googleLog
 Route::post('/beneficiaryapplication', [BeneficiaryApplicationController::class, 'store'])->middleware('auth')->name('beneficiary.store');
 // Ruta para guardar los demás datos del beneficiario
 Route::post('/beneficiary/update', [BeneficiaryApplicationController::class, 'update'])->name('beneficiary.update');
+// Ruta para verificar si el beneficiario ya ha ingresado su fecha de nacimiento
+Route::get('/check-beneficiary', [BeneficiaryApplicationController::class, 'checkBeneficiary'])->name('check.beneficiary');
 
 Route::get('/terms', function (){
     return view('terms');

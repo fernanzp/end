@@ -40,23 +40,28 @@
             <h3 class="text-customGreen font-semibold mb-4">Únete a Education Non Disparity</h3>
             <ul class="space-y-2">
                 <li>
-                    <button id="open-beneficiary-modal" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
-                        Solicitar ser beneficiario
-                    </button>
+                    @if(Auth::check())
+                        <button id="open-beneficiary-modal" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
+                            Solicitar ser beneficiario
+                        </button>
+                    @else
+                        <a href="{{ route('login') }}" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
+                            Solicitar ser beneficiario
+                        </a>
+                    @endif
                 </li>
                 <li>
-                            @if(Auth::check())
-                <!-- Solo se muestra el botón si el usuario está autenticado -->
-                <button id="open-volunteer-modal" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
-                    Solicitar ser voluntario
-                </button>
-            @else
-                <!-- Si no está autenticado, redirige al login -->
-                <a href="{{ route('login') }}" class="hover:text-gray-300">
-                    Solicitar ser voluntario
-                </a>
-            @endif
-
+                    @if(Auth::check())
+                        <!-- Solo se muestra el botón si el usuario está autenticado -->
+                        <button id="open-volunteer-modal" class="relative transition duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:text-gray-300">
+                            Solicitar ser voluntario
+                        </button>
+                    @else
+                        <!-- Si no está autenticado, redirige al login -->
+                        <a href="{{ route('login') }}" class="hover:text-gray-300">
+                            Solicitar ser voluntario
+                        </a>
+                    @endif
                 </li>
             </ul>
         </div>

@@ -1,25 +1,53 @@
 <!-- Modal para pedir la fecha de nacimiento del usuario -->
-<div id="beneficiary-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
-        <h2 class="text-lg font-bold mb-4">Fecha de nacimiento</h2>
+<div id="beneficiary-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden">
+    <div class="bg-customDarkGray w-1/4 rounded-lg shadow-lg p-6 h-3/8 overflow-y-auto">
+        <h2 class="merriweather-bold text-customGreen text-3xl font-bold mb-4 text-center">Solicita ser beneficiario</h2>
         <form method="POST" action="{{ route('beneficiary.store') }}">
             @csrf
+            <!-- Fecha de nacimiento -->
             <div class="mb-4">
-                <label for="birthdate" class="block text-sm font-medium text-gray-700">Fecha de nacimiento:</label>
-                <input type="date" id="birthdate" name="birthdate" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <label for="birthdate" class="block text-customGreen font-bold text-xl mb-1">Fecha de nacimiento:</label>
+                <input type="date" id="birthdate" name="birthdate" class="w-full bg-customLighterGray text-customBeige font-bold rounded-lg p-4 border border-transparent focus:border-customGreen focus:ring-0 focus:outline-none" required>
             </div>
-            <div class="flex justify-end">
-                <button type="button" id="close-beneficiary-modal" class="mr-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-lg">Cancelar</button>
-                <button type="submit" class="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg">Siguiente</button>
+            <!-- Botónes de Cancelar y siguiente -->
+            <div class="grid grid-cols-2 gap-4 mt-2">
+                <button type="button" id="close-beneficiary-modal" class="close-modal bg-transparent text-gray-500 font-bold py-2 px-4 rounded border-gray-500 border-4 hover:text-gray-400 hover:border-gray-400 transition-colors duration-300 ease-in-out">
+                    Cancelar
+                </button>
+                <button type="submit" class="bg-transparent text-customGreen font-bold py-2 px-4 rounded border-customGreen border-4 hover:text-customLighterGray hover:bg-customGreen transition-colors duration-300 ease-in-out">
+                    Siguiente
+                </button>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    // JavaScript para mostrar el primer modal para ingresar la fecha de nacimiento
     document.getElementById('open-beneficiary-modal').addEventListener('click', () => {
-        document.getElementById('beneficiary-modal').classList.remove('hidden');
+        // Realizar una solicitud AJAX para verificar si ya tiene fecha de nacimiento
+        fetch("{{ route('check.beneficiary') }}", {
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.exists) {
+                // Si ya existe fecha de nacimiento, mostramos el segundo modal
+                document.getElementById('additional-info-modal').classList.remove('hidden');
+                document.getElementById('modal-info').innerText = data.isAdult ? 
+                    'Información adicional (Adulto)' : 'Información adicional (Menor de Edad)';
+                
+                if (!data.isAdult) {
+                    document.getElementById('minor-fields').classList.remove('hidden');
+                }
+            } else {
+                // Si no existe fecha de nacimiento, mostramos el primer modal
+                document.getElementById('beneficiary-modal').classList.remove('hidden');
+            }
+        })
+        .catch(error => console.error('Error:', error));
     });
 
     document.getElementById('close-beneficiary-modal').addEventListener('click', () => {
@@ -28,53 +56,61 @@
 </script>
 
 <!-- Modal para capturar información adicional según la edad -->
-<div id="additional-info-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
-        <h2 id="modal-title" class="text-lg font-bold mb-4"></h2>
+<div id="additional-info-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden">
+    <div class="bg-customDarkGray w-1/3 rounded-lg shadow-lg p-6 h-4/5 overflow-y-auto">
+        <h2 class="merriweather-bold text-customGreen text-3xl font-bold mb-4 text-center">Solicita ser beneficiario</h2>
+        <p id="modal-info" class="text-customBeige text-sm"></p>
         <form method="POST" action="{{ route('beneficiary.update') }}" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="beneficiary_id" value="{{ session('beneficiary_id') }}">
             
+            <!-- Género -->
             <div class="mb-4">
-                <label for="gender" class="block text-sm font-medium text-gray-700">Género:</label>
-                <select id="gender" name="gender" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <label for="gender" class="block text-customGreen font-bold text-xl mb-1">Género:</label>
+                <select id="gender" name="gender" class="w-full bg-customLighterGray text-customBeige font-bold rounded-lg p-4">
                     <option value="male">Masculino</option>
                     <option value="female">Femenino</option>
                     <option value="other">Otro</option>
                 </select>
             </div>
 
+            <!-- Número telefónico -->
             <div class="mb-4">
-                <label for="phone" class="block text-sm font-medium text-gray-700">Teléfono:</label>
-                <input type="text" id="phone" name="phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <label for="phone" class="block text-customGreen font-bold text-xl mb-1">Número telefónico:</label>
+                <input type="tel" id="phone" name="phone" class="w-full bg-customLighterGray text-customBeige font-bold rounded-lg p-4 placeholder:text-customBeige border border-transparent focus:border-customGreen focus:ring-0 focus:outline-none" pattern="[0-9]{10}" placeholder="Ej: 3141557864" required>
             </div>
 
+            <!-- Nivel de educación -->
             <div class="mb-4">
-                <label for="education_level" class="block text-sm font-medium text-gray-700">Nivel de educación:</label>
-                <select id="education_level" name="education_level" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <option value="sineducaciónformal">Sin Educación Formal</option>
-                    <option value="primaria">Primaria</option>
-                    <option value="secundaria">Secundaria</option>
-                    <option value="preparatoria">Preparatoria</option>
-                    <option value="licenciatura">Licenciatura</option>
+                <label for="education_level" class="block text-customGreen font-bold text-xl mb-1">Nivel de educación:</label>
+                <select id="education_level" name="education_level" class="w-full bg-customLighterGray text-customBeige font-bold rounded-lg p-4" required>
+                    <option value="" disabled selected>Seleccione un nivel</option>
+                    <option value="sineducaciónformal">Sin educación formal</option>
+                    <option value="Primaria">Primaria</option>
+                    <option value="Secundaria">Secundaria</option>
+                    <option value="Preparatoria">Preparatoria</option>
+                    <option value="licenciatura">Educación superior</option>
                     <option value="other">Otro</option>
                 </select>
             </div>
 
+            <!-- Dirección -->
             <div class="mb-4">
-                <label for="address" class="block text-sm font-medium text-gray-700">Dirección:</label>
-                <input type="text" id="address" name="address" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <label for="address" class="block text-customGreen font-bold text-xl mb-1">Dirección:</label>
+                <input type="text" id="address" name="address" class="w-full bg-customLighterGray text-customBeige font-bold rounded-lg p-4 placeholder:text-customBeige border border-transparent focus:border-customGreen focus:ring-0 focus:outline-none" placeholder="Ingrese su dirección" required>
             </div>
 
             <!-- Campos adicionales para menores de edad -->
             <div id="minor-fields" class="hidden">
+                <!--Correo del tutor-->
                 <div class="mb-4">
-                    <label for="guardian_email" class="block text-sm font-medium text-gray-700">Correo del tutor:</label>
-                    <input type="email" id="guardian_email" name="guardian_email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <label for="guardian_email" class="block text-customGreen font-bold text-xl mb-1">Correo del tutor:</label>
+                    <input type="email" id="guardian_email" name="guardian_email" class="w-full bg-customLighterGray text-customBeige font-bold rounded-lg p-4 placeholder:text-customBeige border border-transparent focus:border-customGreen focus:ring-0 focus:outline-none">
                 </div>
+                <!--Parentesco con el tutor-->
                 <div class="mb-4">
-                    <label for="kinship" class="block text-sm font-medium text-gray-700">Parentesco:</label>
-                    <select id="kinship" name="kinship" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <label for="kinship" class="block text-customGreen font-bold text-xl mb-1">Parentesco:</label>
+                    <select id="kinship" name="kinship" class="w-full bg-customLighterGray text-customBeige font-bold rounded-lg p-4">
                         <option value="father">Padre</option>
                         <option value="mother">Madre</option>
                         <option value="tutor">Tutor</option>
@@ -83,31 +119,38 @@
                 </div>
             </div>
 
-            <!-- Campo para INE/DNI -->
-            <div class="mb-4">
-                <label for="guardian_ine" class="block text-sm font-medium text-gray-700">INE/DNI:</label>
-                <input type="file" id="guardian_ine" name="guardian_ine" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            <!-- Cargar INE/DNI -->
+            <div class="w-full mb-4">
+                <p class="block text-customGreen font-bold text-xl mb-1">INE/DNI:</p>
+                <input type="file" name="guardian_ine" id="guardian_ine" accept="image/*" class="hidden" onchange="updateFileNameb()" required>
+                <div onclick="document.getElementById('guardian_ine').click();" class="w-full cursor-pointer bg-customLighterGray text-customBeige font-bold rounded-lg p-4">
+                    <label for="guardian_ine" id="file_labelb" class="cursor-pointer">Selecciona un archivo</label>
+                </div>
             </div>
 
-            <div class="flex justify-end">
-                <button type="button" id="close-additional-info-modal" class="mr-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-lg">Cancelar</button>
-                <button type="submit" class="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg">Guardar</button>
+            <!-- Botónes de Cancelar y enviar -->
+            <div class="grid grid-cols-2 gap-4 mt-2">
+                <button type="button" id="close-additional-info-modal" class="close-modal bg-transparent text-gray-500 font-bold py-2 px-4 rounded border-gray-500 border-4 hover:text-gray-400 hover:border-gray-400 transition-colors duration-300 ease-in-out">
+                    Cancelar
+                </button>
+                <button type="submit" class="bg-transparent text-customGreen font-bold py-2 px-4 rounded border-customGreen border-4 hover:text-customLighterGray hover:bg-customGreen transition-colors duration-300 ease-in-out">
+                    Enviar
+                </button>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    // JavaScript para mostrar el segundo modal y mostrar los campos según la edad
     document.addEventListener('DOMContentLoaded', () => {
         const showModal = {{ session('showModal') ? 'true' : 'false' }};
         const isAdult = {{ session('isAdult') ? 'true' : 'false' }};
         const additionalModal = document.getElementById('additional-info-modal');
-        
-        // Mostrar el modal solo si se establece `showModal` en la sesión
+
+        // Mostrar el segundo modal si `showModal` está en la sesión
         if (showModal) {
             additionalModal.classList.remove('hidden');
-            document.getElementById('modal-title').innerText = isAdult ? 'Información adicional (Adulto)' : 'Información adicional (Menor de Edad)';
+            document.getElementById('modal-info').innerText = isAdult ? 'Información adicional (Adulto)' : 'Información adicional (Menor de Edad)';
             
             if (!isAdult) {
                 document.getElementById('minor-fields').classList.remove('hidden');
@@ -115,10 +158,23 @@
         }
     });
 
-    // Escuchar el botón para cerrar el modal y borrar la sesión
+    // Escuchar el botón para cerrar el modal
     document.getElementById('close-additional-info-modal').addEventListener('click', () => {
         document.getElementById('additional-info-modal').classList.add('hidden');
         // Eliminar la variable de sesión `showModal` para que el modal no aparezca tras recargar la página
         {{ session()->forget('showModal') }};
     });
+</script>
+
+<script>
+    function updateFileNameb() {
+        const input = document.getElementById('guardian_ine');
+        const label = document.getElementById('file_labelb');
+        
+        if (input.files && input.files[0]) {
+            label.textContent = input.files[0].name; // Cambia el texto al nombre del archivo
+        } else {
+            label.textContent = 'Selecciona un archivo'; // Por si se borra el archivo seleccionado
+        }
+    }
 </script>

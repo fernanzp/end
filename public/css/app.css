@@ -959,6 +959,10 @@ video {
   margin-right: 4rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .block {
   display: block;
 }
@@ -1108,6 +1112,10 @@ video {
 
 .h-96 {
   height: 24rem;
+}
+
+.h-1\/4 {
+  height: 25%;
 }
 
 .max-h-screen {
@@ -1747,6 +1755,18 @@ video {
 
 .bg-opacity-90 {
   --tw-bg-opacity: 0.9;
+}
+
+.bg-opacity-40 {
+  --tw-bg-opacity: 0.4;
+}
+
+.bg-opacity-30 {
+  --tw-bg-opacity: 0.3;
+}
+
+.bg-opacity-70 {
+  --tw-bg-opacity: 0.7;
 }
 
 .bg-gradient-to-b {
