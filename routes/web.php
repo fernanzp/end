@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BeneficiaryApplicationController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\UsersRequestController;
+use App\Http\Controllers\ConfigurationProgramsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,9 +92,7 @@ Route::get('/configuration/myaccount', [ProfileController::class, 'index'])->nam
 Route::post('/configuration/myaccount/update', [ProfileController::class, 'update'])->name('profile.update');
 Route::post('/configuration/myaccount/update-image', [ProfileController::class, 'updateImage'])->name('profile.updateImage');
 
-Route::get('/usuario/programas', function(){
-    return view('dashboard/programs_register');
-});
+Route::get('/configuration/programs', [ConfigurationProgramsController::class, 'index']);
 
 Route::get('/admin/gestion_de_usuarios', function(){
     return view('dashboard/user_management');
@@ -133,6 +132,4 @@ Route::get('/admin/asignación_de_recursos', function(){
 });
 
 // Ruta para procesar la solicitud de voluntariado
-Route::post('/volunteerapplication', [VolunteerApplicationController::class, 'submitApplication'])
-    ->middleware('auth')  // Asegúrate de que esta línea esté aquí
-    ->name('volunteer.submit');
+Route::post('/volunteer/submit', [VolunteerApplicationController::class, 'submitApplication'])->name('volunteer.submit');

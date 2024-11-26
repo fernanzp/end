@@ -16,34 +16,50 @@ class VolunteerApplicationController extends Controller
     }
 
     public function submitApplication(Request $request)
-{
-    // Validar los datos del formulario
-    $request->validate([
-        'birthdate' => 'required|date',
-        'gender' => 'required|string|in:Masculino,Femenino,Otro',
-        'phone' => 'required|regex:/^[0-9]{10}$/',
-        'education' => 'required|string|in:Sin educación formal,Primaria,Secundaria,Preparatoria,Educación superior,Otro',
-        'address' => 'required|string|max:255',
-        'ine_document' => 'required|file|mimes:jpg,jpeg,png|max:2048',
-    ]);
+    {
+        // Validar los datos del formulario
+        $request->validate([
+            'birthdate' => 'required|date',
+            'gender' => 'required|string|in:Masculino,Femenino,Otro',
+            'phone' => 'required|regex:/^[0-9]{10}$/',
+            'education' => 'required|string|in:Sin educación formal,Primaria,Secundaria,Preparatoria,Educación superior,Otro',
+            'address' => 'required|string|max:255',
+            'ine_document' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+        ]);
 
-    // Manejo del archivo de INE
-    $ineDocumentPath = 'uploads/ine_documents/' . time() . '_' . $request->file('ine_document')->getClientOriginalName();
-    $request->file('ine_document')->move(public_path('uploads/ine_documents'), $ineDocumentPath);
+        // Obtener el usuario autenticado
+        $user = Auth::user();
 
-    // Crear un nuevo registro de voluntario
-    $volunteer = new Volunteer();
-    $volunteer->user_id = auth()->user()->id;
-    $volunteer->birthdate = $request->birthdate;
-    $volunteer->gender = $request->gender;
-    $volunteer->phone = $request->phone;
-    $volunteer->education = $request->education;
-    $volunteer->address = $request->address;
-    $volunteer->ine_document = $ineDocumentPath;
-    $volunteer->status = 2; // Cambiar el valor predeterminado de 0 a 2
-    $volunteer->save();
+        if (!$user) {
+            return redirect()->back()->withErrors(['auth' => 'Debes iniciar sesión para enviar tu solicitud.']);
+        }
 
-    return redirect()->back()->with('success', 'Solicitud de voluntariado enviada correctamente.');
-}
+        // Verificar si el usuario ya tiene una solicitud
+        $existingApplication = Volunteer::where('user_id', $user->id)->first();
 
+        if ($existingApplication) {
+            return redirect()->back()->withErrors(['application' => 'Ya has enviado una solicitud de voluntariado.']);
+        }
+
+        // Procesar y mover el archivo INE/DNI
+        $ineDocument = $request->file('ine_document');
+        $fileName = Str::random(10) . '_' . $ineDocument->getClientOriginalName();
+        $filePath = 'img/ine_images/' . $fileName;
+
+        $ineDocument->move(public_path('img/ine_images'), $fileName);
+
+        // Crear un nuevo registro en la tabla 'volunteers'
+        Volunteer::create([
+            'user_id' => $user->id,
+            'birthdate' => $request->birthdate,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'education' => $request->education,
+            'address' => $request->address,
+            'ine_document' => $filePath,
+            'status' => 2, // Status inicial
+        ]);
+
+        return redirect('/')->with('message', 'Tu solicitud se ha enviado correctamente.');
+    }
 }

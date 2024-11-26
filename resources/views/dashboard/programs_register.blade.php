@@ -28,11 +28,11 @@
         
         <!-- Header -->
         <div class="flex items-center justify-between mb-4 mt-7">
-            <h1 class="text-2xl font-bold text-customGreen">Programas</h1>
+            <h1 class="merriweather-bold text-3xl text-customGreen font-bold mb-4">Programas</h1>
             <!-- <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 modal-link" data-modal-target="make_a_program-modal">
                 <i class='bx bx-plus w-4 h-4'></i> Crear programa
             </button> -->
-            <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 modal-link" data-modal-target="request_a_program-modal">
+            <button class="px-4 py-2 bg-customGreen text-white rounded-lg hover:bg-green-700 modal-link" data-modal-target="request_a_program-modal">
                 <i class='bx bx-plus w-4 h-4'></i> Solicitar programa
             </button>
         </div>
@@ -40,63 +40,36 @@
         
         <!-- Filters -->
         <div class="flex gap-4 mb-6">
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#1ab76a" style="transform: ;msFilter:;">
-                <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
-                </path>
-                <path d="M11.412 8.586c.379.38.588.882.588 1.414h2a3.977 3.977 0 0 0-1.174-2.828c-1.514-1.512-4.139-1.512-5.652 0l1.412 1.416c.76-.758 2.07-.756 2.826-.002z">
-                </path>
-            </svg> -->
-            <input type="text" placeholder="Buscar..." class="w-full p-3 border bg-customLighterGray border-none text-customBeige rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
-
-            <select class="p-3 border bg-customLighterGray border-none text-customBeige rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
-                <option value="" disabled selected>Fecha</option>
-                <option value="">Hoy</option>
-                <option value="">Esta semana</option>
-                <option value="">Este mes</option>
-            </select>
-            <select class="p-3 border bg-customLighterGray border-none text-customBeige rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
-                <option value="" disabled selected>Ordenar por...</option>
-                <option value="">Más inscritos</option>
-                <option value="">Menos inscritos</option>
-            </select>
-            <select class="p-3 border bg-customLighterGray border-none text-customBeige rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
-                <option value="" disabled selected>Tema</option>
-                <option value="">Educativo</option>
-                <option value="">Económico</option>
-                <option value="">Cultural</option>
-            </select>
+            <form method="GET" action="{{ url('/configuration/programs') }}" class="w-full flex gap-2">
+                <!-- Barra de búsqueda -->
+                <input type="text" name="search" placeholder="Buscar..." value="{{ request('search') }}" class="p-3 border bg-customLighterGray border-none text-customBeige rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 flex-1" onchange="this.form.submit()">
+        
+                <!-- Categoría -->
+                <select name="category" class="p-3 border bg-customLighterGray border-none text-customBeige rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600" onchange="this.form.submit()">
+                    <option value="" {{ request('category') ? '' : 'selected' }}>Todos</option>
+                    <option value="educativo" {{ request('category') == 'educativo' ? 'selected' : '' }}>Educativo</option>
+                    <option value="económico" {{ request('category') == 'económico' ? 'selected' : '' }}>Económico</option>
+                    <option value="caritativo" {{ request('category') == 'caritativo' ? 'selected' : '' }}>Caritativo</option>
+                    <option value="inclusivo" {{ request('category') == 'inclusivo' ? 'selected' : '' }}>Inclusivo</option>
+                    <option value="capacitación" {{ request('category') == 'capacitación' ? 'selected' : '' }}>Capacitación</option>
+                    <option value="otro" {{ request('category') == 'otro' ? 'selected' : '' }}>Otro</option>
+                </select>
+            </form>
         </div>
 
         <!-- Program List -->
         <div class="space-y-6 my-5">
-            <!-- Program Item -->
-            <div class="bg-customLighterGray border border-black rounded-lg p-4 flex gap-6 shadow">
-                <div class="w-2/3">
-                    <div class="flex items-center gap-2">
-                        <img src="default.jpg" alt="Foto de perfil" class="w-8 h-8 rounded-full">
-                        <div>
-                            <h2 class="text-lg text-customBeige font-semibold">Alexis Verduzco</h2>
-                            <p class="text-gray-500 text-sm">Coordinador</p>
-                        </div>
-                        <div class="ml-4">
-                            <span class="text-gray-500 ml-auto text-base text-left">15/09/2023</span>
-                        </div>
-                        <!-- Iconos de editar y eliminar -->
-                        <div class="flex gap-2 ml-4">
-                            <button class="text-gray-400 hover:text-gray-600 modal-link" data-modal-target="program_info-modal"><i class="fas fa-edit"></i></button>
-                            <button class="text-gray-400 hover:text-gray-600 modal-link" data-modal-target="delete_program-modal"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <div class="w-full mt-2">
-                        <h3 class="font-bold text-customBeige">Niños del futuro: Asistencia y protección para los más vulnerables</h3>
-                        <p class="text-customBeige text-sm mt-1">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro, esse ratione. Magnam, perferendis illum. Soluta veritatis cupiditate eius earum architecto nulla explicabo rem fugit iure fugiat! Cumque rem autem natus eligendi vitae, sunt praesentium rerum sed architecto adipisci reprehenderit error animi ea ut tempore. Quae, natus cupiditate iure fugit quasi recusandae ex esse pariatur repellat molestias necessitatibus voluptatum illo quia laboriosam voluptate doloribus fugiat vero architecto ipsum sequi facilis. Distinctio obcaecati suscipit nulla eligendi repellat unde soluta similique porro impedit iure doloremque rerum dolorum blanditiis facilis, necessitatibus vitae debitis! Non, cum reiciendis. Totam vero maiores odio. Sed ut fugit illum.
-                        </p>
-                        <button class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 mt-8">¡Quiero participar!</button>
-                    </div>
-                </div>
-                <div class="w-1/3 flex flex-col items-center justify-between">
-                    <img src="{{ asset('img/Fondo-index.jpg') }}" alt="Imagen de programa" class="w-full h-64 rounded-lg object-cover shadow-lg">
+            <!-- Grid for cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                @foreach($programs as $program)
+                    <x-program-card :program="$program" />
+                @endforeach
+            </div>
+
+            <!-- Paginación -->
+            <div class="mt-6 flex justify-center">
+                <div class="mt-6 flex justify-center">
+                    {{ $programs->links() }}
                 </div>
             </div>
         </div>

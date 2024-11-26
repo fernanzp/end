@@ -47,7 +47,7 @@
         <!--Programas-->
         @if(in_array(Auth::user()->rol, ['admin', 'coordinator', 'beneficiary', 'volunteer']))
             <li class="my-2 relative group">
-                <a href="{{ url('/usuario/programas') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+                <a href="{{ url('/configuration/programs') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
                     <i class='bx bx-calendar mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Programas
