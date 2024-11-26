@@ -47,6 +47,8 @@ class UsersRequestController extends Controller
 
     public function aprobarSolicitud(Request $request)
     {
+        $rolb = 'beneficiary';
+        $rolv = 'volunteer';
         $userId = $request->input('user_id');
         $rol = $request->input('rol'); // Obtiene el rol que se está solicitando (beneficiario o voluntario)
 
@@ -61,10 +63,15 @@ class UsersRequestController extends Controller
                 ->update(['status' => 1]);
         }
 
-        // Actualiza el campo rol en la tabla users
-        DB::table('users')
+        if ($rol == 'beneficiario') {
+            DB::table('users')
             ->where('id', $userId)
-            ->update(['rol' => $rol]);
+            ->update(['rol' => $rolb]);
+        } elseif ($rol == 'voluntario') {
+            DB::table('users')
+            ->where('id', $userId)
+            ->update(['rol' => $rolv]);
+        }
 
         return redirect()->back()->with('success', 'Solicitud aceptada y rol actualizado correctamente.');
     }
