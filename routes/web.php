@@ -105,10 +105,6 @@ Route::post('/aprobar-solicitud', [UsersRequestController::class, 'aprobarSolici
 Route::post('/rechazar-solicitud', [UsersRequestController::class, 'rechazarSolicitud'])->name('rechazar.solicitud');
 Route::get('/user/request-info/{user_id}/{rol}', [UsersRequestController::class, 'getRequestInfo'])->name('user.request-info');
 
-Route::get('/admin/solicitudes_de_usuarios', function(){
-    return view('dashboard/user_requests');
-});
-
 Route::get('/admin/solicitudes_de_programas', function(){
     return view('dashboard/program_requests');
 });
@@ -124,85 +120,19 @@ Route::get('usuario/chat/{user}', [ChatController::class, 'showChat'])->name('ch
 Route::post('usuario/chat/get-messages', [ChatController::class, 'getMessages'])->name('chat.getMessages');
 Route::post('usuario/chat/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
 
-Route::get('/admin/recursos', function(){
-    return view('dashboard.admin.recursos');
+Route::get('/admin/informes_de_donaciones', function(){
+    return view('dashboard/donation_reports');
 });
 
-Route::get('/admin/informes', function(){
-    return view('dashboard.admin.informes');
+Route::get('/admin/asignacion_de_usuarios', function(){
+    return view('dashboard/assigning_rol_to_requesting_user');
 });
 
-Route::get('/admin/comentarios', function(){
-    return view('dashboard.admin.feedback');
-});
-
-//Rutas del Coordinador
-
-Route::get('/coordinador/dashboard', function(){
-    return view('dashboard.coordinador.dashboard');
-});
-
-Route::get('/coordinador/perfil', function(){
-    return view('dashboard.coordinador.profile');
-});
-
-Route::get('/coordinador/actividades', function(){
-    return view('dashboard.coordinador.actividades');
-});
-
-Route::get('/coordinador/usuarios', function(){
-    return view('dashboard.coordinador.users');
-});
-
-Route::get('/coordinador/solicitudes', function(){
-    return view('dashboard.coordinador.solicitudes');
-});
-
-//Rutas del Voluntario
-
-Route::get('/voluntario/dashboard', function(){
-    return view('dashboard.voluntario.dashboard');
-});
-
-Route::get('/voluntario/perfil', function(){
-    return view('dashboard.voluntario.profile');
-});
-
-Route::get('/voluntario/actividades', function(){
-    return view('dashboard.voluntario.actividades');
-});
-
-Route::get('/voluntario/comentarios', function(){
-    return view('dashboard.voluntario.feedback');
+Route::get('/admin/asignación_de_recursos', function(){
+    return view('dashboard/resource_allocation');
 });
 
 // Ruta para procesar la solicitud de voluntariado
-
 Route::post('/volunteerapplication', [VolunteerApplicationController::class, 'submitApplication'])
     ->middleware('auth')  // Asegúrate de que esta línea esté aquí
     ->name('volunteer.submit');
-
-
-//Rutas Beneficiario
-
-Route::get('/beneficiario/dashboard', function(){
-    return view('dashboard.beneficiario.dashboard');
-});
-
-Route::get('/beneficiario/perfil', function(){
-    return view('dashboard.beneficiario.profile');
-});
-
-Route::get('/beneficiario/actividades', function(){
-    return view('dashboard.beneficiario.actividades');
-});
-
-Route::get('/beneficiario/comentarios', function(){
-    return view('dashboard.beneficiario.feedback');
-});
-
-//Rutas Usuario
-
-Route::get('/user/perfil', function(){
-    return view('dashboard.user.profile');
-});

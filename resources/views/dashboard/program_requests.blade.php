@@ -1,6 +1,7 @@
 <x-head />
 <body class=" bg-customDarkGray font-sans antialiased">
     <style>
+        <x-styles />
         .compressed .sidebar-text {
             display: none;
         }
@@ -25,7 +26,7 @@
         <x-navbar_configuration />
         
         <main class="mt-8">
-            <h2 class="text-2xl font-bold text-customGreen mb-4">Solicitudes de usuarios</h2>
+            <h2 class="text-2xl font-bold text-customGreen mb-4">Solicitudes de programas</h2>
             <div class="mt-8 bg-customLighterGray p-6 shadow rounded-lg">
                 <h3 class="text-lg font-semibold text-customGreen mb-4 text-center">Nuevos programas solicitado</h3>
                 <table class="w-full border-collapse text-center">
@@ -48,9 +49,9 @@
                             <td class="p-3"><span class="bg-gray-300 text-gray-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Pendiente</span></td>
                             <td class="p-3">
                                 <span style="color: #F5F5DC;">
-                                    <button class="modal-link" data-modal-target="acept_user-modal"><i class='bx bxs-user-check mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="cancel_user-modal"><i class='bx bxs-user-x mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="user_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
+                                    <button class="modal-link" data-modal-target="acept_program-modal"><i class='bx bx-check mx-2'></i></button>
+                                    <button class="modal-link" data-modal-target="cancel_program-modal"><i class='bx bx-x mx-2'></i></button>
+                                    <button class="modal-link" data-modal-target="program_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
                                 </span>
                             </td>
                         </tr>
@@ -62,9 +63,9 @@
                             <td class="p-3 "><span class="bg-green-300 text-green-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Aceptado</span></td>
                             <td class="p-3">
                                 <span style="color: #F5F5DC;">
-                                    <button class="modal-link" data-modal-target="acept_user-modal"><i class='bx bxs-user-check mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="cancel_user-modal"><i class='bx bxs-user-x mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="user_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
+                                <button class="modal-link" data-modal-target="acept_program-modal"><i class='bx bx-check mx-2'></i></button>
+                                <button class="modal-link" data-modal-target="cancel_program-modal"><i class='bx bx-x mx-2'></i></button>
+                                    <button class="modal-link" data-modal-target="program_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
                                 </span>
                             </td>
                         </tr>
@@ -76,9 +77,9 @@
                             <td class="p-3"><span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Rechazado</span></td>
                             <td class="p-3">
                                 <span style="color: #F5F5DC;">
-                                    <button class="modal-link" data-modal-target="acept_user-modal"><i class='bx bxs-user-check mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="cancel_user-modal"><i class='bx bxs-user-x mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="user_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
+                                <button class="modal-link" data-modal-target="acept_program-modal"><i class='bx bx-check mx-2'></i></button>
+                                <button class="modal-link" data-modal-target="cancel_program-modal"><i class='bx bx-x mx-2'></i></button>
+                                    <button class="modal-link" data-modal-target="program_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
                                 </span>
                             </td>
                         </tr>
@@ -89,8 +90,8 @@
     </section>
 
     <!-- Modal de botón para ver la información del programa -->
-    <div id="user_info-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <!-- <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
+    <div id="program_info-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
             <h2 class="text-xl font-semibold mb-4">Usuario</h2>
             <form id="edit-address-form" class="space-y-4">
                 <div>
@@ -141,11 +142,11 @@
             <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
                 <i class="fas fa-times"></i>
             </button>
-        </div> -->
+        </div>
     </div>
 
-        <!-- Modal para borrar un usuario -->
-    <div id="delete_user-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <!-- Modal para borrar un usuario -->
+    <div id="acept_program-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
             <h2 class="text-xl font-semibold mb-4">¿Deseas eliminar a este usuario?</h2>
             <p class="text-gray-700 mb-4">Aquí van las 2 opciones</p>
@@ -156,7 +157,7 @@
     </div>
 
     <!-- Modal para borrar un usuario -->
-    <div id="delete_user-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div id="cancel_program-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
             <h2 class="text-xl font-semibold mb-4">¿Deseas eliminar a este usuario?</h2>
             <p class="text-gray-700 mb-4">Aquí van las 2 opciones</p>
