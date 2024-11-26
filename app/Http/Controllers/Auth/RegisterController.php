@@ -79,4 +79,14 @@ class RegisterController extends Controller
         //Redirigir o mostrar un mensaje de éxito
         return redirect()->route('login')->with('success', 'Registro exitoso. Ahora puedes iniciar sesión.');
     }
+
+    public function terms()
+    {
+        return view('legal.terms'); // Vista con el contenido de Condiciones
+    }
+
+    public function privacyPolicy()
+    {
+        return view('legal.privacy'); // Vista con el contenido de la Política de Privacidad
+    }
 }

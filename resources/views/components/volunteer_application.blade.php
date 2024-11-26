@@ -69,35 +69,6 @@
     </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPhXNZwg1HmdhWo7ECKUe_4YY7vMcT7Q&libraries=places&callback=initAutocomplete" async defer></script>
-
-<script>
-    let autocomplete;
-
-    function initAutocomplete() {
-        // Se obtiene el campo de entrada de la dirección
-        const input = document.getElementById('address');
-        
-        // Crear un objeto de autocompletado asociado al campo de entrada
-        autocomplete = new google.maps.places.Autocomplete(input, {
-            types: ['geocode'], // Solo permitir direcciones
-            componentRestrictions: { country: 'mx' } // Restringir a México
-        });
-
-        // Opcional: Maneja el evento cuando el usuario selecciona una dirección
-        autocomplete.addListener('place_changed', function() {
-            const place = autocomplete.getPlace();
-            if (place.geometry) {
-                // Aquí puedes manejar la información de la dirección seleccionada
-                console.log('Dirección seleccionada:', place.formatted_address);
-                // Si deseas hacer algo con el lugar seleccionado, como autocompletar otros campos, puedes hacerlo aquí
-            } else {
-                console.log('No se encontró información para la dirección');
-            }
-        });
-    }
-</script>
-
 <script>
     // Selecciona el botón y el modal
     const openModalButton = document.getElementById('open-volunteer-modal');

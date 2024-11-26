@@ -69,7 +69,6 @@
         <!-- Información de contacto -->
         <div>
             <h3 class="text-customGreen font-semibold mb-4">Información de contacto</h3>
-            <p>Education Non-Disparity</p>
             <p>Correo: info@EducationNon-Disparity.org</p>
             <p>Tel: +54 91 123 4567</p>
             <p>Horario: Lunes a Viernes, 9:00 A.M - 18:00 P.M</p>

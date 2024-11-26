@@ -119,11 +119,11 @@
                     <input id="lastname" type="text" name="last_name" value="{{ old('last_name') }}" required class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent">
                     <label for="lastname" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Apellidos</label>
                 </div>
-                <!--Imagen de perfil-->
+                <!--Imagen de perfil
                 <div class="form-group">
                     <label for="profile_img">Sube tu foto de perfil</label>
                     <input type="file" name="profile_img" id="profile_img" class="form-control" accept="image/*">
-                </div>
+                </div>-->
                 <!--Contraseña-->
                 <div class="relative my-6 w-full">
                     <div class="border border-transparent rounded-md overflow-hidden focus-within:border-customGreen">
@@ -148,9 +148,13 @@
 
                 <div class="relative my-6 w-full text-customBeige">
                     <div class="flex items-center">
-                        <!--Checkbox para aceptar las condiciones y políticas de privacidad-->
+                        <!-- Checkbox para aceptar las condiciones y políticas de privacidad -->
                         <input type="checkbox" id="accept-terms" class="" required>
-                        <p class="text-sm ml-2">He leído y acepto las <a href="#" id="terms-link" class="text-customGreen">Condiciones</a> y la <a href="#" id="privacy-link" class="text-customGreen">Política de privacidad</a>.</p>
+                        <p class="text-sm ml-2">
+                            He leído y acepto las 
+                            <a href="#" id="terms-link" class="text-customGreen">Condiciones</a> y la 
+                            <a href="#" id="privacy-link" class="text-customGreen">Política de privacidad</a>.
+                        </p>
                     </div>
                 </div>
                 
@@ -162,8 +166,7 @@
         </div>
     </div>
 
-    @include('modal')
-
+    <x-legal />
 
     <script>
         // Elementos
@@ -263,37 +266,119 @@
     </script>
 
     <script>
-        // Abre el modal al hacer clic en Condiciones o Política de Privacidad
+        // Abre el modal y cambia su contenido dinámicamente
         document.getElementById('terms-link').addEventListener('click', function(e) {
-            e.preventDefault();  // Prevenir la acción predeterminada del enlace
-            openModal('Condiciones', '/terms');  // Solicitar la vista de Condiciones
+            e.preventDefault(); // Prevenir el comportamiento predeterminado
+            openModal('Condiciones', `
+            <p>
+            1. Introducción Bienvenido a la plataforma de la ONG. Estos Términos y Condiciones rigen el uso de esta plataforma y de los servicios ofrecidos. Al registrarse y utilizar esta plataforma, el usuario acepta cumplir con estos términos y condiciones. Si no está de acuerdo, se le solicita que no utilice la plataforma.
+            </p>
+            <p>2. Descripción de los Servicios La plataforma permite a los usuarios participar en los programas de la ONG, gestionar sus donaciones, ofrecerse como voluntarios, y obtener información sobre las actividades de la organización. La ONG se reserva el derecho de modificar o descontinuar los servicios en cualquier momento sin previo aviso.</p>
+            <p>3 .Elegibilidad Para registrarse en la plataforma, los usuarios deben tener al menos 18 años. Los menores de edad pueden registrarse únicamente con la aprobación y supervisión de un tutor legal, quien proporcionará la información necesaria y se responsabilizará por el uso de la plataforma por parte del menor.</p>
+            <p>4. Registro y Cuenta del Usuario
+
+                Al registrarse, el usuario se compromete a proporcionar información precisa, completa y actualizada.
+                El usuario es responsable de mantener la confidencialidad de su cuenta y de su contraseña, y acepta notificar a la ONG sobre cualquier acceso no autorizado.
+                La ONG no se hace responsable por pérdidas o daños derivados del uso no autorizado de la cuenta.</p>
+            <p>5. Uso Permitido El usuario acepta utilizar la plataforma únicamente para los fines permitidos por estos términos, las políticas de la ONG y la legislación aplicable. Está prohibido:
+
+                Usar la plataforma para fines ilegales o no autorizados.
+                Acceder, interferir o intentar dañar los sistemas de la plataforma mediante virus, hacking u otros métodos.
+                Crear múltiples cuentas o proporcionar información falsa.</p>
+            <p>
+                6. Donaciones y Transacciones La plataforma permite realizar donaciones para apoyar los programas de la ONG. Al hacer una donación, el usuario acepta que:
+                
+                Las donaciones realizadas son finales y no reembolsables, salvo en circunstancias excepcionales a discreción de la ONG.
+                La ONG utiliza las donaciones de acuerdo con sus fines y objetivos, aunque se esfuerza por respetar las preferencias de los donantes cuando sea posible.
+                </p>
+            <p>7. Participación en Programas de Voluntariado Los usuarios que se inscriban como voluntarios deben cumplir con las políticas de conducta y los requisitos específicos de cada programa. La ONG se reserva el derecho de rechazar o cancelar la participación de cualquier usuario que no cumpla con estas políticas.
+            </p>
+            <p>8. Privacidad y Protección de Datos La ONG se compromete a proteger los datos personales de los usuarios conforme a la Política de Privacidad, que es parte de estos términos. Al registrarse en la plataforma, el usuario acepta el tratamiento de sus datos según lo dispuesto en dicha política.</p>
+            <p>9. Propiedad Intelectual Todo el contenido de la plataforma, incluidos textos, gráficos, logotipos, imágenes y software, es propiedad de la ONG o de sus licenciantes, y está protegido por las leyes de propiedad intelectual. Se prohíbe el uso, reproducción o distribución no autorizada de cualquier contenido de la plataforma.</p>
+            <p>10. Limitación de Responsabilidad La ONG no será responsable de:
+
+                Daños directos, indirectos, incidentales o consecuentes derivados del uso o incapacidad de uso de la plataforma.
+                Cualquier fallo o interrupción en el funcionamiento de la plataforma, pérdida de datos o acceso no autorizado.
+                La ONG se esfuerza por mantener la plataforma segura y funcional, pero no garantiza que esté libre de errores, virus u otros elementos perjudiciales.</p>
+            <p>11. Modificaciones de los Términos y Condiciones La ONG se reserva el derecho de modificar estos Términos y Condiciones en cualquier momento. Las modificaciones serán efectivas desde su publicación en la plataforma. Se recomienda a los usuarios revisar los términos regularmente.</p>
+            <p>12. Terminación del Acceso La ONG se reserva el derecho de suspender o cancelar el acceso del usuario a la plataforma si considera que ha violado estos Términos y Condiciones o cualquier otra política de la organización.</p>
+            <p>
+                13. Ley Aplicable y Jurisdicción Estos Términos y Condiciones se rigen por las leyes del país en el que está registrada la ONG. Cualquier disputa que surja en relación con estos términos será resuelta en los tribunales competentes de dicho país.</p>
+            <p>14. Contacto Si tienes alguna pregunta sobre estos Términos y Condiciones, puedes ponerte en contacto con nosotros a través de:
+
+                Correo electrónico: [info@EducationNon-Disparity.org]
+                Teléfono: [+54 91 123 4567]
+            </p>
+            `);
         });
-        
+
         document.getElementById('privacy-link').addEventListener('click', function(e) {
-            e.preventDefault();  // Prevenir la acción predeterminada del enlace
-            openModal('Política de Privacidad', '/privacy-policy');  // Solicitar la vista de Política de Privacidad
+            e.preventDefault(); // Prevenir el comportamiento predeterminado
+            openModal('Política de Privacidad', `
+            <p>1. Introducción
+
+                        Esta Política de Privacidad describe cómo nuestra organización recopila, utiliza y protege la información personal de los usuarios de nuestra plataforma. Nos comprometemos a respetar y proteger la privacidad de nuestros usuarios de acuerdo con las leyes y regulaciones aplicables.</p>
+                    <p>
+                        2. Información que Recopilamos
+                        
+                        Recopilamos distintos tipos de información de los usuarios para proporcionar y mejorar nuestros servicios. La información puede incluir:
+                        
+                        Información de Identificación Personal (IIP): nombre, dirección de correo electrónico, número de teléfono, dirección física, fecha de nacimiento y otros datos necesarios para el registro y la participación en los programas.
+                        Información de Donación: historial de donaciones, montos donados y métodos de pago utilizados.
+                        Información de Voluntariado: datos relacionados con las actividades voluntarias, intereses y disponibilidad.
+                        Datos de Navegación: dirección IP, tipo de navegador, tiempo de acceso y páginas visitadas para análisis de uso de la plataforma.</p>
+                    <p>3. Uso de la Información
+
+                        Utilizamos la información recopilada para los siguientes fines:
+                        
+                        Proveer Servicios: procesar registros, administrar cuentas de usuario y proporcionar acceso a los programas educativos y de ayuda.
+                        Mejorar la Plataforma: analizar el uso de la plataforma para mejorar nuestros servicios y la experiencia del usuario.
+                        Comunicación: enviar notificaciones, actualizaciones, boletines y otros mensajes relevantes para los usuarios.
+                        Cumplimiento Legal: cumplir con las leyes y regulaciones aplicables, así como proteger nuestros derechos legales y los de nuestros usuarios.</p>
+                    <p>4. Compartición de la Información
+
+                        Solo compartimos información personal en las siguientes circunstancias:
+                        
+                        Proveedores de Servicios: con terceros que ayudan a procesar pagos, realizar análisis y otros servicios necesarios para el funcionamiento de la plataforma.
+                        Cumplimiento Legal: cuando sea necesario para cumplir con la ley, responder a procesos legales o proteger los derechos y la seguridad de la organización o de nuestros usuarios.
+                        Con Consentimiento del Usuario: cuando los usuarios nos otorguen permiso explícito para compartir su información.</p>
+                    <p>5. Retención de la Información
+
+                        Conservaremos la información personal de los usuarios durante el tiempo que sea necesario para cumplir con los fines descritos en esta política, salvo que la ley exija o permita un período de retención más largo.</p>
+                    <p>6. Derechos de los Usuarios
+
+                        Los usuarios tienen derecho a acceder, rectificar o eliminar su información personal. También pueden oponerse al procesamiento de sus datos en ciertos casos. Para ejercer estos derechos, los usuarios pueden contactarnos a través de la información de contacto proporcionada en nuestra plataforma.</p>
+                    <p>7. Seguridad de la Información
+
+                        Implementamos medidas de seguridad razonables para proteger la información personal contra el acceso no autorizado, la alteración y la divulgación. Sin embargo, ningún sistema de seguridad es infalible, y no podemos garantizar la seguridad absoluta de los datos.</p>
+                    <p>8. Privacidad de los Menores de Edad
+
+                        Nuestra plataforma no está dirigida a menores de edad sin el consentimiento de un tutor legal. Los usuarios menores de edad deben contar con el consentimiento de sus padres o tutores para utilizar nuestros servicios.</p>
+                    <p>9. Cambios en la Política de Privacidad
+
+                        Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier momento. Notificaremos a los usuarios sobre cualquier cambio importante y actualizaremos la fecha de la última modificación al final de este documento.</p>
+                    <p>
+                        10. Contacto
+                        
+                        Si tienes preguntas o inquietudes sobre esta Política de Privacidad, puedes ponerte en contacto con nosotros a través de los canales de soporte indicados en nuestra plataforma.
+                        
+                        Correo electrónico: [info@EducationNon-Disparity.org]
+                        Teléfono: [+54 91 123 4567]
+                        Dirección: [Carretera Manzanillo-Cihuatlan Km. 20, 28860 Manzanillo, Col.]</p>
+                    <p>11. Aceptación de la Política de Privacidad Al utilizar la plataforma, el usuario reconoce haber leído y comprendido esta Política de Privacidad y acepta la recopilación, uso y almacenamiento de su información personal conforme a los términos aquí expuestos.</p>
+            `);
         });
-        
-        // Función para abrir el modal y actualizar el contenido
-        function openModal(title, url) {
-            // Cambiar el título del modal
-            document.getElementById('modal-title').innerText = title;
-        
-            // Usar AJAX para cargar el contenido de la vista
-            fetch(url)
-                .then(response => response.text())  // Obtener el contenido HTML
-                .then(content => {
-                    document.getElementById('modal-content').innerHTML = content;  // Actualizar el contenido del modal
-                    document.getElementById('terms-modal').classList.remove('hidden');  // Mostrar el modal
-                })
-                .catch(error => {
-                    console.error('Error al cargar el contenido:', error);
-                });
+
+        // Función para abrir el modal con contenido dinámico
+        function openModal(title, content) {
+            document.getElementById('modal-title').innerText = title; // Cambiar el título
+            document.getElementById('modal-content').innerHTML = content; // Cambiar el contenido
+            document.getElementById('terms-modal').classList.remove('hidden'); // Mostrar el modal
         }
-        
+
         // Cerrar el modal
         document.getElementById('close-modal').addEventListener('click', function() {
-            document.getElementById('terms-modal').classList.add('hidden');  // Ocultar el modal
+            document.getElementById('terms-modal').classList.add('hidden'); // Ocultar el modal
         });
     </script>
 

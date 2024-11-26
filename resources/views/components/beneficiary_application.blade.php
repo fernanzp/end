@@ -117,8 +117,8 @@
 
             <!-- Dirección -->
             <div class="mb-4">
-                <label for="address" class="block text-customGreen font-bold text-xl mb-1">Dirección:</label>
-                <input type="text" id="address" name="address" class="w-full bg-customLighterGray text-customBeige font-bold rounded-lg p-4 placeholder:text-customBeige border border-transparent focus:border-customGreen focus:ring-0 focus:outline-none" placeholder="Ingrese su dirección" required>
+                <label for="addressb" class="block text-customGreen font-bold text-xl mb-1">Dirección:</label>
+                <input type="text" id="addressb" name="address" class="w-full bg-customLighterGray text-customBeige font-bold rounded-lg p-4 placeholder:text-customBeige border border-transparent focus:border-customGreen focus:ring-0 focus:outline-none" placeholder="Ingrese su dirección" required>
             </div>
 
             <!-- Campos adicionales para menores de edad -->
@@ -197,5 +197,33 @@
         } else {
             label.textContent = 'Selecciona un archivo'; // Por si se borra el archivo seleccionado
         }
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPhXNZwg1HmdhWo7ECKUe_4YY7vMcT7Q&libraries=places&callback=initAutocomplete" async defer></script>
+
+<script>
+    function initAutocomplete() {
+        // Obtén todos los campos de entrada que usarán autocompletado
+        const inputs = document.querySelectorAll('[id^="address"]'); // Selecciona todos los inputs con id que empiezan con "address"
+
+        // Itera sobre cada input y crea una instancia de Autocomplete
+        inputs.forEach(input => {
+            const autocomplete = new google.maps.places.Autocomplete(input, {
+                types: ['geocode'], // Solo permitir direcciones
+                componentRestrictions: { country: 'mx' } // Restringir a México
+            });
+
+            // Agrega un listener para manejar el evento 'place_changed'
+            autocomplete.addListener('place_changed', function () {
+                const place = autocomplete.getPlace();
+                if (place.geometry) {
+                    // Aquí puedes manejar la información de la dirección seleccionada
+                    console.log('Dirección seleccionada para:', input.id, place.formatted_address);
+                } else {
+                    console.log('No se encontró información para la dirección');
+                }
+            });
+        });
     }
 </script>
