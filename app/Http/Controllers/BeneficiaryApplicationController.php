@@ -51,12 +51,28 @@ class BeneficiaryApplicationController extends Controller
     public function update(Request $request)
     {
         $beneficiary = Beneficiary::findOrFail($request->beneficiary_id);
-
-        // Actualizar los datos adicionales
+    
+        // Verificar si se subió un archivo
+        if ($request->hasFile('guardian_ine') && $request->file('guardian_ine')->isValid()) {
+            // Obtener el archivo
+            $file = $request->file('guardian_ine');
+            
+            // Generar un nombre único para el archivo (por ejemplo, basado en el timestamp y el nombre original)
+            $fileName = time() . '_' . $file->getClientOriginalName();
+    
+            // Mover el archivo a la carpeta "public/img/ine_images"
+            $file->move(public_path('img/ine_images'), $fileName);
+    
+            // Guardar la ruta del archivo en la base de datos
+            $beneficiary->guardian_ine = 'img/ine_images/' . $fileName;
+        }
+    
+        // Actualizar otros datos
         $beneficiary->update($request->only([
-            'gender', 'phone', 'education_level', 'address', 'guardian_email', 'guardian_ine', 'kinship'
+            'gender', 'phone', 'education_level', 'address', 'guardian_email', 'kinship'
         ]));
-
+    
+        // Redirigir con un mensaje de éxito
         return redirect()->back()->with('success', 'Datos adicionales guardados exitosamente.');
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\AdministrationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BeneficiaryApplicationController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\UsersRequestController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -97,6 +98,12 @@ Route::get('/usuario/programas', function(){
 Route::get('/admin/gestion_de_usuarios', function(){
     return view('dashboard/user_management');
 });
+
+//Rutas para aceptar, rechazar o ver la información de las solicitudes de usuarios
+Route::get('/usersrequests', [UsersRequestController::class, 'index'])->name('requests.index');
+Route::post('/aprobar-solicitud', [UsersRequestController::class, 'aprobarSolicitud'])->name('aprobar.solicitud');
+Route::post('/rechazar-solicitud', [UsersRequestController::class, 'rechazarSolicitud'])->name('rechazar.solicitud');
+Route::get('/user/request-info/{user_id}/{rol}', [UsersRequestController::class, 'getRequestInfo'])->name('user.request-info');
 
 Route::get('/admin/solicitudes_de_usuarios', function(){
     return view('dashboard/user_requests');

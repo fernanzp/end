@@ -75,7 +75,7 @@
         <!--Solicitudes de usuarios-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
             <li class="my-2 relative group">
-                <a href="{{ url('/admin/solicitudes_de_usuarios') }}" class="flex items-center text-white py-2 hover:bg-gray-700">
+                <a href="{{ url('/usersrequests') }}" class="flex items-center text-white py-2 hover:bg-gray-700">
                     <i class='bx bxs-user-badge mr-4'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Solicitudes de usuarios

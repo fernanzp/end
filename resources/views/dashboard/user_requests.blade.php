@@ -1,6 +1,8 @@
 <x-head />
 <body class=" bg-customDarkGray font-sans antialiased">
     <style>
+        <x-styles />
+
         .compressed .sidebar-text {
             display: none;
         }
@@ -25,59 +27,45 @@
         <x-navbar_configuration />
         
         <main class="mt-8">
-            <h2 class="text-2xl font-bold text-customGreen mb-4">Solicitudes de usuarios</h2>
+            <h2 class="merriweather-bold text-3xl text-customGreen font-bold mb-4">Solicitudes de usuarios</h2>
             <div class="mt-8 bg-customLighterGray p-6 shadow rounded-lg">
-                <h3 class="text-lg font-semibold text-customGreen mb-4 text-center">Usuarios</h3>
                 <table class="w-full border-collapse text-center">
                     <thead>
                         <tr class="bg-customDarkGray">
-                            <th class="p-3 text-customBeige ">Nombre</th>
+                            <th class="p-3 text-customBeige">Correo</th>
                             <th class="p-3 text-customBeige">Rol solicitado</th>
                             <th class="p-3 text-customBeige">Fecha de solicitud</th>
-                            <!-- <th class="p-3">Información</th> -->
-                            <th class="p-3 text-customBeige">CRUD</th>
+                            <th class="p-3 text-customBeige">Información</th>
+                            <th class="p-3 text-customBeige">Solicitud</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Derick Fernandez</span></td>
-                            <td class="p-3 text-customBeige">Voluntario</td>
-                            <td class="p-3 text-customBeige">01-10-2024</td>
-                            <!-- <td class="p-3"><span class="bg-green-300 text-green-700 py-1 px-3 rounded-full">Activo</span></td> -->
-                            <td class="p-3">
-                                <span style="color: #F5F5DC;">
-                                    <button class="modal-link" data-modal-target="acept_user-modal"><i class='bx bxs-user-check mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="cancel_user-modal"><i class='bx bxs-user-x mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="user_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Papu Fer</span></td>
-                            <td class="p-3 text-customBeige">Beneficiario</td>
-                            <td class="p-3 text-customBeige">05-09-2024</td>
-                            <!-- <td class="p-3"><span class="bg-red-300 text-red-700 py-1 px-3 rounded-full">Inactivo</span></td> -->
-                            <td class="p-3">
-                                <span style="color: #F5F5DC;">
-                                    <button class="modal-link" data-modal-target="acept_user-modal"><i class='bx bxs-user-check mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="cancel_user-modal"><i class='bx bxs-user-x mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="user_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-black bg-customLightGray">
-                            <td class="p-3 text-customBeige"><span>Papu Hector</span></td>
-                            <td class="p-3 text-customBeige">Beneficiario</td>
-                            <td class="p-3 text-customBeige">01-07-2024</td>
-                            <!-- <td class="p-3"><span class="bg-gray-300 text-gray-700 py-1 px-3 rounded-full">Desactivado</span></td> -->
-                            <td class="p-3">
-                                <span style="color: #F5F5DC;">
-                                    <button class="modal-link" data-modal-target="acept_user-modal"><i class='bx bxs-user-check mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="cancel_user-modal"><i class='bx bxs-user-x mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="user_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
-                                </span>
-                            </td>
-                        </tr>
+                        @forelse ($requests as $request)
+                            <tr class="border-b border-black bg-customLightGray">
+                                <td class="p-3 text-customBeige">{{ $request->email }}</td>
+                                <td class="p-3" style="color: {{ $request->rol == 'Voluntario' ? '#4CAF50' : '#FF8C00' }};">
+                                    {{ $request->rol }}
+                                </td>
+                                <td class="p-3 text-customBeige">{{ \Carbon\Carbon::parse($request->created_at)->format('d-m-Y') }}</td>
+                                <td class="p-3 text-center align-middle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="cursor-pointer w-6 h-6 fill-[#4E97D1] mx-auto" onclick="openInfoModal({{ $request->user_id }}, '{{ $request->rol }}')">
+                                        <path d="M288 80c-65.2 0-118.8 29.6-159.9 67.7C89.6 183.5 63 226 49.4 256c13.6 30 40.2 72.5 78.6 108.3C169.2 402.4 222.8 432 288 432s118.8-29.6 159.9-67.7C486.4 328.5 513 286 526.6 256c-13.6-30-40.2-72.5-78.6-108.3C406.8 109.6 353.2 80 288 80zM95.4 112.6C142.5 68.8 207.2 32 288 32s145.5 36.8 192.6 80.6c46.8 43.5 78.1 95.4 93 131.1c3.3 7.9 3.3 16.7 0 24.6c-14.9 35.7-46.2 87.7-93 131.1C433.5 443.2 368.8 480 288 480s-145.5-36.8-192.6-80.6C48.6 356 17.3 304 2.5 268.3c-3.3-7.9-3.3-16.7 0-24.6C17.3 208 48.6 156 95.4 112.6zM288 336c44.2 0 80-35.8 80-80s-35.8-80-80-80c-.7 0-1.3 0-2 0c1.3 5.1 2 10.5 2 16c0 35.3-28.7 64-64 64c-5.5 0-10.9-.7-16-2c0 .7 0 1.3 0 2c0 44.2 35.8 80 80 80zm0-208a128 128 0 1 1 0 256 128 128 0 1 1 0-256z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3 flex justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" onclick="openAcceptModal({{ $request->user_id }}, '{{ $request->rol }}')" class="cursor-pointer w-6 h-6 fill-customGreen mx-4">
+                                        <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" onclick="openDeclineModal({{ $request->user_id }}, '{{ $request->rol }}')" class="cursor-pointer w-6 h-6 fill-[#FF0000] mr-4">
+                                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                                    </svg>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="p-3 text-customBeige">No hay solicitudes.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -162,6 +150,77 @@
         </div>
     </div>
 
+    <!-- Modal para ver la información de la solicitud -->
+    <div id="infoModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+        <div class="bg-customDarkGray p-6 rounded-lg shadow-lg w-96 relative">
+            <!-- Botón para cerrar el modal -->
+            <button onclick="closeInfoModal()" class="absolute top-2 right-4 text-white font-bold text-xl">×</button>
+
+            <!-- Contenido del modal -->
+            <h2 class="text-lg font-bold text-customGreen mb-2">Información de la solicitud</h2>
+            <p class="text-customBeige font-semibold mb-4">Fecha de nacimiento: <span id="modalBirthdate" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Nivel de educación: <span id="modalEducation" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Dirección: <span id="modalAddress" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Teléfono: <span id="modalPhone" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-2">INE/Guardian INE:</p>
+            <img id="modalINEImage" src="" alt="INE/DNI" class="w-full h-auto rounded shadow-md">
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para aceptar una solicitud -->
+    <div id="acceptModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+        <div class="bg-customDarkGray p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-lg font-bold text-customGreen">Confirmación</h2>
+            <p class="mt-2 text-customBeige">
+                ¿Está seguro de aceptar al usuario como beneficiario o voluntario? Por favor, confirme que ha verificado los datos del usuario.
+            </p>
+            <form method="POST" action="{{ route('aprobar.solicitud') }}">
+                @csrf
+                <input type="hidden" name="user_id" id="acceptUserId">
+                <input type="hidden" name="rol" id="acceptRol">
+                <!-- Botónes de Cancelar y Aceptar -->
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <button type="button" onclick="document.getElementById('acceptModal').classList.add('hidden')" 
+                            class="close-modal bg-transparent text-gray-500 font-bold py-2 px-4 rounded border-gray-500 border-4 hover:text-gray-400 hover:border-gray-400 transition-colors duration-300 ease-in-out">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="bg-transparent text-customGreen font-bold py-2 px-4 rounded border-customGreen border-4 hover:text-customLighterGray hover:bg-customGreen transition-colors duration-300 ease-in-out">
+                        Aceptar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para rechazar una solicitud -->
+    <div id="declineModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+        <div class="bg-customDarkGray p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-lg font-bold text-[#FF0000]">Rechazar Solicitud</h2>
+            <p class="mt-2 text-customBeige">
+                ¿Está seguro de rechazar la solicitud del usuario para ser beneficiario o voluntario? Por favor, confirme que ha revisado los datos del usuario.
+            </p>
+            <form method="POST" action="{{ route('rechazar.solicitud') }}">
+                @csrf
+                <input type="hidden" name="user_id" id="declineUserId">
+                <input type="hidden" name="rol" id="declineRol">
+                <!-- Botónes de Cancelar y Rechazar -->
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <button type="button" onclick="document.getElementById('declineModal').classList.add('hidden')" 
+                            class="close-modal bg-transparent text-gray-500 font-bold py-2 px-4 rounded border-gray-500 border-4 hover:text-gray-400 hover:border-gray-400 transition-colors duration-300 ease-in-out">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="bg-transparent text-[#FF0000] font-bold py-2 px-4 rounded border-[#FF0000] border-4 hover:text-customLighterGray hover:bg-[#FF0000] transition-colors duration-300 ease-in-out">
+                        Rechazar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const requests = @json($requests);
+    </script>
+
     <script>
     // Selección de elementos
     const menuBar = document.getElementById('menuBar');
@@ -231,6 +290,60 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        function openInfoModal(userId, rol) {
+            // Busca la información desde el array de solicitudes (requests).
+            const request = requests.find(req => req.user_id === userId && req.rol.toLowerCase() === rol.toLowerCase());
+
+            if (request) {
+                // Actualiza los datos en el modal
+                document.getElementById('modalBirthdate').textContent = request.birthdate || 'N/A';
+                document.getElementById('modalEducation').textContent = request.education_level || 'N/A';
+                document.getElementById('modalAddress').textContent = request.address || 'N/A';
+                document.getElementById('modalPhone').textContent = request.phone || 'N/A';
+
+                // Generar la ruta correcta de la imagen
+                const ineImage = document.getElementById('modalINEImage');
+                if (request.guardian_ine) {
+                    ineImage.src = "{{ asset('') }}" + request.guardian_ine; // Usa asset() para generar la ruta
+                } else {
+                    ineImage.src = ""; // Vacía el src si no hay imagen
+                }
+            }
+
+            // Muestra el modal
+            document.getElementById('infoModal').classList.remove('hidden');
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+        }
+
+        // Cerrar el modal si el usuario hace clic fuera de él
+        window.onclick = function(event) {
+            var modal = document.getElementById('infoModal');
+            if (event.target === modal) {
+                closeInfoModal();
+            }
+        }
+    </script>
+
+    <script>
+        function openAcceptModal(userId, rol) {
+            document.getElementById('acceptUserId').value = userId;
+            document.getElementById('acceptRol').value = rol.toLowerCase(); // Pasa el rol como 'beneficiario' o 'voluntario'
+            document.getElementById('acceptModal').classList.remove('hidden');
+        }
+    </script>
+
+    <script>
+        function openDeclineModal(userId, rol) {
+            document.getElementById('declineUserId').value = userId;
+            document.getElementById('declineRol').value = rol.toLowerCase();
+            document.getElementById('declineModal').classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
