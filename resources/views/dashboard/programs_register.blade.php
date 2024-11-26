@@ -1,7 +1,7 @@
 <x-head />
 <body class=" bg-customDarkGray font-sans antialiased">
-
     <style>
+        <x-styles />
         .compressed .sidebar-text {
             display: none;
         }

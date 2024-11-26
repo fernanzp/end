@@ -2,6 +2,7 @@
 <body class=" bg-customDarkGray font-sans antialiased">
 
     <style>
+        <x-styles />
         .compressed .sidebar-text {
             display: none;
         }
@@ -28,7 +29,7 @@
 
         <!-- MAIN -->
         <main class="mt-8">
-            <h2 class="text-2xl text-customGreen font-bold mb-4">Todos los usuarios</h2>
+            <h2 class="text-2xl text-customGreen font-bold mb-4">Gestión de usuarios</h2>
             <div class="mt-8 bg-customLighterGray p-6 shadow rounded-lg">
                 <h3 class="text-lg font-semibold text-customGreen mb-4 text-center">Usuarios</h3>
                 <table class="w-full border-collapse text-center">

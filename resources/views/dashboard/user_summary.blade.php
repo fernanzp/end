@@ -1,6 +1,7 @@
 <x-head />
 <body class=" bg-customDarkGray font-sans antialiased">
     <style>
+        <x-styles />
         .compressed .sidebar-text {
             display: none;
         }
@@ -35,12 +36,12 @@
                 <!-- Estadística de programas -->
                 <div class="flex flex-col-2 space-x-6">
                     <div class="bg-customLighterGray text-center shadow-md rounded-lg w-32 h-32 mb-4 flex flex-col justify-center items-center">
-                        <p class="text-3xl font-bold text-customOrange">14</p>
-                        <p class="text-customBeige text-md">Programas asistidos</p>
+                        <p class="text-5xl font-bold text-customOrange">14</p>
+                        <p class="text-customBeige font-medium text-md">Programas asistidos</p>
                     </div>
                     <div class="bg-customLighterGray text-center shadow-md rounded-lg w-32 h-32 mb-4 flex flex-col justify-center items-center">
-                        <p class="text-3xl font-bold text-customOrange">20</p>
-                        <p class="text-customBeige text-md">Programas en curso inscritos</p>
+                        <p class="text-5xl font-bold text-customOrange">20</p>
+                        <p class="text-customBeige font-medium text-md">Programas en curso inscritos</p>
                     </div>
                 </div>
             </div>
@@ -74,14 +75,15 @@
                     </div>
                 </div>
             </div>
+
             <div class="flex flex-col-2 lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6 mt-4">
                 <div class="bg-customLighterGray p-6 rounded-lg shadow-md w-1/2 flex flex-col items-center justify-center mt-6">
                     <div class="relative bg-customLighterGray shadow-md rounded-lg pt-12 h-auto" style="max-width: 100%; width: 600px; height: 300px;">
                         <canvas id="lineChart"></canvas>
                         <div class="absolute top-4 right-4 flex flex-wrap md:flex-nowrap space-x-2 md:space-x-2 md:space-y-0 mb-4 md:mb-0 md:top-4 md:right-4 md:flex-row">
-                            <button onclick="updateChart('1W')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">1W</button>
-                            <button onclick="updateChart('1M')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">1M</button>
-                            <button onclick="updateChart('1Y')" class="interval-btn bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-md">1Y</button>
+                            <button onclick="updateChart('1W')" class="interval-btn bg-transparent text-customGreen border-2 border-customGreen px-3 py-1 text-sm rounded-md">1W</button>
+                            <button onclick="updateChart('1M')" class="interval-btn bg-transparent text-customGreen border-2 border-customGreen px-3 py-1 text-sm rounded-md">1M</button>
+                            <button onclick="updateChart('1Y')" class="interval-btn bg-transparent text-customGreen border-2 border-customGreen px-3 py-1 text-sm rounded-md">1Y</button>
                         </div>
                     </div>
                 </div>
@@ -112,6 +114,7 @@
                     </div>
                 </div>
             </div>
+            
         </main>
     </section>
 

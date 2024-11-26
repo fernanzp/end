@@ -1,6 +1,7 @@
 <x-head />
 <body class=" bg-customDarkGray font-sans antialiased">
     <style>
+        <x-styles />
         .compressed .sidebar-text {
             display: none;
         }
@@ -141,9 +142,9 @@
     </div>
 
         <!-- Modal para borrar un usuario -->
-    <div id="delete_user-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div id="acept_user-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-            <h2 class="text-xl font-semibold mb-4">¿Deseas eliminar a este usuario?</h2>
+            <h2 class="text-xl font-semibold mb-4">¿Deseas aceptar a este usuario?</h2>
             <p class="text-gray-700 mb-4">Aquí van las 2 opciones</p>
             <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
                 <i class="fas fa-times"></i>
