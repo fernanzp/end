@@ -160,7 +160,7 @@
             <span id="tooltip" class="hidden absolute px-2 py-1 bg-black bg-opacity-75 text-white rounded-md text-xs shadow-lg transition-opacity duration-300">Copiar enlace</span>
 
             <!-- Tarjeta 2: Donación general -->
-            <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 group">
+            <div class="cursor-pointer text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 group">
                 <div class="mb-4">
                     <img src="{{ asset('img/donate-img-index.png') }}" alt="Donación general" class="mx-auto h-16 w-16 hover-bounce-img">
                 </div>
@@ -177,7 +177,7 @@
             </div>
 
             <!-- Tarjeta 3: Vuélvete un voluntario -->
-            <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 group">
+            <div id="volunteer-card" class="cursor-pointer text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 group">
                 <div class="mb-4">
                     <img src="{{ asset('img/volunteers-img-index.png') }}" alt="Vuélvete un voluntario" class="mx-auto h-16 w-16 hover-bounce-img">
                 </div>
@@ -186,7 +186,7 @@
                     Sé parte del cambio. Únete como voluntario y contribuye activamente a nuestros programas e iniciativas.
                 </p>
                 <div class="mt-[1rem] flex items-center">
-                    <p class="merriweather-bold text-lg font-bold text-customGreen">¡Soliciar ser voluntario!</p>
+                    <p class="merriweather-bold text-lg font-bold text-customGreen">¡Solicitar ser voluntario!</p>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#1ab76a" class="w-5 h-5 ml-[0.25rem] transition-all duration-300 group-hover:ml-[0.6rem]">
                         <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
                     </svg>
@@ -194,7 +194,7 @@
             </div>
 
             <!-- Tarjeta 4: Forma parte de nuestros programas -->
-            <a href="{{ url('/programs') }}" class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 group">
+            <a href="{{ url('/programs') }}" class="cursor-pointer text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 group">
                 <div class="mb-4">
                     <img src="{{ asset('img/programs-img-index.png') }}" alt="Forma parte de las actividades" class="mx-auto h-16 w-16 hover-bounce-img">
                 </div>
@@ -211,9 +211,14 @@
             </a>
         </div>
     </div>
-    
+
+    <div id="alert-container"></div>
+
     <!-- Footer -->
     <x-footer />
+    <x-volunteer_application />
+    <x-beneficiary_application />
+    <x-chat_global />
 </body>
 </html>
     
@@ -348,5 +353,54 @@
         window.addEventListener("scroll", () => {
             handleScrollAnimation();
         });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const isAuthenticated = @json(Auth::check()); // Verifica si el usuario está autenticado
+        const volunteerCard = document.getElementById('volunteer-card');
+        const modal = document.getElementById('voluntario-modal');
+
+        // Agrega un listener al div
+        volunteerCard.addEventListener('click', () => {
+            if (isAuthenticated) {
+                // Si el usuario está autenticado, muestra el modal
+                modal.classList.remove('hidden');
+            } else {
+                // Si no está autenticado, redirige al login
+                window.location.href = "{{ route('login') }}";
+            }
+        });
+    });
+</script>
+
+
+<script>
+    // Variable que Laravel pasa para verificar si el usuario está autenticado
+    const isAuthenticated = @json(auth()->check());
+
+    // Referencia al botón que abre el modal
+    const openVolunteerModalButton = document.getElementById('open-volunteer-modal');
+
+    // Escuchar el evento de clic
+    openVolunteerModalButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Evita que el enlace navegue
+
+        if (isAuthenticated) {
+            // Si está autenticado, mostrar el modal
+            document.getElementById('voluntario-modal').classList.remove('hidden');
+        } else {
+            // Si no está autenticado, redirigir al inicio de sesión
+            window.location.href = "{{ route('login') }}";
+        }
+    });
+
+    // Cerrar el modal al hacer clic fuera de él o en el botón de cerrar
+    document.addEventListener('click', function (event) {
+        const modal = document.getElementById('voluntario-modal');
+        if (event.target === modal || event.target.classList.contains('close-modal')) {
+            modal.classList.add('hidden');
+        }
     });
 </script>

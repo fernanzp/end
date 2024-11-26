@@ -40,10 +40,20 @@
         </div>
 
         <div class="w-[20%] p-8 mx-10 bg-customDarkGray rounded-xl shadow-lg">
-            <p class="text-2xl text-customBeige font-bold mb-1">Inicia:</p>
-            <p class="text-gray-400 text-xl mb-4">{{ ucfirst(\Carbon\Carbon::parse($program->start_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}</p>
+        <p class="text-2xl text-customBeige font-bold mb-1">Inicia:</p>
+        <p class="text-gray-400 text-xl mb-4">
+    {{ ucfirst(\Carbon\Carbon::parse($program->start_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}
+        </p>
+
+        @if($program->end_date)
             <p class="text-2xl text-customBeige font-bold mb-1">Finaliza:</p>
-            <p class="text-gray-400 text-xl mb-4">{{ ucfirst(\Carbon\Carbon::parse($program->end_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}</p>
+            <p class="text-gray-400 text-xl mb-4">
+                {{ ucfirst(\Carbon\Carbon::parse($program->end_date)->locale('es')->translatedFormat('l d \\d\\e F \\d\\e\\l Y')) }}
+            </p>
+        @else
+           
+        @endif
+
 
             <div class="flex items-center mb-8 text-customGreen transition-colors duration-300 hover:text-customDarkGreen cursor-pointer text-2xl">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" class="w-8 h-8 mr-4">
@@ -67,34 +77,12 @@
             <button id="modal-btn" class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
             <!--<button class="w-full bg-customBeige text-customDarkGray text-xl font-bold py-5 px-6 rounded-lg transition-colors duration-300 hover:bg-customDarkBeige transition">Inscríbete en la fecha programada</button>-->
         </div>
-        <!-- Modal oculto inicialmente -->
-<div id="modal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-60 hidden">
-    <form action="" method="POST" enctype="multipart/form-data" class="h-3/4 bg-white p-8 rounded-xl shadow-lg w-1/4 overflow-y-auto">
-        @csrf
-        <h2 class="text-2xl font-bold mb-4 text-center">Nuevo programa</h2>
-        <input type="text" placeholder="Título" id="title" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
-        <input type="text" placeholder="Descripcion corta" id="short_description" class="w-full p-3 border border-gray-300 rounded-xl mb-4"required>
-        <input type="text" placeholder="Descripcion" id="description" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
-        <input type="date" placeholder="Fecha de inicio" id="start_date" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
-        <input type="date" placeholder="Fecha de finalizacion" id="end_date" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
-        <label for="modality">Elige la modalidad:</label>       
-        <select name= "modality" id="modality" class="w-full p-3 border border-gray-300 rounded-xl mb-4" required>
-            <option value="presencial">Presencial</option>
-            <option value="en línea">Virtual</option>
-        </select>
 
-            <input type="text" placeholder="Ubicacion" id="direccion" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
-            <label for="days_of_the_week">Días de la Semana:</label>
-        <div>
-            @foreach(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'] as $day)
-                <input type="checkbox" name="days_of_the_week[]" value="{{ $day }}" id="day-{{ $day }}">
-                <label for="day-{{ $day }}">{{ $day }}</label>
-            @endforeach
-        </div>
-        <button onclick="submitForm()" class="bg-customGreen text-white px-8 py-2 rounded-xl w-full text-xl font-bold">Enviar</button>
-        <button onclick="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded-xl mt-4 w-full text-xl">Cerrar</button>
-    </form>
-</div>
+
+        <!--Nuevo programa-->
+        <x-newprogram />
+
+
 
 
         <div class="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center bottom-8">
@@ -115,11 +103,11 @@
             <div class="mb-10">
                 <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Detalles del programa:</p>
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Modalidad:</span> <span class="text-customBeige text-xl">{{ ucfirst($program->modality) }}</span></p> 
-                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Días de la semana:</span> <span class="text-customBeige text-xl">Lunes, Miércoles y Viernes</span></p> 
-                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Horario:</span> <span class="text-customBeige text-xl">10 a.m. - 2:00 p.m.</span></p> 
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Días de la semana:</span> <span class="text-customBeige text-xl">{{ $program->days_of_the_week }}</span></p> 
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Horario:</span> <span class="text-customBeige text-xl">{{ $program->schedule }}</span></p> 
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Edad:</span> <span class="text-customBeige text-xl">{{ $program->age }}</span></p>
-                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de beneficiarios:</span> <span class="text-customBeige text-xl">80</span></p> 
-                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de voluntarios:</span> <span class="text-customBeige text-xl">12</span></p>
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de beneficiarios:</span> <span class="text-customBeige text-xl">{{ $program->beneficiary_capacity }}</span></p> 
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de voluntarios:</span> <span class="text-customBeige text-xl">{{ $program->volunteer_capacity }}</span></p>
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Ubicación:</span> <span class="text-customBeige text-xl">{{ $program->place }}</span></p>
 
             </div>
@@ -371,30 +359,65 @@
 </body>
 </html>
 
-<!-- Script de Google Maps API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPhXNZwg1HmdhWo7ECKUe_4YY7vMcT7Q&callback=initMap" async defer></script>
+
+<!-- Script de Google Maps API con callback unificado -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPhXNZwg1HmdhWo7ECKUe_4YY7vMcT7Q&libraries=places&callback=initMapAndAutocomplete" async defer></script>
 
 <script>
-    function initMap() {
-        // Obtener las coordenadas desde los datos de la actividad
+    // Función unificada para inicializar el mapa y el Autocomplete
+    function initMapAndAutocomplete() {
+        // Inicialización del mapa
         const location = {
-            lat: {{ $program->latitude }},
-            lng: {{ $program->longitude }}
+            lat: {{ $program->latitude ?? '0' }},
+            lng: {{ $program->longitude ?? '0' }}
         };
 
-        // Crear el mapa y centrarlo en la ubicación específica de la actividad
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 15, // Nivel de zoom
+            zoom: 15,
             center: location,
         });
 
-        // Añadir un marcador en la ubicación
-        const marker = new google.maps.Marker({
+        new google.maps.Marker({
             position: location,
             map: map,
         });
+
+        // Inicialización del Autocomplete
+        const direccionInput = document.getElementById("place");
+        const autocomplete = new google.maps.places.Autocomplete(direccionInput, {
+            types: ['geocode', 'establishment'],
+            componentRestrictions: { country: "mx" }
+        });
+
+        // Escuchar el evento de selección de lugar
+        autocomplete.addListener("place_changed", () => {
+            const place = autocomplete.getPlace();
+            if (place.geometry) {
+                // Asignar las coordenadas a los campos ocultos
+                document.getElementById("latitude").value = place.geometry.location.lat();
+                document.getElementById("longitude").value = place.geometry.location.lng();
+                
+                // Actualizar el mapa con la nueva ubicación
+                const newLocation = {
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng()
+                };
+
+                map.setCenter(newLocation);
+                map.setZoom(15);
+                new google.maps.Marker({
+                    position: newLocation,
+                    map: map,
+                });
+            } else {
+                console.log("No se pudo obtener información de ubicación.");
+            }
+        });
     }
 </script>
+
+
+
 
 <!--Script para el modal de "Inscribirse ahora que en realidad es para crear un programa-->
 
@@ -422,44 +445,24 @@ function submitForm() {
 
 
 
-<!-- Google Places API for autocomplete -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPhXNZwg1HmdhWo7ECKUe_4YY7vMcT7Q&libraries=places&callback=initAutocomplete" async defer></script>
 
 <script>
-  // Función para inicializar el autocompletado
-  function initAutocomplete() {
-    const direccionInput = document.getElementById("direccion");
-
-    const autocomplete = new google.maps.places.Autocomplete(direccionInput, {
-      types: ['geocode', 'establishment'], // Permitir tanto direcciones como establecimientos
-      componentRestrictions: { country: "mx" } // Restricción solo al país
-    });
-
-    // Escuchar el evento de selección de lugar
-    autocomplete.addListener("place_changed", () => {
-      const place = autocomplete.getPlace();
-      if (place.geometry) {
-        console.log("Coordenadas:", place.geometry.location.lat(), place.geometry.location.lng());
-      } else {
-        console.log("No se pudo obtener información de ubicación.");
-      }
-    });
-  }
-
-  // Función para obtener coordenadas a partir de una dirección
   function obtenerCoordenadas() {
-    const direccion = document.getElementById("direccion").value;
-    const geocoder = new google.maps.Geocoder();
+      const direccion = document.getElementById("place").value;
+      const geocoder = new google.maps.Geocoder();
 
-    geocoder.geocode({ 'address': direccion }, function(results, status) {
-      if (status === 'OK') {
-        const location = results[0].geometry.location;
-        console.log("Coordenadas: ", location.lat(), location.lng());
-      } else {
-        console.log("Geocodificación fallida debido a: " + status);
-      }
-    });
+      geocoder.geocode({ 'address': direccion }, function(results, status) {
+          if (status === 'OK') {
+              const location = results[0].geometry.location;
+              document.getElementById("latitude").value = location.lat();
+              document.getElementById("longitude").value = location.lng();
+          } else {
+              console.log("Geocodificación fallida debido a: " + status);
+          }
+      });
   }
+</script>
+<script>
 
   // Evitar el envío del formulario y llamar a la función de obtener coordenadas
   document.querySelector("form.rellenar").addEventListener("submit", function(event) {

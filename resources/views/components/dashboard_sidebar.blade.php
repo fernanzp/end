@@ -74,7 +74,7 @@
         <!--Solicitudes de usuarios-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
             <li class="my-2 relative group">
-                <a href="{{ url('/admin/solicitudes_de_usuarios') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+                <a href="{{ url('/usersrequests') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
                     <i class='bx bxs-user-badge mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Solicitudes de usuarios
@@ -87,7 +87,7 @@
         <!--Solicitud de programas-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
             <li class="my-2 relative group">
-                <a href="{{ url('/admin/solicitudes_de_programas') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+                <a href="{{ url('admin/solicitudes_de_programas') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
                     <i class='bx bxs-calendar-plus mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Solicitud de programas
@@ -139,7 +139,7 @@
         <!--Mensajería-->
         @if(in_array(Auth::user()->rol, ['admin', 'coordinator', 'beneficiary', 'volunteer']))
             <li class="my-2 relative group">
-                <a href="{{ url('/admin') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+                <a href="{{ route('messaging') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
                     <i class='bx bxs-conversation mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Mensajería

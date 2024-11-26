@@ -4,11 +4,17 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Login_registerController;
 use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\AdministrationController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BeneficiaryApplicationController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\UsersRequestController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NewProgramController;
+use App\Http\Controllers\VolunteerApplicationController;
 
 Route::get('/', function () {
     return view('index');
@@ -30,6 +36,10 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get('/donations', function () {
     return view('donations');
 });
+
+
+//Ruta para crear un nuevo programa
+Route::post('/dashboard/programs/create', [NewProgramController::class, 'CreateNewProgram'])->name('dashboard.programs.create');
 
 //Ruta para el logout
 Route::get('/logout', function (Request $request) {
@@ -55,6 +65,13 @@ Route::get('/google-auth/redirect', [Login_registerController::class, 'google_re
 //Ruta para procesar el inicio de sesión con google
 Route::get('/google-auth/callback', [Login_registerController::class, 'googleLogin'])->name('google.login');
 
+// Ruta para guardar la fecha de nacimiento del beneficiario
+Route::post('/beneficiaryapplication', [BeneficiaryApplicationController::class, 'store'])->middleware('auth')->name('beneficiary.store');
+// Ruta para guardar los demás datos del beneficiario
+Route::post('/beneficiary/update', [BeneficiaryApplicationController::class, 'update'])->name('beneficiary.update');
+// Ruta para verificar si el beneficiario ya ha ingresado su fecha de nacimiento
+Route::get('/check-beneficiary', [BeneficiaryApplicationController::class, 'checkBeneficiary'])->name('check.beneficiary');
+
 Route::get('/terms', function (){
     return view('terms');
 }); 
@@ -70,9 +87,9 @@ Route::get('/privacy-policy', function (){
 //Rutas para el Admin
 Route::get('/administration/analysis', [AdministrationController::class, 'index'])->name('administration');
 
-Route::get('/configuration/myaccount', function(){
-    return view('dashboard/profile');
-});
+Route::get('/configuration/myaccount', [ProfileController::class, 'index'])->name('profile.index');
+Route::post('/configuration/myaccount/update', [ProfileController::class, 'update'])->name('profile.update');
+Route::post('/configuration/myaccount/update-image', [ProfileController::class, 'updateImage'])->name('profile.updateImage');
 
 Route::get('/usuario/programas', function(){
     return view('dashboard/programs_register');
@@ -82,9 +99,11 @@ Route::get('/admin/gestion_de_usuarios', function(){
     return view('dashboard/user_management');
 });
 
-Route::get('/admin/solicitudes_de_usuarios', function(){
-    return view('dashboard/user_requests');
-});
+//Rutas para aceptar, rechazar o ver la información de las solicitudes de usuarios
+Route::get('/usersrequests', [UsersRequestController::class, 'index'])->name('requests.index');
+Route::post('/aprobar-solicitud', [UsersRequestController::class, 'aprobarSolicitud'])->name('aprobar.solicitud');
+Route::post('/rechazar-solicitud', [UsersRequestController::class, 'rechazarSolicitud'])->name('rechazar.solicitud');
+Route::get('/user/request-info/{user_id}/{rol}', [UsersRequestController::class, 'getRequestInfo'])->name('user.request-info');
 
 Route::get('/admin/solicitudes_de_programas', function(){
     return view('dashboard/program_requests');
@@ -94,9 +113,12 @@ Route::get('/user/resumen_del_usuario', function(){
     return view('dashboard/user_summary');
 });
 
-Route::get('/usuario/mensajeria', function(){
-    return view('dashboard/messaging');
-});
+Route::get('/usuario/mensajeria',[ChatController::class, 'index'])->name('messaging');
+Route::post('usuario/users/search', [ChatController::class, 'search'])->name('chat.search');
+Route::get('usuario/users/fetch-messages', [ChatController::class, 'fetchMessages'])->name('chat.fetchMessages');
+Route::get('usuario/chat/{user}', [ChatController::class, 'showChat'])->name('chat.show');
+Route::post('usuario/chat/get-messages', [ChatController::class, 'getMessages'])->name('chat.getMessages');
+Route::post('usuario/chat/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
 
 Route::get('/admin/informes_de_donaciones', function(){
     return view('dashboard/donation_reports');
@@ -109,3 +131,8 @@ Route::get('/admin/asignacion_de_usuarios', function(){
 Route::get('/admin/asignación_de_recursos', function(){
     return view('dashboard/resource_allocation');
 });
+
+// Ruta para procesar la solicitud de voluntariado
+Route::post('/volunteerapplication', [VolunteerApplicationController::class, 'submitApplication'])
+    ->middleware('auth')  // Asegúrate de que esta línea esté aquí
+    ->name('volunteer.submit');

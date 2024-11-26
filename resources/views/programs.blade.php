@@ -48,6 +48,8 @@
 
     <!-- Footer -->
     <x-footer />
+    <!--Chat-->
+    <x-chat_global />
 
     <script>
         var perfilBtn = document.getElementById('perfilBtn');

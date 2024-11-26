@@ -32,18 +32,48 @@
 
         <!-- MAIN -->
         <main class="flex-1 mt-8">
-            <h2 class="text-2xl text-customGreen font-bold mb-4">Mi Perfil</h2>
+            <h2 class="merriweather-bold text-3xl text-customGreen font-bold mb-4">Mi Cuenta</h2>
 
             <!-- Profile Info -->
             <div class="bg-customLighterGray shadow rounded-lg p-6 mb-6">
                 <div class="flex items-center space-x-4">
-                    <div>
-                        <img src="{{ asset(Auth::user()->profile_img) }}" alt="User Image" class="w-16 h-16 rounded-full mx-auto">
+                    <div class="relative">
+                        <img src="{{ asset(Auth::user()->profile_img) }}" id="profile-preview" alt="User Image" class="w-16 h-16 rounded-full mx-auto">
+                        <form id="profile-img-form" enctype="multipart/form-data">
+                            <input type="file" name="profile_img" id="profile_img" accept="image/*" class="hidden" onchange="previewImage()">
+                            <div onclick="document.getElementById('profile_img').click();" class="cursor-pointer absolute -bottom-2 -right-2 bg-customDarkGray p-2 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#D3C5B4" class="w-4 h-4">
+                                    <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1 0 32c0 8.8 7.2 16 16 16l32 0zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"/>
+                                </svg>
+                            </div>
+                        </form>
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold text-customBeige">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h3>
-                        <p class="text-gray-500">{{ Auth::user()->rol }}</p>
-                        <p class="text-gray-400 text-sm">Creada: 19/02/2007</p>
+                        <h3 class="text-xl font-semibold text-customBeige">{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h3>
+                        <p class="text-gray-400 text-lg">
+                            @switch(Auth::user()->rol)
+                                @case('coordinator')
+                                    Coordinador
+                                    @break
+                                @case('user')
+                                    Usuario
+                                    @break
+                                @case('admin')
+                                    Administrador
+                                    @break
+                                @case('beneficiary')
+                                    Beneficiario
+                                    @break
+                                @case('volunteer')
+                                    Voluntario
+                                    @break
+                                @default
+                                    {{ Auth::user()->rol }}
+                            @endswitch
+                        </p>
+                        <p class="text-gray-400 text-lg">
+                            Se registró el {{ Auth::user()->created_at->locale('es')->isoFormat('D [de] MMMM [de] YYYY') }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -51,41 +81,87 @@
             <!-- Personal Information -->
             <div class="bg-customLighterGray shadow rounded-lg p-6 mb-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="font-semibold text-customBeige">INFORMACIÓN PERSONAL</h3>
-                    <button class="text-customBeige flex items-center space-x-1 modal-link" data-modal-target="information-modal">
-                        <i class='bx bx-edit'></i>Editar
+                    <h3 class="font-semibold text-xl text-customGreen">Información Personal</h3>
+                    <button class="text-customBeige flex items-center space-x-1 modal-link transition duration-300 hover:text-customGreen" data-modal-target="information-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentcolor" class="w-4 h-4 mr-1">
+                            <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/>
+                        </svg>
+                        Editar
                     </button>
                 </div>
                 <div id="info-personal" class="grid grid-cols-2 gap-4 text-gray-400">
-                    <p class="text-gray-400 font-semibold">Nombre(s): <span id="nombres-text" class="text-customBeige">{{ Auth::user()->name }}</span></p>
-                    <p class="text-gray-400 font-semibold">Apellidos: <span id="apellidos-text" class="text-customBeige">{{ Auth::user()->last_name }}</span></p>
-                    <p class="text-gray-400 font-semibold">Correo: <span class="text-customBeige">{{ Auth::user()->email }}</span></p>
-                    <p class="text-gray-400 font-semibold">Número de teléfono: <span id="telefono-text" class="text-customBeige">+543142413571</span></p>
-                    <p class="text-gray-400 font-semibold">Rol: <span class="text-customBeige">{{ Auth::user()->rol }}</span></p>
-                    <p class="text-gray-400 font-semibold">Contraseña: <span class="text-customBeige">contraseña123</span></p>
+                    <p class="text-customBeige font-semibold">Nombre(s): <span id="nombres-text" class="text-gray-400">{{ Auth::user()->name }}</span></p>
+                    <p class="text-customBeige font-semibold">Correo: <span class="text-gray-400">{{ Auth::user()->email }}</span></p>
+                    <p class="text-customBeige font-semibold">Apellidos: <span id="apellidos-text" class="text-gray-400">{{ Auth::user()->last_name }}</span></p>
+                    <p class="text-customBeige font-semibold">Rol: 
+                        <span class="text-gray-400">
+                            @switch(Auth::user()->rol)
+                                @case('coordinator')
+                                    Coordinador
+                                    @break
+                                @case('user')
+                                    Usuario
+                                    @break
+                                @case('admin')
+                                    Administrador
+                                    @break
+                                @case('beneficiary')
+                                    Beneficiario
+                                    @break
+                                @case('volunteer')
+                                    Voluntario
+                                    @break
+                                @default
+                                    {{ Auth::user()->rol }}
+                            @endswitch
+                        </span>
+                    </p>
+                    @if(Auth::user()->rol === 'beneficiary' || Auth::user()->rol === 'volunteer')
+                        @php
+                            $user=Auth::user();
+                            $info = null;
+
+                            if ($user->rol === 'beneficiary') {
+                                $info = \App\Models\Beneficiary::where('user_id', $user->id)->first();
+                            } elseif ($user->rol === 'volunteer') {
+                                $info = \App\Models\Volunteer::where('user_id', $user->id)->first();
+                            }
+
+                            $edad = $info ? \Carbon\Carbon::parse($info->birthdate)->age : null;
+                            $telefono = $info ? $info->phone : 'N/A';
+                        @endphp
+
+                        <p class="text-customBeige font-semibold">Edad: <span id="edad-text" class="text-gray-400">{{ $edad }}</span></p>
+                        <p class="text-customBeige font-semibold">Teléfono: <span id="telefono-text" class="text-gray-400">{{ $telefono }}</span></p>
+                    @endif
                 </div>
                 <p class="text-customBeige text-sm ml-auto block text-right mt-4">
                     <a href="#" data-modal-target="terms-modal" class="modal-link"> VER TÉRMINOS Y CONDICIONES</a>
                 </p>
             </div>
 
-            <!-- Address Information -->
-            <div id="address-info" class="bg-customLighterGray shadow rounded-lg p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="font-semibold text-customBeige">DIRECCIÓN PERSONAL</h3>
-                    <button class="text-customBeige flex items-center space-x-1 modal-link" data-modal-target="address-modal">
-                        <i class='bx bx-edit'></i>Editar
-                    </button>
+            @if(Auth::user()->rol === 'beneficiary' || Auth::user()->rol === 'volunteer')
+                <!-- Address Information -->
+                <div id="address-info" class="bg-customLighterGray shadow rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-semibold text-xl text-customGreen">Dirección</h3>
+                        <button class="text-customBeige flex items-center space-x-1 modal-link transition duration-300 hover:text-customGreen" data-modal-target="information-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentcolor" class="w-4 h-4 mr-1">
+                                <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/>
+                            </svg>
+                            Editar
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <p class="text-gray-400 font-semibold">Código postal: <span id="cp-text" class="text-customBeige">28219</span></p>
+                        <p class="text-gray-400 font-semibold">Estado: <span id="estado-text" class="text-customBeige">COLIMA</span></p>
+                        <p class="text-gray-400 font-semibold">Municipio: <span id="municipio-text" class="text-customBeige">MANZANILLO</span></p>
+                        <p class="text-gray-400 font-semibold">Localidad: <span id="localidad-text" class="text-customBeige">MANZANILLO</span></p>
+                        <p class="text-gray-400 font-semibold">Colonia: <span id="colonia-text" class="text-customBeige">Nápoles</span></p>
+                        <p class="text-gray-400 font-semibold">Calle: <span id="calle-text" class="text-customBeige">Avenida Insurgentes Sur</span></p>
+                    </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <p class="text-gray-400 font-semibold">Código postal: <span id="cp-text" class="text-customBeige">28219</span></p>
-                    <p class="text-gray-400 font-semibold">Estado: <span id="estado-text" class="text-customBeige">COLIMA</span></p>
-                    <p class="text-gray-400 font-semibold">Municipio: <span id="municipio-text" class="text-customBeige">MANZANILLO</span></p>
-                    <p class="text-gray-400 font-semibold">Localidad: <span id="localidad-text" class="text-customBeige">MANZANILLO</span></p>
-                    <p class="text-gray-400 font-semibold">Colonia: <span id="colonia-text" class="text-customBeige">Nápoles</span></p>
-                    <p class="text-gray-400 font-semibold">Calle: <span id="calle-text" class="text-customBeige">Avenida Insurgentes Sur</span></p>
-                </div>
-            </div>
+            @endif
         </main>
         <!-- MAIN -->
     </section>
@@ -103,26 +179,23 @@
 
     <!-- Modal de botón de editar información personal -->
     <div id="information-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-            <h2 class="text-xl font-semibold mb-4">Editar Información Personal</h2>
-            <form id="edit-personal-info-form" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Nombres</label>
-                    <input type="text" id="edit-nombres" class="w-full p-2 border border-gray-300 rounded" value="WILVER ALEXIS">
+        <div class="bg-customLighterGray w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
+            <h2 class="text-customGreen text-2xl font-bold mb-4">Editar Información Personal</h2>
+            <form id="edit-personal-info-form" class="space-y-4" method="POST" action="{{ route('profile.update') }}">
+                @csrf
+                <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
+                    <input type="text" name="name" id="edit-nombres" class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent" value="{{ Auth::user()->name }}" required>
+                    <label for="name" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Nombre</label>
                 </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Apellidos</label>
-                    <input type="text" id="edit-apellidos" class="w-full p-2 border border-gray-300 rounded" value="VERDUZCO LÓPEZ">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Número de Teléfono</label>
-                    <input type="tel" id="edit-telefono" class="w-full p-2 border border-gray-300 rounded" value="+543142413571">
+                <div class="relative my-6 w-full border border-transparent rounded-md h-14 overflow-hidden focus-within:border-customGreen">
+                    <input type="text" name="last_name" id="edit-apellidos" class="peer w-full h-full px-4 pt-5 bg-customLightGray text-customBeige text-[18px] font-bold border-none outline-none placeholder-transparent" value="{{ Auth::user()->last_name }}" required>
+                    <label for="last_name" class="absolute left-4 top-4 text-customBeige transition-all duration-300 cursor-text peer-placeholder-shown:top-4 peer-placeholder-shown:text-[18px] peer-placeholder-shown:text-customBeige peer-focus:top-1 peer-focus:text-[14px] peer-focus:text-customGreen peer-valid:top-1 peer-valid:text-[14px] peer-valid:text-customGreen font-bold">Apellido(s)</label>
                 </div>
                 <div class="flex justify-end space-x-4">
-                    <button type="button" class="close-modal bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
+                    <button type="button" class="close-modal bg-transparent text-gray-500 font-bold py-2 px-4 rounded border-gray-500 border-4 hover:text-gray-400 hover:border-gray-400 transition-colors duration-300 ease-in-out">
                         Cancelar
                     </button>
-                    <button type="button" id="save-personal-info" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    <button type="submit" class="close-modal bg-transparent text-customGreen font-bold py-2 px-4 rounded border-customGreen border-4 hover:text-customLighterGray hover:bg-customGreen transition-colors duration-300 ease-in-out">
                         Guardar
                     </button>
                 </div>
@@ -207,48 +280,50 @@
 	</script>
 
     <script>
-        // Funcionalidad de guardar Información Personal
-    document.getElementById('save-personal-info').addEventListener('click', function () {
-        const nombres = document.getElementById('edit-nombres').value;
-        const apellidos = document.getElementById('edit-apellidos').value;
-        const telefono = document.getElementById('edit-telefono').value;
-        // Actualiza solo los elementos editables
-        document.getElementById('nombres-text').textContent = nombres;
-        document.getElementById('apellidos-text').textContent = apellidos;
-        document.getElementById('telefono-text').textContent = telefono;
-        // Cierra el modal
-        document.getElementById('information-modal').classList.add('hidden');
-    });
-            // Funcionalidad de guardar Dirección Personal
-            document.getElementById('save-address').addEventListener('click', function () {
-        // Obtener los nuevos valores de los campos del formulario
-        const cp = document.getElementById('edit-cp').value;
-        const estado = document.getElementById('edit-estado').value;
-        const municipio = document.getElementById('edit-municipio').value;
-        const localidad = document.getElementById('edit-localidad').value;
-        const colonia = document.getElementById('edit-colonia').value;
-        const calle = document.getElementById('edit-calle').value;
-        // Actualizar los elementos del bloque de dirección sin reemplazar toda la estructura
-        document.getElementById('cp-text').textContent = cp;
-        document.getElementById('estado-text').textContent = estado;
-        document.getElementById('municipio-text').textContent = municipio;
-        document.getElementById('localidad-text').textContent = localidad;
-        document.getElementById('colonia-text').textContent = colonia;
-        document.getElementById('calle-text').textContent = calle;
-                document.getElementById('address-modal').classList.add('hidden');
+        // Funcionalidad para abrir y cerrar el modal
+        document.querySelectorAll('.modal-link').forEach(button => {
+            button.addEventListener('click', function () {
+                const targetModal = this.getAttribute('data-modal-target');
+                document.getElementById(targetModal).classList.remove('hidden');
             });
-            // Funcionalidad para abrir y cerrar modales
-            document.querySelectorAll('.modal-link').forEach(button => {
-                button.addEventListener('click', function () {
-                    const targetModal = this.getAttribute('data-modal-target');
-                    document.getElementById(targetModal).classList.remove('hidden');
-                });
+        });
+
+        document.querySelectorAll('.close-modal').forEach(button => {
+            button.addEventListener('click', function () {
+                this.closest('.modal').classList.add('hidden');
             });
-            document.querySelectorAll('.close-modal').forEach(button => {
-                button.addEventListener('click', function () {
-                    this.closest('.modal').classList.add('hidden');
-                });
-            });
+        });
+    </script>
+
+    <!--Script para previsualizar y enviar la imagen de perfil-->
+    <script>
+        function previewImage() {
+            const file = document.getElementById('profile_img').files[0];
+            const reader = new FileReader();
+    
+            reader.onload = function(e) {
+                document.getElementById('profile-preview').src = e.target.result;
+            };
+    
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+    
+            // Envía la imagen al backend
+            const formData = new FormData(document.getElementById('profile-img-form'));
+            fetch("{{ route('profile.updateImage') }}", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Aquí no hacemos nada con la respuesta
+            })
+            .catch(error => console.error('Error:', error));
+        }
     </script>
 </body>
 </html>

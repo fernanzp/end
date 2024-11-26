@@ -14,14 +14,28 @@ return new class extends Migration
         Schema::create('volunteers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->unique();
-            $table->date('birthdate');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('ine_document');
-            $table->integer('status');
+            $table->date('birthdate'); // Fecha de nacimiento
+            $table->string('gender'); // Género
+            $table->string('address'); // Dirección
+            $table->string('phone'); // Número de teléfono
+            $table->enum('education', [ // Nivel de educación
+                'Sin educación formal',
+                'Primaria',
+                'Secundaria',
+                'Preparatoria',
+                'Educación superior',
+                'Otro'
+            ]);
+            $table->string('ine_document'); // Documento INE/DNI
+            $table->integer('status')->default(2);// Estado del voluntario
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            // Llave foránea
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
