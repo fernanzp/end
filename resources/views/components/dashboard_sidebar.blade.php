@@ -11,9 +11,9 @@
         <!-- PANTALLAS TERMINADAS -->
         <!--Inicio-->
         <li class="my-2 mx-1 relative group">
-            <a href="{{ url('/') }}" class="flex items-center text-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <a href="{{ url('/') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                 <i class="fa-solid fa-house mr-4 text-customGreen"></i>
-                <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-xs rounded px-2 py-1 hidden group-hover:block">
+                <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                     Inicio
                 </span>
                 <span class="sidebar-text">Inicio</span> <!-- U B V A C   ll-->
@@ -22,10 +22,10 @@
 
         <!--Análisis-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
-            <li class="my-2 relative group">
-                <a href="{{ url('/administration/analysis') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ url('/administration/analysis') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bxs-dashboard mr-4 text-customGreen'></i>
-                    <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-xs rounded px-2 py-1 hidden group-hover:block">
+                    <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Análisis
                     </span>
                     <span class="sidebar-text">Análisis</span> <!-- A C   ll-->
@@ -34,8 +34,8 @@
         @endif
 
         <!--Mi cuenta-->
-        <li class="my-2 relative group">
-            <a href="{{ url('/configuration/myaccount') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+        <li class="my-2 mx-1 relative group">
+            <a href="{{ url('/configuration/myaccount') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                 <i class='bx bxs-user mr-4 text-customGreen'></i>
                 <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                     Mi cuenta
@@ -46,8 +46,8 @@
 
         <!--Programas-->
         @if(in_array(Auth::user()->rol, ['admin', 'coordinator', 'beneficiary', 'volunteer']))
-            <li class="my-2 relative group">
-                <a href="{{ url('/configuration/programs') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ url('/configuration/programs') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bx-calendar mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Programas
@@ -59,8 +59,8 @@
 
         <!--Gestión de usuarios-->
         @if(Auth::user()->rol === 'admin')
-            <li class="my-2 relative group">
-                <a href="{{ url('/admin/gestion_de_usuarios') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ url('/admin/gestion_de_usuarios') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <!-- <i class="fa-solid fa-right-from-bracket mr-4"></i> -->
                     <i class='bx bxs-report mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
@@ -73,8 +73,8 @@
 
         <!--Solicitudes de usuarios-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
-            <li class="my-2 relative group">
-                <a href="{{ url('/usersrequests') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ url('/usersrequests') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bxs-user-badge mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Solicitudes de usuarios
@@ -86,8 +86,8 @@
 
         <!--Solicitud de programas-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
-            <li class="my-2 relative group">
-                <a href="{{ url('admin/solicitudes_de_programas') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ url('admin/solicitudes_de_programas') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bxs-calendar-plus mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Solicitud de programas
@@ -98,8 +98,8 @@
         @endif
 
         <!--Dasboard del usuario-->
-        <li class="my-2 relative group">
-            <a href="{{ url('/user/resumen_del_usuario') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+        <li class="my-2 mx-1 relative group">
+            <a href="{{ url('/user/resumen_del_usuario') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                 <i class='bx bx-calendar mr-4 text-customGreen'></i>
                 <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                     Resumen del usuario
@@ -111,8 +111,8 @@
         <!-- PANTALLAS POR HACER -->
         <!--Informes-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
-            <li class="my-2 relative group">
-                <a href="{{ url('/admin/informes_de_donaciones') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ url('/admin/informes_de_donaciones') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bxs-file mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Informes
@@ -124,8 +124,8 @@
 
         <!--Reportes de programas-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
-            <li class="my-2 relative group">
-                <a href="{{ url('coordinador/reportes') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ url('/admin/reportes_de_programas') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <!-- <i class="fa-solid fa-right-from-bracket mr-4"></i> -->
                     <i class='bx bxs-report mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
@@ -138,8 +138,8 @@
 
         <!--Mensajería-->
         @if(in_array(Auth::user()->rol, ['admin', 'coordinator', 'beneficiary', 'volunteer']))
-            <li class="my-2 relative group">
-                <a href="{{ route('messaging') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ route('messaging') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bxs-conversation mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Mensajería
@@ -151,8 +151,8 @@
 
         <!--Retroalimentación de los programas-->
         @if(Auth::user()->rol === 'beneficiary')
-            <li class="my-2 relative group">
-                <a href="{{ url('admin/perfil') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ url('admin/perfil') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bxs-user-voice mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                         Retroalimentación de los programas
@@ -164,8 +164,8 @@
 
         <!--Asignación de recursos-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
-            <li class="my-2 relative group">
-                <a href="{{ url('/admin/asignación_de_recursos') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+            <li class="my-2 mx-1 relative group">
+                <a href="{{ url('/admin/asignación_de_recursos') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <!-- <i class="fa-solid fa-right-from-bracket mr-4"></i> -->
                     <i class='bx bxs-package mr-4 text-customGreen'></i>
                     <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
@@ -177,8 +177,8 @@
         @endif
 
         <!--Cerrar sesión-->
-        <li class="my-2 relative group">
-            <a href="{{ url('/logout') }}" class="flex items-center text-customBeige font-bold py-2 hover:bg-gray-700">
+        <li class="my-2 mx-1 relative group">
+            <a href="{{ url('/logout') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                 <i class="fa-solid fa-right-from-bracket mr-4 text-customGreen"></i>
                 <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
                     Cerrar sesión

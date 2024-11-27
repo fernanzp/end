@@ -2,18 +2,22 @@
 <body class=" bg-customDarkGray font-sans antialiased">
     <style>
         <x-styles />
-        .compressed .sidebar-text {
-            display: none;
-        }
 
         /* Oculta el texto del sidebar cuando está comprimido */
         #sidebar.compressed .sidebar-text {
             display: none;
         }
 
-        /* Muestra el tooltip solo cuando el sidebar está comprimido y se hace hover en el elemento */
+        /* Ajusta la visibilidad del tooltip */
+        #sidebar .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        }
+
+        /* Muestra el tooltip cuando se hace hover */
         #sidebar.compressed .my-2:hover .tooltip-text {
-            display: block;
+            visibility: visible;
             opacity: 1;
         }
     </style>
@@ -77,9 +81,9 @@
                             <td class="p-3"><span class="bg-red-300 text-red-900 w-28 py-1 px-3 rounded-full inline-block font-semibold">Rechazado</span></td>
                             <td class="p-3">
                                 <span style="color: #F5F5DC;">
-                                <button class="modal-link" data-modal-target="acept_program-modal"><i class='bx bx-check mx-2'></i></button>
-                                <button class="modal-link" data-modal-target="cancel_program-modal"><i class='bx bx-x mx-2'></i></button>
-                                    <button class="modal-link" data-modal-target="program_info-modal"><i class='bx bxs-user-detail mx-2'></i></button>
+                                <button class="modal-link" data-modal-target="acceptModal"><i class='bx bx-check mx-2'></i></button>
+                                <button class="modal-link" data-modal-target="declineModal"><i class='bx bx-x mx-2'></i></button>
+                                    <button class="modal-link" data-modal-target="infoModal"><i class='bx bxs-user-detail mx-2'></i></button>
                                 </span>
                             </td>
                         </tr>
@@ -90,80 +94,81 @@
     </section>
 
     <!-- Modal de botón para ver la información del programa -->
-    <div id="program_info-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-            <h2 class="text-xl font-semibold mb-4">Usuario</h2>
-            <form id="edit-address-form" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Nombres</label>
-                    <input type="text" id="edit-nombres" class="w-full p-2 border border-gray-300 rounded" value="WILVER ALEXIS">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Apellidos</label>
-                    <input type="text" id="edit-apellidos" class="w-full p-2 border border-gray-300 rounded" value="VERDUZCO LÓPEZ">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Número de Teléfono</label>
-                    <input type="tel" id="edit-telefono" class="w-full p-2 border border-gray-300 rounded" value="+543142413571">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Código Postal</label>
-                    <input type="text" id="edit-cp" class="w-full p-2 border border-gray-300 rounded" value="28219">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Estado</label>
-                    <input type="text" id="edit-estado" class="w-full p-2 border border-gray-300 rounded" value="COLIMA">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Municipio</label>
-                    <input type="text" id="edit-municipio" class="w-full p-2 border border-gray-300 rounded" value="MANZANILLO">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Localidad</label>
-                    <input type="text" id="edit-localidad" class="w-full p-2 border border-gray-300 rounded" value="MANZANILLO">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Colonia</label>
-                    <input type="text" id="edit-colonia" class="w-full p-2 border border-gray-300 rounded" value="Nápoles">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Calle</label>
-                    <input type="text" id="edit-calle" class="w-full p-2 border border-gray-300 rounded" value="Avenida Insurgentes Sur">
-                </div>
-                <div class="flex justify-end space-x-4">
-                    <button type="button" class="close-modal bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
+    <div id="infoModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+        <div class="bg-customDarkGray p-6 rounded-lg shadow-lg w-96 relative">
+            <!-- Botón para cerrar el modal -->
+            <button onclick="closeInfoModal()" class="absolute top-2 right-4 text-white font-bold text-xl">×</button>
+
+            <!-- Contenido del modal -->
+            <h2 class="text-lg font-bold text-customGreen mb-2">Información de la solicitud</h2>
+            <p class="text-customBeige font-semibold mb-4">Título del programa: <span id="modalTitle" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Descripción: <span id="modalShortDescription" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Tipo de programa: <span id="modalCategory" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Fecha de inicio: <span id="modalStartDate" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Fecha de finalización: <span id="modalEndDate" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-2">Ubicación</p>
+            <img id="modalLatitudeLongitude" src="" alt="Ubicación del lugar" class="w-full h-auto rounded shadow-md">
+            <p class="text-customBeige font-semibold mb-4">Dirección: <span id="modalPlace" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Modalidad: <span id="modalModality" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Horario: <span id="modalSchedule" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Edad: <span id="modalAge" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Capacidad de beneficiarios: <span id="modalBeneficiaryCapacity" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Capacidad de voluntarios: <span id="modalVolunteerCapacity" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Objetivo del programa: <span id="modalObjetive" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Listado de actividades: <span id="modalContents" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-4">Recursos estimados: <span id="modalFinancing" class="text-gray-400"></span></p>
+            <p class="text-customBeige font-semibold mb-2">Imágen del programa</p>
+            <img id="modalImg" src="" alt="Imagen referente al programa" class="w-full h-auto rounded shadow-md">
+        </div>
+    </div>
+
+        <!-- Modal de confirmación para aceptar una solicitud -->
+        <div id="acceptModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+        <div class="bg-customDarkGray p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-lg font-bold text-customGreen">Confirmación</h2>
+            <p class="mt-2 text-customBeige">
+                ¿Está seguro de aceptar al usuario como beneficiario o voluntario? Por favor, confirme que ha verificado los datos del usuario.
+            </p>
+            <form method="POST" action="{{ route('aprobar.solicitud') }}">
+                @csrf
+                <input type="hidden" name="user_id" id="acceptUserId">
+                <input type="hidden" name="rol" id="acceptRol">
+                <!-- Botónes de Cancelar y Aceptar -->
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <button type="button" onclick="document.getElementById('acceptModal').classList.add('hidden')" 
+                            class="close-modal bg-transparent text-gray-500 font-bold py-2 px-4 rounded border-gray-500 border-4 hover:text-gray-400 hover:border-gray-400 transition-colors duration-300 ease-in-out">
                         Cancelar
                     </button>
-                    <button type="button" id="save-address" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        Guardar
+                    <button type="submit" class="bg-transparent text-customGreen font-bold py-2 px-4 rounded border-customGreen border-4 hover:text-customLighterGray hover:bg-customGreen transition-colors duration-300 ease-in-out">
+                        Aceptar
                     </button>
                 </div>
             </form>
-            <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times"></i>
-            </button>
         </div>
     </div>
 
-    <!-- Modal para borrar un usuario -->
-    <div id="acept_program-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-            <h2 class="text-xl font-semibold mb-4">¿Deseas eliminar a este usuario?</h2>
-            <p class="text-gray-700 mb-4">Aquí van las 2 opciones</p>
-            <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal para borrar un usuario -->
-    <div id="cancel_program-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-            <h2 class="text-xl font-semibold mb-4">¿Deseas eliminar a este usuario?</h2>
-            <p class="text-gray-700 mb-4">Aquí van las 2 opciones</p>
-            <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times"></i>
-            </button>
+    <!-- Modal de confirmación para rechazar una solicitud -->
+    <div id="declineModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+        <div class="bg-customDarkGray p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-lg font-bold text-[#FF0000]">Rechazar Solicitud</h2>
+            <p class="mt-2 text-customBeige">
+                ¿Está seguro de rechazar la solicitud del usuario para ser beneficiario o voluntario? Por favor, confirme que ha revisado los datos del usuario.
+            </p>
+            <form method="POST" action="{{ route('rechazar.solicitud') }}">
+                @csrf
+                <input type="hidden" name="user_id" id="declineUserId">
+                <input type="hidden" name="rol" id="declineRol">
+                <!-- Botónes de Cancelar y Rechazar -->
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <button type="button" onclick="document.getElementById('declineModal').classList.add('hidden')" 
+                            class="close-modal bg-transparent text-gray-500 font-bold py-2 px-4 rounded border-gray-500 border-4 hover:text-gray-400 hover:border-gray-400 transition-colors duration-300 ease-in-out">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="bg-transparent text-[#FF0000] font-bold py-2 px-4 rounded border-[#FF0000] border-4 hover:text-customLighterGray hover:bg-[#FF0000] transition-colors duration-300 ease-in-out">
+                        Rechazar
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -236,6 +241,60 @@
                 }
             });
         });
+    </script>
+
+<script>
+        function openInfoModal(userId, rol) {
+            // Busca la información desde el array de solicitudes (requests).
+            const request = requests.find(req => req.user_id === userId && req.rol.toLowerCase() === rol.toLowerCase());
+
+            if (request) {
+                // Actualiza los datos en el modal
+                document.getElementById('modalBirthdate').textContent = request.birthdate || 'N/A';
+                document.getElementById('modalEducation').textContent = request.education_level || 'N/A';
+                document.getElementById('modalAddress').textContent = request.address || 'N/A';
+                document.getElementById('modalPhone').textContent = request.phone || 'N/A';
+
+                // Generar la ruta correcta de la imagen
+                const ineImage = document.getElementById('modalINEImage');
+                if (request.guardian_ine) {
+                    ineImage.src = "{{ asset('') }}" + request.guardian_ine; // Usa asset() para generar la ruta
+                } else {
+                    ineImage.src = ""; // Vacía el src si no hay imagen
+                }
+            }
+
+            // Muestra el modal
+            document.getElementById('infoModal').classList.remove('hidden');
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+        }
+
+        // Cerrar el modal si el usuario hace clic fuera de él
+        window.onclick = function(event) {
+            var modal = document.getElementById('infoModal');
+            if (event.target === modal) {
+                closeInfoModal();
+            }
+        }
+    </script>
+
+    <script>
+        function openAcceptModal(userId, rol) {
+            document.getElementById('acceptUserId').value = userId;
+            document.getElementById('acceptRol').value = rol.toLowerCase(); // Pasa el rol como 'beneficiario' o 'voluntario'
+            document.getElementById('acceptModal').classList.remove('hidden');
+        }
+    </script>
+
+    <script>
+        function openDeclineModal(userId, rol) {
+            document.getElementById('declineUserId').value = userId;
+            document.getElementById('declineRol').value = rol.toLowerCase();
+            document.getElementById('declineModal').classList.remove('hidden');
+        }
     </script>
 </body>
 </html>

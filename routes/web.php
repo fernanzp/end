@@ -123,12 +123,8 @@ Route::get('/admin/informes_de_donaciones', function(){
     return view('dashboard/donation_reports');
 });
 
-Route::get('/admin/asignacion_de_usuarios', function(){
-    return view('dashboard/assigning_rol_to_requesting_user');
-});
-
-Route::get('/admin/asignación_de_recursos', function(){
-    return view('dashboard/resource_allocation');
+Route::get('/admin/reportes_de_programas', function(){
+    return view('dashboard/programs_reports');
 });
 
 // Ruta para procesar la solicitud de voluntariado
