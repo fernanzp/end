@@ -16,6 +16,8 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NewProgramController;
 use App\Http\Controllers\VolunteerApplicationController;
+use App\Http\Controllers\ChatGlobalController;
+use App\Http\Controllers\PDFController;
 
 Route::get('/', function () {
     return view('index');
@@ -120,6 +122,7 @@ Route::post('usuario/chat/send-message', [ChatController::class, 'sendMessage'])
 Route::get('/admin/informes_de_donaciones', function(){
     return view('dashboard/donation_reports');
 });
+Route::get('/admin/informes_de_donaciones/pdf', [PDFController::class, 'reportePDF'])->name('donation.report');
 
 Route::get('/admin/asignacion_de_usuarios', function(){
     return view('dashboard/assigning_rol_to_requesting_user');
@@ -131,3 +134,6 @@ Route::get('/admin/asignación_de_recursos', function(){
 
 // Ruta para procesar la solicitud de voluntariado
 Route::post('/volunteer/submit', [VolunteerApplicationController::class, 'submitApplication'])->name('volunteer.submit');
+
+Route::post('/send-message', [ChatGlobalController::class, 'sendMessage'])->name('chatGlobal.sendMessage');
+Route::get('/messages', [ChatGlobalController::class, 'getMessages'])->name('chatGlobal.getMessages');
