@@ -73,11 +73,11 @@ function renderUsers(users) {
             : "Sin mensajes";
 
         usersList.innerHTML += `
-            <a href="./chat/${user.id}" class="block bg-gray-700 hover:bg-gray-600 p-4 rounded-lg transition">
+            <a href="./chat/${user.id}" class="block bg-customLightGray hover:bg-customDarkGray p-4 rounded-lg transition">
                 <div class="flex items-center space-x-4">
                     <img src="${user.profile_img}" alt="Foto de usuario" class="w-10 h-10 rounded-full">
                     <div>
-                        <h3 class="text-lg font-semibold">${user.name} ${user.last_name} (${user.rol})</h3>
+                        <h3 class="text-lg font-semibold text-customGreen">${user.name} ${user.last_name} (${user.rol})</h3>
                         <p class="text-sm text-gray-400">${lastMessage}</p>
                     </div>
                 </div>

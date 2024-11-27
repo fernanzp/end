@@ -2,18 +2,21 @@
 <body class=" bg-customDarkGray font-sans antialiased">
     <style>
         <x-styles />
-        .compressed .sidebar-text {
-            display: none;
-        }
-
         /* Oculta el texto del sidebar cuando está comprimido */
         #sidebar.compressed .sidebar-text {
             display: none;
         }
 
-        /* Muestra el tooltip solo cuando el sidebar está comprimido y se hace hover en el elemento */
+        /* Ajusta la visibilidad del tooltip */
+        #sidebar .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        }
+
+        /* Muestra el tooltip cuando se hace hover */
         #sidebar.compressed .my-2:hover .tooltip-text {
-            display: block;
+            visibility: visible;
             opacity: 1;
         }
 
@@ -129,7 +132,8 @@
                             Today <span class="ml-2">▼</span>
                         </button>
                     </div>
-                    <div class="flex flex-col-reverse lg:flex-row w-full h-full">
+                    <div class="flex flex-col lg:flex-row w-full h-full">
+                        <!-- Gráfica a la izquierda -->
                         <div class="canvas-container relative w-full lg:w-2/3" style="height: 100%; max-height: 350px;">
                             <canvas id="productChart" class="w-full h-full"></canvas>
                             <!-- <div class="absolute inset-0 flex flex-col items-center justify-center">
@@ -138,28 +142,30 @@
                                 <p class="text-xs text-gray-400">Products Sales</p>
                             </div> -->
                         </div>
-                        <div class="flex flex-col lg:flex-row justify-around items-center mt-4 lg:mt-0 lg:w-1/3 space-y-4 lg:space-y-0">
-                            <div class="text-center mb-1">
+
+                        <!-- Texto a la derecha en vertical -->
+                        <div class="flex flex-col justify-around items-center mt-4 lg:mt-0 lg:w-1/3 space-y-4 lg:space-y-0">
+                            <div class="text-center">
                                 <p class="text-sm">📚 <span class="font-medium text-customBeige">Educativo</span></p>
                                 <p class="text-green-500 text-sm">+1.8%</p>
                                 <p class="text-gray-400 text-sm">2,487</p>
                             </div>
-                            <div class="text-center mb-1">
+                            <div class="text-center">
                                 <p class="text-sm">💰 <span class="font-medium text-customBeige">Económico</span></p>
                                 <p class="text-green-500 text-sm">+2.3%</p>
                                 <p class="text-gray-400 text-sm">1,828</p>
                             </div>
-                            <div class="text-center mb-1">
+                            <div class="text-center">
                                 <p class="text-sm">❤️ <span class="font-medium text-customBeige">Caritativo</span></p>
                                 <p class="text-red-500 text-sm">-1.04%</p>
                                 <p class="text-gray-400 text-sm">1,463</p>
                             </div>
-                            <div class="text-center mb-1">
+                            <div class="text-center">
                                 <p class="text-sm">🤝 <span class="font-medium text-customBeige">Inclusivo</span></p>
                                 <p class="text-green-500 text-sm">+1.8%</p>
                                 <p class="text-gray-400 text-sm">2,487</p>
                             </div>
-                            <div class="text-center mb-1">
+                            <div class="text-center">
                                 <p class="text-sm">🛠️ <span class="font-medium text-customBeige">Capacitación</span></p>
                                 <p class="text-green-500 text-sm">+2.3%</p>
                                 <p class="text-gray-400 text-sm">1,828</p>

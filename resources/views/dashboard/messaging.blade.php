@@ -1,19 +1,23 @@
 <x-head />
 <body class=" bg-customDarkGray font-sans antialiased">
-    <style>
+<style>
         <x-styles />
-        .compressed .sidebar-text {
-            display: none;
-        }
 
         /* Oculta el texto del sidebar cuando está comprimido */
         #sidebar.compressed .sidebar-text {
             display: none;
         }
 
-        /* Muestra el tooltip solo cuando el sidebar está comprimido y se hace hover en el elemento */
+        /* Ajusta la visibilidad del tooltip */
+        #sidebar .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        }
+
+        /* Muestra el tooltip cuando se hace hover */
         #sidebar.compressed .my-2:hover .tooltip-text {
-            display: block;
+            visibility: visible;
             opacity: 1;
         }
     </style>

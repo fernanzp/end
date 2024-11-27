@@ -3,18 +3,21 @@
     <style>
         <x-styles />
 
-        .compressed .sidebar-text {
-            display: none;
-        }
-
         /* Oculta el texto del sidebar cuando está comprimido */
         #sidebar.compressed .sidebar-text {
             display: none;
         }
 
-        /* Muestra el tooltip solo cuando el sidebar está comprimido y se hace hover en el elemento */
+        /* Ajusta la visibilidad del tooltip */
+        #sidebar .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        }
+
+        /* Muestra el tooltip cuando se hace hover */
         #sidebar.compressed .my-2:hover .tooltip-text {
-            display: block;
+            visibility: visible;
             opacity: 1;
         }
     </style>
@@ -71,84 +74,6 @@
             </div>
         </main>
     </section>
-
-        <!-- Modal de botón para ver la información personal del usuario -->
-    <div id="user_info-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-            <h2 class="text-xl font-semibold mb-4">Usuario</h2>
-            <form id="edit-address-form" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Nombres</label>
-                    <input type="text" id="edit-nombres" class="w-full p-2 border border-gray-300 rounded" value="WILVER ALEXIS">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Apellidos</label>
-                    <input type="text" id="edit-apellidos" class="w-full p-2 border border-gray-300 rounded" value="VERDUZCO LÓPEZ">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Número de Teléfono</label>
-                    <input type="tel" id="edit-telefono" class="w-full p-2 border border-gray-300 rounded" value="+543142413571">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Código Postal</label>
-                    <input type="text" id="edit-cp" class="w-full p-2 border border-gray-300 rounded" value="28219">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Estado</label>
-                    <input type="text" id="edit-estado" class="w-full p-2 border border-gray-300 rounded" value="COLIMA">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Municipio</label>
-                    <input type="text" id="edit-municipio" class="w-full p-2 border border-gray-300 rounded" value="MANZANILLO">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Localidad</label>
-                    <input type="text" id="edit-localidad" class="w-full p-2 border border-gray-300 rounded" value="MANZANILLO">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Colonia</label>
-                    <input type="text" id="edit-colonia" class="w-full p-2 border border-gray-300 rounded" value="Nápoles">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">Calle</label>
-                    <input type="text" id="edit-calle" class="w-full p-2 border border-gray-300 rounded" value="Avenida Insurgentes Sur">
-                </div>
-                <div class="flex justify-end space-x-4">
-                    <button type="button" class="close-modal bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
-                        Cancelar
-                    </button>
-                    <button type="button" id="save-address" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        Guardar
-                    </button>
-                </div>
-            </form>
-            <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-        <!-- Modal para borrar un usuario -->
-    <div id="acept_user-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-            <h2 class="text-xl font-semibold mb-4">¿Deseas aceptar a este usuario?</h2>
-            <p class="text-gray-700 mb-4">Aquí van las 2 opciones</p>
-            <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal para borrar un usuario -->
-    <div id="delete_user-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white w-11/12 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-            <h2 class="text-xl font-semibold mb-4">¿Deseas eliminar a este usuario?</h2>
-            <p class="text-gray-700 mb-4">Aquí van las 2 opciones</p>
-            <button class="close-modal absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
 
     <!-- Modal para ver la información de la solicitud -->
     <div id="infoModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
