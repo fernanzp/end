@@ -3,18 +3,21 @@
     <style>
         <x-styles />
 
-        .compressed .sidebar-text {
-            display: none;
-        }
-
         /* Oculta el texto del sidebar cuando está comprimido */
         #sidebar.compressed .sidebar-text {
             display: none;
         }
 
-        /* Muestra el tooltip solo cuando el sidebar está comprimido y se hace hover en el elemento */
+        /* Ajusta la visibilidad del tooltip */
+        #sidebar .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        }
+
+        /* Muestra el tooltip cuando se hace hover */
         #sidebar.compressed .my-2:hover .tooltip-text {
-            display: block;
+            visibility: visible;
             opacity: 1;
         }
     </style>
@@ -68,13 +71,12 @@
                         name="incoming_id" 
                         value="{{ $user->id }}" 
                         class="hidden">
-                        <input 
-                          type="text" 
-                          name="message" 
-                          id="messageInput" 
-                          placeholder="Escribe tu mensaje aquí..." 
-                          class="w-full bg-gray-600 text-white !border-none rounded-l-lg px-4 py-2 focus:ring-2 focus:outline-none"
-                        >
+                    <input 
+                        type="text" 
+                        name="message" 
+                        id="messageInput" 
+                        placeholder="Escribe tu mensaje aquí..." 
+                        class="w-full bg-customGrayWhatsappInput text-white !border-none rounded-l-lg px-4 py-2 focus:ring-2 focus:border-customLighterGray ">
                     <button 
                         type="submit" 
                         class="bg-customGreen hover:bg-customDarkGreen text-white px-4 rounded-r-lg transition">

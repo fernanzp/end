@@ -17,6 +17,7 @@ export default {
         customLighterGray: '#3A3C3A',
         customBtnGreen: '#22c55e',
         customOrange: '#F97316',
+        customGrayWhatsappInput: '#3A3F44',
       },
     },
   },
