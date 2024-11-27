@@ -31,6 +31,24 @@
 
     <div class="container bg-customDarkGray mx-auto p-4 m-8">
         <h2 class="merriweather-bold text-4xl font-bold text-center text-customBeige mb-8">Programas</h2>
+        <!-- Filters -->
+        <div class="flex gap-4 mb-6">
+            <form method="GET" action="{{ url('/programs') }}" class="w-full flex gap-2">
+                <!-- Barra de búsqueda -->
+                <input type="text" name="search" placeholder="Buscar..." value="{{ request('search') }}" class="p-3 border bg-customLighterGray border-none text-customBeige rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 flex-1" onchange="this.form.submit()">
+        
+                <!-- Categoría -->
+                <select name="category" class="p-3 border bg-customLighterGray border-none text-customBeige rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600" onchange="this.form.submit()">
+                    <option value="" {{ request('category') ? '' : 'selected' }}>Todos</option>
+                    <option value="educativo" {{ request('category') == 'educativo' ? 'selected' : '' }}>Educativo</option>
+                    <option value="económico" {{ request('category') == 'económico' ? 'selected' : '' }}>Económico</option>
+                    <option value="caritativo" {{ request('category') == 'caritativo' ? 'selected' : '' }}>Caritativo</option>
+                    <option value="inclusivo" {{ request('category') == 'inclusivo' ? 'selected' : '' }}>Inclusivo</option>
+                    <option value="capacitación" {{ request('category') == 'capacitación' ? 'selected' : '' }}>Capacitación</option>
+                    <option value="otro" {{ request('category') == 'otro' ? 'selected' : '' }}>Otro</option>
+                </select>
+            </form>
+        </div>
         <!-- Grid for cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             @foreach($programs as $program)

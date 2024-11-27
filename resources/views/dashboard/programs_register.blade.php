@@ -29,11 +29,8 @@
         <!-- Header -->
         <div class="flex items-center justify-between mb-4 mt-7">
             <h1 class="merriweather-bold text-3xl text-customGreen font-bold mb-4">Programas</h1>
-            <!-- <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 modal-link" data-modal-target="make_a_program-modal">
-                <i class='bx bx-plus w-4 h-4'></i> Crear programa
-            </button> -->
-            <button class="px-4 py-2 bg-customGreen text-white rounded-lg hover:bg-green-700 modal-link" data-modal-target="request_a_program-modal">
-                <i class='bx bx-plus w-4 h-4'></i> Solicitar programa
+            <button class="flex items-center justify-center px-4 py-2 bg-transparent text-customGreen border-customGreen border-4 rounded-lg transition-all duration-300 hover:bg-customGreen hover:text-customDarkGray modal-link" data-modal-target="request_a_program-modal">
+                Crear un nuevo programa <i class='ml-2 bx bx-plus w-4 h-4'></i>
             </button>
         </div>
 

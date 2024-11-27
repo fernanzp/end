@@ -166,7 +166,7 @@
                 </div>
                 <h3 class="text-lg font-semibold text-customBeige mb-2">Aplica para beneficiario</h3>
                 <p class="text-customBeige text-sm text-center text-justify">
-                    Sé parte del cambio. Únete como voluntario y contribuye activamente a nuestros programas e iniciativas.
+                    Unete como beneficiario e inscribete a programas e iniciativas diseñadas para apoyar a quienes más lo necesitan.
                 </p>
                 <div class="mt-[1rem] flex items-center">
                     <p class="merriweather-bold text-lg font-bold text-customGreen">¡Aplica para beneficiario!</p>
@@ -391,26 +391,6 @@
         });
     });
 </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const isAuthenticated = @json(Auth::check()); // Verifica si el usuario está autenticado
-        const volunteerCard = document.getElementById('beneficiary-card');
-        const modal = document.getElementById('beneficiary-modal');
-
-        // Agrega un listener al div
-        volunteerCard.addEventListener('click', () => {
-            if (isAuthenticated) {
-                // Si el usuario está autenticado, muestra el modal
-                modal.classList.remove('hidden');
-            } else {
-                // Si no está autenticado, redirige al login
-                window.location.href = "{{ route('login') }}";
-            }
-        });
-    });
-</script>
-
 
 <script>
     // Variable que Laravel pasa para verificar si el usuario está autenticado

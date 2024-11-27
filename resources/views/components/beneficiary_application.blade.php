@@ -23,6 +23,60 @@
 </div>
 
 <script>
+    document.getElementById('beneficiary-card').addEventListener('click', () => {
+        fetch("{{ route('check.beneficiary') }}", {
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const alertContainer = document.getElementById('alert-container');
+            alertContainer.innerHTML = ''; // Limpiar alertas previas
+
+            if (data.exists) {
+                if (data.status === 'incomplete') {
+                    // Si el formulario está incompleto, abrir el segundo modal
+                    document.getElementById('additional-info-modal').classList.remove('hidden');
+                    document.getElementById('modal-info').innerText = data.isAdult ? 
+                        'Información adicional (Adulto)' : 'Información adicional (Menor de Edad)';
+                    
+                    if (!data.isAdult) {
+                        document.getElementById('minor-fields').classList.remove('hidden');
+                    }
+                } else if (data.html) {
+                    // Si hay HTML (alerta para pendiente o aprobado), inyectarlo
+                    alertContainer.innerHTML = data.html;
+
+                    // Configurar cierre del modal
+                    const modal = document.getElementById('alert-modal');
+                    const closeModal = document.getElementById('close-modal');
+
+                    closeModal.addEventListener('click', () => {
+                        modal.remove();
+                    });
+
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.remove();
+                        }
+                    });
+                }
+            } else {
+                // Si no existe beneficiario, abrir el primer modal
+                document.getElementById('beneficiary-modal').classList.remove('hidden');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('close-beneficiary-modal').addEventListener('click', () => {
+        document.getElementById('beneficiary-modal').classList.add('hidden');
+    });
+</script>
+
+<script>
     document.getElementById('open-beneficiary-modal').addEventListener('click', () => {
         fetch("{{ route('check.beneficiary') }}", {
             method: 'GET',

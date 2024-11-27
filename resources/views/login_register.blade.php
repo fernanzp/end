@@ -33,11 +33,12 @@
 <body>
     <!--Barra superior de navegación-->
     <header class="bg-transparent w-full fixed flex items-center p-2 z-50 transition-opacity duration-500">
-        <a href="" class="ml-4">
-            <img src="{{ asset('img/logo.png') }}" class="h-16">
-        </a>
         <div class="flex items-center ml-4">
-        <a href="{{ url('/') }}" class="text-2xl text-customBeige uppercase font-bold transition-colors duration-300 hover:text-customGreen">Inicio</a> 
+        <a href="{{ url('/') }}" class="text-2xl text-customBeige uppercase font-bold transition-colors duration-300 hover:text-customGreen">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" class="w-14 h-14">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a> 
         </div>
     </header>
 
@@ -84,12 +85,16 @@
                     @endif
                 </div>
         
+                <input type="submit" value="Iniciar Sesión" class="w-full text-[20px] font-bold text-customBeige bg-customGreen mb-4 py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar">
+
                 <!-- Botón de inicio de sesión con Google -->
-                <a href="{{ route('google.redirect') }}" class="flex items-center justify-center w-full text-[20px] font-bold text-customBeige bg-customBlue py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customBlue">
-                    Iniciar Sesión con Google
-                </a>
-        
-                <input type="submit" value="Iniciar Sesión" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar">
+                <div class="flex items-center justify-center">
+                    <a href="{{ route('google.redirect') }}" class="flex items-center justify-center w-16 h-16 bg-transparent py-4 border-none rounded-full cursor-pointer transition-colors duration-300 hover:bg-customBeige">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512" class="h-10 w-10 fill-customGreen">
+                            <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
+                        </svg>
+                    </a>
+                </div>
             </form>
         </div>
         
