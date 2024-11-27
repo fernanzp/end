@@ -1,190 +1,236 @@
 <style>
-    /* Floating Chat Button */
-    #chat-bubble {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #007bff;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1000;
-    }
+  /* Floating Chat Button */
+  #chat-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+  }
 
-    #chat-bubble img {
-      width: 30px;
-      height: 30px;
-    }
+  #chat-bubble img {
+    width: 30px;
+    height: 30px;
+  }
 
-    /* Chat Window */
-    #chat-container {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 300px;
-      max-height: 400px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      z-index: 1000;
-    }
+  /* Chat Window */
+  #chat-container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+  }
 
-    #chat-header {
-      background-color: #007bff;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-      font-weight: bold;
-    }
+  #chat-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
 
-    #messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-    }
+  #messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+  }
 
-    .message {
-      display: flex;
-      margin-bottom: 12px;
-      align-items: flex-start;
-    }
+  .message {
+    display: flex;
+    margin-bottom: 12px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
-    .message.user {
-      justify-content: flex-end;
-    }
+  .message.user {
+    justify-content: flex-end;
+  }
 
-    .message .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
+  .message.other {
+    justify-content: flex-start;
+  }
 
-    .message.user .avatar {
-      margin-left: 10px;
-      margin-right: 0;
-    }
+  .message .name {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
 
-    .bubble {
-      max-width: 70%;
-      padding: 10px 15px;
-      border-radius: 15px;
-      font-size: 14px;
-    }
+  .message .bubble.user {
+    background-color: #007bff;
+    color: white;
+    border-bottom-right-radius: 0;
+  }
 
-    .bubble.system {
-      background-color: #eee;
-      color: #333;
-    }
+  .message .bubble.other {
+    background-color: #eee;
+    color: #333;
+    border-bottom-left-radius: 0;
+  }
 
-    .bubble.user {
-      background-color: #007bff;
-      color: white;
-    }
+  .message .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
 
-    .bubble.global {
-      background-color: #fef3c7;
-      color: #c05621;
-    }
+  .message.user .avatar {
+    margin-left: 10px;
+    margin-right: 0;
+  }
 
-    /* Input Section */
-    #input-container {
-      display: flex;
-      padding: 10px;
-      border-top: 1px solid #ddd;
-      background-color: #f9f9f9;
-    }
+  .bubble {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+  }
 
-    #input-container input {
-      flex: 1;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+  .bubble.system {
+    background-color: #eee;
+    color: #333;
+  }
 
-    #input-container button {
-      margin-left: 8px;
-      padding: 8px 12px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  </style>
+  .bubble.user {
+    background-color: #007bff;
+    color: white;
+  }
+</style>
+
+{{-- @csrf token --}}
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <!-- Chat Bubble -->
 <div id="chat-bubble">
-    <img src="https://img.icons8.com/ios-filled/50/ffffff/chat.png" alt="Chat">
-  </div>
+  <img src="https://img.icons8.com/ios-filled/50/ffffff/chat.png" alt="Chat">
+</div>
 
-  <!-- Chat Window -->
-    <div id="chat-container">
-        <div id="chat-header">Chat Global</div>
-        <div id="messages"></div>
-        <div id="input-container">
-        <input type="text" id="messageInput" placeholder="Escribe un mensaje..." />
-        <button id="sendButton">Enviar</button>
-    </div>
+<!-- Chat Window -->
+<div id="chat-container">
+  <div id="chat-header">Chat Global</div>
+  <div id="messages"></div>
+  <div id="input-container">
+    <input type="text" id="messageInput" placeholder="Escribe un mensaje..." />
+    <button id="sendButton">Enviar</button>
+  </div>
 </div>
 
 <script>
-    const chatBubble = document.getElementById('chat-bubble');
-    const chatContainer = document.getElementById('chat-container');
-    const messagesDiv = document.getElementById('messages');
-    const messageInput = document.getElementById('messageInput');
-    const sendButton = document.getElementById('sendButton');
+  const currentUserName = @json(Auth::check() ? Auth::user()->name : 'Desconocido');
+</script>
 
-    // Mostrar/Ocultar Chat al hacer clic en la burbuja
-    chatBubble.addEventListener('click', () => {
-      chatContainer.style.display = chatContainer.style.display === 'flex' ? 'none' : 'flex';
-    });
 
-    // Función para agregar mensajes con avatar
-    function addMessage(text, type = 'user', avatar = 'img/dik.png') {
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('message', type);
+<script>
+  const chatBubble = document.getElementById('chat-bubble');
+  const chatContainer = document.getElementById('chat-container');
+  const messagesDiv = document.getElementById('messages');
+  const messageInput = document.getElementById('messageInput');
+  const sendButton = document.getElementById('sendButton');
 
-      const avatarImg = document.createElement('img');
-      avatarImg.src = avatar;
-      avatarImg.alt = 'Avatar';
-      avatarImg.classList.add('avatar');
+  // Mostrar/Ocultar Chat al hacer clic en la burbuja
+  chatBubble.addEventListener('click', () => {
+    chatContainer.style.display = chatContainer.style.display === 'flex' ? 'none' : 'flex';
 
-      const bubble = document.createElement('div');
-      bubble.classList.add('bubble', type);
-      bubble.innerText = text;
+    if (chatContainer.style.display === 'flex') {
+      loadMessages(); // Cargar mensajes al abrir el chat
+    }
+  });
 
-      if (type === 'user') {
-        messageDiv.appendChild(bubble);
-        messageDiv.appendChild(avatarImg);
-      } else {
-        messageDiv.appendChild(avatarImg);
-        messageDiv.appendChild(bubble);
-      }
+  // Función para agregar mensajes con avatar y nombre
+  function addMessage(text, type = 'user', avatar = 'https://img.icons8.com/ios-filled/50/ffffff/chat.png', name = 'Usuario') {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', type);
 
-      messagesDiv.appendChild(messageDiv);
-      // Scroll automático
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    const nameDiv = document.createElement('div');
+    nameDiv.classList.add('name');
+    nameDiv.innerText = name;
+
+    const avatarImg = document.createElement('img');
+    avatarImg.src = avatar;
+    avatarImg.alt = 'Avatar';
+    avatarImg.classList.add('avatar');
+
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble', type);
+    bubble.innerText = text;
+
+    if (type === 'user') {
+      messageDiv.appendChild(nameDiv);  // Agregar el nombre
+      messageDiv.appendChild(bubble);
+      messageDiv.appendChild(avatarImg);
+    } else {
+      messageDiv.appendChild(avatarImg);
+      messageDiv.appendChild(nameDiv);  // Agregar el nombre
+      messageDiv.appendChild(bubble);
     }
 
-    // Evento de envío de mensaje
-    sendButton.addEventListener('click', () => {
-      const text = messageInput.value.trim();
-      if (text) {
-        addMessage(text, 'user'); // Mensaje del usuario
-        messageInput.value = '';
+    messagesDiv.appendChild(messageDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll automático
+  }
 
-        // Simulación de respuesta automática
-        setTimeout(() => {
-          addMessage('¡Hola! Este es un mensaje global.', 'system');
-        }, 1000);
-      }
+  // Modificar la función loadMessages
+  function loadMessages() {
+    fetch("{{ route('chatGlobal.getMessages') }}")
+      .then(response => response.json())
+      .then(data => {
+        messagesDiv.innerHTML = ''; // Limpiar mensajes existentes
+        const currentUserId = {{ Auth::id() }}; // ID del usuario actual
+        data.forEach(msg => {
+          const isMine = msg.user && msg.user.id === currentUserId; // Verifica si el mensaje es del usuario actual
+          const type = isMine ? 'user' : 'other';
+          const avatar = msg.user && msg.user.avatar ? msg.user.avatar : 'https://img.icons8.com/ios-filled/50/ffffff/chat.png';
+          const text = msg.msg;
+          const name = msg.user ? msg.user.name : 'Desconocido';  // Nombre del usuario
+          addMessage(text, type, avatar, name); // Agrega el mensaje con la clase correspondiente
+        });
+      })
+      .catch(error => {
+        console.error('Error al cargar mensajes:', error);
+      });
+  }
+// Evento de envío de mensaje
+sendButton.addEventListener('click', () => {
+  const text = messageInput.value.trim();
+  if (text) {
+
+    addMessage(text, 'user', 'https://img.icons8.com/ios-filled/50/ffffff/chat.png', currentUserName);
+    messageInput.value = '';
+
+    // Enviar mensaje al servidor
+    fetch("{{ route('chatGlobal.sendMessage') }}", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+      },
+      body: JSON.stringify({ message: text })
+    })
+    .then(response => response.json())
+    .then(() => {
+      loadMessages(); // Recargar los mensajes después de enviar
+    })
+    .catch(error => {
+      console.error('Error al enviar mensaje:', error);
     });
+  }
+});
+
+  // Recargar los mensajes cada 500ms
+  setInterval(loadMessages, 500);
 </script>

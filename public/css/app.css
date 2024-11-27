@@ -1228,6 +1228,34 @@ video {
   width: 100vw;
 }
 
+.w-96 {
+  width: 24rem;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-\[28rem\] {
+  width: 28rem;
+}
+
+.w-\[80\%\] {
+  width: 80%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
+}
+
+.w-\[85\%\] {
+  width: 85%;
+}
+
+.w-\[7\%\] {
+  width: 7%;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -2164,6 +2192,16 @@ video {
   color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 
+.text-customLightGray {
+  --tw-text-opacity: 1;
+  color: rgb(42 44 42 / var(--tw-text-opacity));
+}
+
+.text-customLighterGray {
+  --tw-text-opacity: 1;
+  color: rgb(58 60 58 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -2777,6 +2815,10 @@ video {
 
   .md\:w-\[50\%\] {
     width: 50%;
+  }
+
+  .md\:w-3\/4 {
+    width: 75%;
   }
 
   .md\:grid-cols-2 {

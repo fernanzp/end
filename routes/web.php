@@ -16,6 +16,8 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NewProgramController;
 use App\Http\Controllers\VolunteerApplicationController;
+use App\Http\Controllers\ChatGlobalController;
+use App\Http\Controllers\PDFController;
 
 Route::get('/', function () {
     return view('index');
@@ -37,10 +39,6 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get('/donations', function () {
     return view('donations');
 });
-
-
-//Ruta para crear un nuevo programa
-Route::post('/dashboard/programs/create', [NewProgramController::class, 'CreateNewProgram'])->name('dashboard.programs.create');
 
 //Ruta para el logout
 Route::get('/logout', function (Request $request) {
@@ -93,6 +91,8 @@ Route::post('/configuration/myaccount/update', [ProfileController::class, 'updat
 Route::post('/configuration/myaccount/update-image', [ProfileController::class, 'updateImage'])->name('profile.updateImage');
 
 Route::get('/configuration/programs', [ConfigurationProgramsController::class, 'index']);
+//Ruta para crear un nuevo programa
+Route::post('/configuration/programs/store', [NewProgramController::class, 'store'])->name('programs.store');
 
 Route::get('/admin/gestion_de_usuarios', function(){
     return view('dashboard/user_management');
@@ -122,6 +122,7 @@ Route::post('usuario/chat/send-message', [ChatController::class, 'sendMessage'])
 Route::get('/admin/informes_de_donaciones', function(){
     return view('dashboard/donation_reports');
 });
+Route::get('/admin/informes_de_donaciones/pdf', [PDFController::class, 'reportePDF'])->name('donation.report');
 
 Route::get('/admin/reportes_de_programas', function(){
     return view('dashboard/programs_reports');
@@ -129,3 +130,6 @@ Route::get('/admin/reportes_de_programas', function(){
 
 // Ruta para procesar la solicitud de voluntariado
 Route::post('/volunteer/submit', [VolunteerApplicationController::class, 'submitApplication'])->name('volunteer.submit');
+
+Route::post('/send-message', [ChatGlobalController::class, 'sendMessage'])->name('chatGlobal.sendMessage');
+Route::get('/messages', [ChatGlobalController::class, 'getMessages'])->name('chatGlobal.getMessages');
