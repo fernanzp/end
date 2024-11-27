@@ -20,6 +20,7 @@ class Program extends Model
         'longitude',
         'place',
         'modality',
+        'meeting_link',
         'days_of_the_week',
         'schedule',
         'age',
@@ -28,6 +29,8 @@ class Program extends Model
         'objetive',
         'contents',
         'financing',
-        'img'
+        'img',
+        'user_id',
+        'status',
     ];
 }

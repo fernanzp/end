@@ -2,7 +2,7 @@
 <div id="modal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-60 hidden">
     
     <!-- Formulario para crear un nuevo programa, con envío de datos mediante POST y soporte para archivos adjuntos -->
-    <form id="program-form" action="{{ route('dashboard.programs.create') }}" method="POST" enctype="multipart/form-data" class="h-3/4 bg-white p-8 rounded-xl shadow-lg w-1/4 overflow-y-auto">
+    <form id="program-form" action="{{ route('configuration.programs.create') }}" method="POST" enctype="multipart/form-data" class="h-3/4 bg-white p-8 rounded-xl shadow-lg w-1/4 overflow-y-auto">
         
         <!-- Token CSRF para proteger el formulario contra ataques Cross-Site Request Forgery -->
         @csrf
@@ -140,11 +140,11 @@
        
        
         <div id="input-container">
-    <div class="input-group flex items-center mb-4">
-        <input type="text" name="contents[]" placeholder="Contenido (opcional)" id="contents" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
-        <button type="button" class="remove-button bg-red-500 text-white p-2 rounded-md hover:bg-red-600 hidden">Eliminar</button>
-        <button type="button" id="add-input" class="add-button bg-green-500 text-white p-2 rounded-md hover:bg-green-600">+</button>
-    </div>
+            <div class="input-group flex items-center mb-4">
+                <input type="text" name="contents[]" placeholder="Contenido (opcional)" id="contents" class="w-full p-3 border border-gray-300 rounded-xl mb-4">
+                <button type="button" class="remove-button bg-red-500 text-white p-2 rounded-md hover:bg-red-600 hidden">Eliminar</button>
+                <button type="button" id="add-input" class="add-button bg-green-500 text-white p-2 rounded-md hover:bg-green-600">+</button>
+            </div>
         </div>
 
         <!-- Campo de texto para la información de financiamiento (opcional) -->
@@ -165,17 +165,14 @@
 
 <!--TODA LA LOGICA DE JAVASCRIPT-->
 <script>
-
-
     // Función para actualizar la fecha mínima en el campo de fecha final
     function updateEndDateMin() {
-    const startDate = document.getElementById('start_date').value;
-    const endDateInput = document.getElementById('end_date');
-    if (startDate) {
-        endDateInput.setAttribute('min', startDate);
+        const startDate = document.getElementById('start_date').value;
+        const endDateInput = document.getElementById('end_date');
+        if (startDate) {
+            endDateInput.setAttribute('min', startDate);
+        }
     }
-}
-
 </script>
 <script>
 // Función para mostrar/ocultar campos basados en la modalidad seleccionada
@@ -263,8 +260,6 @@ document.getElementById('modal').addEventListener('submit', function(event) {
 </script>
 
 <script>
-
-
     document.getElementById('program-form').addEventListener('submit', function(event) {
     const eventDuration = document.querySelector('input[name="event_duration"]:checked').value;
     let startDate = document.getElementById('start_date').value;

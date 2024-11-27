@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class NewProgramController extends Controller
 {
-    public function CreateNewProgram(Request $request)
+    public function store(Request $request)
     {
         // Validación de los datos
         $validatedData = $request->validate([

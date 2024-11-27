@@ -23,7 +23,8 @@ return new class extends Migration
             $table->decimal('longitude', 11, 8)->nullable();
             $table->string('place')->nullable();
             $table->enum('modality', ['presencial', 'en línea']);
-            $table->json('days_of_the_week');
+            $table->string('meeting_link')->nullable();
+            $table->json('days_of_the_week')->nullable();
             $table->string('schedule');
             $table->string('age');
             $table->unsignedInteger('beneficiary_capacity');
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->text('financing')->nullable();
             $table->string('img');
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->integer('status')->default(2);
             $table->timestamps();
         });
     }

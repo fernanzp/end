@@ -38,10 +38,6 @@ Route::get('/donations', function () {
     return view('donations');
 });
 
-
-//Ruta para crear un nuevo programa
-Route::post('/dashboard/programs/create', [NewProgramController::class, 'CreateNewProgram'])->name('dashboard.programs.create');
-
 //Ruta para el logout
 Route::get('/logout', function (Request $request) {
     Auth::logout();
@@ -93,6 +89,8 @@ Route::post('/configuration/myaccount/update', [ProfileController::class, 'updat
 Route::post('/configuration/myaccount/update-image', [ProfileController::class, 'updateImage'])->name('profile.updateImage');
 
 Route::get('/configuration/programs', [ConfigurationProgramsController::class, 'index']);
+//Ruta para crear un nuevo programa
+Route::post('/configuration/programs/store', [NewProgramController::class, 'store'])->name('programs.store');
 
 Route::get('/admin/gestion_de_usuarios', function(){
     return view('dashboard/user_management');
