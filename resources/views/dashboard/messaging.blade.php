@@ -1,6 +1,7 @@
 <x-head />
 <body class=" bg-customDarkGray font-sans antialiased">
     <style>
+        <x-styles />
         .compressed .sidebar-text {
             display: none;
         }
@@ -26,31 +27,30 @@
         <x-navbar_configuration />
 
         <main class="mt-8">
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="bg-customLighterGray p-6 rounded-lg shadow-lg">
                 <header class="flex items-center justify-between mb-6">
                     <div class="flex items-center space-x-4">
-                        <img src="{{ auth()->user()->profile_img }}" alt="Foto de perfil" class="w-12 h-12 rounded-full border-2 border-gray-700">
+                        <img src="{{ auth()->user()->profile_img }}" alt="Foto de perfil" class="w-12 h-12 rounded-full border-2 border-none">
                         <div>
-                            <h2 class="text-lg font-bold">{{ auth()->user()->name }} {{ auth()->user()->last_name }}</h2>
+                            <h2 class="text-lg font-bold text-customGreen">{{ auth()->user()->name }} {{ auth()->user()->last_name }}</h2>
                             <p class="text-sm text-gray-400">{{ auth()->user()->email }}</p>
                         </div>
                     </div>
-                    <a href="{{ route('logout') }}" class="text-red-400 hover:text-red-600 transition">Cerrar Sesión</a>
                 </header>
 
                 <!-- Buscador -->
                 <div class="mb-6 relative">
-                    <label for="searchBar" class="block text-sm text-gray-400 mb-2">Buscar usuario:</label>
+                    <label for="searchBar" class="block text-sm text-customBeige font-semibold mb-2">Buscar usuario:</label>
                     <div class="flex items-center">
                         <input 
                             type="text" 
                             id="searchBar" 
                             placeholder="Escribe un nombre..." 
-                            class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                            class="w-full bg-customLightGray border border-customGreen rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-customGreen transition-all"
                         />
                         <button 
                             id="searchButton" 
-                            class="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition hidden">
+                            class="ml-2 bg-customLightGray text-white px-4 py-2 rounded-lg hover:bg-customDarkGray transition hidden">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>

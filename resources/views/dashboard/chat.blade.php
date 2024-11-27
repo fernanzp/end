@@ -1,5 +1,23 @@
 <x-head />
 <body class="bg-customDarkGray font-sans antialiased">
+    <style>
+        <x-styles />
+
+        .compressed .sidebar-text {
+            display: none;
+        }
+
+        /* Oculta el texto del sidebar cuando está comprimido */
+        #sidebar.compressed .sidebar-text {
+            display: none;
+        }
+
+        /* Muestra el tooltip solo cuando el sidebar está comprimido y se hace hover en el elemento */
+        #sidebar.compressed .my-2:hover .tooltip-text {
+            display: block;
+            opacity: 1;
+        }
+    </style>
     <x-dashboard_sidebar />
 
     <!-- CONTENT -->
@@ -7,7 +25,7 @@
         <x-navbar_configuration />
 
         <main class="mt-8">
-            <div class="chat-area bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="chat-area bg-customLightGray p-6 rounded-lg shadow-lg">
                 <!-- Header del Chat -->
                 <header class="flex items-center space-x-4 mb-6">
                     <a href="{{ route('messaging') }}" class="text-gray-300 text-lg hover:text-white transition">
@@ -20,17 +38,17 @@
                         </span>
                         
                         @if ($user->rol === 'admin')
-                            <p class="text-sm text-blue-400">Administrador</p>
+                            <p class="text-sm text-blue-500">Administrador</p>
                         @elseif ($user->rol === 'coordinator')
-                            <p class="text-sm text-green-400">Coordinador</p>
+                            <p class="text-sm text-green-500">Coordinador</p>
                         @elseif ($user->rol === 'user')
-                            <p class="text-sm text-yellow-400">Usuario</p>
+                            <p class="text-sm text-yellow-500">Usuario</p>
                         @elseif($user->rol === 'volunteer')
-                            <p class="text-sm text-purple-400">Voluntario</p>
+                            <p class="text-sm text-purple-500">Voluntario</p>
                         @elseif($user->rol === 'becario')
-                            <p class="text-sm text-red-400">Becario</p>
+                            <p class="text-sm text-red-500">Becario</p>
                         @else
-                            <p class="text-sm text-gray-400">{{$user->rol}}</p>
+                            <p class="text-sm text-gray-500">{{$user->rol}}</p>
 
                         @endif
                     </div>
@@ -39,7 +57,7 @@
                 </header>
 
                 <!-- Chat Box -->
-                <div id="chatBox" class="chat-box flex flex-col space-y-4 overflow-y-auto h-96 p-4 bg-gray-700 rounded-lg">
+                <div id="chatBox" class="chat-box flex flex-col space-y-4 overflow-y-auto h-96 p-4 bg-customLighterGray rounded-lg">
                     <!-- Mensajes se cargarán dinámicamente aquí -->
                 </div>
 
@@ -50,17 +68,18 @@
                         name="incoming_id" 
                         value="{{ $user->id }}" 
                         class="hidden">
-                    <input 
-                        type="text" 
-                        name="message" 
-                        id="messageInput" 
-                        placeholder="Escribe tu mensaje aquí..." 
-                        class="w-full bg-gray-600 text-white border-none rounded-l-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    >
+                        <input 
+                          type="text" 
+                          name="message" 
+                          id="messageInput" 
+                          placeholder="Escribe tu mensaje aquí..." 
+                          class="w-full bg-gray-600 text-white !border-none rounded-l-lg px-4 py-2 focus:ring-2 focus:outline-none"
+                        >
                     <button 
                         type="submit" 
-                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded-r-lg transition">
-                        <i class="fab fa-telegram-plane"></i>
+                        class="bg-customGreen hover:bg-customDarkGreen text-white px-4 rounded-r-lg transition">
+                        <!-- <i class="fab fa-telegram-plane"></i> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fill-white w-4 h-4"><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480l0-83.6c0-4 1.5-7.8 4.2-10.8L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
                     </button>
                 </form>
             </div>
@@ -180,8 +199,8 @@ messageElement.innerHTML = `
   <div class="details ${msg.outgoing_msg_id === {{ Auth::id() }} ? 'text-right' : 'text-left'}">
     <p class="inline-block px-4 py-2 rounded-lg ${
       msg.outgoing_msg_id === {{ Auth::id() }} 
-        ? 'bg-blue-500 text-white rounded-tr-lg' 
-        : 'bg-gray-200 text-gray-800 rounded-tl-lg'
+        ? 'bg-blue-600 text-white rounded-tr-lg font-semibold' 
+        : 'bg-gray-300 text-gray-800 rounded-tl-lg font-semibold'
     }">
       ${messageContent} ${msg.outgoing_msg_id === {{ Auth::id() }} ? checkIcon : ''}
     </p>
