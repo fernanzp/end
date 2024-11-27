@@ -17,6 +17,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NewProgramController;
 use App\Http\Controllers\VolunteerApplicationController;
 use App\Http\Controllers\ChatGlobalController;
+use App\Http\Controllers\PDFController;
 
 Route::get('/', function () {
     return view('index');
@@ -123,6 +124,7 @@ Route::post('usuario/chat/send-message', [ChatController::class, 'sendMessage'])
 Route::get('/admin/informes_de_donaciones', function(){
     return view('dashboard/donation_reports');
 });
+Route::get('/admin/informes_de_donaciones/pdf', [PDFController::class, 'reportePDF'])->name('donation.report');
 
 Route::get('/admin/asignacion_de_usuarios', function(){
     return view('dashboard/assigning_rol_to_requesting_user');

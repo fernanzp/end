@@ -43,9 +43,11 @@
                 <!-- <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 modal-link" data-modal-target="make_a_program-modal">
                     <i class='bx bx-plus w-4 h-4'></i> Crear programa
                 </button> -->
-                <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 modal-link" data-modal-target="request_a_program-modal">
-                    <i class='bx bx-plus w-4 h-4'></i> Generar informe donativo
-                </button>
+                <a href="{{route('donation.report')}}" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"><i class='bx bx-plus w-4 h-4'></i> Generar informe donativo</a>
+
+                {{-- <a href="{{route('donation.report')}}" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 modal-link" data-modal-target="request_a_program-modal"> --}}
+                    
+                </a>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- 4 Main Cards -->
