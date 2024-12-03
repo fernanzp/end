@@ -24,138 +24,58 @@
         </div>
         <div class="absolute w-full flex justify-center items-center bottom-8">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#ECDFCC" 
-                 class="w-8 h-8 smooth-bounce">
+                class="w-8 h-8 smooth-bounce">
                 <path d="M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5-12.5-32.8-12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z"/>
             </svg>
         </div>
     </div>
-    
 
-    <!-- Impacto, Donaciones, Comunidades -->
-    <section class="text-center py-10">
-        <div class="grid grid-cols-3 gap-4 max-w-4xl mx-auto">
-            <div>
-                <h2 class="text-4xl font-bold text-customOrange">30M</h2>
-                <p class="text-lg font-semibold text-white">Humanos impactados</p>
-                <img src="{{ asset('img/donaciones1-donations.png') }}" alt="Icono Humanos Impactados" class="mx-auto mt-2 w-24 h-24">
-            </div>
-            <div>
-                <h2 class="text-4xl font-bold text-customOrange">370K</h2>
-                <p class="text-lg font-semibold text-white">Dinero donado</p>
-                <img src="{{ asset('img/donaciones2-donations.png') }}" alt="Icono Dinero Donado" class="mx-auto mt-2 w-24 h-24">
-            </div>
-            <div>
-                <h2 class="text-4xl font-bold text-customOrange">100</h2>
-                <p class="text-lg font-semibold text-white">Comunidades asistidas</p>
-                <img src="{{ asset('img/donaciones3-donations.png') }}" alt="Icono Comunidades Asistidas" class="mx-auto mt-2 w-24 h-24">
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Donación -->
-    <section class="bg-customLightGray py-12">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div class="relative">
-                <img src="{{ asset('img/donaciones4-donations.jpg') }}" alt="Persona pidiendo ayuda" class="w-full h-auto relative z-10">
-                <div class="absolute top-0 left-0 w-full h-full bg-customGreen rounded-lg -z-10" style="transform: translate(15px, 15px);"></div>
-            </div>
-            <div>
-                <h3 class="text-orange-500 text-lg font-bold mb-2">Conoce más sobre nosotros</h3>
-                <h2 class="text-3xl font-bold mb-4 text-customGreen">Haz una donación y cambia vidas</h2>
-                <p class="text-customBeige mb-4">
-                    En Education Non-Disparity, luchamos por una educación de calidad y la reducción de las desigualdades. 
-                    Con tu apoyo, podemos brindar oportunidades a quienes más lo necesitan. Tu donación nos ayuda a crear un futuro más justo y equitativo.
-                </p>
-                <ul class="text-gray-800 space-y-2">
-                    <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
-                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                        </svg>
-                        Apoya el acceso a la educación para quienes más lo necesitan.
-                    </li>
-                    <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
-                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                        </svg>
-                        Sé parte de una comunidad global que lucha contra las desigualdades.
-                    </li>
-                    <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
-                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                        </svg>
-                        Contribuye a un futuro con oportunidades para todos.
-                    </li>
-                    <li class="inline-flex items-center gap-x-2 font-bold text-customBeige">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(71, 166, 83, 1);transform: ;msFilter:;">
-                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                        </svg>
-                        Comparte tu pasión por una educación inclusiva y de calidad.
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección 2 -->
-    <div class="bg-customLightGray w-screen h-screen py-12">
-        <div class="container mx-auto relative h-full">
-
-            <!-- Contenedor del contenido dinámico -->
-            <div class="flex flex-row items-center justify-between space-x-8 px-4 h-full">
-
-                <!-- Contenido 2 -->
-                <div class="w-1/2 content-slide h-full flex flex-col justify-center">
-                    <h1 class="text-4xl font-bold text-customGreen leading-tight mb-4">
-                        Estás a un paso de apoyar a mejorar la educación de miles de estudiantes
-                    </h1>
-                    <h2 class="text-2xl font-semibold text-customBeige mb-6">
-                        Ingresa el monto a donar deseado:
-                    </h2>
-
-                    <!-- Botones de donación -->
-                    <div class="grid grid-cols-3 gap-4">
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            100$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            200$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            300$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            500$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            800$
-                        </button>
-                        <button class="px-6 py-4 bg-transparent text-white font-bold rounded border border-white hover:bg-orange-600 hover:border-orange-600 text-1xl">
-                            1000$
-                        </button>
-                    </div>
-
-                    <button class="mt-6 w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-6 rounded-lg border border-white text-1xl">
-                        Continuar
-                    </button>
+    <!--Sección ¿Quiénes somos?-->
+    <div class="bg-customDarkGray px-40 py-32 flex flex-col items-center justify-center">
+        <!--Subsección 1 | ¿Quiénes somos?-->
+        <div class="w-full flex justify-between items-center pb-32 scroll-animation">
+            <div class="w-[50%] flex items-center">
+                <div class="w-full">
+                    <p class="merriweather-bold font-bold text-customGreen text-6xl mb-12">Más sobre nosotros</p>
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">¿Cómo tu donación puede cambiar vidas?</p>
+                    <p class="text-customBeige text-xl mb-12 text-justify">En Education Non Disparity, trabajamos para garantizar que todas las personas, sin importar su origen o situación, tengan acceso a una educación de calidad. A través de nuestros programas y proyectos, reducimos las desigualdades educativas y brindamos oportunidades a quienes más lo necesitan. Tu donación es una herramienta poderosa para crear un futuro más justo, ya que contribuye directamente a la implementación de recursos educativos y programas de formación que transforman vidas..</p>
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Haz una donación y marca la diferencia</p>
+                    <p class="text-customBeige text-xl text-justify">Tu apoyo es fundamental para continuar nuestra misión. Con cada donación, proporcionamos acceso a materiales educativos, becas y programas de capacitación a personas en situación de vulnerabilidad. Cada aporte, grande o pequeño, tiene un impacto directo y real en la vida de aquellos que necesitan oportunidades para cambiar su futuro. Al donar, no solo estás contribuyendo a una causa justa, sino que te conviertes en un agente de cambio para la próxima generación.</p>
                 </div>
-
-                <!-- Imagen 2 -->
-                <div class="w-1/2 content-slide h-full">
-                    <img src="{{ asset('img/seccion2-index.jpeg') }}" alt="Niños en situación de pobreza" class="object-cover rounded-lg shadow-lg w-full h-full">
+            </div>
+            <div class="w-[40%] flex justify-center">
+                <img src="{{ asset('img/donaciones4-donations.jpg') }}" alt="Imagen representativa" class="w-full h-auto rounded-3xl">
+            </div>
+        </div>
+        <!--Subsección 2 | Nuestros valores-->
+        <div class="w-full flex flex-col scroll-animation">
+            <p class="merriweather-bold font-bold text-customGreen text-5xl mb-12">Formas de donar: Haz la diferencia de diversas maneras</p>
+            <div class="w-full flex justify-between">
+                <div class="w-[30%] flex flex-col">
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Donación voluntaria</p>
+                    <p class="text-customBeige text-xl mb-12 text-justify">Las donaciones voluntarias nos permiten proporcionar becas, materiales educativos, y recursos para el desarrollo de nuevos programas y actividades. Con una contribución regular o puntual, puedes ayudar a financiar la educación inclusiva y equitativa para todos..</p>
+                </div>
+                <div class="w-[30%] flex flex-col">
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Voluntariado</p>
+                    <p class="text-customBeige text-xl mb-12 text-justify">Otra forma invaluable de contribuir es a través del voluntariado. Al dedicar tu tiempo y habilidades a nuestros programas, no solo estás brindando apoyo directo, sino también compartiendo tu conocimiento y experiencia con aquellos que más lo necesitan.</p>
+                </div>
+                <div class="w-[30%] flex flex-col">
+                    <p class="merriweather-bold font-bold text-customBeige text-3xl mb-4">Impacto de tu donación</p>
+                    <p class="text-customBeige text-xl mb-12 text-justify">Si tienes experiencia en áreas como la educación, la tecnología, o el diseño de programas, tu apoyo también puede ser invaluable a través de la creación de nuevos proyectos o la mejora de los existentes. Con tu creatividad y conocimiento, podemos innovar la forma en que llegamos a las comunidades más necesitadas.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Sección 3 -->
-    <div class="bg-customLightGray py-12">
+    <div class="bg-customDarkGray pb-24">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-customGreen mb-8">¿Qué donamos?</h2>
+            <h2 class="merriweather-bold font-bold text-customGreen text-5xl mb-12 text-center scroll-animation">¿Qué donamos?</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
                 <!-- Tarjeta 1: Comparte nuestra misión -->
-                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
+                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 scroll-animation">
                     <div class="mb-4">
                         <img src="{{ asset('img/donaciones5-donations.png') }}" alt="Comparte nuestra misión" class="mx-auto h-16 w-16">
                     </div>
@@ -166,7 +86,7 @@
                 </div>
 
                 <!-- Tarjeta 2: Donación general -->
-                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
+                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 scroll-animation">
                     <div class="mb-4">
                         <img src="{{ asset('img/donaciones6-donations.png') }}" alt="Donación general" class="mx-auto h-16 w-16">
                     </div>
@@ -177,7 +97,7 @@
                 </div>
 
                 <!-- Tarjeta 3: Vuélvete un voluntario -->
-                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
+                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 scroll-animation">
                     <div class="mb-4">
                         <img src="{{ asset('img/donaciones7-donations.png') }}" alt="Vuélvete un voluntario" class="mx-auto h-16 w-16">
                     </div>
@@ -188,7 +108,7 @@
                 </div>
 
                 <!-- Tarjeta 4: Forma parte de las actividades -->
-                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105">
+                <div class="text-center p-6 bg-customLighterGray shadow-md rounded-lg transform transition duration-300 hover:shadow-xl hover:scale-105 scroll-animation">
                     <div class="mb-4">
                         <img src="{{ asset('img/donaciones8-donations.png') }}" alt="Forma parte de las actividades" class="mx-auto h-16 w-16">
                     </div>
@@ -206,6 +126,35 @@
     <x-modal_change_user />
     <!--Chat-->
     <x-chat_global />
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const scrollElements = document.querySelectorAll(".scroll-animation");
+
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+
+            const displayScrollElement = (element) => {
+                element.classList.add("visible");
+            };
+
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25) && !el.classList.contains("visible")) {
+                        displayScrollElement(el);
+                    }
+                });
+            };
+
+            window.addEventListener("scroll", () => {
+                handleScrollAnimation();
+            });
+        });
+    </script>
 
     <script>
         var perfilBtn = document.getElementById('perfilBtn');
