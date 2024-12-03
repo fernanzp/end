@@ -396,7 +396,7 @@
                     placeContainer.classList.remove('hidden');
                     meetingLinkContainer.classList.add('hidden');
                     meetingLinkField.value = ''; // Limpia el campo si estaba visible anteriormente
-                } else if (modality === 'virtual') {
+                } else if (modality === 'en línea') {
                     meetingLinkContainer.classList.remove('hidden');
                     placeContainer.classList.add('hidden');
                     placeField.value = ''; // Limpia el campo si estaba visible anteriormente
@@ -606,6 +606,32 @@
 
         // Asegurarse de que el botón "Eliminar" esté oculto al inicio
         updateRemoveButtons();
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPhXNZwg1HmdhWo7ECKUe_4YY7vMcT7Q&libraries=places&callback=initAutocomplete" async defer></script> 
+
+    <script>
+        function initAutocomplete() {
+            // Selecciona el campo de dirección por ID
+            const input = document.getElementById('place');
+
+            // Crea una instancia de Autocomplete para el campo de dirección
+            const autocomplete = new google.maps.places.Autocomplete(input, {
+                types: ['geocode'], // Solo permitir direcciones
+                componentRestrictions: { country: 'mx' } // Restringir a México
+            });
+
+            // Agregar un listener para el evento 'place_changed'
+            autocomplete.addListener('place_changed', function () {
+                const place = autocomplete.getPlace();
+                if (place.geometry) {
+                    // Aquí puedes manejar la información de la dirección seleccionada
+                    console.log('Dirección seleccionada:', place.formatted_address);
+                } else {
+                    console.log('No se encontró información para la dirección');
+                }
+            });
+        }
     </script>
 </body>
 </html>

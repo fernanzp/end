@@ -58,7 +58,7 @@
         @endif
 
         <!--Gestión de usuarios-->
-        @if(Auth::user()->rol === 'admin')
+        {{--@if(Auth::user()->rol === 'admin')
             <li class="my-2 mx-1 relative group">
                 <a href="{{ url('/admin/gestion_de_usuarios') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <!-- <i class="fa-solid fa-right-from-bracket mr-4"></i> -->
@@ -69,7 +69,7 @@
                     <span class="sidebar-text">Gestión de usuarios</span> <!-- A   ll-->
                 </a>
             </li>
-        @endif
+        @endif--}}
 
         <!--Solicitudes de usuarios-->
         @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
@@ -85,7 +85,7 @@
         @endif
 
         <!--Solicitud de programas-->
-        @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
+        {{--@if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
             <li class="my-2 mx-1 relative group">
                 <a href="{{ url('admin/solicitudes_de_programas') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bxs-calendar-plus mr-4 text-customGreen'></i>
@@ -95,10 +95,10 @@
                     <span class="sidebar-text">Solicitud de programas</span> <!-- A C   ll-->
                 </a>
             </li>
-        @endif
+        @endif--}}
 
         <!--Dasboard del usuario-->
-        <li class="my-2 mx-1 relative group">
+        {{--<li class="my-2 mx-1 relative group">
             <a href="{{ url('/user/resumen_del_usuario') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                 <i class='bx bx-calendar mr-4 text-customGreen'></i>
                 <span class="tooltip-text absolute left-10 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 hidden group-hover:block">
@@ -106,11 +106,11 @@
                 </span>
                 <span class="sidebar-text">Resumen del usuario</span>
             </a>
-        </li>
+        </li>--}}
 
         <!-- PANTALLAS POR HACER -->
         <!--Informes-->
-        @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
+        {{--@if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
             <li class="my-2 mx-1 relative group">
                 <a href="{{ url('/admin/informes_de_donaciones') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bxs-file mr-4 text-customGreen'></i>
@@ -120,10 +120,10 @@
                     <span class="sidebar-text">Informes</span> <!-- A C   ll-->
                 </a>
             </li>
-        @endif
+        @endif--}}
 
         <!--Reportes de programas-->
-        @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
+        {{--@if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
             <li class="my-2 mx-1 relative group">
                 <a href="{{ url('/admin/reportes_de_programas') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <!-- <i class="fa-solid fa-right-from-bracket mr-4"></i> -->
@@ -134,7 +134,7 @@
                     <span class="sidebar-text">Reportes de programas</span> <!-- A C  ll-->
                 </a>
             </li>
-        @endif
+        @endif--}}
 
         <!--Mensajería-->
         @if(in_array(Auth::user()->rol, ['admin', 'coordinator', 'beneficiary', 'volunteer']))
@@ -150,7 +150,7 @@
         @endif
 
         <!--Retroalimentación de los programas-->
-        @if(Auth::user()->rol === 'beneficiary')
+        {{--@if(Auth::user()->rol === 'beneficiary')
             <li class="my-2 mx-1 relative group">
                 <a href="{{ url('admin/perfil') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <i class='bx bxs-user-voice mr-4 text-customGreen'></i>
@@ -160,10 +160,10 @@
                     <span class="sidebar-text">Retroalimentación de los programas</span> <!-- B   ll-->
                 </a>
             </li>
-        @endif
+        @endif--}}
 
         <!--Asignación de recursos-->
-        @if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
+        {{--@if(Auth::user()->rol === 'admin' || Auth::user()->rol === 'coordinator')
             <li class="my-2 mx-1 relative group">
                 <a href="{{ url('/admin/asignación_de_recursos') }}" class="flex items-center text-center text-customBeige hover:text-customGreen font-bold py-2">
                     <!-- <i class="fa-solid fa-right-from-bracket mr-4"></i> -->
@@ -174,7 +174,7 @@
                     <span class="sidebar-text">Asignación de recursos</span> <!-- A C   ll-->
                 </a>
             </li>
-        @endif
+        @endif--}}
 
         <!--Cerrar sesión-->
         <li class="my-2 mx-1 relative group">

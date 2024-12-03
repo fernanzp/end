@@ -85,7 +85,7 @@
                     @endif
                 </div>
         
-                <input type="submit" value="Iniciar Sesión" class="w-full text-[20px] font-bold text-customBeige bg-customGreen mb-4 py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar">
+                <input type="submit" value="Iniciar Sesión" class="w-full text-xl font-bold text-customGreen bg-transparent mb-4 py-4 rounded-[32px] border-4 border-customGreen cursor-pointer transition-colors duration-300 hover:bg-customGreen hover:text-customDarkGray" name="btnIngresar">
 
                 <!-- Botón de inicio de sesión con Google -->
                 <div class="flex items-center justify-center">
@@ -154,7 +154,7 @@
                 <div class="relative my-6 w-full text-customBeige">
                     <div class="flex items-center">
                         <!-- Checkbox para aceptar las condiciones y políticas de privacidad -->
-                        <input type="checkbox" id="accept-terms" class="" required>
+                        <input type="checkbox" id="accept-terms">
                         <p class="text-sm ml-2">
                             He leído y acepto las 
                             <a href="#" id="terms-link" class="text-customGreen">Condiciones</a> y la 
@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 
-                <button type="button" class="g-recaptcha w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customDarkGreen hover:text-customDarkBeige" data-sitekey="6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6" data-callback='onSubmit' data-action='submit'>
+                <button type="button" class="g-recaptcha w-full text-xl font-bold text-customGreen bg-transparent mb-4 py-4 rounded-[32px] border-4 border-customGreen cursor-pointer transition-colors duration-300 hover:bg-customGreen hover:text-customDarkGray" data-sitekey="6LcC1V0qAAAAAPLP_kn9CehU1CWG6Ea4bDrs0Di6" data-callback='onSubmit' data-action='submit'>
                     Crear Cuenta
                 </button>
                 <!-- <input type="submit" value="Crear Cuenta" class="w-full text-[20px] font-bold text-customBeige bg-customGreen py-4 rounded-[32px] border-none cursor-pointer transition-colors duration-300 hover:bg-customBeige hover:text-customGreen" name="btnIngresar"> -->
@@ -384,6 +384,37 @@
         // Cerrar el modal
         document.getElementById('close-modal').addEventListener('click', function() {
             document.getElementById('terms-modal').classList.add('hidden'); // Ocultar el modal
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkbox = document.getElementById('accept-terms');
+            const createAccountButton = document.getElementById('create-account-btn');
+
+            // Función para simular el comportamiento
+            function simulateCheckboxInteraction() {
+                // Verificamos si el checkbox está seleccionado
+                if (checkbox.checked) {
+                    // Si está seleccionado, habilitamos el botón
+                    createAccountButton.disabled = false;
+                } else {
+                    // Si no está seleccionado, deshabilitamos el botón
+                    createAccountButton.disabled = true;
+                }
+            }
+
+            // Escuchamos el evento 'change' del checkbox
+            checkbox.addEventListener('change', () => {
+                simulateCheckboxInteraction();
+            });
+
+            // Inicializamos el estado del botón al cargar la página
+            simulateCheckboxInteraction();
+
+            // Simulamos interacción con el checkbox para asegurarnos de que responde correctamente
+            checkbox.click(); // Selecciona el checkbox
+            checkbox.click(); // Deselecciona el checkbox
         });
     </script>
 

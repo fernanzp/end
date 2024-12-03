@@ -1,5 +1,7 @@
-<x-head />
+<!-- Importación del componente con el encabezado -->
+<x-head /> 
 
+<!-- Inicio del cuerpo de la página -->
 <body class="relative h-screen w-full bg-customDarkGray">
     <!-- Estilos globales -->
     <style>
@@ -74,16 +76,9 @@
 
             </div>
 
-            <button id="modal-btn" class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
+            <button id="" class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete ahora</button>
             <!--<button class="w-full bg-customBeige text-customDarkGray text-xl font-bold py-5 px-6 rounded-lg transition-colors duration-300 hover:bg-customDarkBeige transition">Inscríbete en la fecha programada</button>-->
         </div>
-
-
-        <!--Nuevo programa-->
-        <x-newprogram />
-
-
-
 
         <div class="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center bottom-8">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#ECDFCC" 
@@ -103,7 +98,7 @@
             <div class="mb-10">
                 <p class="merriweather-bold font-bold text-customGreen text-2xl mb-4">Detalles del programa:</p>
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Modalidad:</span> <span class="text-customBeige text-xl">{{ ucfirst($program->modality) }}</span></p> 
-                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Días de la semana:</span> <span class="text-customBeige text-xl">{{ $program->days_of_the_week }}</span></p> 
+                <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Días de la semana:</span> <span class="text-customBeige text-xl">{{ implode(', ', json_decode($program->days_of_the_week)) }}</span></p>
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Horario:</span> <span class="text-customBeige text-xl">{{ $program->schedule }}</span></p> 
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Edad:</span> <span class="text-customBeige text-xl">{{ $program->age }}</span></p>
                 <p class="text-customBeige text-xl mb-4 text-justify"><span class="font-bold">Capacidad de beneficiarios:</span> <span class="text-customBeige text-xl">{{ $program->beneficiary_capacity }}</span></p> 

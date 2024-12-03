@@ -19,7 +19,8 @@ class NewProgramController extends Controller
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
             'place' => 'nullable|string|max:255',
-            'modality' => 'required|in:presencial,virtual',
+            'meeting_link' => 'nullable|string|max:255',
+            'modality' => 'required|in:presencial,en línea',
             'days_of_the_week' => 'nullable|array',
             'schedule' => 'nullable|string|max:255',
             'age' => 'nullable|string|max:255',
@@ -30,14 +31,28 @@ class NewProgramController extends Controller
             'objetive' => 'required|string',
             'financing' => 'nullable|string',
             'img' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'start_date' => 'required_if:event_duration,multiple_days|date|after_or_equal:today',
-            'end_date' => 'required_if:event_duration,multiple_days|date|after_or_equal:start_date',
-            'date' => 'required_if:event_duration,single_day|date|after_or_equal:today',
+            'start_date' => 'nullable|date|after_or_equal:today',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'date' => 'nullable|date|after_or_equal:today',
             'start_time' => 'nullable|date_format:H:i',
             'end_time' => 'nullable|date_format:H:i',
             'category' => 'required|in:educativo,economico,caritativo,inclusivo,capacitacion,otro', // Validación para categoría
         ]);
 
+        // Verificar si se subió un archivo
+        if ($request->hasFile('img') && $request->file('img')->isValid()) {
+            // Obtener el archivo
+            $file = $request->file('img');
+            
+            // Generar un nombre único para el archivo (por ejemplo, basado en el timestamp y el nombre original)
+            $fileName = time() . '_' . $file->getClientOriginalName();
+    
+            // Mover el archivo a la carpeta "public/img/ine_images"
+            $file->move(public_path('img/programs_images'), $fileName);
+    
+            // Guardar la ruta del archivo en la base de datos
+            $validatedData['img'] = $fileName;
+        }
 
          // Procesar los datos de los contenidos
             $validatedData['contents'] = json_encode($request->input('contents', [])); // Convertir a JSON
@@ -63,11 +78,6 @@ class NewProgramController extends Controller
             $validatedData['age'] = $request->input('min_age') . ' - ' . $request->input('max_age');
         } else {
             $validatedData['age'] = null;
-        }
-
-        // Guardar el archivo de imagen si se proporciona
-        if ($request->hasFile('img')) {
-            $validatedData['img'] = $request->file('img')->store('images', 'public');
         }
 
         // Convertir los días de la semana a JSON

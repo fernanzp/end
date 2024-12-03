@@ -4,7 +4,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #007bff;
+    background-color: #1ab76a;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -38,7 +38,7 @@
   }
 
   #chat-header {
-    background-color: #007bff;
+    background-color: #1ab76a;
     color: #fff;
     padding: 10px;
     text-align: center;
