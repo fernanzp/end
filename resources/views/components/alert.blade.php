@@ -38,16 +38,21 @@
             const modal = document.getElementById('alert-modal');
             const closeModal = document.getElementById('close-modal');
 
+            // Cerrar automáticamente después de 5 segundos
+            setTimeout(() => {
+                if (modal) modal.remove();
+            }, 10000);
+
             // Cerrar el modal al hacer clic fuera de él
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
-                    modal.remove(); // Elimina el modal del DOM
+                    modal.remove();
                 }
             });
 
             // Cerrar el modal al hacer clic en el botón "x"
             closeModal.addEventListener('click', () => {
-                modal.remove(); // Elimina el modal del DOM
+                modal.remove();
             });
         });
     </script>

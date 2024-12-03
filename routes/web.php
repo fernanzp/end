@@ -9,6 +9,8 @@ use App\Http\Controllers\BeneficiaryApplicationController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\UsersRequestController;
 use App\Http\Controllers\ConfigurationProgramsController;
+use App\Http\Controllers\ProgramBeneficiaryController;
+use App\Http\Controllers\ProgramVolunteerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -133,3 +135,11 @@ Route::post('/volunteer/submit', [VolunteerApplicationController::class, 'submit
 
 Route::post('/send-message', [ChatGlobalController::class, 'sendMessage'])->name('chatGlobal.sendMessage');
 Route::get('/messages', [ChatGlobalController::class, 'getMessages'])->name('chatGlobal.getMessages');
+
+// Ruta para la inscripción de un beneficiario a un programa
+Route::middleware(['auth'])->group(function () {
+    Route::post('/programs/programview/{program}/beneficiaries', [ProgramBeneficiaryController::class, 'store'])->name('programs.programview.beneficiaries.store');
+});
+Route::middleware(['auth'])->group(function () {
+    Route::post('/programs/programview/{program}/volunteers', [ProgramVolunteerController::class, 'store'])->name('programs.programview.volunteers.store');
+});

@@ -334,8 +334,18 @@
     <div class="bg-customDarkGray h-auto flex flex-col items-center justify-center px-32 pb-32">
         <p class="merriweather-bold font-bold text-customGreen text-5xl text-center mb-8">¿Te interesa participar?</p>
         <div class="flex w-full justify-around">
-            <button class="w-[40%] bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete como beneficiario</button>
-            <button class="w-[40%] bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen transition">Inscríbete como voluntario</button>
+            <form action="{{ route('programs.programview.beneficiaries.store', $program->id) }}" method="POST" class="w-[40%]">
+                @csrf
+                <button type="submit" class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen">
+                    Inscríbete como beneficiario
+                </button>
+            </form>
+            <form action="{{ route('programs.programview.volunteers.store', $program->id) }}" method="POST" class="w-[40%]">
+                @csrf
+                <button type="submit" class="w-full bg-transparent text-white text-xl font-bold py-5 px-6 border-customGreen border-4 rounded-full transition-colors duration-300 hover:bg-customGreen">
+                    Inscríbete como voluntario
+                </button>
+            </form>
         </div>
     </div>
 
@@ -348,6 +358,14 @@
             @endforeach
         </div>
     </div>
+
+    <!--Alerta de registro exitoso-->
+    @include('components.alert', [
+        'showModal' => session('alert') ? true : false,
+        'type' => session('alert')['type'] ?? '',
+        'title' => session('alert')['title'] ?? '',
+        'message' => session('alert')['message'] ?? '',
+    ])
 
     <!-- Footer -->
     <x-footer />
